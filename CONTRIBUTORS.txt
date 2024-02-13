@@ -8,4 +8,8 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-- Rafael Corchuelo (corchu@us.es)
+- Luis Garcia (luigarpar1@alum.us.es)
+- Pablo Espinosa (pabespnar@alum.us.es)
+- David Gavira (davgarser@alum.us.es)
+- Ignacio Naredo (ignnarber@alum.us.es)
+- Felipe Solis  (felsolagu@alum.us.es)
