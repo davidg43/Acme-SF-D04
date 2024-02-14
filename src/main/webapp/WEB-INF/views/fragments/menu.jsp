@@ -19,9 +19,10 @@
 <acme:menu-bar code="master.menu.home">
 	<acme:menu-left>
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
+			<acme:menu-suboption code="master.menu.anonymous.davgavser" action="https://store.steampowered.com/app/813780/Age_of_Empires_II_Definitive_Edition/?l=spanish"/>
+			<acme:menu-suboption code="master.menu.anonymous.ignnarber" action="https://www.leagueoflegends.com/es-es"/>
 			<acme:menu-suboption code="master.menu.anonymous.luisgp9" action="https://sevillafc.es/"/>
 			<acme:menu-suboption code="master.menu.anonymous.davgarser" action= "https://store.steampowered.com/app/813780/Age_of_Empires_II_Definitive_Edition/?1=spanish?"/>
-			
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
