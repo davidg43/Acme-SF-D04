@@ -20,8 +20,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
+	<name>Acme-C1.018</name>
+	<description>This is the C1.018 project</description>
+	
 	<groupId>Acme</groupId>
-	<artifactId>Acme-One-24.0.1</artifactId>
-	<version>24.1.0</version>
+	<artifactId>Acme-C1.018</artifactId>
+	<version>1.0</version>
 	<packaging>war</packaging>
 </project>
