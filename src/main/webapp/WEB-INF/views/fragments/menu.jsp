@@ -20,6 +20,7 @@
 	<acme:menu-left>
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.davgavser" action="https://store.steampowered.com/app/813780/Age_of_Empires_II_Definitive_Edition/?l=spanish"/>
+			<acme:menu-suboption code="master.menu.anonymous.felsolagu" action="https://store.steampowered.com/app/730/CounterStrike_2/"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
