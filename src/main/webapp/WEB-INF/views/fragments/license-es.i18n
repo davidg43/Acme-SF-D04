@@ -17,3 +17,6 @@ master.license.text = \
 	su información de autentificación, "language" para almacenar sus preferencias de \
 	lenguage, "XSRF-TOKEN" para tratar ataques CSRF, y "returnStack" para saber dónde \
 	volver al pulsar algunos botones.
+	
+master.license.textPersonalizado = \
+	Se podrá usar este sistema únicamente en el ámbito educativo.
