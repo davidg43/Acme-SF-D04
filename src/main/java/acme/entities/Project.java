@@ -4,8 +4,12 @@ package acme.entities;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.PositiveOrZero;
-import javax.validation.constraints.Size;
+
+import org.checkerframework.common.aliasing.qual.Unique;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
 import lombok.Getter;
@@ -19,15 +23,16 @@ public class Project extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@NotBlank
-	@Size(min = 3, max = 3, message = "El código debe tener entre 3 y 3 caracteres")
+	@Unique
+	@Pattern(regexp = "[A-Z]{3}-[0-9]{4}")
 	private String				code;
 
 	@NotBlank
-	@Size(max = 76, message = "El título debe tener menos de 76 caracteres")
+	@Length(max = 75)
 	private String				title;
 
 	@NotBlank
-	@Size(max = 101, message = "El resumen debe tener menos de 101 caracteres")
+	@Length(max = 100)
 	private String				abstractText;
 
 	@NotNull
@@ -37,6 +42,7 @@ public class Project extends AbstractEntity {
 	private int					cost;
 
 	@NotNull
+	@URL
 	private String				link;
 
 }

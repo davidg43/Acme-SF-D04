@@ -4,7 +4,9 @@ package acme.entities;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
 import lombok.Getter;
@@ -18,18 +20,18 @@ public class UserStory extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@NotBlank
-	@Size(max = 76, message = "El título debe tener menos de 76 caracteres")
+	@Length(max = 75)
 	private String				title;
 
 	@NotBlank
-	@Size(max = 101, message = "La descripción debe tener menos de 101 caracteres")
+	@Length(max = 100)
 	private String				description;
 
 	@Positive
 	private int					estimatedCostInHours;
 
 	@NotBlank
-	@Size(max = 101, message = "Los criterios de aceptación deben tener menos de 101 caracteres")
+	@Length(max = 100)
 	private String				acceptanceCriteria;
 
 
@@ -39,6 +41,7 @@ public class UserStory extends AbstractEntity {
 	}
 
 
+	@URL
 	private String link;
 
 }
