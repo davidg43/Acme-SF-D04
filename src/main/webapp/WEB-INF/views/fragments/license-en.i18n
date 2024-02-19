@@ -17,3 +17,5 @@ master.license.text = \
 	automatically, "language" to store your language preferences, "XSRF-TOKEN" to \
 	deal with CSRF attacks, and "returnStack" to know where to return when your press \
 	some buttons.
+master.license.textPersonalizado = \
+	You will only use this system in the education context.
