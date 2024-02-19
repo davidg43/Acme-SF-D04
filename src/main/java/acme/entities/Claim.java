@@ -4,10 +4,14 @@ package acme.entities;
 import java.time.Instant;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
 import lombok.Getter;
@@ -21,25 +25,28 @@ public class Claim extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@NotBlank
-	@Pattern(regexp = "C-[0-9]{4}", message = "El código debe seguir el patrón C-####")
+	@Pattern(regexp = "C-[0-9]{4}")
 	private String				code;
 
 	@NotNull
+	@Past
 	private Instant				instantiationMoment;
 
 	@NotBlank
-	@Size(max = 76, message = "El título debe tener menos de 76 caracteres")
+	@Length(max = 75)
 	private String				heading;
 
 	@NotBlank
-	@Size(max = 101, message = "La descripción debe tener menos de 101 caracteres")
+	@Length(max = 100)
 	private String				description;
 
 	@NotBlank
-	@Size(max = 101, message = "El departamento debe tener menos de 101 caracteres")
+	@Length(max = 100)
 	private String				department;
 
+	@Email
 	private String				emailAddress;
 
+	@URL
 	private String				link;
 }
