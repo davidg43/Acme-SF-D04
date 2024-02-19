@@ -8,9 +8,9 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-This is a starter project.  It is intended to be a core learning asset for the students
+This is a starter project called Acme-C1.018. It is intended to be a core learning asset for the students
 who have enrolled the Design and Testing subject of the Software Engineering curriculum of the 
-University of Seville.  This project helps them start working on their new information system 
+University of Seville. This project helps them start working on their new information system 
 projects.
 
 To get this project up and running, please follow the guideline in the theory/lab materials,
