@@ -41,7 +41,6 @@ public class Project extends AbstractEntity {
 	@PositiveOrZero
 	private int					cost;
 
-	@NotNull
 	@URL
 	private String				link;
 
