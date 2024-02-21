@@ -31,7 +31,7 @@ public class SponsorShips extends AbstractEntity {
 	@Past
 	private Date	moment;
 
-	@Future
+	
 	//@Temporal(SpecDuration)
 	private Date	duration;
 
