@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
@@ -46,8 +45,7 @@ public class CodeAudits extends AbstractEntity {
 	private List<String>	correctiveActions;
 
 	@NotBlank
-	@OneToOne
-	private AuditRecords	mark;
+	private String			mark;
 
 	@URL
 	private String			link;
