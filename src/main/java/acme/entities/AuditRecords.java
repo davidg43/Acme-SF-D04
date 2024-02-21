@@ -39,13 +39,10 @@ public class AuditRecords extends AbstractEntity {
 	@NotBlank
 	private Date				periodEnd;
 
-
-	public enum Mark {
-		A_PLUS, A, B, C, F, F_MINUS
-	}
-
+	@NotBlank
+	private Mark				mark;
 
 	@URL
-	private String link;
+	private String				link;
 
 }
