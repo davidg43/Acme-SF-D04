@@ -13,7 +13,6 @@ import javax.validation.constraints.Pattern;
 
 import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.validator.constraints.URL;
-import org.yaml.snakeyaml.error.Mark;
 
 import acme.client.data.AbstractEntity;
 import lombok.Getter;
@@ -48,7 +47,7 @@ public class CodeAudits extends AbstractEntity {
 
 	@NotBlank
 	@OneToOne
-	private Mark			mark;
+	private AuditRecords	mark;
 
 	@URL
 	private String			link;
