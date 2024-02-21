@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 import org.checkerframework.common.aliasing.qual.Unique;
 
 import acme.client.data.AbstractEntity;
+import lombok.Getter;
 import lombok.Setter;
 
 @Entity
