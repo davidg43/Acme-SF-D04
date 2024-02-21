@@ -24,7 +24,7 @@ public class Invoices extends AbstractEntity {
 	@NotBlank
 	@Unique
 	@Pattern(regexp = "IN-[0-9]{4}-[0-9]{4}")
-	private String				Code;
+	private String				code;
 
 	@Past
 	private Date				registration_time;
