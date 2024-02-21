@@ -8,8 +8,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
+import org.checkerframework.common.aliasing.qual.Unique;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
@@ -24,7 +25,7 @@ public class TrainingModule extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@NotBlank
-	@NotNull
+	@Unique
 	@Pattern(regexp = "“[A-Z]{1,3}-[0-9]{3}")
 	private String				code;
 
@@ -33,7 +34,7 @@ public class TrainingModule extends AbstractEntity {
 	private Date				creationMoment;
 
 	@NotBlank
-	@Size(max = 101, message = "Los detalles del entrenamiento deben tener menos de 76 caracteres")
+	@Length(max = 101)
 	private String				details;
 
 	@NotNull
