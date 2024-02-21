@@ -3,13 +3,13 @@ package acme.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
-import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
@@ -25,7 +25,7 @@ public class TrainingModule extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@NotBlank
-	@Unique
+	@Column(unique = true)
 	@Pattern(regexp = "“[A-Z]{1,3}-[0-9]{3}")
 	private String				code;
 
@@ -40,11 +40,14 @@ public class TrainingModule extends AbstractEntity {
 	@NotNull
 	private DifficultyLevel		difficultyLevel;
 
+	@Past
 	private Date				updateMoment;
 
 	@URL
 	private String				link;
 
 	private Date				totalTime;
+
+	//relacion a project
 
 }
