@@ -33,15 +33,17 @@ public class TrainingModule extends AbstractEntity {
 
 	@Past
 	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				creationMoment;
 
 	@NotBlank
-	@Length(max = 101)
+	@Length(max = 100)
 	private String				details;
 
 	@NotNull
 	private DifficultyLevel		difficultyLevel;
 
+	//pastorPresent?
 	@Past
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
