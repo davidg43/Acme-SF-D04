@@ -3,18 +3,18 @@ package acme.entities;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-import org.checkerframework.common.aliasing.qual.Unique;
-
 import acme.client.data.AbstractEntity;
+import acme.client.data.datatypes.Money;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,30 +27,29 @@ public class Contract extends AbstractEntity {
 
 	@NotBlank
 	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}")
-	@Unique
+	@Column(unique = true)
 	private String				code;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Past
 	private Date				moment;
 
 	@NotBlank
-	@Size(max = 76, message = "El nombre del proveedor no puede tener mas de 76 caracteres")
+	@Size(max = 75)
 	private String				providerName;
 
 	@NotBlank
-	@Size(max = 76, message = "El nombre del cliente no puede tener mas de 76 caracteres")
+	@Size(max = 75)
 	private String				customerName;
 
 	@NotBlank
-	@Size(max = 101, message = "Los objetivos no pueden tener mas de 101 caracteres")
+	@Size(max = 100)
 	private String				goals;
 
 	@NotNull
-	@Positive
-	private int					budget;
+	private Money				budget;
 
-	@NotNull
-	@JoinColumn(name = "project_cost")
-	private int					cost;
-
+	//	@OneToMany
+	//	@Valid
+	//	private Project				project;
 }
