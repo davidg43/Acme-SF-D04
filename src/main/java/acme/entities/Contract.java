@@ -52,4 +52,8 @@ public class Contract extends AbstractEntity {
 	//	@OneToMany
 	//	@Valid
 	//	private Project				project;
+
+	//	@OneToMany
+	//	@Valid
+	//	private ProgressLog				progressLog;
 }
