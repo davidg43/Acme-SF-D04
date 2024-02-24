@@ -5,51 +5,60 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
 
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
+import acme.client.data.datatypes.Money;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Invoices extends AbstractEntity {
+public class SponsorShips extends AbstractEntity {
+
+	//Falta relacion a project ? 
 
 	private static final long	serialVersionUID	= 1L;
 
 	@NotBlank
 	@Column(unique = true)
-	@Pattern(regexp = "IN-[0-9]{4}-[0-9]{4}")
+	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}")
 	private String				code;
 
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotBlank
-	private Date				registrationTime;
+	private Date				moment;
 
+	//@Temporal(SpecDuration)
 	@NotBlank
-	private Date				due_date;
+	private Date				duration;
 
-	@NotBlank
 	@Positive
-	private Integer				quantity;
+	@NotBlank
+	private Money				amount;
 
 	@NotBlank
-	@PositiveOrZero
-	private Integer				tax;
+	private Type				type;
 
-	@NotBlank
-	private Integer				totalAmount;
+	@Email
+	private String				contact;
 
 	@URL
 	private String				link;
+
+	@NotBlank
+	@ManyToOne
+	private Invoices			invoices;
+
 }
