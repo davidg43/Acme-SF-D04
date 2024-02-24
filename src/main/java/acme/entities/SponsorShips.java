@@ -3,18 +3,20 @@ package acme.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 
-import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
+import acme.client.data.datatypes.Money;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,32 +25,35 @@ import lombok.Setter;
 @Setter
 public class SponsorShips extends AbstractEntity {
 
+	//Falta relacion a project ? 
+
+	private static final long	serialVersionUID	= 1L;
+
 	@NotBlank
-	@Unique
+	@Column(unique = true)
 	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}")
-	private String	code;
+	private String				code;
 
 	@Past
-	private Date	moment;
+	@Temporal(TemporalType.TIMESTAMP)
+	@NotBlank
+	private Date				moment;
 
-	@Future
 	//@Temporal(SpecDuration)
-	private Date	duration;
+	@NotBlank
+	private Date				duration;
 
 	@Positive
-	private Integer	amount;
-
+	@NotBlank
+	private Money				amount;
 
 	@NotBlank
-	public enum Type {
-		FINANCIAL, IN_KIND
-	}
-
+	private Type				type;
 
 	@Email
-	public String	contact;
+	public String				contact;
 
 	@URL
-	public String	link;
+	public String				link;
 
 }
