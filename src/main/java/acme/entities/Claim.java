@@ -1,7 +1,7 @@
 
 package acme.entities;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
@@ -32,19 +32,19 @@ public class Claim extends AbstractEntity {
 
 	@NotNull
 	@Past
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				instantiationMoment;
 
 	@NotBlank
-	@Length(max = 76)
+	@Length(max = 75)
 	private String				heading;
 
 	@NotBlank
-	@Length(max = 101)
+	@Length(max = 100)
 	private String				description;
 
 	@NotBlank
-	@Length(max = 101)
+	@Length(max = 100)
 	private String				department;
 
 	@Email
