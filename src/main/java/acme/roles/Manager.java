@@ -3,6 +3,9 @@ package acme.roles;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractRole;
 import lombok.Getter;
@@ -19,9 +22,17 @@ public class Manager extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@NotBlank
-	private String				project;
+	@Size(max = 75)
+	private String				degree;
 
 	@NotBlank
-	private String				userStory;
+	@Size(max = 100)
+	private String				overview;
 
+	@NotBlank
+	@Size(max = 100)
+	private String				certifications;
+
+	@URL
+	private String				furtherInformationLink;
 }
