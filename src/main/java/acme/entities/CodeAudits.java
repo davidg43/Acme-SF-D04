@@ -32,21 +32,17 @@ public class CodeAudits extends AbstractEntity {
 	@NotBlank
 	private Date				execution;
 
-
 	@NotBlank
-	public enum type {
-		STATIC, DYNAMIC
-	}
-
+	private Type				type;
 
 	@NotBlank
 	@Column(unique = true)
-	private List<String>	correctiveActions;
+	private List<String>		correctiveActions;
 
 	@NotBlank
-	private String			mark;
+	private Mark				mark;
 
 	@URL
-	private String			link;
+	private String				link;
 
 }
