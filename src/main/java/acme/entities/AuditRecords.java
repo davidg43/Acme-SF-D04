@@ -45,4 +45,9 @@ public class AuditRecords extends AbstractEntity {
 	@URL
 	private String				link;
 
+	/*
+	 * @ManyToOne
+	 * private CodeAudits codeAudits;
+	 */
+
 }
