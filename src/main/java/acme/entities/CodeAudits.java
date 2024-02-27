@@ -45,4 +45,9 @@ public class CodeAudits extends AbstractEntity {
 	@URL
 	private String				link;
 
+	/*
+	 * @OneToOne
+	 * private Project project;
+	 */
+
 }
