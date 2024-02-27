@@ -5,3 +5,8 @@ user-account-provider-01,true,"UserIdentity{name: 'Laurel', surname: 'Provider',
 user-account-provider-02,true,"UserIdentity{name: 'Martina', surname: 'коза თხა', email: 'martina@acme.com'}",provider2,provider2
 user-account-developer-01,true,"UserIdentity{name: 'Developer1', surname: 'Developer', email: 'developer1@acme.com'}",developer1,developer1
 user-account-developer-02,true,"UserIdentity{name: 'Developer2', surname: 'Developer', email: 'developer2@acme.com'}",developer2,developer2
+user-account-manager-01,true,"UserIdentity{name: 'Manager1', surname: 'Manager', email: 'manager1@acme.com'}",manager1,manager1
+user-account-manager-02,true,"UserIdentity{name: 'Manager2', surname: 'Manager', email: 'manager2@acme.com'}",manager2,manager2
+user-account-manager-03,true,"UserIdentity{name: 'Manager3', surname: 'Manager', email: 'manager3@acme.com'}",manager3,manager3
+user-account-manager-04,true,"UserIdentity{name: 'Manager4', surname: 'Manager', email: 'manager4@acme.com'}",manager4,manager4
+user-account-manager-05,true,"UserIdentity{name: 'Manager5', surname: 'Manager', email: 'manager5@acme.com'}",manager5,manager5
