@@ -42,4 +42,8 @@ public class ProgressLog extends AbstractEntity {
 	@Size(max = 75)
 	private String				reponsiblePerson;
 
+	//@ManyToOne
+	//@Valid
+	//Contract					contract;
+
 }
