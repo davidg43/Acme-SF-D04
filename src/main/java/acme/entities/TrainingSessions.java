@@ -8,11 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
@@ -34,14 +36,15 @@ public class TrainingSessions extends AbstractEntity {
 	@Pattern(regexp = "TS-[A-Z]{1,3}-[0-9]{3}")
 	private String				code;
 
-	//dividir entre inicio y final
-	//private Date				period;
+	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
+	@Past
+	private Date				iniDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				creationMoment;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date				finalPeriod;
+	@NotNull
+	@Past
+	private Date				finalDate;
 
 	@NotBlank
 	@Length(max = 75)
@@ -59,11 +62,23 @@ public class TrainingSessions extends AbstractEntity {
 	private String				link;
 
 
-	@AssertTrue(message = "Time period must be at least one week long and start after module creation moment")
+	@Transient
+	public Date period() {
+		if (this.iniDate != null && this.finalDate != null) {
+			long diffInMillies = Math.abs(this.finalDate.getTime() - this.iniDate.getTime());
+			return new Date(diffInMillies);
+		}
+		return null;
+	}
+
+	@AssertTrue(message= "La fecha inicial de la sesion de entrenamiento debe empezar despues de la fecha de creacion del modulo de entrenamiento, el periodo debe ser minimo de una semsna y tambien tiene que empezar despues de la fecha de creacion del modulo de entrenamiento")
 	public boolean isFinalPeriodAfterCreationMoment() {
-		long diffInMillies = Math.abs(this.finalPeriod.getTime() - this.trainingModule.getCreationMoment().getTime());
-		long diffInDays = diffInMillies / (1000 * 60 * 60 * 24);
-		return diffInDays >= 7 && this.finalPeriod.after(this.trainingModule.getCreationMoment());
+		if (this.iniDate != null && this.finalDate != null && this.trainingModule != null && this.trainingModule.getCreationMoment() != null) {
+			long diffInMillies = Math.abs(this.finalDate.getTime() - this.trainingModule.getCreationMoment().getTime());
+			long diffInDays = diffInMillies / (1000 * 60 * 60 * 24);
+			return diffInDays >= 7 && this.finalDate.after(this.trainingModule.getCreationMoment()) && this.iniDate.after(this.trainingModule.getCreationMoment());
+		}
+		return false;
 	}
 
 	//-----

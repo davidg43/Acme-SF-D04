@@ -3,7 +3,6 @@ package acme.entities;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -13,8 +12,6 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
@@ -26,45 +23,41 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class TrainingModule extends AbstractEntity {
+public class Objective extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@NotBlank
-	@Column(unique = true)
-	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}")
-	private String				code;
-
-	@Past
 	@NotNull
+	@Past
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				creationMoment;
+	private Date				instantiationMoment;
+
+	@NotBlank
+	@Length(max = 75)
+	private String				title;
 
 	@NotBlank
 	@Length(max = 100)
-	private String				details;
+	private String				description;
 
 	@NotNull
-	private DifficultyLevel		difficultyLevel;
+	private Priority			priority;
 
+	private boolean				criticalStatus;
+
+	@NotNull
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				updateMoment;
+	private Date				duration;
 
 	@URL
 	private String				link;
 
-	@NotNull
-	@Positive
-	private int					totalTime;
 
-
-	@AssertTrue(message = "El momento de actualizacion del modulo debe ser posterior a su momento de creacion")
+	@AssertTrue(message = "La duracion del objetivo debe comenzar una vez establecido el objetivo")
 	public boolean isUpdateMomentAfterCreationMoment() {
-		return this.updateMoment != null && this.creationMoment != null && this.updateMoment.after(this.creationMoment);
+		return this.instantiationMoment != null && this.duration != null && this.duration.after(this.instantiationMoment);
 	}
-
-	//-----------------
 
 
 	@NotNull
