@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -40,7 +41,6 @@ public class Project extends AbstractEntity {
 
 	private boolean				hasFatalErrors;
 
-	//Hacer la comprobación de positive or Zero en el servicio
 	@Valid
 	private Money				cost;
 
@@ -51,5 +51,12 @@ public class Project extends AbstractEntity {
 	@NotNull
 	@Valid
 	private Manager				manager;
+
+
+	@AssertTrue(message = "Money should be positive or zero.")
+	private boolean isCostValid() {
+		int res = this.getCost().getAmount().compareTo(0.);
+		return res >= 0 ? true : false;
+	}
 
 }
