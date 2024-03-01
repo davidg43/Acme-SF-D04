@@ -5,8 +5,11 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -49,11 +52,14 @@ public class Contract extends AbstractEntity {
 	@NotNull
 	private Money				budget;
 
-	//	@OneToMany
-	//	@Valid
-	//	private Project				project;
+	@NotNull
+	@Valid
+	@ManyToOne
+	private Project				project;
 
-	//	@OneToMany
-	//	@Valid
-	//	private ProgressLog				progressLog;
+
+	@AssertTrue(message = "Budget should be less or equal than the project cost.")
+	private boolean isBudgetValid() {
+		return this.budget.getAmount() <= this.project.getCost().getAmount() ? true : false;
+	}
 }

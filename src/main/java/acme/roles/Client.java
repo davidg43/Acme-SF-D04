@@ -3,6 +3,7 @@ package acme.roles;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -39,6 +40,7 @@ public class Client extends AbstractRole {
 	}
 
 
+	@Email
 	@NotBlank
 	private String	email;
 
