@@ -14,7 +14,6 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
@@ -38,12 +37,10 @@ public class TrainingSessions extends AbstractEntity {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
-	@Past
 	private Date				iniDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
-	@Past
 	private Date				finalDate;
 
 	@NotBlank
@@ -71,7 +68,8 @@ public class TrainingSessions extends AbstractEntity {
 		return null;
 	}
 
-	@AssertTrue(message= "La fecha inicial de la sesion de entrenamiento debe empezar despues de la fecha de creacion del modulo de entrenamiento, el periodo debe ser minimo de una semsna y tambien tiene que empezar despues de la fecha de creacion del modulo de entrenamiento")
+	@AssertTrue(
+		message = "La fecha inicial de la sesion de entrenamiento debe empezar despues de la fecha de creacion del modulo de entrenamiento, el periodo debe ser minimo de una semsna y tambien tiene que empezar despues de la fecha de creacion del modulo de entrenamiento")
 	public boolean isFinalPeriodAfterCreationMoment() {
 		if (this.iniDate != null && this.finalDate != null && this.trainingModule != null && this.trainingModule.getCreationMoment() != null) {
 			long diffInMillies = Math.abs(this.finalDate.getTime() - this.trainingModule.getCreationMoment().getTime());

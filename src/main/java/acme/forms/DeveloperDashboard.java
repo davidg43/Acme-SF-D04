@@ -1,7 +1,6 @@
 
 package acme.forms;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
 import acme.client.data.AbstractForm;
@@ -14,10 +13,10 @@ public class DeveloperDashboard extends AbstractForm {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@NotNull
+	@PositiveOrZero
 	private int					totalTrainingModulesWithUpdateMoment;
 
-	@NotNull
+	@PositiveOrZero
 	private int					totalTrainingSessionsWithLink;
 
 	@PositiveOrZero

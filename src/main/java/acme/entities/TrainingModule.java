@@ -54,7 +54,6 @@ public class TrainingModule extends AbstractEntity {
 	@URL
 	private String				link;
 
-	@NotNull
 	@Positive
 	private int					totalTime;
 
