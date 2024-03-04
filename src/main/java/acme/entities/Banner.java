@@ -24,14 +24,9 @@ public class Banner extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Past
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
 	private Date				instantiationDate;
-
-	@Past
-	@Temporal(TemporalType.DATE)
-	@NotNull
-	private Date				updateDate;
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
