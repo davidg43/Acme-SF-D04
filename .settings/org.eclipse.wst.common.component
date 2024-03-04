@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD
                                                                                                                                                                                                                             
+=======
+                                                                                                                                                                                                                                    
+>>>>>>> master
     
     
     
@@ -50,6 +54,7 @@
     
     
     
+<<<<<<< HEAD
     
     
     
@@ -69,6 +74,11 @@
         
         
         
+=======
+
+    <wb-module deploy-name="Acme-SF-D01">
+
+>>>>>>> master
         
         
         
@@ -108,7 +118,13 @@
         
         
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+<<<<<<< HEAD
                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+=======
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+        
+        
+>>>>>>> master
         
         
         
@@ -162,7 +178,13 @@
         
         
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+<<<<<<< HEAD
                                                                                                                                                                                                                                                                                                                                                                                                                                         
+=======
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+        
+        
+>>>>>>> master
         
         
         
@@ -215,7 +237,13 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/webapp"/>
+<<<<<<< HEAD
                                                                                                                                                                                                                                                                                                                                         
+=======
+                                                                                                                                                                                                                                                                                                                                                        
+        
+        
+>>>>>>> master
         
         
         
@@ -256,7 +284,13 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+<<<<<<< HEAD
                                                                                 
+=======
+                                                                                                
+        
+        
+>>>>>>> master
         
         
         
@@ -266,13 +300,25 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/acme-framework"/>
+<<<<<<< HEAD
                                                 
+=======
+                                                                
+        
+        
+>>>>>>> master
         
         
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+<<<<<<< HEAD
                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+=======
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+        
+        
+>>>>>>> master
         
         
         
@@ -326,11 +372,18 @@
         
         
         <property name="java-output-path" value="/Hello-World-22.0/target/classes"/>
+<<<<<<< HEAD
                                 
         
         
         <property name="context-root" value="Acme-C1.018"/>
                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+=======
+        <property name="context-root" value="Acme-SF-D01"/>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+    
+    
+>>>>>>> master
     
     
     
@@ -385,7 +438,13 @@
     
     
     </wb-module>
+<<<<<<< HEAD
                                                                                                                                                                                                                         
+=======
+                                                                                                                                                                                                                                
+
+
+>>>>>>> master
 
 
 

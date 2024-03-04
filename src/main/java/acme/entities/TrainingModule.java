@@ -10,24 +10,23 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
-import acme.client.data.datatypes.Money;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class SponsorShips extends AbstractEntity {
-
-	//Falta relacion a project ? 
+public class TrainingModule extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
@@ -37,37 +36,40 @@ public class SponsorShips extends AbstractEntity {
 	private String				code;
 
 	@Past
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	@NotBlank
-	private Date				moment;
-
-	//@Temporal(SpecDuration)
-	@NotBlank
-	private Date				duration;
-
-	@Valid
-	@NotBlank
-	private Money				amount;
+	private Date				creationMoment;
 
 	@NotBlank
-	private Type				type;
+	@Length(max = 100)
+	private String				details;
 
-	@Email
-	private String				contact;
+	@NotNull
+	private DifficultyLevel		difficultyLevel;
+
+	@Past
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				updateMoment;
 
 	@URL
 	private String				link;
 
-	@NotBlank
-	@ManyToOne
-	@Valid
-	private Invoices			invoices;
+	@NotNull
+	@Positive
+	private int					totalTime;
 
 
-	@AssertTrue(message = "Money should be positive")
-	private boolean isCostValid() {
-		int res = this.getAmount().getAmount().intValue();
-		return res > 0 ? true : false;
+	@AssertTrue(message = "El momento de actualizacion del modulo debe ser posterior a su momento de creacion")
+	public boolean isUpdateMomentAfterCreationMoment() {
+		return this.updateMoment != null && this.creationMoment != null && this.updateMoment.after(this.creationMoment);
 	}
+
+	//-----------------
+
+
+	@NotNull
+	@Valid
+	@ManyToOne(optional = false)
+	private Project project;
 
 }

@@ -7,7 +7,7 @@ target/
 #.classpath
 .factorypath
 #.project
-#.settings
+.settings
 .springBeans
 
 ### IntelliJ IDEA ###

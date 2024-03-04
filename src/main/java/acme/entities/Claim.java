@@ -3,16 +3,16 @@ package acme.entities;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
@@ -22,34 +22,33 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Invoices extends AbstractEntity {
+public class Claim extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@NotBlank
-	@Column(unique = true)
-	@Pattern(regexp = "IN-[0-9]{4}-[0-9]{4}")
+	@Pattern(regexp = "C-[0-9]{4}")
 	private String				code;
 
+	@NotNull
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
-	@NotBlank
-	private Date				registrationTime;
+	private Date				instantiationMoment;
 
 	@NotBlank
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date				due_date;
+	@Length(max = 75)
+	private String				heading;
 
 	@NotBlank
-	@Positive
-	private Integer				quantity;
+	@Length(max = 100)
+	private String				description;
 
 	@NotBlank
-	@PositiveOrZero
-	private Integer				tax;
+	@Length(max = 100)
+	private String				department;
 
-	@NotBlank
-	private Integer				totalAmount;
+	@Email
+	private String				emailAddress;
 
 	@URL
 	private String				link;
