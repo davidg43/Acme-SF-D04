@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -53,5 +54,16 @@ public class AuditRecords extends AbstractEntity {
 	@Valid
 	@ManyToOne
 	private CodeAudits			codeAudits;
+
+
+	@AssertTrue(message = "El periodo debe durar como minimo una hora, el periodo inicial debe comenzar antes del final y tambien debe empezar posteriormente a la fecha de ejecucion de la auditoría de codigo")
+	public boolean isPeriodValid() {
+		if (this.periodEnd != null && this.periodInit != null && this.codeAudits != null && this.codeAudits.getExecution() != null) {
+			long diffInMillies = Math.abs(this.periodEnd.getTime() - this.periodInit.getTime());
+			long diffInHours = diffInMillies / (1000 * 60 * 60);
+			return diffInHours >= 1 && this.periodEnd.after(this.codeAudits.getExecution()) && this.periodInit.after(this.codeAudits.getExecution()) && this.periodEnd.after(this.periodInit);
+		}
+		return false;
+	}
 
 }
