@@ -2,14 +2,17 @@
 package acme.entities;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
@@ -29,25 +32,25 @@ public class CodeAudits extends AbstractEntity {
 	private String				code;
 
 	@Past
-	@NotBlank
+	@NotNull
 	private Date				execution;
 
-	@NotBlank
+	@NotNull
 	private Type				type;
 
 	@NotBlank
-	@Column(unique = true)
-	private List<String>		correctiveActions;
+	@Length(max = 100)
+	private String				correctiveActions;
 
-	@NotBlank
+	@NotNull
 	private Mark				mark;
 
 	@URL
 	private String				link;
 
-	/*
-	 * @OneToOne
-	 * private Project project;
-	 */
+	@NotNull
+	@Valid
+	@OneToOne
+	private Project				project;
 
 }
