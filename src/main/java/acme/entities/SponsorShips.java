@@ -43,6 +43,7 @@ public class SponsorShips extends AbstractEntity {
 
 	//@Temporal(SpecDuration)
 	@NotBlank
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				duration;
 
 	@Valid
