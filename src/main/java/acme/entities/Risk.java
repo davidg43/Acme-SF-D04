@@ -4,6 +4,8 @@ package acme.entities;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
@@ -29,6 +31,7 @@ public class Risk extends AbstractEntity {
 
 	@NotBlank
 	@Past
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date				date;
 
 	@Positive
@@ -39,7 +42,7 @@ public class Risk extends AbstractEntity {
 	private Double				value;
 
 	@NotBlank
-	@Length(max = 101)
+	@Length(max = 100)
 	private String				description;
 
 	@URL
