@@ -9,12 +9,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
 
 import acme.client.data.AbstractEntity;
 import acme.client.data.datatypes.Money;
@@ -33,20 +33,21 @@ public class Contract extends AbstractEntity {
 	@Column(unique = true)
 	private String				code;
 
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@Past
 	private Date				moment;
 
 	@NotBlank
-	@Size(max = 75)
+	@Length(max = 75)
 	private String				providerName;
 
 	@NotBlank
-	@Size(max = 75)
+	@Length(max = 75)
 	private String				customerName;
 
 	@NotBlank
-	@Size(max = 100)
+	@Length(max = 100)
 	private String				goals;
 
 	@NotNull
@@ -54,12 +55,7 @@ public class Contract extends AbstractEntity {
 
 	@NotNull
 	@Valid
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Project				project;
 
-
-	@AssertTrue(message = "Budget should be less or equal than the project cost.")
-	private boolean isBudgetValid() {
-		return this.budget.getAmount() <= this.project.getCost().getAmount() ? true : false;
-	}
 }

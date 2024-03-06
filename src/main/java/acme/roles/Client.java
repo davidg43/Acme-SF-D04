@@ -27,7 +27,7 @@ public class Client extends AbstractRole {
 	@NotBlank
 	@Column(unique = true)
 	@Pattern(regexp = "CLI-[0-9]{4}")
-	private String				identificatio;
+	private String				identification;
 
 	@NotBlank
 	@Size(max = 75)

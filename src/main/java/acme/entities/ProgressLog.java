@@ -13,7 +13,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
 
 import acme.client.data.AbstractEntity;
 import lombok.Getter;
@@ -34,7 +35,7 @@ public class ProgressLog extends AbstractEntity {
 	private int					completeness;
 
 	@NotBlank
-	@Size(max = 100)
+	@Length(max = 100)
 	private String				comment;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -42,11 +43,11 @@ public class ProgressLog extends AbstractEntity {
 	private Date				registrationMoment;
 
 	@NotBlank
-	@Size(max = 75)
+	@Length(max = 75)
 	private String				reponsiblePerson;
 
 	@NotNull
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@Valid
 	Contract					contract;
 
