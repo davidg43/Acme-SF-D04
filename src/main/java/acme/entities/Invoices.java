@@ -39,7 +39,7 @@ public class Invoices extends AbstractEntity {
 
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				due_date;
+	private Date				dueDate;
 
 	@NotNull
 	@Positive
