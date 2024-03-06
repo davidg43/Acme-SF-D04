@@ -53,7 +53,7 @@ public class AuditRecords extends AbstractEntity {
 
 	@NotNull
 	@Valid
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private CodeAudits			codeAudits;
 
 
