@@ -9,9 +9,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
@@ -27,8 +27,6 @@ import lombok.Setter;
 @Setter
 public class SponsorShips extends AbstractEntity {
 
-	//Falta relacion a project ? 
-
 	private static final long	serialVersionUID	= 1L;
 
 	@NotBlank
@@ -38,19 +36,19 @@ public class SponsorShips extends AbstractEntity {
 
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
-	@NotBlank
+	@NotNull
 	private Date				moment;
 
 	//@Temporal(SpecDuration)
-	@NotBlank
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				duration;
 
 	@Valid
-	@NotBlank
+	@NotNull
 	private Money				amount;
 
-	@NotBlank
+	@NotNull
 	private Type				type;
 
 	@Email
@@ -59,16 +57,14 @@ public class SponsorShips extends AbstractEntity {
 	@URL
 	private String				link;
 
-	@NotBlank
+	@NotNull
 	@ManyToOne
 	@Valid
 	private Invoices			invoices;
 
-
-	@AssertTrue(message = "Money should be positive")
-	private boolean isCostValid() {
-		int res = this.getAmount().getAmount().intValue();
-		return res > 0 ? true : false;
-	}
+	@NotNull
+	@Valid
+	@ManyToOne(optional = false)
+	private Project				project;
 
 }
