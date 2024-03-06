@@ -9,12 +9,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
@@ -35,6 +34,7 @@ public class TrainingModule extends AbstractEntity {
 	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}")
 	private String				code;
 
+	@NotNull
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				creationMoment;
@@ -44,7 +44,6 @@ public class TrainingModule extends AbstractEntity {
 	private String				details;
 
 
-
 	private enum DifficultyLevel {
 		Basic, Intermediate, Advanced
 	}
@@ -52,7 +51,7 @@ public class TrainingModule extends AbstractEntity {
 
 	private DifficultyLevel	difficultyLevel;
 
-
+	@NotNull
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date			updateMoment;
@@ -60,23 +59,15 @@ public class TrainingModule extends AbstractEntity {
 	@URL
 	private String			link;
 
-
+	@NotNull
 	@Positive
 	private int				totalTime;
 
-
-
-	@AssertTrue(message = "El momento de actualizacion del modulo debe ser posterior a su momento de creacion")
-	public boolean isUpdateMomentAfterCreationMoment() {
-		return this.updateMoment != null && this.creationMoment != null && this.updateMoment.after(this.creationMoment);
-	}
-
 	//-----------------
-
 
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	private Project project;
+	private Project			project;
 
 }
