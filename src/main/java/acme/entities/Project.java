@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
+import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -39,6 +40,7 @@ public class Project extends AbstractEntity {
 	@Length(max = 100)
 	private String				abstractText;
 
+	@AssertFalse(message = "This project has fatal errors")
 	private boolean				hasFatalErrors;
 
 	@Valid
