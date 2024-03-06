@@ -10,5 +10,5 @@ user-account-manager-02,true,"UserIdentity{name: 'Manager2', surname: 'Manager',
 user-account-manager-03,true,"UserIdentity{name: 'Manager3', surname: 'Manager', email: 'manager3@acme.com'}",manager3,manager3
 user-account-manager-04,true,"UserIdentity{name: 'Manager4', surname: 'Manager', email: 'manager4@acme.com'}",manager4,manager4
 user-account-manager-05,true,"UserIdentity{name: 'Manager5', surname: 'Manager', email: 'manager5@acme.com'}",manager5,manager5
-user-account-sponsor-01,true,"UserIdentity{name: "Sponsor1, surname: 'Sponsor', email sponsor1@acme.com'}",sponsor1,sponsor1
-user-account-sponsor-02,true,"UserIdentity{name: "Sponsor2, surname:  'Sponsor', email sponsor2@acme.com'}",sponsor2,sponsor2
+user-account-sponsor-01,true,"UserIdentity{name: 'Sponsor1', surname: 'Sponsor', email: 'sponsor1@acme.com'}",sponsor1,sponsor1
+user-account-sponsor-02,true,"UserIdentity{name: 'Sponsor2', surname:  'Sponsor', email: 'sponsor2@acme.com'}",sponsor2,sponsor2

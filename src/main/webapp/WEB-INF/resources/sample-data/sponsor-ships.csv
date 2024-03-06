@@ -1,4 +1,4 @@
 key,code,moment,duration,amount,type,contact,link,key:invoices
 sponsor1,S-001,2022/02/23 08:15,2022/02/23 08:30,EUR 20.00,FINANCIAL,inventado@gmail.com,www.inventado.com,invoice-01
 sponsor2,S-002,2022/04/23 09:15,2022/04/23 10:15,EUR 34.00,IN KIND, nacho@gmail.com,www.sevilla.com,invoice-02
-sponsor3,S-003,2022/07/14 11:20,2022/07/16 13:00,EUR 50.00,IN KIND,
+sponsor3,S-003,2022/07/14 11:20,2022/07/16 13:00,EUR 50.00,IN KIND,,,
