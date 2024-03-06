@@ -43,17 +43,27 @@ public class TrainingModule extends AbstractEntity {
 	@Length(max = 100)
 	private String				details;
 
-	private DifficultyLevel		difficultyLevel;
+
+
+	private enum DifficultyLevel {
+		Basic, Intermediate, Advanced
+	}
+
+
+	private DifficultyLevel	difficultyLevel;
+
 
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				updateMoment;
+	private Date			updateMoment;
 
 	@URL
-	private String				link;
+	private String			link;
 
-	@PositiveOrZero
-	private int					totalTime;
+
+	@Positive
+	private int				totalTime;
+
 
 
 	@AssertTrue(message = "El momento de actualizacion del modulo debe ser posterior a su momento de creacion")

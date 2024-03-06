@@ -59,7 +59,7 @@ public class TrainingSessions extends AbstractEntity {
 
 	@Transient
 	public Date period() {
-		if (this.iniDate != null && this.finalDate != null) {
+		if (this.iniDate != null && this.finalDate != null && this.finalDate.after(this.iniDate)) {
 			long diffInMillies = Math.abs(this.finalDate.getTime() - this.iniDate.getTime());
 			return new Date(diffInMillies);
 		}
@@ -72,7 +72,7 @@ public class TrainingSessions extends AbstractEntity {
 		if (this.iniDate != null && this.finalDate != null && this.trainingModule != null && this.trainingModule.getCreationMoment() != null) {
 			long diffInMillies = Math.abs(this.finalDate.getTime() - this.trainingModule.getCreationMoment().getTime());
 			long diffInDays = diffInMillies / (1000 * 60 * 60 * 24);
-			return diffInDays >= 7 && this.finalDate.after(this.trainingModule.getCreationMoment()) && this.iniDate.after(this.trainingModule.getCreationMoment());
+			return diffInDays >= 7 && this.finalDate.after(this.trainingModule.getCreationMoment()) && this.iniDate.after(this.trainingModule.getCreationMoment()) && this.finalDate.after(this.iniDate);
 		}
 		return false;
 	}
