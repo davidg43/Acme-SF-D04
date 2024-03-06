@@ -49,7 +49,7 @@ public class SponsorShips extends AbstractEntity {
 	private Money				amount;
 
 	@NotNull
-	private Type				type;
+	private TypeSponsorShips				type;
 
 	@Email
 	private String				contact;

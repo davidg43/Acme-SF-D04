@@ -1,7 +1,7 @@
 
 package acme.entities;
 
-public enum Type {
+public enum TypeSponsorShips {
 	FINANCIAL, IN_KIND
 
 }
