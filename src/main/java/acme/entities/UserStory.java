@@ -55,8 +55,4 @@ public class UserStory extends AbstractEntity {
 	@NotNull
 	private Manager		manager;
 
-	@Valid
-	@ManyToOne(optional = false)
-	@NotNull
-	private Assigment	assigment;
 }

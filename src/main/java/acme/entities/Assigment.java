@@ -2,6 +2,9 @@
 package acme.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import acme.client.data.AbstractEntity;
 import lombok.Getter;
@@ -15,6 +18,15 @@ public class Assigment extends AbstractEntity {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long	serialVersionUID	= 1L;
 
+	@Valid
+	@ManyToOne(optional = false)
+	@NotNull
+	private Project				project;
+
+	@Valid
+	@ManyToOne(optional = false)
+	@NotNull
+	private UserStory			userStory;
 }
