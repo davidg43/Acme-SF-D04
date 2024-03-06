@@ -14,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
@@ -44,14 +44,12 @@ public class TrainingModule extends AbstractEntity {
 	private String				details;
 
 
-
 	private enum DifficultyLevel {
 		Basic, Intermediate, Advanced
 	}
 
 
 	private DifficultyLevel	difficultyLevel;
-
 
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
@@ -60,10 +58,8 @@ public class TrainingModule extends AbstractEntity {
 	@URL
 	private String			link;
 
-
 	@Positive
 	private int				totalTime;
-
 
 
 	@AssertTrue(message = "El momento de actualizacion del modulo debe ser posterior a su momento de creacion")
