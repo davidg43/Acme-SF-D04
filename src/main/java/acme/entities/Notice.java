@@ -51,7 +51,7 @@ public class Notice extends AbstractEntity {
 
 
 	@AssertTrue(message = "Author must be computed as userName - surName, Name")
-	private boolean isBudgetValid() {
+	private boolean isAuthorValid() {
 		return this.author.matches("\\w+ - \\w+, \\w+");
 	}
 }

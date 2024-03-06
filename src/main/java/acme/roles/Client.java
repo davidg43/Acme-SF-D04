@@ -35,15 +35,17 @@ public class Client extends AbstractRole {
 
 
 	@NotBlank
-	public enum Priority {
+	private enum Priority {
 		COMPANY, INDIVIDUAL
 	}
 
 
+	private Priority	priority;
+
 	@Email
 	@NotBlank
-	private String	email;
+	private String		email;
 
 	@URL
-	private String	furtherInformationLink;
+	private String		furtherInformationLink;
 }
