@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -42,7 +43,7 @@ public class CodeAudits extends AbstractEntity {
 	@Length(max = 100)
 	private String				correctiveActions;
 
-	@NotNull
+	@Transient
 	private Mark				mark;
 
 	@URL
