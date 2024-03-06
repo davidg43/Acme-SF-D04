@@ -1,0 +1,6 @@
+key,instantiationMoment,title,author,message,emailAddress,link
+notice-01,2022/02/25 08:15,"Sevilla","luisgp - garcia, luis","Sevilla won last night","notice1@example.com",https://example.com/notice-1
+notice-02,2021/09/15 10:30,"Dead Day","pablito - espinosa, pablo","Bonder is dead","notice2@example.com",https://example.com/notice-2
+notice-03,2021/10/20 14:45,"Day One","nare1 - naredo, igna","Today is the day","notice3@example.com",https://example.com/notice-3
+notice-04,2020/11/05 16:00,"UFC day","bonder1 - gavira, david","Jon Jones back to UFC","notice4@example.com",https://example.com/notice-4
+notice-05,2019/12/01 18:00,"New Champ","felsol - solis, felipe","Ilia Topuria is the new champ","notice5@example.com",https://example.com/notice-5

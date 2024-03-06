@@ -13,10 +13,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
 import lombok.Getter;
@@ -25,56 +23,32 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class TrainingModule extends AbstractEntity {
+public class ProgressLog extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@NotBlank
+	@Pattern(regexp = "PG-[A-Z]{1,2}-[0-9]{4}")
 	@Column(unique = true)
-	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}")
-	private String				code;
+	private String				recordId;
 
-	@NotNull
-	@Past
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date				creationMoment;
+	private int					completeness;
 
 	@NotBlank
 	@Length(max = 100)
-	private String				details;
+	private String				comment;
 
-
-	private enum DifficultyLevel {
-		Basic, Intermediate, Advanced
-	}
-
-
-	private DifficultyLevel	difficultyLevel;
-
-
-	@NotNull
-
-	@Past
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date			updateMoment;
+	@Past
+	private Date				registrationMoment;
 
-	@URL
-	private String			link;
-
-
-	@NotNull
-
-	@Positive
-	private int				totalTime;
-
-
-
-
-	//-----------------
+	@NotBlank
+	@Length(max = 75)
+	private String				reponsiblePerson;
 
 	@NotNull
-	@Valid
 	@ManyToOne(optional = false)
-	private Project			project;
+	@Valid
+	Contract					contract;
 
 }
