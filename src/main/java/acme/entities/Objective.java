@@ -27,7 +27,6 @@ public class Objective extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@NotNull
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				instantiationMoment;
@@ -40,18 +39,21 @@ public class Objective extends AbstractEntity {
 	@Length(max = 100)
 	private String				description;
 
-	@NotNull
-	private Priority			priority;
 
-	private boolean				criticalStatus;
+	private enum Priority {
+		Low, Medium, High
+	}
 
-	@NotNull
-	@Past
+
+	private Priority	priority;
+
+	private boolean		criticalStatus;
+
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				duration;
+	private Date		duration;
 
 	@URL
-	private String				link;
+	private String		link;
 
 
 	@AssertTrue(message = "La duracion del objetivo debe comenzar una vez establecido el objetivo")
