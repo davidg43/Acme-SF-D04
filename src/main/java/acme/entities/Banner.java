@@ -3,15 +3,11 @@ package acme.entities;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
@@ -23,35 +19,33 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Claim extends AbstractEntity {
+public class Banner extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@NotBlank
-	@Pattern(regexp = "C-[0-9]{4}")
-	@Column(unique = true)
-	private String				code;
-
-	@NotNull
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				instantiationMoment;
+	@NotNull
+	private Date				instantiationOrUpdateDate;
 
-	@NotBlank
-	@Length(max = 75)
-	private String				heading;
+	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				periodInit;
 
-	@NotBlank
-	@Length(max = 100)
-	private String				description;
-
-	@NotBlank
-	@Length(max = 100)
-	private String				department;
-
-	@Email
-	private String				emailAddress;
+	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				periodEnd;
 
 	@URL
+	@NotNull
+	private String				picture;
+
+	@NotNull
+	@Length(max = 75)
+	private String				slogan;
+
+	@NotNull
+	@URL
 	private String				link;
+
 }

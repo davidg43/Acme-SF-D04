@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -40,23 +40,43 @@ public class Objective extends AbstractEntity {
 	@Length(max = 100)
 	private String				description;
 
-	@NotNull
-	private Priority			priority;
 
-	private boolean				criticalStatus;
+	private enum Priority {
+		Low, Medium, High
+	}
+
 
 	@NotNull
-	@Past
+	private Priority	priority;
+
+	private boolean		criticalStatus;
+
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				duration;
+	private Date		initDuration;
+
+	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date		endDuration;
+
+	/*
+	 * @NotNull
+	 * 
+	 * @Temporal(TemporalType.TIMESTAMP)
+	 * private Date duration;
+	 */
 
 	@URL
-	private String				link;
+	private String		link;
 
 
-	@AssertTrue(message = "La duracion del objetivo debe comenzar una vez establecido el objetivo")
-	public boolean isUpdateMomentAfterCreationMoment() {
-		return this.instantiationMoment != null && this.duration != null && this.duration.after(this.instantiationMoment);
+	@Transient
+	public Date duration() {
+		if (this.initDuration != null && this.endDuration != null && this.endDuration.after(this.initDuration)) {
+			long diffInMillies = Math.abs(this.endDuration.getTime() - this.initDuration.getTime());
+			return new Date(diffInMillies);
+		}
+		return null;
 	}
 
 

@@ -1,5 +1,5 @@
-key,key:project,instantiation-moment,title,description,priority,critical-status,duration,link
-objective-01,project-01,2022/01/14 14:30,"Operacion bikini","Obtener un cuerpo atletico para el verano",Medium,true,2022/06/02 16:30,https://example.com/objective-01
-objective-02,project-01,2021/08/01 15:00,"Salud ante todo","Cambiar mi estilo de vida sedentaria",High,true,2022/05/29 22:30,https://example.com/objective-02
-objective-03,project-02,2021/11/23 19:25,"Ponerse fuerte","Quiero aumentar mi fuerza mediante ejercicio fisico",Low,false,2022/01/03 07:00,https://example.com/objective-03
-objective-04,project-03,2022/01/01 01:00,"Cuerpo estetico","Quiero obtener un fisico estetico",Low,false,2022/04/05 10:30,https://example.com/objective-04
+key,key:project,instantiation-moment,title,description,priority,critical-status,initDuration,endDuration,link
+objective-01,project-01,2022/01/14 14:30,"Operacion bikini","Obtener un cuerpo atletico para el verano",Medium,true,2022/06/02 16:30,2022/08/02 16:30,https://example.com/objective-01
+objective-02,project-02,2021/08/01 15:00,"Salud ante todo","Cambiar mi estilo de vida sedentaria",High,true,2022/05/29 22:30,2022/06/29 22:30,https://example.com/objective-02
+objective-03,project-03,2021/11/23 19:25,"Ponerse fuerte","Quiero aumentar mi fuerza mediante ejercicio fisico",Low,false,2022/01/03 07:00,2022/01/10 07:00,https://example.com/objective-03
+objective-04,project-04,2022/01/01 01:00,"Cuerpo estetico","Quiero obtener un fisico estetico",Low,false,2022/04/05 10:30,2022/04/10 10:30,https://example.com/objective-04
