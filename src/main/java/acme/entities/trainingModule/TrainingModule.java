@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.entities.trainingModule;
 
 import java.util.Date;
 
@@ -8,71 +8,72 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
+import acme.entities.project.Project;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class TrainingSessions extends AbstractEntity {
+public class TrainingModule extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@NotBlank
 	@Column(unique = true)
-	@Pattern(regexp = "TS-[A-Z]{1,3}-[0-9]{3}")
+	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}")
 	private String				code;
 
 	@NotNull
+	@Past
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				iniDate;
-
-	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date				finalDate;
+	private Date				creationMoment;
 
 	@NotBlank
-	@Length(max = 75)
-	private String				location;
-
-	@NotBlank
-	@Length(max = 75)
-	private String				instructor;
-
-	@NotNull
-	@Email
-	private String				contactEmail;
-
-	@URL
-	private String				link;
+	@Length(max = 100)
+	private String				details;
 
 
-	@Transient
-	public Date period() {
-		if (this.iniDate != null && this.finalDate != null && this.finalDate.after(this.iniDate)) {
-			long diffInMillies = Math.abs(this.finalDate.getTime() - this.iniDate.getTime());
-			return new Date(diffInMillies);
-		}
-		return null;
+	private enum DifficultyLevel {
+		Basic, Intermediate, Advanced
 	}
 
-	//-----
+
+	private DifficultyLevel	difficultyLevel;
+
+
+
+	
+  @NotNull
+	@Past
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date			updateMoment;
+
+	@URL
+	private String			link;
+
+  @NotNull
+	@Positive
+	private int				totalTime;
+
+
+
 
 
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	private TrainingModule trainingModule;
+	private Project			project;
 
 }

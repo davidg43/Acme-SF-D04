@@ -17,6 +17,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
+import acme.entities.project.Project;
 import lombok.Getter;
 import lombok.Setter;
 

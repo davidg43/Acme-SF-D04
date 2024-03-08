@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.entities.contract;
 
 import java.util.Date;
 
@@ -18,6 +18,7 @@ import org.hibernate.validator.constraints.Length;
 
 import acme.client.data.AbstractEntity;
 import acme.client.data.datatypes.Money;
+import acme.entities.project.Project;
 import lombok.Getter;
 import lombok.Setter;
 

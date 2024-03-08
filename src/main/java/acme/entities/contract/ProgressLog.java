@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.entities.contract;
 
 import java.util.Date;
 
@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.URL;
+import org.hibernate.validator.constraints.Length;
 
 import acme.client.data.AbstractEntity;
 import lombok.Getter;
@@ -23,35 +23,33 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-
-public class AuditRecords extends AbstractEntity {
+public class ProgressLog extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
-	@Pattern(regexp = "AU-[0-9]{4}-[0-9]{3}")
 	@NotBlank
+	@Pattern(regexp = "PG-[A-Z]{1,2}-[0-9]{4}")
 	@Column(unique = true)
-	private String				code;
+	private String				recordId;
 
-	@Past
+	private int					completeness;
+
+	@NotBlank
+	@Length(max = 100)
+	private String				comment;
+
 	@Temporal(TemporalType.TIMESTAMP)
-	@NotNull
-	private Date				periodInit;
-
 	@Past
-	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
-	private Date				periodEnd;
+	private Date				registrationMoment;
+
+	@NotBlank
+	@Length(max = 75)
+	private String				reponsiblePerson;
 
 	@NotNull
-	private Mark				mark;
-
-	@URL
-	private String				link;
-
-	@NotNull
-	@Valid
 	@ManyToOne(optional = false)
-	private CodeAudits			codeAudits;
+	@Valid
+	Contract					contract;
 
 }

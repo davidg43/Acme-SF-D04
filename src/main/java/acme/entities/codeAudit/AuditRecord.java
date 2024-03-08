@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.entities.codeAudit;
 
 import java.util.Date;
 
@@ -13,9 +13,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
 
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
@@ -25,54 +23,35 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class TrainingModule extends AbstractEntity {
+
+public class AuditRecord extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
+	@Pattern(regexp = "AU-[0-9]{4}-[0-9]{3}")
 	@NotBlank
 	@Column(unique = true)
-	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}")
 	private String				code;
 
+	@Past
+	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
+	private Date				periodInit;
+
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				creationMoment;
+	@NotNull
+	private Date				periodEnd;
 
-	@NotBlank
-	@Length(max = 100)
-	private String				details;
-
-
-	private enum DifficultyLevel {
-		Basic, Intermediate, Advanced
-	}
-
-
-	private DifficultyLevel	difficultyLevel;
-
-
-
-	
-  @NotNull
-	@Past
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date			updateMoment;
+	@NotNull
+	private Mark				mark;
 
 	@URL
-	private String			link;
-
-  @NotNull
-	@Positive
-	private int				totalTime;
-
-
-
-
+	private String				link;
 
 	@NotNull
 	@Valid
 	@ManyToOne(optional = false)
-	private Project			project;
+	private CodeAudit			codeAudit;
 
 }
