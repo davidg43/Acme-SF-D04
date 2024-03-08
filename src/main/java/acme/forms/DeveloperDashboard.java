@@ -1,8 +1,6 @@
 
 package acme.forms;
 
-import javax.validation.constraints.PositiveOrZero;
-
 import acme.client.data.AbstractForm;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,16 +15,12 @@ public class DeveloperDashboard extends AbstractForm {
 
 	private int					totalTrainingSessionsWithLink;
 
-	@PositiveOrZero
 	private double				averageTrainingModuleTime;
 
-	@PositiveOrZero
 	private double				deviationTrainingModuleTime;
 
-	@PositiveOrZero
 	private int					minimumTrainingModuleTime;
 
-	@PositiveOrZero
 	private int					maximumTrainingModuleTime;
 
 }
