@@ -1,8 +1,6 @@
 
 package acme.forms;
 
-import javax.validation.constraints.PositiveOrZero;
-
 import acme.client.data.AbstractForm;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,28 +19,20 @@ public class ManagerDashboard extends AbstractForm {
 
 	private int					totalWontUserStories;
 
-	@PositiveOrZero
 	private double				averageEstimatedCostOfUserStories;
 
-	@PositiveOrZero
 	private double				deviationOfEstimatedCostOfUserStories;
 
-	@PositiveOrZero
 	private int					minimumEstimatedCostOfUserStories;
 
-	@PositiveOrZero
 	private int					maximumEstimatedCostOfUserStories;
 
-	@PositiveOrZero
 	private double				averageCostOfProjects;
 
-	@PositiveOrZero
 	private double				deviationOfCostOfProjects;
 
-	@PositiveOrZero
 	private int					minimumCostOfProjects;
 
-	@PositiveOrZero
 	private int					maximumCostOfProjects;
 
 }

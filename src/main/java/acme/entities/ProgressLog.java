@@ -40,6 +40,7 @@ public class ProgressLog extends AbstractEntity {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Past
+	@NotNull
 	private Date				registrationMoment;
 
 	@NotBlank
