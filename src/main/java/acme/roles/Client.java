@@ -5,9 +5,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractRole;
@@ -30,22 +31,22 @@ public class Client extends AbstractRole {
 	private String				identification;
 
 	@NotBlank
-	@Size(max = 75)
+	@Length(max = 75)
 	private String				companyName;
 
 
-	@NotBlank
-	private enum Priority {
+	private enum Type {
 		COMPANY, INDIVIDUAL
 	}
 
 
-	private Priority	priority;
+	@NotNull
+	private Type	type;
 
 	@Email
 	@NotBlank
-	private String		email;
+	private String	email;
 
 	@URL
-	private String		furtherInformationLink;
+	private String	furtherInformationLink;
 }

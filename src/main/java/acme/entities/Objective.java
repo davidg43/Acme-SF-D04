@@ -60,20 +60,13 @@ public class Objective extends AbstractEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date		endDuration;
 
-	/*
-	 * @NotNull
-	 * 
-	 * @Temporal(TemporalType.TIMESTAMP)
-	 * private Date duration;
-	 */
-
 	@URL
 	private String		link;
 
 
 	@Transient
 	public Date duration() {
-		if (this.initDuration != null && this.endDuration != null && this.endDuration.after(this.initDuration)) {
+		if (this.initDuration != null && this.endDuration != null) {
 			long diffInMillies = Math.abs(this.endDuration.getTime() - this.initDuration.getTime());
 			return new Date(diffInMillies);
 		}

@@ -50,12 +50,9 @@ public class TrainingModule extends AbstractEntity {
 	}
 
 
+	@NotNull
 	private DifficultyLevel	difficultyLevel;
 
-
-
-	
-  @NotNull
 	@Past
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date			updateMoment;
@@ -63,13 +60,9 @@ public class TrainingModule extends AbstractEntity {
 	@URL
 	private String			link;
 
-  @NotNull
+	@NotNull
 	@Positive
 	private int				totalTime;
-
-
-
-
 
 	@NotNull
 	@Valid

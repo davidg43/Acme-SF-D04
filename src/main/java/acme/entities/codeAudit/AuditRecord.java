@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -53,5 +54,15 @@ public class AuditRecord extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private CodeAudit			codeAudit;
+
+
+	@Transient
+	public Date period() {
+		if (this.periodInit != null && this.periodEnd != null) {
+			long diffInMillies = Math.abs(this.periodEnd.getTime() - this.periodInit.getTime());
+			return new Date(diffInMillies);
+		} else
+			return null;
+	}
 
 }
