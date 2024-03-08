@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.entities.project;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
