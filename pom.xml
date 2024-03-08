@@ -23,7 +23,7 @@
 	<name>Acme-C1.018</name>
 	<description>This is the C1.018 project</description>
 	
-	<artifactId>Acme-C1.018</artifactId>
+	<artifactId>Acme-SF-D02</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 	
