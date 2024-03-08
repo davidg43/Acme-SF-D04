@@ -13,6 +13,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -32,7 +33,8 @@ public class ProgressLog extends AbstractEntity {
 	@Column(unique = true)
 	private String				recordId;
 
-	private int					completeness;
+	@Positive
+	private Double				completeness;
 
 	@NotBlank
 	@Length(max = 100)
@@ -49,6 +51,6 @@ public class ProgressLog extends AbstractEntity {
 	@NotNull
 	@ManyToOne(optional = false)
 	@Valid
-	Contract					contract;
+	private Contract			contract;
 
 }
