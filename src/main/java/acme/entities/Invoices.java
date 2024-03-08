@@ -5,17 +5,15 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.client.data.AbstractEntity;
@@ -25,54 +23,35 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class TrainingModule extends AbstractEntity {
+public class Invoices extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@NotBlank
 	@Column(unique = true)
-	@Pattern(regexp = "[A-Z]{1,3}-[0-9]{3}")
+	@Pattern(regexp = "IN-[0-9]{4}-[0-9]{4}")
 	private String				code;
 
+	@Past
+	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
-	@Past
+	private Date				registrationTime;
+
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				creationMoment;
+	private Date				dueDate;
 
-	@NotBlank
-	@Length(max = 100)
-	private String				details;
+	@NotNull
+	@Positive
+	private Integer				quantity;
 
+	@NotNull
+	@PositiveOrZero
+	private Integer				tax;
 
-	private enum DifficultyLevel {
-		Basic, Intermediate, Advanced
-	}
-
-
-	private DifficultyLevel	difficultyLevel;
-
-
-
-	
-  @NotNull
-	@Past
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date			updateMoment;
+	@NotNull
+	private Integer				totalAmount;
 
 	@URL
-	private String			link;
-
-  @NotNull
-	@Positive
-	private int				totalTime;
-
-
-
-
-
-	@NotNull
-	@Valid
-	@ManyToOne(optional = false)
-	private Project			project;
-
+	private String				link;
 }
