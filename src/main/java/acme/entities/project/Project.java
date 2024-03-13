@@ -52,4 +52,7 @@ public class Project extends AbstractEntity {
 	@NotNull
 	private Manager				manager;
 
+	@NotNull
+	private boolean				isDraft;
+
 }

@@ -1,0 +1,15 @@
+manager.list.label.code = Código
+manager.list.label.title = Título
+manager.list.label.hasFatalErrors = Tiene Errores Fatales
+
+project.form.label.code = Código
+project.form.label.title = Título
+project.form.label.abstractText = Resumen
+project.form.label.cost = Costo
+project.form.label.link = Enlace
+project.form.label.manager = Gerente
+project.form.label.isDraft = Modo Borrador
+project.form.button.userStories = Historias de Usuario
+project.form.button.update = Actualizar
+project.form.button.delete = Borrar
+project.form.button.create = Crear
