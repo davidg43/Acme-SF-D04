@@ -81,7 +81,7 @@ public class ManagerProjectUpdateService extends AbstractService<Manager, Projec
 		Dataset dataset;
 
 		dataset = super.unbind(project, "code", "title", "abstractText", "hasFatalErrors", "cost", "link", "isDraft");
-
+		dataset.put("projectId", project.getId());
 		super.getResponse().addData(dataset);
 	}
 

@@ -1,0 +1,6 @@
+manager.assigment.form.title = Detalles del assigment
+assigment.form.button.update = Actualizar	
+assigment.form.button.delete = Borrar
+manager.assigment.list.label.project = Id del proyecto
+manager.assigment.list.label.userStory = Id de la User Story
+manager.assigment.list.label.create = Crear

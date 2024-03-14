@@ -17,6 +17,7 @@
 
 		<jstl:when
 			test="${acme:anyOf(_command, 'show|update|delete') && isDraft == true}">
+			<acme:button code="project.form.button.assigment" action="/manager/assigment/list?projectId=${projectId}"/>
 			<acme:submit code="project.form.button.update"
 				action="/manager/project/update" />
 			<acme:submit code="project.form.button.delete"

@@ -6,7 +6,8 @@ manager.project.form.error.fatal-errors = This project has fatal errors
 
 
 manager.project.form.title = Details of a Project
-
+manager.project.list.title = List of projects
+project.form.button.assigment = List of assigments of this project
 
 
 project.form.label.code = Code
