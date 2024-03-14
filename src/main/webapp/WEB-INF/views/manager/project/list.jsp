@@ -9,4 +9,6 @@
 	<acme:list-column code="manager.list.label.hasFatalErrors" path="hasFatalErrors" width="10%"/>
 </acme:list>
 
+<acme:button code="manager.list.label.create" action="/manager/project/create"/>
+
 

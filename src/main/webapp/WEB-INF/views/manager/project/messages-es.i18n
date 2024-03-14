@@ -1,6 +1,12 @@
 manager.list.label.code = Código
 manager.list.label.title = Título
 manager.list.label.hasFatalErrors = Tiene Errores Fatales
+manager.list.label.create  = Crear
+manager.project.form.error.fatal-errors = Este proyecto tiene errores fatales
+
+manager.project.form.title = Detalles del projecto
+
+
 
 project.form.label.code = Código
 project.form.label.title = Título
@@ -13,3 +19,4 @@ project.form.button.userStories = Historias de Usuario
 project.form.button.update = Actualizar
 project.form.button.delete = Borrar
 project.form.button.create = Crear
+project.form.label.hasFatalErrors = Errores fatales

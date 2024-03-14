@@ -47,7 +47,7 @@ public class ManagerProjectShowService extends AbstractService<Manager, Project>
 		assert project != null;
 		Dataset dataset;
 
-		dataset = super.unbind(project, "code", "title", "abstractText", "hasFatalErrors", "cost", "manager", "isDraft");
+		dataset = super.unbind(project, "code", "title", "abstractText", "hasFatalErrors", "cost", "isDraft");
 
 		super.getResponse().addData(dataset);
 	}

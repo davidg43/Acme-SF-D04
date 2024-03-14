@@ -14,15 +14,18 @@ import acme.roles.Manager;
 public class ManagerProjectController extends AbstractController<Manager, Project> {
 
 	/*
-	 * @Autowired
-	 * private ManagerProjectCreateService createService;
 	 * 
-	 * @Autowired
-	 * private ManagerProjectUpdateService updateService;
+	 * 
 	 * 
 	 * @Autowired
 	 * private ManagerProjectDeleteService deleteService;
 	 */
+
+	@Autowired
+	private ManagerProjectCreateService	createService;
+
+	@Autowired
+	private ManagerProjectUpdateService	updateService;
 
 	@Autowired
 	private ManagerProjectShowService	showService;
@@ -34,11 +37,13 @@ public class ManagerProjectController extends AbstractController<Manager, Projec
 	@PostConstruct
 	protected void initialise() {
 		/*
-		 * super.addBasicCommand("create", this.createService);
-		 * super.addBasicCommand("update", this.updateService);
+		 * 
 		 * super.addBasicCommand("delete", this.deleteService);
 		 * 
 		 */
+
+		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("update", this.updateService);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("list", this.listService);
 	}
