@@ -53,8 +53,6 @@ public class ManagerProjectCreateService extends AbstractService<Manager, Projec
 		if (!super.getBuffer().getErrors().hasErrors("cost"))
 			super.state(project.getCost().getAmount() >= 0, "cost", "manager.project.form.error.negative-cost");
 
-		if (!super.getBuffer().getErrors().hasErrors("isDraft"))
-			super.state(project.isDraft(), "isDraft", "manager.project.form.error.published");
 	}
 
 	@Override

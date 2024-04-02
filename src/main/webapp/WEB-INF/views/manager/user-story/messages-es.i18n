@@ -1,0 +1,17 @@
+manager.list.label.title = Titulo
+manager.list.label.draft = Borrador
+manager.list.label.priority = Prioridad
+manager.list.label.create = Crear
+
+
+
+project.form.label.link = Link
+project.form.label.manager = Manager
+project.form.label.isDraft = Borrador
+project.form.button.update = Actualizar
+project.form.button.create = Crear
+
+
+manager.project.form.error.duplicated = Esta historia de usuario ya existe
+
+

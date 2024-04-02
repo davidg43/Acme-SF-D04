@@ -22,11 +22,16 @@
 				action="/manager/project/update" />
 			<acme:submit code="project.form.button.delete"
 				action="/manager/project/delete" />
+				
+			<jstl:if test="${isDraft == true && publishable == true }">
+				<acme:submit code="project.form.button.publish" action="/manager/project/publish"/>
+			</jstl:if>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="project.form.button.create" action="/manager/project/create"/>
-				
-			
 		</jstl:when>
+		
+	
+		
 	</jstl:choose>
 </acme:form>

@@ -1,8 +1,11 @@
 manager.list.label.code = Code
 manager.list.label.title = Title
+manager.list.label.publishable = Publishable
+manager.list.label.draft = Draft
 manager.list.label.hasFatalErrors = Has Fatal Errors
 manager.list.label.create = Create
 manager.project.form.error.fatal-errors = This project has fatal errors
+manager.project.form.error.negative-cost = Negative cost detected
 
 
 manager.project.form.title = Details of a Project
@@ -22,4 +25,9 @@ project.form.button.update = Update
 project.form.button.delete = Delete
 project.form.button.create = Create
 project.form.label.hasFatalErrors = Fatal Errors
+
+project.form.button.publish = Publish
+
+
+manager.project.form.error.duplicated = This project alredy exist
 

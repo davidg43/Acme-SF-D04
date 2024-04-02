@@ -45,10 +45,19 @@ public class ManagerProjectShowService extends AbstractService<Manager, Project>
 	@Override
 	public void unbind(final Project project) {
 		assert project != null;
+		boolean userStoriesPublishables;
+		boolean isDraft;
+
+		userStoriesPublishables = this.repository.findAllUserStoriesOfAProjectById(project.getId()).stream().allMatch(x -> x.isDraft() == false) && this.repository.findAllUserStoriesOfAProjectById(project.getId()).size() > 0
+			&& project.isHasFatalErrors() == false;
+		isDraft = project.isDraft() == true;
+
 		Dataset dataset;
 
-		dataset = super.unbind(project, "code", "title", "abstractText", "hasFatalErrors", "cost", "isDraft");
+		dataset = super.unbind(project, "code", "title", "abstractText", "hasFatalErrors", "cost", "link", "isDraft");
 		dataset.put("projectId", project.getId());
+		dataset.put("publishable", userStoriesPublishables);
+		dataset.put("isDraft", isDraft);
 
 		super.getResponse().addData(dataset);
 	}

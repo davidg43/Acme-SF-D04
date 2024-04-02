@@ -13,38 +13,34 @@ import acme.roles.Manager;
 @Controller
 public class ManagerProjectController extends AbstractController<Manager, Project> {
 
-	/*
-	 * 
-	 * 
-	 * 
-	 * @Autowired
-	 * private ManagerProjectDeleteService deleteService;
-	 */
+	@Autowired
+	private ManagerProjectDeleteService		deleteService;
 
 	@Autowired
-	private ManagerProjectCreateService	createService;
+	private ManagerProjectCreateService		createService;
 
 	@Autowired
-	private ManagerProjectUpdateService	updateService;
+	private ManagerProjectUpdateService		updateService;
 
 	@Autowired
-	private ManagerProjectShowService	showService;
+	private ManagerProjectShowService		showService;
 
 	@Autowired
-	private ManagerProjectListService	listService;
+	private ManagerProjectListService		listService;
+
+	@Autowired
+	private ManagerProjectPublishService	publishService;
 
 
 	@PostConstruct
 	protected void initialise() {
-		/*
-		 * 
-		 * super.addBasicCommand("delete", this.deleteService);
-		 * 
-		 */
 
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("update", this.updateService);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("list", this.listService);
+		super.addBasicCommand("delete", this.deleteService);
+
+		super.addCustomCommand("publish", "update", this.publishService);
 	}
 }

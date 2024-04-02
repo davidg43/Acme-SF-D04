@@ -38,10 +38,18 @@ public class ManagerProjectListService extends AbstractService<Manager, Project>
 	@Override
 	public void unbind(final Project object) {
 		assert object != null;
+		boolean userStoriesPublishables;
+		boolean isDraft;
+
+		userStoriesPublishables = this.repository.findAllUserStoriesOfAProjectById(object.getId()).stream().allMatch(x -> x.isDraft() == false) && this.repository.findAllUserStoriesOfAProjectById(object.getId()).size() > 0
+			&& object.isHasFatalErrors() == false;
+		isDraft = object.isDraft() == true;
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "title", "code", "hasFatalErrors");
+		dataset = super.unbind(object, "title", "code");
+		dataset.put("publishable", userStoriesPublishables);
+		dataset.put("isDraft", isDraft);
 
 		super.getResponse().addData(dataset);
 	}

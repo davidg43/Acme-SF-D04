@@ -10,7 +10,7 @@ import acme.entities.project.Project;
 import acme.roles.Manager;
 
 @Service
-public class ManagerProjectUpdateService extends AbstractService<Manager, Project> {
+public class ManagerProjectPublishService extends AbstractService<Manager, Project> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -69,6 +69,7 @@ public class ManagerProjectUpdateService extends AbstractService<Manager, Projec
 	public void perform(final Project project) {
 		assert project != null;
 
+		project.setDraft(false);
 		this.repository.save(project);
 	}
 

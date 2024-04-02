@@ -2,6 +2,7 @@
 package acme.features.manager.assigment;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class ManagerAssigmentListService extends AbstractService<Manager, Assigm
 	@Override
 	public void load() {
 		int id = super.getRequest().getData("projectId", int.class);
-		Collection<Assigment> objects = this.repository.findAllAssigmentsOfAProjectById(id);
+		Collection<Assigment> objects = this.repository.findAllAssigmentsOfAProjectById(id).stream().distinct().collect(Collectors.toList());
 		super.getBuffer().addData(objects);
 	}
 

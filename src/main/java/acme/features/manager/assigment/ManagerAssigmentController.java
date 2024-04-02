@@ -14,16 +14,28 @@ import acme.roles.Manager;
 public class ManagerAssigmentController extends AbstractController<Manager, Assigment> {
 
 	@Autowired
-	private ManagerAssigmentShowService	assigmentShow;
+	private ManagerAssigmentShowService		assigmentShow;
 
 	@Autowired
-	private ManagerAssigmentListService	assigmentList;
+	private ManagerAssigmentListService		assigmentList;
+
+	@Autowired
+	private ManagerAssigmentCreateService	assigmentCreate;
+
+	@Autowired
+	private ManagerAssigmentUpdateService	assigmentUpdate;
+
+	@Autowired
+	private ManagerAssigmentDeleteService	assigmentDelete;
 
 
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("show", this.assigmentShow);
 		super.addBasicCommand("list", this.assigmentList);
+		super.addBasicCommand("create", this.assigmentCreate);
+		super.addBasicCommand("update", this.assigmentUpdate);
+		super.addBasicCommand("delete", this.assigmentDelete);
 
 	}
 
