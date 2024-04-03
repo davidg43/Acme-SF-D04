@@ -44,6 +44,12 @@ master.menu.provider.favourite-link = Enlace favorito
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
+# master.menu.client ##########################################################
+
+master.menu.client = Cliente
+master.menu.client.list = Mis Contratos
+
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta
