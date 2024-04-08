@@ -30,6 +30,6 @@ public class AuditorDashboard extends AbstractForm {
 
 	private int					minimumPeriodInAuditRecords;
 
-	private int					mwximumPeriodInAuditRecords;
+	private int					maximumPeriodInAuditRecords;
 
 }

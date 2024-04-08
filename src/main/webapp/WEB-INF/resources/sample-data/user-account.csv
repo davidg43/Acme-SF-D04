@@ -12,7 +12,7 @@ user-account-manager-04,true,"UserIdentity{name: 'Manager4', surname: 'Manager',
 user-account-manager-05,true,"UserIdentity{name: 'Manager5', surname: 'Manager', email: 'manager5@acme.com'}",manager5,manager5
 user-account-sponsor-01,true,"UserIdentity{name: 'Sponsor1', surname: 'Sponsor', email: 'sponsor1@acme.com'}",sponsor1,sponsor1
 user-account-sponsor-02,true,"UserIdentity{name: 'Sponsor2', surname:  'Sponsor', email: 'sponsor2@acme.com'}",sponsor2,sponsor2
-user-account-auditor-01,true,"UserIdentity{name: 'Auditor1', surname: 'Manager', email: 'auditor1@acme.com'}",auditor1, auditor1
-user-account-auditor-02,true,"UserIdentity{name: 'Auditor2', surname: 'Manager', email: 'auditor2@acme.com'}",auditor2, auditor2
+user-account-auditor-01,true,"UserIdentity{name: 'Auditor1', surname: 'Auditor', email: 'auditor1@acme.com'}",auditor1,auditor1
+user-account-auditor-02,true,"UserIdentity{name: 'Auditor2', surname: 'Auditor', email: 'auditor2@acme.com'}",auditor2,auditor2
 user-account-client-01,true,"UserIdentity{name: 'Client1', surname: 'Client', email: 'client1@acme.com'}",client1,client1
 user-account-client-02,true,"UserIdentity{name: 'Client2', surname: 'Client', email: 'client2@acme.com'}",client2,client2
