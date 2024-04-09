@@ -16,9 +16,10 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="auditor.code-audit.list.correctiveActions" path="correctiveActions" width="40%"/>
-	<acme:list-column code="auditor.code-audit.list.type" path="type" width="20%"/>	
-	<acme:list-column code="auditor.code-audit.list.project" path="project" width="40%"/>	
+	<acme:list-column code="auditor.code-audit.list.label.code" path="code" width="40%"/>
+	<acme:list-column code="auditor.code-audit.list.label.correctiveActions" path="correctiveActions" width="40%"/>
+	<acme:list-column code="auditor.code-audit.list.label.type" path="type" width="20%"/>	
+	<acme:list-column code="auditor.code-audit.list.label.project" path="project.title" width="40%"/>	
 </acme:list>
 
 

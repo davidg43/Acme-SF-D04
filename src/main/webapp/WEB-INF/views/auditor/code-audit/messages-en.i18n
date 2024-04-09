@@ -10,19 +10,22 @@
 
 auditor.code-audit.list.title = Code Audits
 
-auditor.code-audit.list.correctiveActions = Corrective Actions
-auditor.code-audit.list.type = Type
-auditor.code-audit.list.project = Project
+auditor.code-audit.list.label.code = Code
+auditor.code-audit.list.label.correctiveActions = Corrective Actions
+auditor.code-audit.list.label.type = Type
+auditor.code-audit.list.label.project = Project
+
 
 auditor.code-audit.form.title = Code Audit Details
 
-auditor.code-audit.form.correctiveActions = Corrective Actions
-auditor.code-audit.form.type = Type
-auditor.code-audit.form.mark = Mark
-auditor.code-audit.form.project = Project
-auditor.code-audit.form.link = Link
-auditor.code-audit.form.execution = Execution Date
-auditor.code-audit.form.auditor = Auditor
+auditor.code-audit.form.label.code = Code
+auditor.code-audit.form.label.correctiveActions = Corrective Actions
+auditor.code-audit.form.label.type = Type
+auditor.code-audit.form.label.mark = Mark
+auditor.code-audit.form.label.project = Project
+auditor.code-audit.form.label.link = Link
+auditor.code-audit.form.label.execution = Execution Date
+auditor.code-audit.form.label.auditor = Auditor
 
 auditor.code-audit.list.button.create = Create
 auditor.code-audit.list.button.update = Update

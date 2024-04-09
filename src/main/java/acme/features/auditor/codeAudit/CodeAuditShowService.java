@@ -61,7 +61,7 @@ public class CodeAuditShowService extends AbstractService<Auditor, CodeAudit> {
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "execution", "type", "correctiveActions", "mark", "link", "project", "auditor");
+		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "project.title", "auditor");
 
 		super.getResponse().addData(dataset);
 	}

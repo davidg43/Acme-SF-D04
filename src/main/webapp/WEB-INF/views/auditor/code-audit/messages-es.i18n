@@ -11,19 +11,21 @@
 
 auditor.code-audit.list.title = Auditorias de Codigo
 
-auditor.code-audit.list.correctiveActions = Medidas correctoras
-auditor.code-audit.list.type = Tipo
-auditor.code-audit.list.project = Proyecto
+auditor.code-audit.list.label.code = Codigo
+auditor.code-audit.list.label.correctiveActions = Medidas correctoras
+auditor.code-audit.list.label.type = Tipo
+auditor.code-audit.list.label.project = Proyecto
 
 auditor.code-audit.form.title = Detalles de la auditoria de codigo
 
-auditor.code-audit.form.correctiveActions = Medidas correctoras
-auditor.code-audit.form.type = Tipo
-auditor.code-audit.form.mark = Evaluacion
-auditor.code-audit.form.project = Proyecto
-auditor.code-audit.form.link = Link
-auditor.code-audit.form.execution = Fecha de ejecucion
-auditor.code-audit.form.auditor = Autor de la auditoria
+auditor.code-audit.form.label.code = Codigo
+auditor.code-audit.form.label.correctiveActions = Medidas correctoras
+auditor.code-audit.form.label.type = Tipo
+auditor.code-audit.form.label.mark = Evaluacion
+auditor.code-audit.form.label.project = Proyecto
+auditor.code-audit.form.label.link = Link
+auditor.code-audit.form.label.execution = Fecha de ejecucion
+auditor.code-audit.form.label.auditor = Autor de la auditoria
 
 auditor.code-audit.list.button.create = Crear
 auditor.code-audit.list.button.update = Actualizar

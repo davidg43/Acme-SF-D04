@@ -16,11 +16,12 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-	<acme:input-textbox code="auditor.code-audit.form.correctiveActions" path="correctiveActions" readonly="true" />
-	<acme:input-textbox code="auditor.code-audit.form.type" path="type" readonly="true" />
-	<acme:input-textbox code="auditor.code-audit.form.mark" path="mark" readonly="true" />
-	<acme:input-textbox code="auditor.code-audit.form.project" path="project" readonly="true" />
-	<acme:input-url code="auditor.code-audit.form.link" path="link" readonly="true" />
-	<acme:input-moment code="auditor.code-audit.form.execution" path="execution" readonly="true" />
-	<acme:input-textbox code="auditor.code-audit.form.auditor" path="auditor" readonly="true" />	
+<acme:input-textbox code="auditor.code-audit.form.label.code" path="code" readonly="true" />
+	<acme:input-textbox code="auditor.code-audit.form.label.correctiveActions" path="correctiveActions" readonly="true" />
+	<acme:input-textbox code="auditor.code-audit.form.label.type" path="type" readonly="true" />
+	<acme:input-textbox code="auditor.code-audit.form.label.mark" path="mark" readonly="true" />
+	<acme:input-textbox code="auditor.code-audit.form.label.project" path="project.title" readonly="true" />
+	<acme:input-url code="auditor.code-audit.form.label.link" path="link" readonly="true" />
+	<acme:input-moment code="auditor.code-audit.form.label.execution" path="execution" readonly="true" />
+	<acme:input-textbox code="auditor.code-audit.form.label.auditor" path="auditor" readonly="true" />	
 </acme:form>
