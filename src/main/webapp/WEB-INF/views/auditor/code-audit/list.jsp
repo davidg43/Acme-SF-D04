@@ -16,13 +16,11 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:list>
-	<acme:list-column code="auditor.code-audit.list.label.code" path="code" width="40%"/>
+	<acme:list-column code="auditor.code-audit.list.label.code" path="code" width="10%"/>
 	<acme:list-column code="auditor.code-audit.list.label.correctiveActions" path="correctiveActions" width="40%"/>
 	<acme:list-column code="auditor.code-audit.list.label.type" path="type" width="20%"/>	
-	<acme:list-column code="auditor.code-audit.list.label.project" path="project.title" width="40%"/>	
+	<acme:list-column code="auditor.code-audit.list.label.project" path="project.title" width="30%"/>	
 </acme:list>
 
 
-<acme:button code="auditor.code-audit.list.button.create" action="/auditor/code-audit/create"/>
-<acme:button code="auditor.code-audit.list.button.update" action="/auditor/code-audit/update"/>
-<acme:button code="auditor.code-audit.list.button.delete" action="/auditor/code-audit/delete"/>
+<acme:button code="auditor.code-audit.button.create" action="/auditor/code-audit/create"/>

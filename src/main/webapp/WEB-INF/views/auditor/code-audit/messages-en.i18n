@@ -27,6 +27,6 @@ auditor.code-audit.form.label.link = Link
 auditor.code-audit.form.label.execution = Execution Date
 auditor.code-audit.form.label.auditor = Auditor
 
-auditor.code-audit.list.button.create = Create
-auditor.code-audit.list.button.update = Update
-auditor.code-audit.list.button.delete = Delete
+auditor.code-audit.button.create = Create
+auditor.code-audit.button.update = Update
+auditor.code-audit.button.delete = Delete

@@ -1,0 +1,29 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2024 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+
+auditor.audit-record.list.title = Registros de Auditoria
+
+auditor.audit-record.list.label.code = Codigo
+auditor.audit-record.list.label.mark = Evaluacion
+auditor.audit-record.list.label.code-audit = Auditoria de Codigo
+
+auditor.audit-record.form.title = Detalles del Registro de Auditoria
+
+auditor.audit-record.form.label.code = Codigo
+auditor.audit-record.form.label.code-audit = Auditoria de Codigo
+auditor.audit-record.form.label.period-init = Inicio del periodo
+auditor.audit-record.form.label.period-end = Final del periodo
+auditor.audit-record.form.label.mark = Evaluacion
+auditor.audit-record.form.label.link = Link
+
+auditor.audit-record.button.create = Crear
+auditor.audit-record.button.update = Actualizar
+auditor.audit-record.button.delete = Eliminar
