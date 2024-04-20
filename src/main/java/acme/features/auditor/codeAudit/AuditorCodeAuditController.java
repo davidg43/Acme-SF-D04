@@ -1,5 +1,5 @@
 /*
- * AuditRecordController.java
+ * CodeAuditController.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.auditor.auditRecord;
+package acme.features.auditor.codeAudit;
 
 import javax.annotation.PostConstruct;
 
@@ -18,30 +18,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import acme.client.controllers.AbstractController;
-import acme.entities.codeAudit.AuditRecord;
+import acme.entities.codeAudit.CodeAudit;
 import acme.roles.Auditor;
 
 @Controller
-public class AuditRecordController extends AbstractController<Auditor, AuditRecord> {
+public class AuditorCodeAuditController extends AbstractController<Auditor, CodeAudit> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuditRecordListMineService	listMineService;
+	private AuditorCodeAuditListService	listService;
 
 	@Autowired
-	private AuditRecordListAllService	listAllService;
-
-	@Autowired
-	private AuditRecordShowService		showService;
+	private AuditorCodeAuditShowService	showService;
 
 	// Constructors -----------------------------------------------------------
 
 
 	@PostConstruct
 	protected void initialise() {
-		/* super.addCustomCommand("list-mine", "list", this.listMineService); */
-		super.addBasicCommand("list", this.listAllService);
+		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
 	}
 

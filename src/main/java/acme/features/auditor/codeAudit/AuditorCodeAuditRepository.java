@@ -1,5 +1,5 @@
 /*
- * AuditRecordRepository.java
+ * CodeAuditRepository.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.auditor.auditRecord;
+package acme.features.auditor.codeAudit;
 
 import java.util.Collection;
 
@@ -18,17 +18,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
-import acme.entities.codeAudit.AuditRecord;
+import acme.entities.codeAudit.CodeAudit;
 
 @Repository
-public interface AuditRecordRepository extends AbstractRepository {
+public interface AuditorCodeAuditRepository extends AbstractRepository {
 
-	@Query("select ar from AuditRecord ar where ar.id = :id")
-	AuditRecord findOneAuditRecordById(int id);
+	@Query("select ca from CodeAudit ca where ca.id = :id")
+	CodeAudit findOneCodeAuditById(int id);
 
-	@Query("select ar from CodeAudit ar")
-	Collection<AuditRecord> findAllAuditRecords();
+	@Query("select ca from CodeAudit ca")
+	Collection<CodeAudit> findAllCodeAudits();
 
-	@Query("select ar from AuditRecord ar where ar.codeAudit.id = :codeAuditId")
-	Collection<AuditRecord> findManyAuditRecordsByCodeAuditId(int codeAuditId);
+	@Query("select ca from CodeAudit ca where ca.auditor.id = :auditorId")
+	Collection<CodeAudit> findManyCodeAuditsByAuditorId(int auditorId);
 }

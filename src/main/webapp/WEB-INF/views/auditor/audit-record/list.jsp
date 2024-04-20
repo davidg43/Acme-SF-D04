@@ -22,4 +22,4 @@
 </acme:list>
 
 
-<acme:button code="auditor.audit-record.button.create" action="/auditor/audit-record/create"/>
+<acme:button code="auditor.audit-record.list.button.create" action="/auditor/audit-record/create"/>

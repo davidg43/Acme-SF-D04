@@ -23,4 +23,4 @@
 </acme:list>
 
 
-<acme:button code="auditor.code-audit.button.create" action="/auditor/code-audit/create"/>
+<acme:button code="auditor.code-audit.list.button.create" action="/auditor/code-audit/create"/>

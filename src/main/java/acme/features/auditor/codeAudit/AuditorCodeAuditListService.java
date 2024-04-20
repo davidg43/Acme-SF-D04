@@ -1,5 +1,5 @@
 /*
- * AuditRecordListMineService.java
+ * CodeAuditListService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.auditor.auditRecord;
+package acme.features.auditor.codeAudit;
 
 import java.util.Collection;
 
@@ -20,16 +20,16 @@ import org.springframework.stereotype.Service;
 import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
-import acme.entities.codeAudit.AuditRecord;
+import acme.entities.codeAudit.CodeAudit;
 import acme.roles.Auditor;
 
 @Service
-public class AuditRecordListMineService extends AbstractService<Auditor, AuditRecord> {
+public class AuditorCodeAuditListService extends AbstractService<Auditor, CodeAudit> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuditRecordRepository repository;
+	private AuditorCodeAuditRepository repository;
 
 	// AbstractService interface ----------------------------------------------
 
@@ -41,22 +41,22 @@ public class AuditRecordListMineService extends AbstractService<Auditor, AuditRe
 
 	@Override
 	public void load() {
-		Collection<AuditRecord> objects;
+		Collection<CodeAudit> objects;
 		Principal principal;
 
 		principal = super.getRequest().getPrincipal();
-		objects = this.repository.findManyAuditRecordsByCodeAuditId(principal.getActiveRoleId());
+		objects = this.repository.findManyCodeAuditsByAuditorId(principal.getActiveRoleId());
 
 		super.getBuffer().addData(objects);
 	}
 
 	@Override
-	public void unbind(final AuditRecord object) {
+	public void unbind(final CodeAudit object) {
 		assert object != null;
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "codeAudit.correctiveActions", "periodInit", "periodEnd", "mark", "link");
+		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "project.title", "auditor");
 
 		super.getResponse().addData(dataset);
 	}

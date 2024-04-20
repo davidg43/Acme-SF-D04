@@ -1,5 +1,5 @@
 /*
- * AuditRecordListAllService.java
+ * CodeAuditShowService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -10,50 +10,58 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.auditor.auditRecord;
-
-import java.util.Collection;
+package acme.features.auditor.codeAudit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
-import acme.entities.codeAudit.AuditRecord;
+import acme.entities.codeAudit.CodeAudit;
 import acme.roles.Auditor;
 
 @Service
-public class AuditRecordListAllService extends AbstractService<Auditor, AuditRecord> {
+public class AuditorCodeAuditShowService extends AbstractService<Auditor, CodeAudit> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuditRecordRepository repository;
+	private AuditorCodeAuditRepository repository;
 
 	// AbstractService interface ----------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int id;
+		CodeAudit cd;
+
+		id = super.getRequest().getData("id", int.class);
+		cd = this.repository.findOneCodeAuditById(id);
+		status = cd != null && super.getRequest().getPrincipal().hasRole(cd.getAuditor());
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Collection<AuditRecord> objects;
+		CodeAudit object;
+		int id;
 
-		objects = this.repository.findAllAuditRecords();
+		id = super.getRequest().getData("id", int.class);
+		object = this.repository.findOneCodeAuditById(id);
 
-		super.getBuffer().addData(objects);
+		super.getBuffer().addData(object);
 	}
 
 	@Override
-	public void unbind(final AuditRecord object) {
+	public void unbind(final CodeAudit object) {
 		assert object != null;
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "codeAudit.correctiveActions", "periodInit", "periodEnd", "mark", "link");
+		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "project.title", "auditor");
 
 		super.getResponse().addData(dataset);
 	}

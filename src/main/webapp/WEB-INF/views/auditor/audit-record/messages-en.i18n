@@ -23,6 +23,6 @@ auditor.audit-record.form.label.period-end = Period End
 auditor.audit-record.form.label.mark = Mark
 auditor.audit-record.form.label.link = Link
 
-auditor.audit-record.button.create = Create
-auditor.audit-record.button.update = Update
-auditor.audit-record.button.delete = Delete
+auditor.audit-record.list.button.create = Create
+auditor.audit-record.form.button.update = Update
+auditor.audit-record.form.button.delete = Delete

@@ -26,5 +26,5 @@
 	<acme:input-textbox code="auditor.code-audit.form.label.auditor" path="auditor" readonly="true" />	
 </acme:form>
 
-<acme:button code="auditor.code-audit.button.update" action="/auditor/code-audit/update"/>
-<acme:button code="auditor.code-audit.button.delete" action="/auditor/code-audit/delete"/>
+<acme:button code="auditor.code-audit.form.button.update" action="/auditor/code-audit/update"/>
+<acme:button code="auditor.code-audit.form.button.delete" action="/auditor/code-audit/delete"/>

@@ -1,5 +1,5 @@
 /*
- * CodeAuditListService.java
+ * AuditRecordShowService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -10,53 +10,58 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.auditor.codeAudit;
-
-import java.util.Collection;
+package acme.features.auditor.auditRecord;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
-import acme.entities.codeAudit.CodeAudit;
+import acme.entities.codeAudit.AuditRecord;
 import acme.roles.Auditor;
 
 @Service
-public class CodeAuditListService extends AbstractService<Auditor, CodeAudit> {
+public class AuditorAuditRecordShowService extends AbstractService<Auditor, AuditRecord> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private CodeAuditRepository repository;
+	private AuditorAuditRecordRepository repository;
 
 	// AbstractService interface ----------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int id;
+		AuditRecord ar;
+
+		id = super.getRequest().getData("id", int.class);
+		ar = this.repository.findOneAuditRecordById(id);
+		status = ar != null && super.getRequest().getPrincipal().hasRole(ar.getCodeAudit().getAuditor());
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Collection<CodeAudit> objects;
-		Principal principal;
+		AuditRecord object;
+		int id;
 
-		principal = super.getRequest().getPrincipal();
-		objects = this.repository.findManyCodeAuditsByAuditorId(principal.getActiveRoleId());
+		id = super.getRequest().getData("id", int.class);
+		object = this.repository.findOneAuditRecordById(id);
 
-		super.getBuffer().addData(objects);
+		super.getBuffer().addData(object);
 	}
 
 	@Override
-	public void unbind(final CodeAudit object) {
+	public void unbind(final AuditRecord object) {
 		assert object != null;
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "project.title", "auditor");
+		dataset = super.unbind(object, "code", "codeAudit.correctiveActions", "periodInit", "periodEnd", "mark", "link");
 
 		super.getResponse().addData(dataset);
 	}

@@ -24,5 +24,5 @@
 	<acme:input-url code="auditor.audit-record.form.label.link" path="link" readonly="true" />
 </acme:form>
 
-<acme:button code="auditor.audit-record.button.update" action="/auditor/audit-record/update"/>
-<acme:button code="auditor.audit-record.button.delete" action="/auditor/audit-record/delete"/>
+<acme:button code="auditor.audit-record.button.form.update" action="/auditor/audit-record/update"/>
+<acme:button code="auditor.audit-record.button.form.delete" action="/auditor/audit-record/delete"/>

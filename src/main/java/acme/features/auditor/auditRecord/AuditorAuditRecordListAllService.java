@@ -1,5 +1,5 @@
 /*
- * AuditRecordShowService.java
+ * AuditRecordListAllService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -12,6 +12,8 @@
 
 package acme.features.auditor.auditRecord;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,38 +23,28 @@ import acme.entities.codeAudit.AuditRecord;
 import acme.roles.Auditor;
 
 @Service
-public class AuditRecordShowService extends AbstractService<Auditor, AuditRecord> {
+public class AuditorAuditRecordListAllService extends AbstractService<Auditor, AuditRecord> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuditRecordRepository repository;
+	private AuditorAuditRecordRepository repository;
 
 	// AbstractService interface ----------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int id;
-		AuditRecord ar;
-
-		id = super.getRequest().getData("id", int.class);
-		ar = this.repository.findOneAuditRecordById(id);
-		status = ar != null && super.getRequest().getPrincipal().hasRole(ar.getCodeAudit().getAuditor());
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
-		AuditRecord object;
-		int id;
+		Collection<AuditRecord> objects;
 
-		id = super.getRequest().getData("id", int.class);
-		object = this.repository.findOneAuditRecordById(id);
+		objects = this.repository.findAllAuditRecords();
 
-		super.getBuffer().addData(object);
+		super.getBuffer().addData(objects);
 	}
 
 	@Override
