@@ -26,7 +26,9 @@ auditor.code-audit.form.label.project = Project
 auditor.code-audit.form.label.link = Link
 auditor.code-audit.form.label.execution = Execution Date
 auditor.code-audit.form.label.auditor = Auditor
+auditor.code-audit.form.placeholder.mark = Average Evaluation
 
 auditor.code-audit.list.button.create = Create
+auditor.code-audit.form.button.create = Create
 auditor.code-audit.form.button.update = Update
 auditor.code-audit.form.button.delete = Delete

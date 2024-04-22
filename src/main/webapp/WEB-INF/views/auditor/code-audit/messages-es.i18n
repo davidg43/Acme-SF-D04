@@ -26,7 +26,9 @@ auditor.code-audit.form.label.project = Proyecto
 auditor.code-audit.form.label.link = Link
 auditor.code-audit.form.label.execution = Fecha de ejecucion
 auditor.code-audit.form.label.auditor = Autor de la auditoria
+auditor.code-audit.form.placeholder.mark = Nota media
 
 auditor.code-audit.list.button.create = Crear
+auditor.code-audit.form.button.create = Crear
 auditor.code-audit.form.button.update = Actualizar
 auditor.code-audit.form.button.delete = Eliminar

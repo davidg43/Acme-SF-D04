@@ -22,5 +22,7 @@
 	<acme:list-column code="auditor.code-audit.list.label.project" path="project.title" width="30%"/>	
 </acme:list>
 
+<jstl:if test="${_command == 'list'}">
+	<acme:button code="auditor.code-audit.list.button.create" action="/auditor/code-audit/create"/>
+</jstl:if>		
 
-<acme:button code="auditor.code-audit.list.button.create" action="/auditor/code-audit/create"/>

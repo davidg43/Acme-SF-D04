@@ -64,4 +64,6 @@ public class CodeAudit extends AbstractEntity {
 	@ManyToOne(optional = false)
 	private Auditor				auditor;
 
+	private boolean				draftMode;
+
 }
