@@ -21,6 +21,7 @@ import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.codeAudit.CodeAudit;
+import acme.entities.codeAudit.Type;
 import acme.entities.project.Project;
 import acme.roles.Auditor;
 
@@ -84,18 +85,19 @@ public class AuditorCodeAuditCreateService extends AbstractService<Auditor, Code
 	public void unbind(final CodeAudit object) {
 		assert object != null;
 
-		int auditorId;
 		Collection<Project> projects;
 		SelectChoices choices;
 		Dataset dataset;
+		SelectChoices choicesType;
 
-		auditorId = super.getRequest().getPrincipal().getActiveRoleId();
-		projects = this.repository.findManyProjectsByAuditorId(auditorId);
-		choices = SelectChoices.from(projects, "name", object.getProject());
+		projects = this.repository.findAllProjects();
+		choices = SelectChoices.from(projects, "title", object.getProject());
+		choicesType = SelectChoices.from(Type.class, object.getType());
 
 		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "draftMode");
 		dataset.put("project", choices.getSelected().getKey());
 		dataset.put("projects", choices);
+		dataset.put("types", choicesType);
 
 		super.getResponse().addData(dataset);
 	}

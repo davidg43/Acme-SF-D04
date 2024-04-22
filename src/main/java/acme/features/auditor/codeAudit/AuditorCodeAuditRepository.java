@@ -32,6 +32,9 @@ public interface AuditorCodeAuditRepository extends AbstractRepository {
 	@Query("select ca from CodeAudit ca")
 	Collection<CodeAudit> findAllCodeAudits();
 
+	@Query("select p from Project p")
+	Collection<Project> findAllProjects();
+
 	@Query("select ca from CodeAudit ca where ca.auditor.id = :auditorId")
 	Collection<CodeAudit> findManyCodeAuditsByAuditorId(int auditorId);
 
@@ -40,9 +43,6 @@ public interface AuditorCodeAuditRepository extends AbstractRepository {
 
 	@Query("select p from Project p where p.id = :projectId")
 	Project findOneProjectById(int projectId);
-
-	@Query("select p from Project p where p.id = :auditorId")
-	Collection<Project> findManyProjectsByAuditorId(int auditorId);
 
 	@Query("select ca from CodeAudit ca where ca.code = :code")
 	CodeAudit findOneCodeAuditByCode(String code);
