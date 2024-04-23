@@ -20,10 +20,8 @@
 	<acme:input-textbox code="auditor.audit-record.form.label.code-audit" path="codeAudit.correctiveActions"  readonly="true" />
 	<acme:input-moment code="auditor.audit-record.form.label.period-init" path="periodInit"/>
 	<acme:input-moment code="auditor.audit-record.form.label.period-end" path="periodEnd" />
-	<acme:input-textbox code="auditor.audit-record.form.label.mark" path="mark"/>
+	<acme:input-select code="auditor.audit-record.form.label.mark" path="mark" choices="${marks}" readonly="${acme:anyOf(mark,'A_PLUS|A|B|C|F|F_MINUS')}" />
 	<acme:input-url code="auditor.audit-record.form.label.link" path="link" />
-</acme:form>
-
 
 	<jstl:choose>
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
@@ -34,3 +32,5 @@
 			<acme:submit code="auditor.audit-record.form.button.create" action="/auditor/audit-record/create?masterId=${masterId}"/>
 		</jstl:when>		
 	</jstl:choose>		
+	
+</acme:form>
