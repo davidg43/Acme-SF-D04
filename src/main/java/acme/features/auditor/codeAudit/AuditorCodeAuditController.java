@@ -27,7 +27,10 @@ public class AuditorCodeAuditController extends AbstractController<Auditor, Code
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuditorCodeAuditListService		listService;
+	private AuditorCodeAuditListMineService	listMineService;
+
+	@Autowired
+	private AuditorCodeAuditListAllService	listAllService;
 
 	@Autowired
 	private AuditorCodeAuditShowService		showService;
@@ -40,6 +43,10 @@ public class AuditorCodeAuditController extends AbstractController<Auditor, Code
 
 	@Autowired
 	private AuditorCodeAuditDeleteService	deleteService;
+
+	@Autowired
+	private AuditorCodeAuditPublishService	publishService;
+
 	// Constructors -----------------------------------------------------------
 
 
@@ -48,8 +55,11 @@ public class AuditorCodeAuditController extends AbstractController<Auditor, Code
 		super.addBasicCommand("delete", this.deleteService);
 		super.addBasicCommand("update", this.updateService);
 		super.addBasicCommand("create", this.createService);
-		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
+
+		super.addCustomCommand("list-all", "list", this.listAllService);
+		super.addCustomCommand("list-mine", "list", this.listMineService);
+		super.addCustomCommand("publish", "update", this.publishService);
 	}
 
 }

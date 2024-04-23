@@ -1,5 +1,5 @@
 /*
- * AuditRecordListMineService.java
+ * AuditorAuditRecordUpdateService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -12,19 +12,17 @@
 
 package acme.features.auditor.auditRecord;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.codeAudit.AuditRecord;
+import acme.entities.codeAudit.CodeAudit;
 import acme.roles.Auditor;
 
 @Service
-public class AuditorAuditRecordListMineService extends AbstractService<Auditor, AuditRecord> {
+public class AuditorAuditRecordUpdateService extends AbstractService<Auditor, AuditRecord> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -36,18 +34,45 @@ public class AuditorAuditRecordListMineService extends AbstractService<Auditor, 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int auditRecordId;
+		CodeAudit codeAudit;
+
+		auditRecordId = super.getRequest().getData("id", int.class);
+		codeAudit = this.repository.findOneCodeAuditByAuditRecordId(auditRecordId);
+		status = codeAudit != null && codeAudit.isDraftMode() && super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor());
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Collection<AuditRecord> objects;
-		Principal principal;
+		AuditRecord object;
+		int id;
 
-		principal = super.getRequest().getPrincipal();
-		objects = this.repository.findManyAuditRecordsByCodeAuditId(principal.getActiveRoleId());
+		id = super.getRequest().getData("id", int.class);
+		object = this.repository.findOneAuditRecordById(id);
 
-		super.getBuffer().addData(objects);
+		super.getBuffer().addData(object);
+	}
+
+	@Override
+	public void bind(final AuditRecord object) {
+		assert object != null;
+
+		super.bind(object, "code", "codeAudit.correctiveActions", "periodInit", "periodEnd", "mark", "link");
+	}
+
+	@Override
+	public void validate(final AuditRecord object) {
+		assert object != null;
+	}
+
+	@Override
+	public void perform(final AuditRecord object) {
+		assert object != null;
+
+		this.repository.save(object);
 	}
 
 	@Override
@@ -57,8 +82,8 @@ public class AuditorAuditRecordListMineService extends AbstractService<Auditor, 
 		Dataset dataset;
 
 		dataset = super.unbind(object, "code", "codeAudit.correctiveActions", "periodInit", "periodEnd", "mark", "link");
-
-		super.getResponse().addData(dataset);
+		dataset.put("masterId", object.getCodeAudit().getId());
+		dataset.put("draftMode", object.getCodeAudit().isDraftMode());
 	}
 
 }

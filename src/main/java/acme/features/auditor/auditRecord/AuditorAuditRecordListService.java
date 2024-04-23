@@ -1,5 +1,5 @@
 /*
- * AuditRecordListAllService.java
+ * AuditorAuditRecordListService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -20,10 +20,11 @@ import org.springframework.stereotype.Service;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.codeAudit.AuditRecord;
+import acme.entities.codeAudit.CodeAudit;
 import acme.roles.Auditor;
 
 @Service
-public class AuditorAuditRecordListAllService extends AbstractService<Auditor, AuditRecord> {
+public class AuditorAuditRecordListService extends AbstractService<Auditor, AuditRecord> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -35,14 +36,24 @@ public class AuditorAuditRecordListAllService extends AbstractService<Auditor, A
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int masterId;
+		CodeAudit codeAudit;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		codeAudit = this.repository.findOneCodeAuditById(masterId);
+		status = codeAudit != null && (!codeAudit.isDraftMode() || super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor()));
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 		Collection<AuditRecord> objects;
+		int masterId;
 
-		objects = this.repository.findAllAuditRecords();
+		masterId = super.getRequest().getData("masterId", int.class);
+		objects = this.repository.findManyAuditRecordsByCodeAuditId(masterId);
 
 		super.getBuffer().addData(objects);
 	}
@@ -56,6 +67,22 @@ public class AuditorAuditRecordListAllService extends AbstractService<Auditor, A
 		dataset = super.unbind(object, "code", "codeAudit.correctiveActions", "periodInit", "periodEnd", "mark", "link");
 
 		super.getResponse().addData(dataset);
+	}
+
+	@Override
+	public void unbind(final Collection<AuditRecord> objects) {
+		assert objects != null;
+
+		int masterId;
+		CodeAudit codeAudit;
+		final boolean showCreate;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		codeAudit = this.repository.findOneCodeAuditById(masterId);
+		showCreate = codeAudit.isDraftMode() && super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor());
+
+		super.getResponse().addGlobal("masterId", masterId);
+		super.getResponse().addGlobal("showCreate", showCreate);
 	}
 
 }

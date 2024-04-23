@@ -1,5 +1,5 @@
 /*
- * AuditorCodeAuditUpdateService.java
+ * AuditorCodeAuditPublishService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -21,30 +21,29 @@ import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.codeAudit.CodeAudit;
-import acme.entities.codeAudit.Type;
 import acme.entities.project.Project;
 import acme.roles.Auditor;
 
 @Service
-public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, CodeAudit> {
+public class AuditorCodeAuditPublishService extends AbstractService<Auditor, CodeAudit> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private AuditorCodeAuditRepository repository;
 
-	// AbstractService<Employer, Job> -------------------------------------
+	// AbstractService interface ----------------------------------------------
 
 
 	@Override
 	public void authorise() {
 		boolean status;
-		int masterId;
+		int codeAuditId;
 		CodeAudit codeAudit;
 		Auditor auditor;
 
-		masterId = super.getRequest().getData("id", int.class);
-		codeAudit = this.repository.findOneCodeAuditById(masterId);
+		codeAuditId = super.getRequest().getData("id", int.class);
+		codeAudit = this.repository.findOneCodeAuditById(codeAuditId);
 		auditor = codeAudit == null ? null : codeAudit.getAuditor();
 		status = codeAudit != null && codeAudit.isDraftMode() && super.getRequest().getPrincipal().hasRole(auditor);
 
@@ -69,10 +68,10 @@ public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, Code
 		int projectId;
 		Project project;
 
-		projectId = super.getRequest().getData("project", int.class);
+		projectId = super.getRequest().getData("contractor", int.class);
 		project = this.repository.findOneProjectById(projectId);
 
-		super.bind(object, "code", "execution", "type", "correctiveActions", "mark", "link");
+		super.bind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "auditor");
 		object.setProject(project);
 	}
 
@@ -86,6 +85,7 @@ public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, Code
 	public void perform(final CodeAudit object) {
 		assert object != null;
 
+		object.setDraftMode(false);
 		this.repository.save(object);
 	}
 
@@ -96,16 +96,13 @@ public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, Code
 		Collection<Project> projects;
 		SelectChoices choices;
 		Dataset dataset;
-		SelectChoices choicesType;
 
 		projects = this.repository.findAllProjects();
 		choices = SelectChoices.from(projects, "title", object.getProject());
-		choicesType = SelectChoices.from(Type.class, object.getType());
 
-		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "draftMode");
+		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "auditor", "draftMode");
 		dataset.put("project", choices.getSelected().getKey());
 		dataset.put("projects", choices);
-		dataset.put("types", choicesType);
 
 		super.getResponse().addData(dataset);
 	}

@@ -1,5 +1,5 @@
 /*
- * AuditorAuditRecordShowService.java
+ * AuditorAuditRecordCreateService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -12,17 +12,21 @@
 
 package acme.features.auditor.auditRecord;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.entities.codeAudit.AuditRecord;
 import acme.entities.codeAudit.CodeAudit;
+import acme.entities.codeAudit.Mark;
 import acme.roles.Auditor;
 
 @Service
-public class AuditorAuditRecordShowService extends AbstractService<Auditor, AuditRecord> {
+public class AuditorAuditRecordCreateService extends AbstractService<Auditor, AuditRecord> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -35,12 +39,12 @@ public class AuditorAuditRecordShowService extends AbstractService<Auditor, Audi
 	@Override
 	public void authorise() {
 		boolean status;
-		int id;
+		int masterId;
 		CodeAudit codeAudit;
 
-		id = super.getRequest().getData("id", int.class);
-		codeAudit = this.repository.findOneCodeAuditByAuditRecordId(id);
-		status = codeAudit != null && (!codeAudit.isDraftMode() || super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor()));
+		masterId = super.getRequest().getData("masterId", int.class);
+		codeAudit = this.repository.findOneCodeAuditById(masterId);
+		status = codeAudit != null && codeAudit.isDraftMode() && super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -48,12 +52,41 @@ public class AuditorAuditRecordShowService extends AbstractService<Auditor, Audi
 	@Override
 	public void load() {
 		AuditRecord object;
-		int id;
+		int masterId;
+		CodeAudit codeAudit;
+		Date moment;
 
-		id = super.getRequest().getData("id", int.class);
-		object = this.repository.findOneAuditRecordById(id);
+		moment = MomentHelper.getCurrentMoment();
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		codeAudit = this.repository.findOneCodeAuditById(masterId);
+
+		object = new AuditRecord();
+		object.setCode("");
+		object.setCodeAudit(codeAudit);
+		object.setPeriodInit(moment);
+		object.setMark(Mark.F);
 
 		super.getBuffer().addData(object);
+	}
+
+	@Override
+	public void bind(final AuditRecord object) {
+		assert object != null;
+
+		super.bind(object, "code", "codeAudit.correctiveActions", "periodInit", "periodEnd", "mark", "link");
+	}
+
+	@Override
+	public void validate(final AuditRecord object) {
+		assert object != null;
+	}
+
+	@Override
+	public void perform(final AuditRecord object) {
+		assert object != null;
+
+		this.repository.save(object);
 	}
 
 	@Override
@@ -63,7 +96,7 @@ public class AuditorAuditRecordShowService extends AbstractService<Auditor, Audi
 		Dataset dataset;
 
 		dataset = super.unbind(object, "code", "codeAudit.correctiveActions", "periodInit", "periodEnd", "mark", "link");
-		dataset.put("masterId", object.getCodeAudit().getId());
+		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
 		dataset.put("draftMode", object.getCodeAudit().isDraftMode());
 
 		super.getResponse().addData(dataset);

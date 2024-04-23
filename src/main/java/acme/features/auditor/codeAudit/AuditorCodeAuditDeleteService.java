@@ -69,7 +69,7 @@ public class AuditorCodeAuditDeleteService extends AbstractService<Auditor, Code
 		int projectId;
 		Project project;
 
-		projectId = super.getRequest().getData("contractor", int.class);
+		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findOneProjectById(projectId);
 
 		super.bind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "auditor");
@@ -96,12 +96,10 @@ public class AuditorCodeAuditDeleteService extends AbstractService<Auditor, Code
 	public void unbind(final CodeAudit object) {
 		assert object != null;
 
-		int auditorId;
 		Collection<Project> projects;
 		SelectChoices choices;
 		Dataset dataset;
 
-		auditorId = super.getRequest().getPrincipal().getActiveRoleId();
 		projects = this.repository.findAllProjects();
 		choices = SelectChoices.from(projects, "title", object.getProject());
 

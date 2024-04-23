@@ -24,7 +24,7 @@ import acme.entities.codeAudit.CodeAudit;
 import acme.roles.Auditor;
 
 @Service
-public class AuditorCodeAuditListService extends AbstractService<Auditor, CodeAudit> {
+public class AuditorCodeAuditListMineService extends AbstractService<Auditor, CodeAudit> {
 
 	// Internal state ---------------------------------------------------------
 

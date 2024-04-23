@@ -1,5 +1,5 @@
 /*
- * AuditRecordController.java
+ * AuditorAuditRecordController.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -27,19 +27,30 @@ public class AuditorAuditRecordController extends AbstractController<Auditor, Au
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuditorAuditRecordListMineService	listService;
+	private AuditorAuditRecordListService	listService;
 
 	@Autowired
-	private AuditorAuditRecordShowService		showService;
+	private AuditorAuditRecordShowService	showService;
+
+	@Autowired
+	private AuditorAuditRecordCreateService	createService;
+
+	@Autowired
+	private AuditorAuditRecordUpdateService	updateService;
+
+	@Autowired
+	private AuditorAuditRecordDeleteService	deleteService;
 
 	// Constructors -----------------------------------------------------------
 
 
 	@PostConstruct
 	protected void initialise() {
-		/* super.addCustomCommand("list-mine", "list", this.listMineService); */
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("delete", this.deleteService);
 	}
 
 }

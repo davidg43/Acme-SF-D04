@@ -1,5 +1,5 @@
 /*
- * AuditorAuditRecordShowService.java
+ * AuditorAuditRecordDeleteService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -22,7 +22,7 @@ import acme.entities.codeAudit.CodeAudit;
 import acme.roles.Auditor;
 
 @Service
-public class AuditorAuditRecordShowService extends AbstractService<Auditor, AuditRecord> {
+public class AuditorAuditRecordDeleteService extends AbstractService<Auditor, AuditRecord> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -35,12 +35,12 @@ public class AuditorAuditRecordShowService extends AbstractService<Auditor, Audi
 	@Override
 	public void authorise() {
 		boolean status;
-		int id;
+		int auditRecordId;
 		CodeAudit codeAudit;
 
-		id = super.getRequest().getData("id", int.class);
-		codeAudit = this.repository.findOneCodeAuditByAuditRecordId(id);
-		status = codeAudit != null && (!codeAudit.isDraftMode() || super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor()));
+		auditRecordId = super.getRequest().getData("id", int.class);
+		codeAudit = this.repository.findOneCodeAuditByAuditRecordId(auditRecordId);
+		status = codeAudit != null && codeAudit.isDraftMode() && super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -54,6 +54,25 @@ public class AuditorAuditRecordShowService extends AbstractService<Auditor, Audi
 		object = this.repository.findOneAuditRecordById(id);
 
 		super.getBuffer().addData(object);
+	}
+
+	@Override
+	public void bind(final AuditRecord object) {
+		assert object != null;
+
+		super.bind(object, "code", "codeAudit.correctiveActions", "periodInit", "periodEnd", "mark", "link");
+	}
+
+	@Override
+	public void validate(final AuditRecord object) {
+		assert object != null;
+	}
+
+	@Override
+	public void perform(final AuditRecord object) {
+		assert object != null;
+
+		this.repository.delete(object);
 	}
 
 	@Override

@@ -1,5 +1,5 @@
 /*
- * AuditorAuditRecordShowService.java
+ * AuditorCodeAuditListAllService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -10,61 +10,50 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.auditor.auditRecord;
+package acme.features.auditor.codeAudit;
+
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
-import acme.entities.codeAudit.AuditRecord;
 import acme.entities.codeAudit.CodeAudit;
 import acme.roles.Auditor;
 
 @Service
-public class AuditorAuditRecordShowService extends AbstractService<Auditor, AuditRecord> {
+public class AuditorCodeAuditListAllService extends AbstractService<Auditor, CodeAudit> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuditorAuditRecordRepository repository;
+	private AuditorCodeAuditRepository repository;
 
 	// AbstractService interface ----------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int id;
-		CodeAudit codeAudit;
-
-		id = super.getRequest().getData("id", int.class);
-		codeAudit = this.repository.findOneCodeAuditByAuditRecordId(id);
-		status = codeAudit != null && (!codeAudit.isDraftMode() || super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor()));
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
-		AuditRecord object;
-		int id;
+		Collection<CodeAudit> objects;
 
-		id = super.getRequest().getData("id", int.class);
-		object = this.repository.findOneAuditRecordById(id);
+		objects = this.repository.findAllCodeAudits();
 
-		super.getBuffer().addData(object);
+		super.getBuffer().addData(objects);
 	}
 
 	@Override
-	public void unbind(final AuditRecord object) {
+	public void unbind(final CodeAudit object) {
 		assert object != null;
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "codeAudit.correctiveActions", "periodInit", "periodEnd", "mark", "link");
-		dataset.put("masterId", object.getCodeAudit().getId());
-		dataset.put("draftMode", object.getCodeAudit().isDraftMode());
+		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "project.title", "auditor");
 
 		super.getResponse().addData(dataset);
 	}

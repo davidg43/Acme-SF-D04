@@ -16,13 +16,21 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <acme:form>
-<acme:input-textbox code="auditor.audit-record.form.label.code" path="code" readonly="true" />
-	<acme:input-textbox code="auditor.audit-record.form.label.code-audit" path="codeAudit.correctiveActions" readonly="true" />
-	<acme:input-moment code="auditor.audit-record.form.label.period-init" path="periodInit" readonly="true" />
-	<acme:input-moment code="auditor.audit-record.form.label.period-end" path="periodEnd" readonly="true" />
-	<acme:input-textbox code="auditor.audit-record.form.label.mark" path="mark" readonly="true" />
-	<acme:input-url code="auditor.audit-record.form.label.link" path="link" readonly="true" />
+<acme:input-textbox code="auditor.audit-record.form.label.code" path="code"/>
+	<acme:input-textbox code="auditor.audit-record.form.label.code-audit" path="codeAudit.correctiveActions"  readonly="true" />
+	<acme:input-moment code="auditor.audit-record.form.label.period-init" path="periodInit"/>
+	<acme:input-moment code="auditor.audit-record.form.label.period-end" path="periodEnd" />
+	<acme:input-textbox code="auditor.audit-record.form.label.mark" path="mark"/>
+	<acme:input-url code="auditor.audit-record.form.label.link" path="link" />
 </acme:form>
 
-<acme:button code="auditor.audit-record.button.form.update" action="/auditor/audit-record/update"/>
-<acme:button code="auditor.audit-record.button.form.delete" action="/auditor/audit-record/delete"/>
+
+	<jstl:choose>
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true}">
+			<acme:submit code="auditor.audit-record.form.button.update" action="/auditor/audit-record/update"/>
+			<acme:submit code="auditor.audit-record.form.button.delete" action="/auditor/audit-record/delete"/>
+		</jstl:when>
+		<jstl:when test="${_command == 'create'}">
+			<acme:submit code="auditor.audit-record.form.button.create" action="/auditor/audit-record/create?masterId=${masterId}"/>
+		</jstl:when>		
+	</jstl:choose>		

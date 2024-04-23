@@ -24,5 +24,6 @@ auditor.audit-record.form.label.mark = Mark
 auditor.audit-record.form.label.link = Link
 
 auditor.audit-record.list.button.create = Create
+auditor.audit-record.form.button.create = Create
 auditor.audit-record.form.button.update = Update
 auditor.audit-record.form.button.delete = Delete
