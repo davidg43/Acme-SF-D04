@@ -36,3 +36,4 @@ auditor.code-audit.form.button.audit-record = Audit Records
 auditor.code-audit.form.button.publish = Publish
 
 auditor.code-audit.form.error.duplicated = You cant use an existing code
+auditor.code-audit.form.error.not-enought-mark = Mark must be, at least, C

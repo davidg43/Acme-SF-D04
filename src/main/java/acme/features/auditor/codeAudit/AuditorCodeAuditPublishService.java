@@ -94,6 +94,14 @@ public class AuditorCodeAuditPublishService extends AbstractService<Auditor, Cod
 			super.state(existing == null || existing.equals(object), "code", "auditor.code-audit.form.error.duplicated");
 		}
 
+		if (!super.getBuffer().getErrors().hasErrors("mark")) {
+			CodeAudit valid;
+			Mark mark;
+
+			valid = this.repository.findOneCodeAuditById(object.getId());
+			mark = valid.getMark();
+			super.state(mark != Mark.F_MINUS && mark != Mark.F, "mark", "auditor.code-audit.form.error.not-enought-mark");
+		}
 	}
 
 	@Override
