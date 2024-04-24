@@ -20,5 +20,5 @@
 </acme:list>
 
 
-	<acme:button code="administrator.banner.list.button.create" action="/auditor/code-audit/create"/>
+	<acme:button code="administrator.banner.list.button.create" action="/administrator/banner/create"/>
 

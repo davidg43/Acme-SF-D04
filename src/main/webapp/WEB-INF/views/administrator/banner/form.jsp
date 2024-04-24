@@ -23,6 +23,8 @@
 	<acme:input-textbox code="administrator.banner.form.label.slogan" path="slogan"/>
 	<acme:input-url code="administrator.banner.form.label.link" path="link"/>
 	
+	
+	<acme:submit code="administrator.banner.form.button.create" action="/administrator/banner/create"/>
 	<acme:submit code="administrator.banner.form.button.update" action="/administrator/banner/update"/>
 	<acme:submit code="administrator.banner.form.button.delete" action="/administrator/banner/delete"/>
 

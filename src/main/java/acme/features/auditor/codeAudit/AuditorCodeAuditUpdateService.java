@@ -13,11 +13,13 @@
 package acme.features.auditor.codeAudit;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.codeAudit.CodeAudit;
@@ -71,7 +73,10 @@ public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, Code
 		project = this.repository.findOneProjectById(projectId);
 
 		super.bind(object, "code", "execution", "type", "correctiveActions", "mark", "link");
+		Date currentMoment = MomentHelper.getCurrentMoment();
+		Date creationMoment = new Date(currentMoment.getTime() - 6000);
 		object.setProject(project);
+		object.setExecution(creationMoment);
 	}
 
 	@Override

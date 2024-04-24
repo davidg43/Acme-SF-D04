@@ -20,7 +20,7 @@
 	<acme:input-textbox code="auditor.audit-record.form.label.code-audit" path="codeAudit.correctiveActions"  readonly="true" />
 	<acme:input-moment code="auditor.audit-record.form.label.period-init" path="periodInit"/>
 	<acme:input-moment code="auditor.audit-record.form.label.period-end" path="periodEnd" />
-	<acme:input-select code="auditor.audit-record.form.label.mark" path="mark" choices="${marks}" readonly="${acme:anyOf(mark,'A_PLUS|A|B|C|F|F_MINUS')}" />
+	<acme:input-select code="auditor.audit-record.form.label.mark" path="mark" choices="${marks}" />
 	<acme:input-url code="auditor.audit-record.form.label.link" path="link" />
 
 	<jstl:choose>

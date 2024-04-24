@@ -18,10 +18,10 @@
 <acme:form> 
 	<acme:input-textbox code="auditor.code-audit.form.label.code" path="code"/>
 	<acme:input-textbox code="auditor.code-audit.form.label.correctiveActions" path="correctiveActions"/>	
-	<acme:input-select code="auditor.code-audit.form.label.type" path="type" choices="${types}" readonly="${acme:anyOf(type, 'STATIC|DYNAMIC')}"/>
+	<acme:input-select code="auditor.code-audit.form.label.type" path="type" choices="${types}"/>
 	<acme:input-textbox code="auditor.code-audit.form.label.mark" path="mark" readonly="true"/>
 	<acme:input-select code="auditor.code-audit.form.label.project" path="project" choices="${projects}"/>
-	<acme:input-moment code="auditor.code-audit.form.label.execution" path="execution"/>
+	<acme:input-moment code="auditor.code-audit.form.label.execution" path="execution" readonly="true"/>
 	<acme:input-url code="auditor.code-audit.form.label.link" path="link"/>
 
 	<acme:hidden-data path="id"/>
@@ -32,7 +32,7 @@
 			<acme:button code="auditor.code-audit.form.button.audit-record" action="/auditor/audit-record/list?masterId=${id}"/>			
 		</jstl:when>	 
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
-			<acme:button code="auditor.code-audit.form.button.audit-record" action="/auditor/code-audit/list?masterId=${id}"/>
+			<acme:button code="auditor.code-audit.form.button.audit-record" action="/auditor/audit-record/list?masterId=${id}"/>
 			<acme:submit code="auditor.code-audit.form.button.update" action="/auditor/code-audit/update"/>
 			<acme:submit code="auditor.code-audit.form.button.delete" action="/auditor/code-audit/delete"/>
 			<acme:submit code="auditor.code-audit.form.button.publish" action="/auditor/code-audit/publish"/>
