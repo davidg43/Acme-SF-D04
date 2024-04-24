@@ -1,5 +1,5 @@
 
-package acme.features.manager.assigment;
+package acme.features.manager.assignment;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
-import acme.entities.project.Assigment;
+import acme.entities.project.Assignment;
 import acme.features.manager.project.ManagerProjectRepository;
 import acme.roles.Manager;
 
 @Service
-public class ManagerAssigmentListService extends AbstractService<Manager, Assigment> {
+public class ManagerAssignmentListService extends AbstractService<Manager, Assignment> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -39,17 +39,17 @@ public class ManagerAssigmentListService extends AbstractService<Manager, Assigm
 	@Override
 	public void load() {
 		int id = super.getRequest().getData("projectId", int.class);
-		Collection<Assigment> objects = this.repository.findAllAssigmentsOfAProjectById(id).stream().distinct().collect(Collectors.toList());
+		Collection<Assignment> objects = this.repository.findAllAssignmentsOfAProjectById(id).stream().distinct().collect(Collectors.toList());
 		super.getBuffer().addData(objects);
 	}
 
 	@Override
-	public void unbind(final Assigment assigment) {
-		assert assigment != null;
+	public void unbind(final Assignment assignment) {
+		assert assignment != null;
 
 		Dataset dataset;
 
-		dataset = super.unbind(assigment, "project", "userStory");
+		dataset = super.unbind(assignment, "project", "userStory");
 
 		super.getResponse().addData(dataset);
 	}

@@ -12,7 +12,7 @@ import acme.entities.codeAudit.AuditRecord;
 import acme.entities.codeAudit.CodeAudit;
 import acme.entities.contract.Contract;
 import acme.entities.contract.ProgressLog;
-import acme.entities.project.Assigment;
+import acme.entities.project.Assignment;
 import acme.entities.project.Project;
 import acme.entities.project.UserStory;
 import acme.entities.sponsorShip.SponsorShip;
@@ -22,6 +22,9 @@ import acme.roles.Manager;
 
 @Repository
 public interface ManagerProjectRepository extends AbstractRepository {
+
+	@Query("select p from Project p")
+	Collection<Project> findAllProjects();
 
 	@Query("select p from Project p where p.manager.id =:id")
 	Collection<Project> findProjectsOfAManagerById(int id);
@@ -35,23 +38,23 @@ public interface ManagerProjectRepository extends AbstractRepository {
 	@Query("select m from Manager m where m.id =:id")
 	Manager findManagerByManagerId(int id);
 
-	@Query("Select Distinct a.userStory From Assigment a WHERE a.project.id =:id")
+	@Query("Select Distinct a.userStory From Assignment a WHERE a.project.id =:id")
 	Collection<UserStory> findAllUserStoriesOfAProjectById(int id);
 
-	@Query("Select Distinct a.userStory From Assigment a WHERE a.userStory.manager.id =:id")
+	@Query("Select Distinct a.userStory From Assignment a WHERE a.userStory.manager.id =:id")
 	Collection<UserStory> findAllUserStoriesOfAManagerById(int id);
 
-	@Query("Select Distinct a From Assigment a WHERE a.project.id =:id")
-	Collection<Assigment> findAllAssigmentsOfAProjectById(int id);
+	@Query("Select Distinct a From Assignment a WHERE a.project.id =:id")
+	Collection<Assignment> findAllAssignmentsOfAProjectById(int id);
 
 	@Query("select p From Project p WHERE p.manager.id =:id")
 	Collection<Project> findAllProjectsByManagerId(int id);
 
-	@Query("select a From Assigment a WHERE a.id =:id")
-	Assigment findAssigmentById(int id);
+	@Query("select a From Assignment a WHERE a.id =:id")
+	Assignment findAssignmentById(int id);
 
-	@Query("select a.project.manager From Assigment a WHERE a.id =:id")
-	Manager findProjectByAssigmentId(int id);
+	@Query("select a.project.manager From Assignment a WHERE a.id =:id")
+	Manager findProjectByAssignmentId(int id);
 	//
 	@Query("select ar From AuditRecord ar WHERE ar.codeAudit.project.id =:id")
 	Collection<AuditRecord> findAllAuditRecordsOfAProjectById(int id);

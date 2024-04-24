@@ -50,7 +50,6 @@ public class UserStory extends AbstractEntity {
 	@URL
 	private String		link;
 
-	@NotNull
 	private boolean		isDraft;
 
 	@Valid

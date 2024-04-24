@@ -1,5 +1,5 @@
 
-package acme.features.manager.assigment;
+package acme.features.manager.assignment;
 
 import javax.annotation.PostConstruct;
 
@@ -7,35 +7,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import acme.client.controllers.AbstractController;
-import acme.entities.project.Assigment;
+import acme.entities.project.Assignment;
 import acme.roles.Manager;
 
 @Controller
-public class ManagerAssigmentController extends AbstractController<Manager, Assigment> {
+public class ManagerAssignmentController extends AbstractController<Manager, Assignment> {
 
 	@Autowired
-	private ManagerAssigmentShowService		assigmentShow;
+	private ManagerAssignmentShowService	assignmentShow;
 
 	@Autowired
-	private ManagerAssigmentListService		assigmentList;
+	private ManagerAssignmentListService	assignmentList;
 
 	@Autowired
-	private ManagerAssigmentCreateService	assigmentCreate;
+	private ManagerAssignmentCreateService	assignmentCreate;
 
 	@Autowired
-	private ManagerAssigmentUpdateService	assigmentUpdate;
+	private ManagerAssignmentUpdateService	assignmentUpdate;
 
 	@Autowired
-	private ManagerAssigmentDeleteService	assigmentDelete;
+	private ManagerAssignmentDeleteService	assignmentDelete;
 
 
 	@PostConstruct
 	protected void initialise() {
-		super.addBasicCommand("show", this.assigmentShow);
-		super.addBasicCommand("list", this.assigmentList);
-		super.addBasicCommand("create", this.assigmentCreate);
-		super.addBasicCommand("update", this.assigmentUpdate);
-		super.addBasicCommand("delete", this.assigmentDelete);
+		super.addBasicCommand("show", this.assignmentShow);
+		super.addBasicCommand("list", this.assignmentList);
+		super.addBasicCommand("create", this.assignmentCreate);
+		super.addBasicCommand("update", this.assignmentUpdate);
+		super.addBasicCommand("delete", this.assignmentDelete);
 
 	}
 

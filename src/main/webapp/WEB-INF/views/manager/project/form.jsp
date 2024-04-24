@@ -10,14 +10,14 @@
 		path="abstractText" />
 	<acme:input-money code="project.form.label.cost" path="cost" />
 	<acme:input-url code="project.form.label.link" path="link" />
-	<acme:input-checkbox code="project.form.label.isDraft" path="isDraft" />
-	<acme:input-checkbox code="project.form.label.hasFatalErrors" path="hasFatalErrors" />
+	<acme:input-checkbox code="project.form.label.isDraft" path="isDraft" readonly="true" />
+	<acme:input-checkbox code="project.form.label.hasFatalErrors" path="hasFatalErrors"  readonly="true"/>
 
 	<jstl:choose>
 
 		<jstl:when
 			test="${acme:anyOf(_command, 'show|update|delete') && isDraft == true}">
-			<acme:button code="project.form.button.assigment" action="/manager/assigment/list?projectId=${projectId}"/>
+			<acme:button code="project.form.button.assignment" action="/manager/assignment/list?projectId=${projectId}"/>
 			<acme:submit code="project.form.button.update"
 				action="/manager/project/update" />
 			<acme:submit code="project.form.button.delete"

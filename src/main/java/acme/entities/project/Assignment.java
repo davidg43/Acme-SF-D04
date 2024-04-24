@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Assigment extends AbstractEntity {
+public class Assignment extends AbstractEntity {
 
 	/**
 	 * 
@@ -39,7 +39,7 @@ public class Assigment extends AbstractEntity {
 			return true;
 		if (o == null || this.getClass() != o.getClass())
 			return false;
-		Assigment assigment = (Assigment) o;
+		Assignment assigment = (Assignment) o;
 		return Objects.equals(this.userStory, assigment.userStory) && Objects.equals(this.project, assigment.project);
 	}
 

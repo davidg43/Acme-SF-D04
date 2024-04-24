@@ -50,7 +50,7 @@ public class TrainingSession extends AbstractEntity {
 	@Length(max = 75)
 	private String				instructor;
 
-	@NotNull
+	@NotBlank
 	@Email
 	private String				contactEmail;
 

@@ -1,42 +1,52 @@
 
 package acme.features.manager.userStory;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
+import acme.entities.project.Assignment;
 import acme.entities.project.UserStory;
 import acme.entities.project.UserStory.Priority;
-import acme.features.manager.project.ManagerProjectRepository;
 import acme.roles.Manager;
 
 @Service
-public class ManagerUserStoryCreateService extends AbstractService<Manager, UserStory> {
+public class ManagerUserStoryDeleteService extends AbstractService<Manager, UserStory> {
+
+	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private ManagerUserStoryRepository	uSRepository;
+	private ManagerUserStoryRepository uSRepository;
 
-	@Autowired
-	private ManagerProjectRepository	projectRepository;
+	// AbstractService<Manager, Project> -------------------------------------
 
 
 	@Override
 	public void authorise() {
+		boolean status;
+		int masterId;
+		UserStory userStory;
+		Manager manager;
 
-		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Manager.class));
+		masterId = super.getRequest().getData("id", int.class);
+		userStory = this.uSRepository.findUserStoryById(masterId);
+		manager = this.uSRepository.findManagerByUserStoryId(masterId);
+		status = userStory != null && userStory.isDraft() && super.getRequest().getPrincipal().hasRole(Manager.class) && userStory.getManager().equals(manager);
 
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Manager manager;
+		UserStory userStory;
+		int id;
 
-		manager = this.projectRepository.findManagerByManagerId(super.getRequest().getPrincipal().getActiveRoleId());
-		UserStory userStory = new UserStory();
-		userStory.setDraft(true);
-		userStory.setManager(manager);
+		id = super.getRequest().getData("id", int.class);
+		userStory = this.uSRepository.findUserStoryById(id);
 
 		super.getBuffer().addData(userStory);
 	}
@@ -57,8 +67,10 @@ public class ManagerUserStoryCreateService extends AbstractService<Manager, User
 	@Override
 	public void perform(final UserStory userStory) {
 		assert userStory != null;
+		Collection<Assignment> assingments = this.uSRepository.findAllAssignmentOfAnUserStoryById(userStory.getId());
 
-		this.uSRepository.save(userStory);
+		this.uSRepository.deleteAll(assingments);
+		this.uSRepository.delete(userStory);
 	}
 
 	@Override
@@ -69,10 +81,8 @@ public class ManagerUserStoryCreateService extends AbstractService<Manager, User
 		Dataset dataset;
 
 		dataset = super.unbind(userStory, "title", "description", "estimatedCost", "priority", "acceptanceCriteria", "link", "isDraft");
-
-		dataset.put("priorities", priorities.getSelected().getLabel());
+		dataset.put("priorities", priorities);
 		dataset.put("isDraft", userStory.isDraft());
 		super.getResponse().addData(dataset);
 	}
-
 }

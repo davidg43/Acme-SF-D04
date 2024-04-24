@@ -1,6 +1,8 @@
 
 package acme.features.manager.project;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,12 +48,19 @@ public class ManagerProjectCreateService extends AbstractService<Manager, Projec
 	@Override
 	public void validate(final Project project) {
 		assert project != null;
+		Collection<Project> projects = null;
 
 		if (!super.getBuffer().getErrors().hasErrors("hasFatalErrors"))
 			super.state(!project.isHasFatalErrors(), "project", "manager.project.form.error.fatal-errors");
 
 		if (!super.getBuffer().getErrors().hasErrors("cost"))
 			super.state(project.getCost().getAmount() >= 0, "cost", "manager.project.form.error.negative-cost");
+
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			projects = this.repository.findAllProjects();
+			boolean condition = projects.stream().anyMatch(p -> p.getCode().equals(project.getCode()));
+			super.state(!condition, "code", "manager.project.form.error.duplicated");
+		}
 
 	}
 

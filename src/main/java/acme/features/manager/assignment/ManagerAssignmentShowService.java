@@ -1,5 +1,5 @@
 
-package acme.features.manager.assigment;
+package acme.features.manager.assignment;
 
 import java.util.Collection;
 
@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
-import acme.entities.project.Assigment;
+import acme.entities.project.Assignment;
 import acme.entities.project.Project;
 import acme.entities.project.UserStory;
 import acme.features.manager.project.ManagerProjectRepository;
 import acme.roles.Manager;
 
 @Service
-public class ManagerAssigmentShowService extends AbstractService<Manager, Assigment> {
+public class ManagerAssignmentShowService extends AbstractService<Manager, Assignment> {
 
 	@Autowired
 	private ManagerProjectRepository repository;
@@ -26,7 +26,7 @@ public class ManagerAssigmentShowService extends AbstractService<Manager, Assigm
 	public void authorise() {
 		boolean status;
 		int id = super.getRequest().getData("id", int.class);
-		Manager manager = this.repository.findProjectByAssigmentId(id);
+		Manager manager = this.repository.findProjectByAssignmentId(id);
 		status = super.getRequest().getPrincipal().getActiveRoleId() == manager.getId();
 
 		super.getResponse().setAuthorised(status);
@@ -35,18 +35,18 @@ public class ManagerAssigmentShowService extends AbstractService<Manager, Assigm
 	@Override
 	public void load() {
 
-		Assigment assigment;
+		Assignment assigment;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		assigment = this.repository.findAssigmentById(id);
+		assigment = this.repository.findAssignmentById(id);
 
 		super.getBuffer().addData(assigment);
 
 	}
 
 	@Override
-	public void unbind(final acme.entities.project.Assigment assigment) {
+	public void unbind(final Assignment assigment) {
 		assert assigment != null;
 		int id = super.getRequest().getPrincipal().getActiveRoleId();
 		SelectChoices projectChoices;

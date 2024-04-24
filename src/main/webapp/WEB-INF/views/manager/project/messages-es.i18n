@@ -10,7 +10,7 @@ manager.project.form.error.fatal-errors = Este proyecto tiene errores fatales
 manager.project.form.title = Detalles del projecto
 manager.project.list.title = Lista de projectos
 
-project.form.button.assigment = Lista de assigments de este proyecto
+project.form.button.assignment = Lista de assigments de este proyecto
 
 
 

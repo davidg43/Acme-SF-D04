@@ -1,6 +1,7 @@
-manager.assigment.form.title = Detalles del assigment
-assigment.form.button.update = Actualizar	
-assigment.form.button.delete = Borrar
-manager.assigment.list.label.project = Id del proyecto
-manager.assigment.list.label.userStory = Id de la User Story
-manager.assigment.list.label.create = Crear
+manager.assignment.list.title  = Listado de assignments
+manager.assignment.form.title = Detalles del assignment
+assignment.form.button.update = Actualizar	
+assignment.form.button.delete = Borrar
+manager.assignment.list.label.project = Proyecto
+manager.assignment.list.label.userStory = User Story
+manager.assignment.list.label.create = Crear

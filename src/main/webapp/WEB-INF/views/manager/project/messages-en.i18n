@@ -10,7 +10,7 @@ manager.project.form.error.negative-cost = Negative cost detected
 
 manager.project.form.title = Details of a Project
 manager.project.list.title = List of projects
-project.form.button.assigment = List of assigments of this project
+project.form.button.assignment = List of assigments of this project
 
 
 project.form.label.code = Code

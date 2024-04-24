@@ -9,6 +9,6 @@
 	<acme:list-column code="manager.list.label.description" path="description" width="40%"/>
 </acme:list>
 
-<acme:button code="manager.list.label.create" action="/manager/userStory/create"/>
+<acme:button code="manager.list.label.create" action="/manager/user-story/create"/>
 
 

@@ -1,5 +1,5 @@
 
-package acme.features.manager.assigment;
+package acme.features.manager.assignment;
 
 import java.util.Collection;
 
@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
-import acme.entities.project.Assigment;
+import acme.entities.project.Assignment;
 import acme.entities.project.Project;
 import acme.entities.project.UserStory;
 import acme.features.manager.project.ManagerProjectRepository;
 import acme.roles.Manager;
 
 @Service
-public class ManagerAssigmentDeleteService extends AbstractService<Manager, Assigment> {
+public class ManagerAssignmentDeleteService extends AbstractService<Manager, Assignment> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -30,7 +30,7 @@ public class ManagerAssigmentDeleteService extends AbstractService<Manager, Assi
 	public void authorise() {
 		boolean status;
 		int id = super.getRequest().getData("id", int.class);
-		Manager manager = this.repository.findProjectByAssigmentId(id);
+		Manager manager = this.repository.findProjectByAssignmentId(id);
 		status = super.getRequest().getPrincipal().getActiveRoleId() == manager.getId();
 
 		super.getResponse().setAuthorised(status);
@@ -38,37 +38,37 @@ public class ManagerAssigmentDeleteService extends AbstractService<Manager, Assi
 
 	@Override
 	public void load() {
-		Assigment assigment;
+		Assignment assignment;
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		assigment = this.repository.findAssigmentById(id);
+		assignment = this.repository.findAssignmentById(id);
 
-		super.getBuffer().addData(assigment);
+		super.getBuffer().addData(assignment);
 	}
 
 	@Override
-	public void bind(final Assigment assigment) {
-		assert assigment != null;
+	public void bind(final Assignment assignment) {
+		assert assignment != null;
 
-		super.bind(assigment, "project", "userStory");
+		super.bind(assignment, "project", "userStory");
 	}
 
 	@Override
-	public void validate(final Assigment assigment) {
-		assert assigment != null;
+	public void validate(final Assignment assignment) {
+		assert assignment != null;
 	}
 
 	@Override
-	public void perform(final Assigment assigment) {
-		assert assigment != null;
+	public void perform(final Assignment assignment) {
+		assert assignment != null;
 
-		this.repository.delete(assigment);
+		this.repository.delete(assignment);
 	}
 
 	@Override
-	public void unbind(final Assigment assigment) {
-		assert assigment != null;
+	public void unbind(final Assignment assignment) {
+		assert assignment != null;
 
 		Dataset dataset;
 
@@ -79,10 +79,10 @@ public class ManagerAssigmentDeleteService extends AbstractService<Manager, Assi
 		Collection<Project> projects = this.repository.findAllProjectsByManagerId(id);
 		Collection<UserStory> userStories = this.repository.findAllUserStoriesOfAManagerById(id);
 
-		projectChoices = SelectChoices.from(projects, "title", assigment.getProject());
-		userStoriesChoices = SelectChoices.from(userStories, "title", assigment.getUserStory());
+		projectChoices = SelectChoices.from(projects, "title", assignment.getProject());
+		userStoriesChoices = SelectChoices.from(userStories, "title", assignment.getUserStory());
 
-		dataset = super.unbind(assigment, "project", "userStory");
+		dataset = super.unbind(assignment, "project", "userStory");
 
 		dataset.put("projects", projectChoices);
 		dataset.put("userStories", userStoriesChoices);
