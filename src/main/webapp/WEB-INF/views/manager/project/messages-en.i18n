@@ -30,4 +30,5 @@ project.form.button.publish = Publish
 
 
 manager.project.form.error.duplicated = This project alredy exist
+manager.project.form.error.publishable = This Project is not publishable
 

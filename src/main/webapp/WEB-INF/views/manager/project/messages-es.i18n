@@ -27,7 +27,10 @@ project.form.button.delete = Borrar
 project.form.button.create = Crear
 project.form.label.hasFatalErrors = Errores fatales
 
+
 project.form.button.publish = Publicar
 
 
 manager.project.form.error.duplicated = Ya existe este proyecto
+manager.project.form.error.publishable = Este proyecto no es publicable
+

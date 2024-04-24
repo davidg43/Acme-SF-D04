@@ -27,7 +27,7 @@
 			<acme:submit code="user-story.form.button.delete"
 				action="/manager/user-story/delete" />
 
-			<jstl:if test="${isDraft == true && publishable == true }">
+			<jstl:if test="${isDraft == true}">
 				<acme:submit code="user-story.form.button.publish"
 					action="/manager/user-story/publish" />
 			</jstl:if>

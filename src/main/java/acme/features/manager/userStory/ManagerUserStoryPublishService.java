@@ -12,7 +12,7 @@ import acme.entities.project.UserStory.Priority;
 import acme.roles.Manager;
 
 @Service
-public class ManagerUserStoryUpdateService extends AbstractService<Manager, UserStory> {
+public class ManagerUserStoryPublishService extends AbstractService<Manager, UserStory> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -52,7 +52,7 @@ public class ManagerUserStoryUpdateService extends AbstractService<Manager, User
 	public void bind(final UserStory userStory) {
 		assert userStory != null;
 
-		super.bind(userStory, "title", "description", "estimatedCost", "priority", "acceptanceCriteria", "link", "isDraft");
+		super.bind(userStory, "isDraft");
 	}
 
 	@Override
@@ -64,6 +64,8 @@ public class ManagerUserStoryUpdateService extends AbstractService<Manager, User
 	@Override
 	public void perform(final UserStory userStory) {
 		assert userStory != null;
+
+		userStory.setDraft(false);
 
 		this.uSRepository.save(userStory);
 	}

@@ -50,19 +50,14 @@ public class ManagerProjectPublishService extends AbstractService<Manager, Proje
 	public void bind(final Project project) {
 		assert project != null;
 
-		super.bind(project, "code", "title", "abstractText", "hasFatalErrors", "cost", "link", "isDraft");
+		super.bind(project, "isDraft");
 	}
 
 	@Override
 	public void validate(final Project project) {
-		assert project != null;
-
-		if (!super.getBuffer().getErrors().hasErrors("hasFatalErrors"))
-			super.state(!project.isHasFatalErrors(), "project", "manager.project.form.error.fatal-errors");
-
-		if (!super.getBuffer().getErrors().hasErrors("cost"))
-			super.state(project.getCost().getAmount() >= 0, "cost", "manager.project.form.error.negative-cost");
-
+		boolean condition = this.repository.findAllUserStoriesOfAProjectById(project.getId()).stream().allMatch(x -> x.isDraft() == false) && this.repository.findAllUserStoriesOfAProjectById(project.getId()).size() > 0
+			&& project.isHasFatalErrors() == false;
+		super.state(condition, "*", "manager.project.form.error.publishable");
 	}
 
 	@Override

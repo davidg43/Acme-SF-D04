@@ -1,5 +1,7 @@
 manager.list.label.title = Titulo
 manager.list.label.draft = Borrador
+manager.list.label.description = Descripcion
+
 manager.list.label.priority = Prioridad
 manager.list.label.create = Crear
 
