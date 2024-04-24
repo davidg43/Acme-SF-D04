@@ -33,8 +33,6 @@ public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, Code
 	@Autowired
 	private AuditorCodeAuditRepository repository;
 
-	// AbstractService<Employer, Job> -------------------------------------
-
 
 	@Override
 	public void authorise() {

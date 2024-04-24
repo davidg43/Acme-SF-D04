@@ -33,8 +33,8 @@
 		</jstl:when>	 
 		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
 			<acme:button code="auditor.code-audit.form.button.audit-record" action="/auditor/code-audit/list?masterId=${id}"/>
-			<acme:submit code="auditor.code-audit.form.button.update" action="/auditor/code-audit/update?masterId=${id}"/>
-			<acme:submit code="auditor.code-audit.form.button.delete" action="/auditor/code-audit/delete?masterId=${id}"/>
+			<acme:submit code="auditor.code-audit.form.button.update" action="/auditor/code-audit/update"/>
+			<acme:submit code="auditor.code-audit.form.button.delete" action="/auditor/code-audit/delete"/>
 			<acme:submit code="auditor.code-audit.form.button.publish" action="/auditor/code-audit/publish"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
