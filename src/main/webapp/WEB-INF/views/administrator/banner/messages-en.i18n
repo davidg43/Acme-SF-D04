@@ -8,11 +8,11 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-auditor.audit-record.list.title = Audit Records
+administrator.banner.form.label.list.title = Banners
 
-auditor.audit-record.list.label.code = Code
-auditor.audit-record.list.label.mark = Mark	
-auditor.audit-record.list.label.code-audit = Code Audit
+administrator.banner.form.label.code = Code
+administrator.banner.form.label.mark = Mark	
+administrator.banner.form.label.code-audit = Code Audit
 
 auditor.audit-record.form.title = Audit Record Details
 
@@ -27,7 +27,3 @@ auditor.audit-record.list.button.create = Create
 auditor.audit-record.form.button.create = Create
 auditor.audit-record.form.button.update = Update
 auditor.audit-record.form.button.delete = Delete
-
-auditor.audit-record.form.error.duplicated = You cant use an existing code
-auditor.audit-record.form.error.init-after-end = Period init must precede Period end 
-auditor.audit-record.form.error.too-close = Difference between periodInit and periodEnd must be, at least, one hour long

@@ -19,13 +19,11 @@
 	<acme:input-textbox code="auditor.code-audit.form.label.code" path="code"/>
 	<acme:input-textbox code="auditor.code-audit.form.label.correctiveActions" path="correctiveActions"/>	
 	<acme:input-select code="auditor.code-audit.form.label.type" path="type" choices="${types}"/>
-	<acme:input-textbox code="auditor.code-audit.form.label.mark" path="mark" readonly="true"/>
+	<acme:input-select code="auditor.code-audit.form.label.mark" path="mark" choices ="${marks}" readonly="true" />
 	<acme:input-select code="auditor.code-audit.form.label.project" path="project" choices="${projects}"/>
 	<acme:input-moment code="auditor.code-audit.form.label.execution" path="execution" readonly="true"/>
 	<acme:input-url code="auditor.code-audit.form.label.link" path="link"/>
 
-	<acme:hidden-data path="id"/>
-	<acme:hidden-data path="draftMode"/>
 
 	<jstl:choose>
 		<jstl:when test="${_command == 'show' && draftMode == false}">

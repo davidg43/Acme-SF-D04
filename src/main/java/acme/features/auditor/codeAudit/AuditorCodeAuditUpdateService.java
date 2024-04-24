@@ -23,6 +23,7 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.codeAudit.CodeAudit;
+import acme.entities.codeAudit.Mark;
 import acme.entities.codeAudit.Type;
 import acme.entities.project.Project;
 import acme.roles.Auditor;
@@ -72,9 +73,10 @@ public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, Code
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findOneProjectById(projectId);
 
-		super.bind(object, "code", "execution", "type", "correctiveActions", "mark", "link");
 		Date currentMoment = MomentHelper.getCurrentMoment();
 		Date creationMoment = new Date(currentMoment.getTime() - 6000);
+
+		super.bind(object, "code", "execution", "type", "correctiveActions", "mark", "link");
 		object.setProject(project);
 		object.setExecution(creationMoment);
 	}
@@ -82,6 +84,13 @@ public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, Code
 	@Override
 	public void validate(final CodeAudit object) {
 		assert object != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			CodeAudit existing;
+
+			existing = this.repository.findOneCodeAuditByCode(object.getCode());
+			super.state(existing == null || existing.equals(object), "code", "auditor.code-audit.form.error.duplicated");
+		}
 
 	}
 
@@ -100,17 +109,19 @@ public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, Code
 		SelectChoices choices;
 		Dataset dataset;
 		SelectChoices choicesType;
+		SelectChoices choicesMark;
 
 		projects = this.repository.findAllProjects();
 		choices = SelectChoices.from(projects, "title", object.getProject());
 		choicesType = SelectChoices.from(Type.class, object.getType());
+		choicesMark = SelectChoices.from(Mark.class, object.getMark());
 
 		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "draftMode");
 		dataset.put("project", choices.getSelected().getKey());
 		dataset.put("projects", choices);
 		dataset.put("types", choicesType);
+		dataset.put("marks", choicesMark);
 
 		super.getResponse().addData(dataset);
 	}
-
 }

@@ -34,3 +34,5 @@ auditor.code-audit.form.button.update = Update
 auditor.code-audit.form.button.delete = Delete
 auditor.code-audit.form.button.audit-record = Audit Records
 auditor.code-audit.form.button.publish = Publish
+
+auditor.code-audit.form.error.duplicated = You cant use an existing code
