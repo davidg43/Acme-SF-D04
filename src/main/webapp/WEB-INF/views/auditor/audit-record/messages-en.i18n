@@ -27,6 +27,7 @@ auditor.audit-record.list.button.create = Create
 auditor.audit-record.form.button.create = Create
 auditor.audit-record.form.button.update = Update
 auditor.audit-record.form.button.delete = Delete
+auditor.audit-record.form.button.publish = Publish
 
 auditor.audit-record.form.error.duplicated = You cant use an existing code
 auditor.audit-record.form.error.init-after-end = Period init must precede Period end 

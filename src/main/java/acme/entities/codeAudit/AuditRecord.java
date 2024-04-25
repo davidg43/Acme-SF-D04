@@ -56,4 +56,6 @@ public class AuditRecord extends AbstractEntity {
 
 	private Double				period;
 
+	private Boolean				isDraftMode;
+
 }

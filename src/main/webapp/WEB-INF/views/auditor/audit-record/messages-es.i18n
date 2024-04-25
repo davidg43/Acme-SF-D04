@@ -28,6 +28,7 @@ auditor.audit-record.list.button.create = Crear
 auditor.audit-record.form.button.create = Crear
 auditor.audit-record.form.button.update = Actualizar
 auditor.audit-record.form.button.delete = Eliminar
+auditor.audit-record.form.button.publish = Publicar
 
 auditor.audit-record.form.error.duplicated = No puedes usar un codigo existente
 auditor.audit-record.form.error.init-after-end = El inicio del periodo debe ser anterior al final de este 

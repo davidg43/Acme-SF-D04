@@ -86,7 +86,7 @@ public class AuditorAuditRecordDeleteService extends AbstractService<Auditor, Au
 
 		choicesMark = SelectChoices.from(Mark.class, object.getMark());
 
-		dataset = super.unbind(object, "code", "codeAudit.code", "periodInit", "periodEnd", "mark", "link", "period");
+		dataset = super.unbind(object, "code", "codeAudit.code", "periodInit", "periodEnd", "mark", "link", "period", "isDraftMode");
 		dataset.put("masterId", object.getCodeAudit().getId());
 		dataset.put("draftMode", object.getCodeAudit().isDraftMode());
 		dataset.put("marks", choicesMark);

@@ -1,5 +1,5 @@
 /*
- * AuditorAuditRecordCreateService.java
+ * AuditorAuditRecordPublishService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -28,7 +28,7 @@ import acme.entities.codeAudit.Mark;
 import acme.roles.Auditor;
 
 @Service
-public class AuditorAuditRecordCreateService extends AbstractService<Auditor, AuditRecord> {
+public class AuditorAuditRecordPublishService extends AbstractService<Auditor, AuditRecord> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -41,12 +41,14 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 	@Override
 	public void authorise() {
 		boolean status;
-		int masterId;
+		int auditRecordId;
 		CodeAudit codeAudit;
+		AuditRecord auditRecord;
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		codeAudit = this.repository.findOneCodeAuditById(masterId);
-		status = codeAudit != null && codeAudit.isDraftMode() && super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor());
+		auditRecordId = super.getRequest().getData("id", int.class);
+		codeAudit = this.repository.findOneCodeAuditByAuditRecordId(auditRecordId);
+		auditRecord = this.repository.findOneAuditRecordById(auditRecordId);
+		status = codeAudit != null && codeAudit.isDraftMode() && auditRecord.getIsDraftMode() == true && super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -54,16 +56,10 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 	@Override
 	public void load() {
 		AuditRecord object;
-		int masterId;
-		CodeAudit codeAudit;
+		int id;
 
-		masterId = super.getRequest().getData("masterId", int.class);
-		codeAudit = this.repository.findOneCodeAuditById(masterId);
-
-		object = new AuditRecord();
-		object.setCode("");
-		object.setIsDraftMode(true);
-		object.setCodeAudit(codeAudit);
+		id = super.getRequest().getData("id", int.class);
+		object = this.repository.findOneAuditRecordById(id);
 
 		super.getBuffer().addData(object);
 	}
@@ -83,7 +79,7 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 			AuditRecord existing;
 
 			existing = this.repository.findOneAuditRecordByCode(object.getCode());
-			super.state(existing == null, "code", "auditor.audit-record.form.error.duplicated");
+			super.state(existing == null || existing.equals(object), "code", "auditor.audit-record.form.error.duplicated");
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("periodInit") && !super.getBuffer().getErrors().hasErrors("periodEnd")) {
@@ -109,6 +105,8 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 
 		object.setPeriod(diffInDays);
 
+		object.setIsDraftMode(false);
+
 		this.repository.save(object);
 	}
 
@@ -122,7 +120,7 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 		choicesMark = SelectChoices.from(Mark.class, object.getMark());
 
 		dataset = super.unbind(object, "code", "codeAudit.code", "periodInit", "periodEnd", "mark", "link", "period", "isDraftMode");
-		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
+		dataset.put("masterId", object.getCodeAudit().getId());
 		dataset.put("draftMode", object.getCodeAudit().isDraftMode());
 		dataset.put("marks", choicesMark);
 

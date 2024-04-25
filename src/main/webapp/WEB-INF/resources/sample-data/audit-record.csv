@@ -1,5 +1,5 @@
-key,key:codeAudit,code,period-init,period-end,mark,link,period
-audit-record-01,code-audit-01,AU-2122-333,2018/12/03 12:00,2018/12/06 13:00,A,https://example.com/audit-record-01,3.0417
-audit-record-02,code-audit-02,AU-3654-102,2021/11/03 13:00,2021/11/03 21:00,B,https://example.com/audit-record-02,0.3333
-audit-record-03,code-audit-03,AU-3698-341,2020/11/02 21:00,2020/12/02 21:00,C,https://example.com/audit-record-03,30.0
-audit-record-04,code-audit-04,AU-4712-901,2020/11/01 21:00,2020/11/06 21:00,F,https://example.com/audit-record-04,5.0
+key,key:codeAudit,code,period-init,period-end,mark,link,period,isDraftMode
+audit-record-01,code-audit-01,AU-2122-333,2018/12/03 12:00,2018/12/06 13:00,A,https://example.com/audit-record-01,3.0417,true
+audit-record-02,code-audit-02,AU-3654-102,2021/11/03 13:00,2021/11/03 21:00,B,https://example.com/audit-record-02,0.3333,false
+audit-record-03,code-audit-03,AU-3698-341,2020/11/02 21:00,2020/12/02 21:00,C,https://example.com/audit-record-03,30.0,true
+audit-record-04,code-audit-04,AU-4712-901,2020/11/01 21:00,2020/11/06 21:00,F,https://example.com/audit-record-04,5.0,false
