@@ -26,7 +26,6 @@ administrator.banner.form.button.create = Create
 administrator.banner.form.button.update = Update
 administrator.banner.form.button.delete = Delete
 
-administrator.banner.form.error.duplicated = You cant use an existing slogan
 administrator.banner.form.error.init-after-end = Period init must precede Period end 
 administrator.banner.form.error.too-close = Difference between periodInit and periodEnd must be, at least, one week long
 administrator.banner.form.error.instantiation-after-display = Display period can't happen earlier than Instantiation/Update Date

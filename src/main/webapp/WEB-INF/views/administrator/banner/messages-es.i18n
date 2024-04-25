@@ -26,7 +26,6 @@ administrator.banner.form.button.create = Crear
 administrator.banner.form.button.update = Actualizar
 administrator.banner.form.button.delete = Eliminar
 
-administrator.banner.form.error.duplicated = No puedes utilizar un eslogan ya existente
 administrator.banner.form.error.init-after-end = El inicio del periodo debe ser anterior al final de este 
 administrator.banner.form.error.too-close = La diferencia entre el inicio y el final del periodo debe ser, como minimo, de una semana
 administrator.banner.form.error.instantiation-after-display = La fecha de despliegue no puede ser anterior a la de adicion/actualizacion
