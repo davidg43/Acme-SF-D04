@@ -1,0 +1,38 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2023 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+developer.training-session.list.label.code = Code
+developer.training-session.list.label.iniDate = Initial Date
+developer.training-session.list.label.finalDate = Final date
+developer.training-session.list.label.location = Location
+developer.training-session.list.label.contactEmail = Contact email
+developer.training-session.list.label.link = Link
+developer.training-session.list.label.trainingModule = Training Module
+
+developer.training-session.list.title = Training sessions associated
+
+developer.training-session.list.button.create = Create
+
+developer.training-session.form.label.code = Code:
+developer.training-session.form.label.iniDate = Initial Date: 
+developer.training-session.form.label.finalDate = Final date:
+developer.training-session.form.label.location = Location:
+developer.training-session.form.label.contactEmail = Contact email:
+developer.training-session.form.label.Link = Link (Optional):
+developer.training-session.form.label.trainingModule = Training Module:
+		
+developer.training-session.form.button.update = Update
+developer.training-session.form.button.delete = Delete
+developer.training-session.form.button.create = Create
+
+developer.training-session.form.error.duplicated = This code is taken
+developer.training-session.form.error.finishDate = Finish date must be after start date
+developer.training-session.form.error.startDate = Time period must be at least one day ahead
+developer.training-session.form.error.period = Time period must be from one up to five hour long

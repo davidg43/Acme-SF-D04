@@ -47,6 +47,9 @@ public class Project extends AbstractEntity {
 	@URL
 	private String				link;
 
+	//
+	private Boolean				dratMode;
+
 	@Valid
 	@ManyToOne(optional = false)
 	@NotNull

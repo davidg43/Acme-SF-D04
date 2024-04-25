@@ -1,0 +1,43 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2023 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+developer.training-session.list.label.code = Código
+developer.training-session.list.label.iniDate = Fecha inicial
+developer.training-session.list.label.finalDate = Fecha final
+developer.training-session.list.label.location = Localización
+developer.training-session.list.label.contactEmail = Email de contacto
+developer.training-session.list.label.link = Link
+developer.training-session.list.label.trainingModule = Modulo de entrenamiento
+
+developer.training-session.list.title = Sesión de entrenamiento asociada
+developer.training-session.form.label.finishDate = Fecha final:
+
+developer.training-session.list.button.create = Crear
+
+developer.training-session.form.title = Detalles de la sesión de entrenamiento
+developer.training-session.form.label.instructor = Instructor:
+developer.training-session.form.label.link = Link (Opcional): 
+
+developer.training-session.form.label.code = Código:
+developer.training-session.form.label.iniDate = Fecha inicial: 
+developer.training-session.form.label.finalDate = Fecha final:
+developer.training-session.form.label.location = Localización:
+developer.training-session.form.label.contactEmail = Email de contacto:
+developer.training-session.form.label.Link = Link (Opcional):
+developer.training-session.form.label.trainingModule = Modulo de entrenamiento:
+		
+developer.training-session.form.button.update = Actualizar
+developer.training-session.form.button.delete = Borrar
+developer.training-session.form.button.create = Crear
+
+developer.training-session.form.error.duplicated = Este código está duplicado
+developer.training-session.form.error.finishDate = La fecha final debe ser posterior a la fecha inicial
+developer.training-session.form.error.startDate = Periodo debe ser al menos de un dia en adelante
+developer.training-session.form.error.period = Periodo debe ser de una a 5 horas
