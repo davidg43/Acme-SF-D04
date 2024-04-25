@@ -54,13 +54,6 @@ public class AuditRecord extends AbstractEntity {
 	@ManyToOne(optional = false)
 	private CodeAudit			codeAudit;
 
-
-	public Date period() {
-		if (this.periodInit != null && this.periodEnd != null) {
-			long diffInMillies = Math.abs(this.periodEnd.getTime() - this.periodInit.getTime());
-			return new Date(diffInMillies);
-		} else
-			return null;
-	}
+	private Double				period;
 
 }

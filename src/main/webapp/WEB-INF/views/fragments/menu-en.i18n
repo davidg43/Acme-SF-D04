@@ -50,6 +50,7 @@ master.menu.consumer.favourite-link = Favourite link
 master.menu.auditor = Auditor
 master.menu.auditor.code-audits = Code Audits
 master.menu.auditor.all-code-audits = All Code Audits
+master.menu.auditor.dashboard = Dashboard
 
 # master.menu.user-account ####################################################
 
