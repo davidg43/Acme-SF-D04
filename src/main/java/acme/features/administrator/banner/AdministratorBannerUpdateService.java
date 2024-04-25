@@ -10,13 +10,17 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.administrator;
+package acme.features.administrator.banner;
+
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.accounts.Administrator;
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.entities.Banner;
 
@@ -57,12 +61,31 @@ public class AdministratorBannerUpdateService extends AbstractService<Administra
 	public void bind(final Banner object) {
 		assert object != null;
 
+		Date currentMoment = MomentHelper.getCurrentMoment();
+		Date creationMoment = new Date(currentMoment.getTime() - 6000);
+
 		super.bind(object, "instantiationOrUpdateDate", "periodInit", "periodEnd", "picture", "slogan", "link");
+		object.setInstantiationOrUpdateDate(creationMoment);
+
 	}
 
 	@Override
 	public void validate(final Banner object) {
 		assert object != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("instantiationOrUpdateDate") && !super.getBuffer().getErrors().hasErrors("periodInit") && !super.getBuffer().getErrors().hasErrors("periodEnd")) {
+			Date minimumPeriod;
+
+			minimumPeriod = MomentHelper.deltaFromMoment(object.getPeriodInit(), 7, ChronoUnit.DAYS);
+
+			if (!MomentHelper.isBefore(object.getInstantiationOrUpdateDate(), object.getPeriodInit()))
+				super.state(false, "instantiationOrUpdateDate", "administrator.banner.form.error.instantiation-after-display");
+			else if (!MomentHelper.isBefore(object.getPeriodInit(), object.getPeriodEnd()))
+				super.state(false, "periodInit", "administrator.banner.form.error.init-after-end");
+			else if (!MomentHelper.isBeforeOrEqual(minimumPeriod, object.getPeriodEnd()))
+				super.state(false, "periodEnd", "administrador.banner.form.error.too-close");
+
+		}
 	}
 
 	@Override

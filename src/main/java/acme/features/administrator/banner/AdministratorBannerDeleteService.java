@@ -1,5 +1,5 @@
 /*
- * AdministratorBannerShowService.java
+ * AdministratorBannerDeleteService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.administrator;
+package acme.features.administrator.banner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ import acme.client.services.AbstractService;
 import acme.entities.Banner;
 
 @Service
-public class AdministratorBannerShowService extends AbstractService<Administrator, Banner> {
+public class AdministratorBannerDeleteService extends AbstractService<Administrator, Banner> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -39,7 +39,7 @@ public class AdministratorBannerShowService extends AbstractService<Administrato
 
 		masterId = super.getRequest().getData("id", int.class);
 		banner = this.repository.findOneBannerById(masterId);
-		status = super.getRequest().getPrincipal().hasRole(Administrator.class) && banner != null;
+		status = banner != null && super.getRequest().getPrincipal().hasRole(Administrator.class);
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -56,8 +56,28 @@ public class AdministratorBannerShowService extends AbstractService<Administrato
 	}
 
 	@Override
+	public void bind(final Banner object) {
+		assert object != null;
+
+		super.bind(object, "instantiationOrUpdateDate", "periodInit", "periodEnd", "picture", "slogan", "link");
+	}
+
+	@Override
+	public void validate(final Banner object) {
+		assert object != null;
+	}
+
+	@Override
+	public void perform(final Banner object) {
+		assert object != null;
+
+		this.repository.delete(object);
+	}
+
+	@Override
 	public void unbind(final Banner object) {
 		assert object != null;
+
 		Dataset dataset;
 
 		dataset = super.unbind(object, "instantiationOrUpdateDate", "periodInit", "periodEnd", "picture", "slogan", "link");

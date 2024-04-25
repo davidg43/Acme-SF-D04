@@ -1,5 +1,5 @@
 /*
- * AdministratorBannerCreateService.java
+ * AdministratorBannerListAllService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -10,7 +10,9 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.administrator;
+package acme.features.administrator.banner;
+
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,7 @@ import acme.client.services.AbstractService;
 import acme.entities.Banner;
 
 @Service
-public class AdministratorBannerCreateService extends AbstractService<Administrator, Banner> {
+public class AdministratorBannerListService extends AbstractService<Administrator, Banner> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -38,31 +40,11 @@ public class AdministratorBannerCreateService extends AbstractService<Administra
 
 	@Override
 	public void load() {
-		Banner object;
+		Collection<Banner> objects;
 
-		object = new Banner();
+		objects = this.repository.findAllBanners();
 
-		super.getBuffer().addData(object);
-	}
-
-	@Override
-	public void bind(final Banner object) {
-		assert object != null;
-
-		super.bind(object, "instantiationOrUpdateDate", "periodInit", "periodEnd", "picture", "slogan", "link");
-	}
-
-	@Override
-	public void validate(final Banner object) {
-		assert object != null;
-
-	}
-
-	@Override
-	public void perform(final Banner object) {
-		assert object != null;
-
-		this.repository.save(object);
+		super.getBuffer().addData(objects);
 	}
 
 	@Override

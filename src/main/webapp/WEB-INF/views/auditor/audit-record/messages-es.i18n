@@ -30,5 +30,5 @@ auditor.audit-record.form.button.update = Actualizar
 auditor.audit-record.form.button.delete = Eliminar
 
 auditor.audit-record.form.error.duplicated = No puedes usar un codigo existente
-auditor.audit-record.form.error.init-after-end = El inicio del periodo debe ser anterior al final del periodo 
+auditor.audit-record.form.error.init-after-end = El inicio del periodo debe ser anterior al final de este 
 auditor.audit-record.form.error.too-close = La diferencia entre el inicio y el final del periodo debe ser, como minimo, de una hora

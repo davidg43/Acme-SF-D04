@@ -17,6 +17,8 @@
 
 <acme:list>
 	<acme:list-column code="administrator.banner.list.label.slogan" path="slogan" width="10%"/>
+	<acme:list-column code="administrator.banner.list.label.picture" path="picture" width="50%"/>
+	
 </acme:list>
 
 

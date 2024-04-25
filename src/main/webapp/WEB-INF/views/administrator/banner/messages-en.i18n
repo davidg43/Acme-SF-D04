@@ -8,22 +8,25 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-administrator.banner.form.label.list.title = Banners
+administrator.banner.list.title = Banners
+administrator.banner.list.label.slogan = Slogan
+administrator.banner.list.label.picture = Picture URL
 
-administrator.banner.form.label.code = Code
-administrator.banner.form.label.mark = Mark	
-administrator.banner.form.label.code-audit = Code Audit
+administrator.banner.form.title = Banner details
+administrator.banner.form.label.instantiationOrUpdateDate = Instantiation or Update Date
+administrator.banner.form.label.periodInit = Display Starting Date
+administrator.banner.form.label.periodEnd = Display Ending Date
+administrator.banner.form.label.picture = Picture URL
+administrator.banner.form.label.slogan = Slogan
+administrator.banner.form.label.link = Link
 
-auditor.audit-record.form.title = Audit Record Details
+administrator.banner.list.button.create = Create
 
-auditor.audit-record.form.label.code = Code
-auditor.audit-record.form.label.code-audit = Code Audit
-auditor.audit-record.form.label.period-init = Period Init
-auditor.audit-record.form.label.period-end = Period End
-auditor.audit-record.form.label.mark = Mark
-auditor.audit-record.form.label.link = Link
+administrator.banner.form.button.create = Create
+administrator.banner.form.button.update = Update
+administrator.banner.form.button.delete = Delete
 
-auditor.audit-record.list.button.create = Create
-auditor.audit-record.form.button.create = Create
-auditor.audit-record.form.button.update = Update
-auditor.audit-record.form.button.delete = Delete
+administrator.banner.form.error.duplicated = You cant use an existing slogan
+administrator.banner.form.error.init-after-end = Period init must precede Period end 
+administrator.banner.form.error.too-close = Difference between periodInit and periodEnd must be, at least, one week long
+administrator.banner.form.error.instantiation-after-display = Display period can't happen earlier than Instantiation/Update Date

@@ -1,5 +1,5 @@
 /*
- * AdministratorBannerListAllService.java
+ * AdministratorBannerShowService.java
  *
  * Copyright (C) 2012-2024 Rafael Corchuelo.
  *
@@ -10,9 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.administrator;
-
-import java.util.Collection;
+package acme.features.administrator.banner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +21,7 @@ import acme.client.services.AbstractService;
 import acme.entities.Banner;
 
 @Service
-public class AdministratorBannerListService extends AbstractService<Administrator, Banner> {
+public class AdministratorBannerShowService extends AbstractService<Administrator, Banner> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -35,22 +33,31 @@ public class AdministratorBannerListService extends AbstractService<Administrato
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int masterId;
+		Banner banner;
+
+		masterId = super.getRequest().getData("id", int.class);
+		banner = this.repository.findOneBannerById(masterId);
+		status = super.getRequest().getPrincipal().hasRole(Administrator.class) && banner != null;
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		Collection<Banner> objects;
+		Banner object;
+		int id;
 
-		objects = this.repository.findAllBanners();
+		id = super.getRequest().getData("id", int.class);
+		object = this.repository.findOneBannerById(id);
 
-		super.getBuffer().addData(objects);
+		super.getBuffer().addData(object);
 	}
 
 	@Override
 	public void unbind(final Banner object) {
 		assert object != null;
-
 		Dataset dataset;
 
 		dataset = super.unbind(object, "instantiationOrUpdateDate", "periodInit", "periodEnd", "picture", "slogan", "link");
