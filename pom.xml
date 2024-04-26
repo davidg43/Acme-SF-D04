@@ -33,4 +33,11 @@
         <version>24.1.0</version>
         <relativePath>../../pom-24.1.0.xml</relativePath>
     </parent>
+	<dependencies>
+		<dependency>
+			<groupId>Acme</groupId>
+			<artifactId>Acme-Framework</artifactId>
+			<version>24.1.0</version>
+		</dependency>
+	</dependencies>
 </project>

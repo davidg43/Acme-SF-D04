@@ -1,0 +1,7 @@
+manager.assignment.list.title  = Listado de asignaciones
+manager.assignment.form.title = Detalles del asignaciones
+assignment.form.button.update = Actualizar	
+assignment.form.button.delete = Borrar
+manager.assignment.list.label.project = Proyecto
+manager.assignment.list.label.userStory = Historia de Usuario
+manager.assignment.list.label.create = Crear

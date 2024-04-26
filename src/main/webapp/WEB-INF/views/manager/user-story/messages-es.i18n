@@ -1,0 +1,34 @@
+manager.list.label.title = Titulo
+manager.list.label.draft = Borrador
+manager.list.label.description = Descripcion
+
+manager.list.label.priority = Prioridad
+manager.list.label.create = Crear
+
+
+
+project.form.label.link = Link
+project.form.label.manager = Manager
+project.form.label.isDraft = Borrador
+project.form.button.update = Actualizar
+project.form.button.create = Crear
+
+manager.user-story.list.title = Detalles de una historia de usuario
+user-story.form.label.title = Título
+user-story.form.label.description = Descripción
+user-story.form.label.estimatedCost = Coste estimado
+user-story.form.label.acceptanceCriteria = Criterio de aceptación
+user-story.form.label.priority = Prioridad
+user-story.form.label.link = Link
+user-story.form.label.isDraft = Borrador
+user-story.form.label.manager = Manager
+user-story.form.button.update = Actualizar
+user-story.form.button.create = Crear
+user-story.form.button.publish = Publicar
+user-story.form.button.delete = Borrar
+
+
+
+
+
+

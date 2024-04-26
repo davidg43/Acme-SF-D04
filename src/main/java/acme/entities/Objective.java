@@ -78,5 +78,4 @@ public class Objective extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Project project;
-
 }
