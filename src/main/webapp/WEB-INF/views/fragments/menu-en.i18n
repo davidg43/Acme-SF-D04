@@ -51,6 +51,13 @@ master.menu.provider.favourite-link = Favourite link
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
+
+# master.menu.manager ##########################################################
+
+master.menu.manager = Manager
+master.menu.manager.project.list = My projects
+master.menu.manager.userStory.list = My user stories
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account
