@@ -58,8 +58,8 @@ public class ManagerProjectCreateService extends AbstractService<Manager, Projec
 
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
 			projects = this.repository.findAllProjects();
-			boolean condition = projects.stream().anyMatch(p -> p.getCode().equals(project.getCode()));
-			super.state(!condition, "code", "manager.project.form.error.duplicated");
+			boolean condition = projects.stream().filter(p -> p.getCode().equals(project.getCode())).count() < 1;
+			super.state(condition, "code", "manager.project.form.error.duplicated");
 		}
 
 	}

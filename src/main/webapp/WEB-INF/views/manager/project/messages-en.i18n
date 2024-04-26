@@ -29,6 +29,6 @@ project.form.label.hasFatalErrors = Fatal Errors
 project.form.button.publish = Publish
 
 
-manager.project.form.error.duplicated = This project alredy exist
+manager.project.form.error.duplicated = This project alredy exist or the code is not updated
 manager.project.form.error.publishable = This Project is not publishable
 

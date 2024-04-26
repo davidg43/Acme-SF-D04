@@ -22,7 +22,6 @@ user-story.form.label.priority = Prioridad
 user-story.form.label.link = Link
 user-story.form.label.isDraft = Borrador
 user-story.form.label.manager = Manager
-user-story.form.label.isDraft = Draft Mode
 user-story.form.button.update = Actualizar
 user-story.form.button.create = Crear
 user-story.form.button.publish = Publicar
@@ -31,6 +30,5 @@ user-story.form.button.delete = Borrar
 
 
 
-manager.project.form.error.duplicated = Esta historia de usuario ya existe
 
 

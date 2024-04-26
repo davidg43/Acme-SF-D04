@@ -65,7 +65,7 @@ public class TrainingModule extends AbstractEntity {
 	private int				totalTime;
 
 	@Valid
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@NotNull
 	private Project			project;
 

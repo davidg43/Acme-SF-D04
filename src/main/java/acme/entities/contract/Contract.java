@@ -56,7 +56,7 @@ public class Contract extends AbstractEntity {
 	private Money				budget;
 
 	@Valid
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Project				project;
 
 }

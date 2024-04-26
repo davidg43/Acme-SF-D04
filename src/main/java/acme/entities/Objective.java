@@ -75,7 +75,6 @@ public class Objective extends AbstractEntity {
 
 
 	@Valid
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Project project;
-
 }
