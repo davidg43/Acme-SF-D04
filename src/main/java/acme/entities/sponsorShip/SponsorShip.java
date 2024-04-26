@@ -58,14 +58,13 @@ public class SponsorShip extends AbstractEntity {
 	@URL
 	private String				link;
 
-	@NotNull
-	@ManyToOne
-	@Valid
-	private Invoice				invoice;
+	//	@NotNull
+	//	@ManyToOne
+	//	@Valid
+	//	private Invoice				invoice;
 
-	@NotNull
 	@Valid
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private Project				project;
 
 }

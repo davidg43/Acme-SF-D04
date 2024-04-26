@@ -1,0 +1,36 @@
+manager.list.label.code = Código
+manager.list.label.title = Título
+manager.list.label.publishable = Publicable
+manager.list.label.draft = Borrador
+manager.list.label.hasFatalErrors = Tiene Errores Fatales
+manager.project.form.error.negative-cost = Tiene coste negativo
+manager.list.label.create  = Crear
+manager.project.form.error.fatal-errors = Este proyecto tiene errores fatales
+
+manager.project.form.title = Detalles del projecto
+manager.project.list.title = Lista de projectos
+
+project.form.button.assignment = Lista de assigments de este proyecto
+
+
+
+project.form.label.code = Código
+project.form.label.title = Título
+project.form.label.abstractText = Resumen
+project.form.label.cost = Costo
+project.form.label.link = Enlace
+project.form.label.manager = Gerente
+project.form.label.isDraft = Modo Borrador
+project.form.button.userStories = Historias de Usuario
+project.form.button.update = Actualizar
+project.form.button.delete = Borrar
+project.form.button.create = Crear
+project.form.label.hasFatalErrors = Errores fatales
+
+
+project.form.button.publish = Publicar
+
+
+manager.project.form.error.duplicated = Ya existe este proyecto o el código no se ha actualizado
+manager.project.form.error.publishable = Este proyecto no es publicable
+

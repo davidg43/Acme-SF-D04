@@ -46,6 +46,7 @@
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
 		
+
 		<acme:menu-option code="master.menu.auditor" access="hasRole('Auditor')">
 			<acme:menu-suboption code="master.menu.auditor.code-audits" action="/auditor/code-audit/list-mine"/>
 			<acme:menu-suboption code="master.menu.auditor.all-code-audits" action="/auditor/code-audit/list-all"/>
@@ -54,6 +55,13 @@
 		<acme:menu-option code="master.menu.claims" access="isAuthenticated()">
 			<acme:menu-suboption code="master.menu.any.claims" action="/any/claim/list"/>
 		</acme:menu-option>
+
+		<acme:menu-option code="master.menu.manager" access="hasRole('Manager')">
+			<acme:menu-suboption code="master.menu.manager.project.list" action="/manager/project/list"/>
+			<acme:menu-suboption code="master.menu.manager.userStory.list" action="/manager/user-story/list"/>
+		</acme:menu-option>
+		
+
 	</acme:menu-left>
 
 	<acme:menu-right>
