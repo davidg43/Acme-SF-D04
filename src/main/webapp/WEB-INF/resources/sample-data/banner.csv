@@ -1,4 +1,4 @@
 key,instantiation-or-update-date,period-init,period-end,picture,slogan,link
-banner-01,2020/02/01 20:00,2021/02/01 20:00,2021/02/08 20:00,https://example.com/picture-01,Ejemplo 1,https://example.com/banner-01
-banner-02,2020/03/01 21:00,2022/02/01 20:00,2023/02/01 20:00,https://example.com/picture-02,Ejemplo 2,https://example.com/banner-02
-banner-03,2020/04/01 22:00,2023/02/01 20:00,2023/05/16 16:20,https://example.com/picture-03,Ejemplo 3,https://example.com/banner-03
+banner-01,2020/02/01 20:00,2021/02/01 20:00,2028/02/08 20:00,https://t4.ftcdn.net/jpg/00/97/58/97/360_F_97589769_t45CqXyzjz0KXwoBZT9PRaWGHRk5hQqQ.jpg,Ejemplo 1,https://example.com/banner-01
+banner-02,2020/03/01 21:00,2021/02/01 20:00,2027/02/01 20:00,https://i.pinimg.com/236x/71/28/3b/71283bb49db55cfee5bb6acd1389c465.jpg,Ejemplo 2,https://example.com/banner-02
+banner-03,2020/04/01 22:00,2021/02/01 20:00,2026/05/16 16:20,https://i.imgflip.com/1itoun.jpg?a475704,Ejemplo 3,https://example.com/banner-03
