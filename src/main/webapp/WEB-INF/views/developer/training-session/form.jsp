@@ -25,14 +25,14 @@
 	<acme:input-textbox code="developer.training-session.form.label.link" path="link"/>
 	
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true && isDraftMode == true}">
 			<acme:submit code="developer.training-session.form.button.update" action="/developer/training-session/update"/>
 			<acme:submit code="developer.training-session.form.button.delete" action="/developer/training-session/delete"/>
-			<acme:submit code="developer.training-session.form.button.publish" action="/developer/training-session/publish?id=${id}"/>
+			<acme:submit code="developer.training-session.form.button.publish" action="/developer/training-session/publish"/>	
 		</jstl:when>
 		
-		<jstl:when test="${_command == 'create'}">
-			<acme:submit code="developer.training-session.form.button.create" action="/developer/training-session/create?trainingModuleId=${trainingModuleId}"/>
+		<jstl:when test="${_command == 'create' && draftMode == true}">
+			<acme:submit code="developer.training-session.form.button.create" action="/developer/training-session/create?masterId=${masterId}"/>
 			
 		</jstl:when>		
 	</jstl:choose>

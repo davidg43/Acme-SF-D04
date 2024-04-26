@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
@@ -56,7 +56,7 @@ public class TrainingModule extends AbstractEntity {
 	private String				link;
 
 	@NotNull
-	@PositiveOrZero
+	@Positive
 	private int					totalTime;
 
 	@NotNull

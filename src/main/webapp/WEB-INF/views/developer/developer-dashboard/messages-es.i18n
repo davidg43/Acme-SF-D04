@@ -14,3 +14,5 @@ developer.dashboard.label.average-training-module-time = Media de tiempo de modu
 developer.dashboard.label.deviation-training-module-time = Deviación de modulos de entrenamiento
 developer.dashboard.label.min-training-module-time = Tiempo mínimo de modulo de entrenamiento
 developer.dashboard.label.max-training-module-time = Tiempo máximo de modulo de entrenamiento
+developer.developer-dashboard.form.title = Dashboard
+developer.dashboard.form.title.general-indicators = Detalles del dashboard

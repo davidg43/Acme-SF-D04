@@ -55,4 +55,6 @@ public class UserStory extends AbstractEntity {
 	@NotNull
 	private Manager		manager;
 
+	private boolean		isDraft;
+
 }

@@ -109,7 +109,7 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 
 		SelectChoices choices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
 
-		Collection<Project> projects = this.repository.findAllProjects();
+		Collection<Project> projects = this.repository.findAllProjectsPublished();
 		SelectChoices projectsChoices = SelectChoices.from(projects, "code", object.getProject());
 
 		Dataset dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "totalTime", "draftMode", "project");

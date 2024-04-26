@@ -57,7 +57,6 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 		Date creationMoment = new Date(currentMoment.getTime() - 2);
 
 		object.setCreationMoment(creationMoment);
-		//updateMoment y totaltime?
 		object.setProject(project);
 	}
 
@@ -90,7 +89,7 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 	public void unbind(final TrainingModule object) {
 		assert object != null;
 
-		Collection<Project> projects = this.repository.findAllProjects();
+		Collection<Project> projects = this.repository.findAllProjectsPublished();
 		SelectChoices projectsChoices = SelectChoices.from(projects, "code", object.getProject());
 
 		projectsChoices = SelectChoices.from(projects, "code", object.getProject());

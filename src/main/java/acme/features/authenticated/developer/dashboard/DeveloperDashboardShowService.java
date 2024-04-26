@@ -40,8 +40,8 @@ public class DeveloperDashboardShowService extends AbstractService<Developer, De
 		final Integer totalNumberOfTrainingSessionsWithALink;
 		final Double averageTimeOfTrainingModules;
 		final Double deviationTimeOfTrainingModules;
-		final Double minimumTimeOfTrainingModules;
-		final Double maximumTimeOfTrainingModules;
+		final int minimumTimeOfTrainingModules;
+		final int maximumTimeOfTrainingModules;
 		int developerId;
 
 		developerId = super.getRequest().getPrincipal().getActiveRoleId();

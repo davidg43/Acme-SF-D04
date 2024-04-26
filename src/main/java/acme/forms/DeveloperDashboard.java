@@ -19,8 +19,8 @@ public class DeveloperDashboard extends AbstractForm {
 
 	private Double				deviationTrainingModuleTime;
 
-	private Double				minimumTrainingModuleTime;
+	private int					minimumTrainingModuleTime;
 
-	private Double				maximumTrainingModuleTime;
+	private int					maximumTrainingModuleTime;
 
 }

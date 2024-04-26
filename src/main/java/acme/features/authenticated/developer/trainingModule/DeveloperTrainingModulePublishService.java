@@ -80,7 +80,7 @@ public class DeveloperTrainingModulePublishService extends AbstractService<Devel
 
 		int masterId = super.getRequest().getData("id", int.class);
 		List<TrainingSession> ls = this.repository.findManyTrainingSessionsByTrainingModuleId(masterId).stream().toList();
-		final boolean someDraftTrainingSession = ls.stream().anyMatch(Session -> Session.getDraftMode());
+		final boolean someDraftTrainingSession = ls.stream().anyMatch(Session -> Session.getIsDraftMode());
 		final boolean noSession = ls.isEmpty();
 		super.state(!noSession, "*", "developer.trainingModule.form.error.trainingSession-empty");
 		super.state(!someDraftTrainingSession, "*", "developer.trainingModule.form.error.trainingSession-draft");

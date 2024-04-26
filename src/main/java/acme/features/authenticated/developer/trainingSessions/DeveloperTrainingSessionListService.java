@@ -33,8 +33,7 @@ public class DeveloperTrainingSessionListService extends AbstractService<Develop
 
 		masterId = super.getRequest().getData("masterId", int.class);
 		trainingModule = this.repository.findOneTrainingModuleById(masterId);
-		status = trainingModule != null && //
-			(!trainingModule.getDraftMode() || super.getRequest().getPrincipal().hasRole(trainingModule.getDeveloper()));
+		status = trainingModule != null && (!trainingModule.getDraftMode() || super.getRequest().getPrincipal().hasRole(trainingModule.getDeveloper()));
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -42,10 +41,10 @@ public class DeveloperTrainingSessionListService extends AbstractService<Develop
 	@Override
 	public void load() {
 		Collection<TrainingSession> objects;
-		int trainingModule;
+		int masterId;
 
-		trainingModule = super.getRequest().getData("masterId", int.class);
-		objects = this.repository.findManyTrainingSessionsByTrainingModuleId(trainingModule);
+		masterId = super.getRequest().getData("masterId", int.class);
+		objects = this.repository.findManyTrainingSessionsByTrainingModuleId(masterId);
 
 		super.getBuffer().addData(objects);
 	}
@@ -63,13 +62,35 @@ public class DeveloperTrainingSessionListService extends AbstractService<Develop
 		dataset.put("trainingModules", trainingModulesChoices);
 
 		// TODO internacionalizar de isDraft a publish en el front
-		if (object.getDraftMode()) {
+		if (object.getIsDraftMode()) {
 			final Locale local = super.getRequest().getLocale();
 			dataset.put("draftMode", local.equals(Locale.ENGLISH) ? "Yes" : "Sí");
 		} else
 			dataset.put("draftMode", "No");
 
+		int masterId;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+
+		super.getResponse().addGlobal("masterId", masterId);
+
 		super.getResponse().addData(dataset);
+	}
+
+	@Override
+	public void unbind(final Collection<TrainingSession> objects) {
+		assert objects != null;
+
+		int masterId;
+		TrainingModule trainingModule;
+		final boolean showCreate;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		trainingModule = this.repository.findOneTrainingModuleById(masterId);
+		showCreate = trainingModule.getDraftMode() && super.getRequest().getPrincipal().hasRole(trainingModule.getDeveloper());
+
+		super.getResponse().addGlobal("masterId", masterId);
+		super.getResponse().addGlobal("showCreate", showCreate);
 	}
 
 }

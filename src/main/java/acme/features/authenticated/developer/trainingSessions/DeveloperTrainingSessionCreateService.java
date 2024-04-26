@@ -26,16 +26,25 @@ public class DeveloperTrainingSessionCreateService extends AbstractService<Devel
 	@Override
 	public void authorise() {
 
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		int masterId;
+		TrainingModule trainingModule;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		trainingModule = this.repository.findOneTrainingModuleById(masterId);
+		status = trainingModule != null && trainingModule.getDraftMode() && super.getRequest().getPrincipal().hasRole(trainingModule.getDeveloper());
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
 
-		final int trainingModuleId = super.getRequest().getData("trainingModuleId", int.class);
-		TrainingModule trainingModule = this.repository.findOneTrainingModuleById(trainingModuleId);
+		final int masterId = super.getRequest().getData("masterId", int.class);
+		TrainingModule trainingModule = this.repository.findOneTrainingModuleById(masterId);
 
 		TrainingSession trainingSession = new TrainingSession();
+		trainingSession.setIsDraftMode(true);
 		trainingSession.setTrainingModule(trainingModule);
 
 		super.getBuffer().addData(trainingSession);
@@ -83,7 +92,7 @@ public class DeveloperTrainingSessionCreateService extends AbstractService<Devel
 			super.state(!duplicatedCode, "code", "developer.training-session.form.error.duplicated-code");
 		}
 
-		int masterId = super.getRequest().getData("trainingModuleId", int.class);
+		int masterId = super.getRequest().getData("masterId", int.class);
 		TrainingModule trainingModule = this.repository.findOneTrainingModuleById(masterId);
 		final boolean noDraftTrainingModule = trainingModule.getDraftMode();
 		super.state(noDraftTrainingModule, "*", "developer.training-session.form.error.trainingModule-noDraft");
@@ -100,8 +109,9 @@ public class DeveloperTrainingSessionCreateService extends AbstractService<Devel
 	public void unbind(final TrainingSession object) {
 		assert object != null;
 
-		Dataset dataset = super.unbind(object, "code", "iniDate", "finalDate", "location", "instructor", "contactEmail", "link");
-		dataset.put("trainingModuleId", super.getRequest().getData("trainingModuleId", int.class));
+		Dataset dataset = super.unbind(object, "code", "iniDate", "finalDate", "location", "instructor", "contactEmail", "link", "isDraftMode");
+		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
+		dataset.put("draftMode", object.getTrainingModule().getDraftMode());
 
 		super.getResponse().addData(dataset);
 	}

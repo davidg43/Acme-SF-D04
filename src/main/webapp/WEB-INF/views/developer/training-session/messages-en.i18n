@@ -9,30 +9,42 @@
 # they accept any liabilities with respect to them.
 
 developer.training-session.list.label.code = Code
-developer.training-session.list.label.iniDate = Initial Date
+developer.training-session.list.label.iniDate = Initial date
 developer.training-session.list.label.finalDate = Final date
 developer.training-session.list.label.location = Location
 developer.training-session.list.label.contactEmail = Contact email
-developer.training-session.list.label.link = Link
-developer.training-session.list.label.trainingModule = Training Module
+developer.training-session.list.label.link = Link (Optional)
+developer.training-session.list.label.trainingModule = Training module
 
-developer.training-session.list.title = Training sessions associated
+developer.training-session.list.title = Associated training session(s)
+developer.training-session.form.label.finishDate = Final date:
 
 developer.training-session.list.button.create = Create
 
+developer.training-module.list.label.draftMode = draftMode
+
+developer.training-session.form.title = Training session details
+developer.training-session.form.label.instructor = Instructor:
+developer.training-session.form.label.link = Link (Optional): 
+
 developer.training-session.form.label.code = Code:
-developer.training-session.form.label.iniDate = Initial Date: 
+developer.training-session.form.label.iniDate = Initial date: 
 developer.training-session.form.label.finalDate = Final date:
 developer.training-session.form.label.location = Location:
 developer.training-session.form.label.contactEmail = Contact email:
 developer.training-session.form.label.Link = Link (Optional):
-developer.training-session.form.label.trainingModule = Training Module:
+developer.training-session.form.label.trainingModule = Training module:
 		
 developer.training-session.form.button.update = Update
 developer.training-session.form.button.delete = Delete
 developer.training-session.form.button.create = Create
+developer.training-session.form.button.publish = Publish
 
-developer.training-session.form.error.duplicated = This code is taken
-developer.training-session.form.error.finishDate = Finish date must be after start date
-developer.training-session.form.error.startDate = Time period must be at least one day ahead
-developer.training-session.form.error.period = Time period must be from one up to five hour long
+developer.training-session.form.error.end-before-start = Final date must be after initial date
+developer.training-session.form.error.start-before-creation = Final date must be after creation moment of the training module
+developer.training-session.form.error.small-display-period = Period between initial date and final date must have at least 7 days in between
+developer.training-session.form.error.duplicated-code = This code already exists
+
+developer.training-session.form.error.end-before-creation = Final date must be after creation moment of the training module
+
+developer.training-session.form.error.trainingModule-noDraft = Training module is not in draftMode

@@ -59,7 +59,7 @@ public class TrainingSession extends AbstractEntity {
 	private String				link;
 
 	@NotNull
-	private Boolean				draftMode;
+	private Boolean				isDraftMode;
 
 
 	@Transient
