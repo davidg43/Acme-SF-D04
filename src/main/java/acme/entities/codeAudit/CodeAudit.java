@@ -53,8 +53,9 @@ public class CodeAudit extends AbstractEntity {
 	@URL
 	private String				link;
 
+	@NotNull
 	@Valid
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Project				project;
 
 }
