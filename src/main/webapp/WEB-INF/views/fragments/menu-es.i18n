@@ -52,6 +52,12 @@ master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
 
+# master.menu.client ##########################################################
+
+master.menu.client = Cliente
+master.menu.client.list = Mis Contratos
+
+
 # master.menu.auditor ########################################################
 
 master.menu.auditor = Auditor

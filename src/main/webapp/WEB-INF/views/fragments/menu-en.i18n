@@ -48,6 +48,12 @@ master.menu.provider = Provider
 master.menu.provider.favourite-link = Favourite link
 
 
+# master.menu.client ##########################################################
+
+master.menu.client = Client
+master.menu.client.list = My contracts
+
+
 # master.menu.consumer ##########################################################
 
 master.menu.consumer = Consumer
