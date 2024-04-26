@@ -4,4 +4,3 @@ project-02,manager-01,ABC-0002,"Mobile App Development","Develop a mobile applic
 project-03,manager-01,ABC-0003,"Marketing Campaign","Launch a comprehensive marketing campaign to increase brand visibility",false,"USD 800.00",https://acme.example/projects/proj-003,true
 project-04,manager-01,ABC-0004,"Product Enhancement","Enhance the existing product features based on user feedback",false,"EUR 1200.00",https://acme.example/projects/proj-004,true
 project-05,manager-01,ABC-0005,"Infrastructure Upgrade","Upgrade the company's IT infrastructure to improve performance",false,"USD 2000.00",https://acme.example/projects/proj-005,true
-
