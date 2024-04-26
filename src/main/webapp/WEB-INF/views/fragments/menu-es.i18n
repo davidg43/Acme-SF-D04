@@ -33,6 +33,7 @@ master.menu.administrator.user-accounts = Cuentas de usuario
 master.menu.administrator.populate-initial = Poblar BD (inicial)
 master.menu.administrator.populate-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-down = Parar el sistema
+master.menu.administrator.banner = Estandartes
 
 # master.menu.developer ###################################################
 
@@ -50,11 +51,20 @@ master.menu.provider.favourite-link = Enlace favorito
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
+
+# master.menu.auditor ########################################################
+
+master.menu.auditor = Auditor
+master.menu.auditor.code-audits = Auditorias de Codigo
+master.menu.auditor.all-code-audits = Todas la auditorias
+master.menu.auditor.dashboard = Panel de control
+
 # master.menu.manager ##########################################################
 
 master.menu.manager = Manager
 master.menu.manager.project.list = Mis Proyectos
 master.menu.manager.userStory.list = Mis historias de usuario
+
 
 
 # master.menu.user-account ####################################################
@@ -65,3 +75,8 @@ master.menu.user-account.provider = Datos de proveedor
 master.menu.user-account.become-provider = Hazte proveedor
 master.menu.user-account.consumer = Datos de consumidor
 master.menu.user-account.become-consumer = Hazte consumidor
+
+# master.menu.is-authenticated #################################################
+
+master.menu.claims = Reclamaciones
+master.menu.any.claims = Vista de las reclamaciones

@@ -17,4 +17,14 @@
 
 <div class="rounded" style="background: <acme:message code='master.banner.background'/>">
 	<img src="images/banner.png" alt="<acme:message code='master.banner.alt'/>" class="img-fluid rounded"/>
+<jstl:if test="${banner != null}">
+    <div class="panel-body" style="margin: 1em 0em;">
+        <a href="${banner.slogan}" target="_blank">
+            <img src="${banner.picture}" alt="${banner.slogan}" class="img-fluid rounded" style="border-style: solid; width: 200px; height: 200px;"/>
+        </a>
+    </div>
+</jstl:if>
+
+
+
 </div>

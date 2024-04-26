@@ -1,0 +1,39 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2024 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+
+auditor.code-audit.list.title = Auditorias de Codigo
+
+auditor.code-audit.list.label.code = Codigo
+auditor.code-audit.list.label.correctiveActions = Medidas correctoras
+auditor.code-audit.list.label.type = Tipo
+auditor.code-audit.list.label.project = Proyecto
+
+auditor.code-audit.form.title = Detalles de la auditoria de codigo
+
+auditor.code-audit.form.label.code = Codigo
+auditor.code-audit.form.label.correctiveActions = Medidas correctoras
+auditor.code-audit.form.label.type = Tipo
+auditor.code-audit.form.label.mark = Evaluacion
+auditor.code-audit.form.label.project = Proyecto
+auditor.code-audit.form.label.link = Link
+auditor.code-audit.form.label.execution = Fecha de ejecucion
+auditor.code-audit.form.label.auditor = Autor de la auditoria
+auditor.code-audit.form.placeholder.mark = Nota media
+
+auditor.code-audit.list.button.create = Crear
+auditor.code-audit.form.button.create = Crear
+auditor.code-audit.form.button.update = Actualizar
+auditor.code-audit.form.button.delete = Eliminar
+auditor.code-audit.form.button.audit-record = Registros de Auditoria
+auditor.code-audit.form.button.publish = Publicar
+
+auditor.code-audit.form.error.duplicated = No puedes usar un codigo existente
+auditor.code-audit.form.error.not-enought-mark = La nota minima de evaluacion es C

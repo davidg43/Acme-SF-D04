@@ -7,10 +7,10 @@ manager.project.form.error.negative-cost = Tiene coste negativo
 manager.list.label.create  = Crear
 manager.project.form.error.fatal-errors = Este proyecto tiene errores fatales
 
-manager.project.form.title = Detalles del projecto
-manager.project.list.title = Lista de projectos
+manager.project.form.title = Detalles del proyecto
+manager.project.list.title = Lista de proyectos
 
-project.form.button.assignment = Lista de assigments de este proyecto
+project.form.button.assignment = Lista de asignaciones de este proyecto
 
 
 

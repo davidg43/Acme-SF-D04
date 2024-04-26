@@ -6,7 +6,6 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -38,26 +37,16 @@ public class Banner extends AbstractEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				periodEnd;
 
-	@NotBlank
-	@Length(max = 75)
-	private String				slogan;
-
 	@URL
 	@NotBlank
 	private String				picture;
 
 	@NotBlank
+	@Length(max = 75)
+	private String				slogan;
+
+	@NotBlank
 	@URL
 	private String				link;
-
-
-	@Transient
-	private Date period() {
-		if (this.periodInit != null && this.periodEnd != null) {
-			long diffInMillies = Math.abs(this.periodEnd.getTime() - this.periodInit.getTime());
-			return new Date(diffInMillies);
-		}
-		return null;
-	}
 
 }

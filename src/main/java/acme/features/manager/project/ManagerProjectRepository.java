@@ -23,6 +23,9 @@ import acme.roles.Manager;
 @Repository
 public interface ManagerProjectRepository extends AbstractRepository {
 
+	@Query("select p from Project p where p.code = :code")
+	Project findOneProjectByCode(String code);
+
 	@Query("select p from Project p")
 	Collection<Project> findAllProjects();
 
