@@ -1,10 +1,13 @@
 key,key:trainingModule,code,ini-date,final-date,location,instructor,contact-email,link,isDraftMode
 training-session-01,training-module-01,TS-FUV-781,2022/01/14 16:30,2022/01/29 20:00,"Valencia","Carlos Sanchez",trainingsession1@example.com,https://example.com/trainingsession-01,false
-training-session-02,training-module-02,TS-KDD-545,2021/10/15 19:45,2021/10/30 21:00,"Madrid","Javier Luque",trainingsession3@example.com,https://example.com/trainingsession-03,true
-training-session-03,training-module-03,TS-ABC-923,2022/03/20 11:30,2022/04/16 07:00,"Zaragoza","Emilio Jerez",trainingsession4@example.com,https://example.com/trainingsession-04,false
-training-session-04,training-module-05,TS-A-001,2000/01/01 00:00,2000/01/08 00:01,"Германия","Андрей",Дмитрий@acme.com,https://example.com/trainingsession-05,false
-training-session-05,training-module-05,TS-AAA-000,2012/07/03 00:00,2013/07/17 00:00,"საქართველოს","カリム",MariaSalomeaSkłodowska-Curie@acme.com,https://example.com/trainingsession-06,true
-training-session-06,training-module-05,TS-AB-000,2015/07/22 23:59,2017/07/29 23:59,"日本","A",LeonhardEuler@acme.com,https://example.com/trainingsession-07,true
-training-session-07,training-module-06,TS-KIA-011,2022/07/04 00:00,2022/07/12 00:00,"Sevilla","AsukaAsukaAsukaAsukaAsukaAsuka",母鹿@acme.com,https://twitter.com/GoogleAI,false
+training-session-02,training-module-02,TS-KDD-545,2021/10/15 19:45,2021/10/30 21:00,"Madrid","Javier Luque",trainingsession3@example.com,https://example.com/trainingsession-03,false
+training-session-03,training-module-02,TS-ABC-923,2022/03/20 11:30,2022/04/16 07:00,"Zaragoza","Emilio Jerez",trainingsession4@example.com,https://example.com/trainingsession-04,false
+training-session-04,training-module-03,TS-A-001,2000/01/01 00:00,2000/01/08 00:01,"Геания","Андрей",Дмитрий@acme.com,https://example.com/trainingsession-05,true
+training-session-05,training-module-04,TS-AAA-000,2012/07/03 00:00,2013/07/17 00:00,"საქართველოს","カリム",MariaSalomeaSkłodowska-Curie@acme.com,https://example.com/trainingsession-06,false
+training-session-06,training-module-04,TS-AB-000,2015/07/22 23:59,2017/07/29 23:59,"日本","A",LeonhardEuler@acme.com,https://example.com/trainingsession-07,true
+training-session-07,training-module-05,TS-KIA-011,2022/07/04 00:00,2022/07/12 00:00,"Sevilla","AsukaAsukaAsukaAsukaAsukaAsuka",母鹿@acme.com,https://twitter.com/GoogleAI,false
 training-session-08,training-module-06,TS-J-012,2022/07/04 08:00,2022/07/18 23:00,"Sevilla","Euskadi",marcoaurelio4@acme.com,http://第节.com,false
-training-session-09,training-module-06,TS-DFQ-999,2022/07/04 09:33,2022/07/18 23:59,"Sevilla","PabloPabloPablo",Socrates@acme.com,https://twitter.com/Mangafest,true
+training-session-09,training-module-06,TS-DFQ-999,2022/07/04 09:33,2022/07/18 23:59,"Sevilla","PabloPabloPablo",Socrates@acme.com,https://twitter.com/Mangafest,false
+training-session-10,training-module-07,TS-PPP-001,20014/01/01 00:00,2014/02/08 00:01,"Coria","Sevilla",Дтрий@acme.com,https://example.com/trainingsession-10,true
+training-session-11,training-module-08,TS-LLO-000,2023/11/03 00:00,2014/07/17 00:00,"Badajoz","Zaragoza",ramon@acme.com,https://example.com/trainingsession-11,false
+training-session-12,training-module-08,TS-XCD-000,2016/09/22 23:59,2017/07/29 23:59,"Almería","Геания",perico@acme.com,https://example.com/trainingsession-12,true
