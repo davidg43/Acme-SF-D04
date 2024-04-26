@@ -36,5 +36,5 @@ developer.training-module.form.button.create = Crear
 developer.trainingModule.form.error.duplicated-code = Este código está duplicado
 developer.training-module.form.error.sessions = Un módulo de entrenamiento tiene que tener al menos una sesión de entrenamiento
 developer.trainingModule.form.error.negative-total-time = Tiempo total no puede ser negativo
-developer.trainingModule.form.error.trainingSession-empty = Este módulo no tiene sesiones de entrenamiento
+developer.trainingModule.form.error.trainingSession-empty = Este módulo no tiene sesiones de entrenamiento publicadas
 developer.trainingModule.form.error.trainingSession-draft = Este módulo tiene una/varias sesiones de entrenamiento sin publicar

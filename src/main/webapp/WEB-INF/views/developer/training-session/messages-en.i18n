@@ -41,7 +41,7 @@ developer.training-session.form.button.create = Create
 developer.training-session.form.button.publish = Publish
 
 developer.training-session.form.error.end-before-start = Final date must be after initial date
-developer.training-session.form.error.start-before-creation = Final date must be after creation moment of the training module
+developer.training-session.form.error.start-before-creation = Initial date must be after creation moment of the training module
 developer.training-session.form.error.small-display-period = Period between initial date and final date must have at least 7 days in between
 developer.training-session.form.error.duplicated-code = This code already exists
 
