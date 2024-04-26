@@ -37,7 +37,6 @@ public interface BannerRepository extends AbstractRepository {
 
 			page = PageRequest.of(index, 1, Sort.by(Direction.ASC, "id"));
 			list = this.findManyBanners(page, now);
-			//list = this.findAllActiveBanners(page);
 			result = list.isEmpty() ? null : list.get(0);
 
 		}
