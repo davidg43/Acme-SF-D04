@@ -33,21 +33,46 @@ master.menu.administrator.user-accounts = User accounts
 master.menu.administrator.populate-initial = Populate DB (initial)
 master.menu.administrator.populate-sample = Populate DB (samples)
 master.menu.administrator.shut-down = Shut down
+master.menu.administrator.banner = Banners
+
+# master.menu.developer ###################################################
+
+master.menu.list.training-module = Training modules
+master.menu.show.developer-dashboard = Dashboard
+master.menu.developer = Developer
+
 
 # master.menu.provider ########################################################
 
 master.menu.provider = Provider
 master.menu.provider.favourite-link = Favourite link
 
+
 # master.menu.client ##########################################################
 
 master.menu.client = Client
 master.menu.client.list = My contracts
 
+
 # master.menu.consumer ##########################################################
 
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
+
+
+# master.menu.auditor ########################################################
+
+master.menu.auditor = Auditor
+master.menu.auditor.code-audits = Code Audits
+master.menu.auditor.all-code-audits = All Code Audits
+master.menu.auditor.dashboard = Dashboard
+
+
+# master.menu.manager ##########################################################
+
+master.menu.manager = Manager
+master.menu.manager.project.list = My projects
+master.menu.manager.userStory.list = My user stories
 
 # master.menu.user-account ####################################################
 
@@ -57,3 +82,8 @@ master.menu.user-account.provider = Provider data
 master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.consumer = Consumer data
 master.menu.user-account.become-consumer = Become a consumer
+
+# master.menu.is-authenticated #################################################
+
+master.menu.claims = Claims
+master.menu.any.claims = Claim view

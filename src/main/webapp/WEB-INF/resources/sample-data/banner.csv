@@ -1,4 +1,4 @@
 key,instantiation-or-update-date,period-init,period-end,picture,slogan,link
-banner-01,2020/02/01 20:00,2021/02/01 20:00,2021/02/08 20:00,https://example.com/picture-01,Ejemplo 1,https://example.com/banner-01
-banner-02,2020/03/01 21:00,2022/02/01 20:00,2023/02/01 20:00,https://example.com/picture-02,Ejemplo 2,https://example.com/banner-02
-banner-03,2020/04/01 22:00,2023/02/01 20:00,2023/05/16 16:20,https://example.com/picture-03,Ejemplo 3,https://example.com/banner-03
+banner-01,2020/02/01 20:00,2021/02/01 20:00,2028/02/08 20:00,https://scrumorg-website-prod.s3.amazonaws.com/drupal/inline-images/ScrumPoster.png,Ejemplo 1,https://example.com/banner-01
+banner-02,2020/03/01 21:00,2021/02/01 20:00,2027/02/01 20:00,https://www.wework.com/ideas/wp-content/uploads/sites/4/2022/08/iStock-1404450332_Nine-characteristics-of-great-teamwork_v1-1440x810.jpg,Ejemplo 2,https://example.com/banner-02
+banner-03,2020/04/01 22:00,2021/02/01 20:00,2026/05/16 16:20,https://cdn.worldvectorlogo.com/logos/acme.svg,Ejemplo 3,https://example.com/banner-03

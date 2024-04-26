@@ -1,0 +1,40 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2023 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+developer.training-module.list.label.code = Código
+developer.training-module.list.label.details = Detalles
+developer.training-module.list.label.project.title = Título del proyecto
+developer.training-module.list.title = Modulos de entrenamiento
+developer.training-module.form.title = Información sobre el modulo de entrenamiento
+
+developer.training-module.form.button.add-training-sessions = Añadir sesiones de entrenamiento
+
+developer.training-module.list.button.create = Crear
+developer.training-module.list.label.draftMode = Editable
+developer.training-module.form.label.code = Código:
+developer.training-module.form.label.project = Proyecto: 
+developer.training-module.form.label.details = Detalles:
+developer.training-module.form.label.creationMoment = Momento de creación:
+developer.training-module.form.label.difficultyLevel = Nivel de dificultad:
+developer.training-module.form.label.updateMoment = Momento de actualización:
+developer.training-module.form.label.link = Enlace (Opcional):
+developer.training-module.form.label.totalTime = Duración total en horas:
+		
+developer.training-module.form.button.sessions = Sesiones de entrenamiento
+developer.training-module.form.button.update = Actualizar
+developer.training-module.form.button.delete = Borrar
+developer.training-module.form.button.publish = Publicar
+developer.training-module.form.button.create = Crear
+
+developer.trainingModule.form.error.duplicated-code = Este código está duplicado
+developer.training-module.form.error.sessions = Un módulo de entrenamiento tiene que tener al menos una sesión de entrenamiento
+developer.trainingModule.form.error.negative-total-time = Tiempo total no puede ser negativo
+developer.trainingModule.form.error.trainingSession-empty = Este módulo no tiene sesiones de entrenamiento publicadas
+developer.trainingModule.form.error.trainingSession-draft = Este módulo tiene una/varias sesiones de entrenamiento sin publicar
