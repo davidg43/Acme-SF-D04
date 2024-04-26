@@ -2,6 +2,7 @@
 package acme.entities.trainingModule;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -57,14 +58,18 @@ public class TrainingSession extends AbstractEntity {
 	@URL
 	private String				link;
 
+	@NotNull
+	private Boolean				isDraftMode;
+
 
 	@Transient
-	public Date period() {
+	public double periodInDays() {
 		if (this.iniDate != null && this.finalDate != null && this.finalDate.after(this.iniDate)) {
 			long diffInMillies = Math.abs(this.finalDate.getTime() - this.iniDate.getTime());
-			return new Date(diffInMillies);
+			long diffInDays = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+			return diffInDays;
 		}
-		return null;
+		return -1; // no hay periodo valido
 	}
 
 	//-----

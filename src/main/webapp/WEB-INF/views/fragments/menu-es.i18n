@@ -34,6 +34,12 @@ master.menu.administrator.populate-initial = Poblar BD (inicial)
 master.menu.administrator.populate-sample = Poblar BD (ejemplos)
 master.menu.administrator.shut-down = Parar el sistema
 
+# master.menu.developer ###################################################
+
+master.menu.list.training-module = Módulos de entrenamiento
+master.menu.show.developer-dashboard = Panel de datos
+master.menu.developer = Desarrollador
+
 # master.menu.provider ########################################################
 
 master.menu.provider = Proveedor

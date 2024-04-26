@@ -35,6 +35,11 @@
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shut-down" action="/administrator/system/shut-down"/>
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.developer" access="hasRole('Developer')">
+			<acme:menu-suboption code="master.menu.list.training-module" action="/developer/training-module/list"/>
+			<acme:menu-suboption code="master.menu.show.developer-dashboard" action="/developer/developer-dashboard/show"/>
+		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.provider" access="hasRole('Provider')">
 			<acme:menu-suboption code="master.menu.provider.favourite-link" action="http://www.example.com/"/>
