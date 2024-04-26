@@ -16,93 +16,61 @@
 <%@taglib prefix="acme" uri="http://acme-framework.org/"%>
 
 <h2>
-	<acme:message code="auditor.dashboard.form.title.general-indicators"/>
+	<acme:message code="auditor.dashboard.form.title.general-indicators" />
 </h2>
 
 <table class="table table-sm">
 	<tr>
-		<th scope="row">
-			<acme:message code="auditor.dashboard.label.total-static-code-audits"/>
-		</th>
-		<td>
-			<acme:print value="${totalStaticCodeAudits}"/>
-		</td>
+		<th scope="row"><acme:message
+				code="auditor.dashboard.label.total-static-code-audits" /></th>
+		<td><acme:print value="${totalStaticCodeAudits}" /></td>
 	</tr>
 	<tr>
-		<th scope="row">
-			<acme:message code="auditor.dashboard.label.total-dynamic-code-audits"/>
-		</th>
-		<td>
-			<acme:print value="${totalDynamicCodeAudits}"/>
-		</td>
+		<th scope="row"><acme:message
+				code="auditor.dashboard.label.total-dynamic-code-audits" /></th>
+		<td><acme:print value="${totalDynamicCodeAudits}" /></td>
 	</tr>
-		<tr>
-		<th scope="row">
-			<acme:message code="auditor.dashboard.label.average-number-of-audit-records"/>
-		</th>
-		<td>
-			<acme:print value="${averageNumberOfAuditRecords}"/>
-		</td>
+	<tr>
+		<th scope="row"><acme:message
+				code="auditor.dashboard.label.average-number-of-audit-records" /></th>
+		<td><acme:print value="${averageNumberOfAuditRecords}" /></td>
 	</tr>
-		</tr>
-		<tr>
-		<th scope="row">
-			<acme:message code="auditor.dashboard.label.deviation-number-of-audit-records"/>
+	<tr>
+		<th scope="row"><acme:message
+				code="auditor.dashboard.label.deviation-number-of-audit-records" />
 		</th>
-		<td>
-			<acme:print value="${deviationNumberOfAuditRecords}"/>
-		</td>
+		<td><acme:print value="${deviationNumberOfAuditRecords}" /></td>
 	</tr>
-		</tr>
-		<tr>
-		<th scope="row">
-			<acme:message code="auditor.dashboard.label.maximum-number-of-audit-records"/>
-		</th>
-		<td>
-			<acme:print value="${maximumNumberOfAuditRecords}"/>
-		</td>
+	<tr>
+		<th scope="row"><acme:message
+				code="auditor.dashboard.label.maximum-number-of-audit-records" /></th>
+		<td><acme:print value="${maximumNumberOfAuditRecords}" /></td>
 	</tr>
-		</tr>
-		<tr>
-		<th scope="row">
-			<acme:message code="auditor.dashboard.label.minimum-number-of-audit-records"/>
-		</th>
-		<td>
-			<acme:print value="${minimumNumberOfAuditRecords}"/>
-		</td>
+	<tr>
+		<th scope="row"><acme:message
+				code="auditor.dashboard.label.minimum-number-of-audit-records" /></th>
+		<td><acme:print value="${minimumNumberOfAuditRecords}" /></td>
 	</tr>
-		</tr>
-		<tr>
-		<th scope="row">
-			<acme:message code="auditor.dashboard.label.average-period-in-audit-records"/>
-		</th>
-		<td>
-			<acme:print value="${averagePeriodInAuditRecords}"/>
-		</td>
+	<tr>
+		<th scope="row"><acme:message
+				code="auditor.dashboard.label.average-period-in-audit-records" /></th>
+		<td><acme:print value="${averagePeriodInAuditRecords}" /></td>
 	</tr>
-		<tr>
-		<th scope="row">
-			<acme:message code="auditor.dashboard.label.deviation-period-in-audit-records"/>
+	<tr>
+		<th scope="row"><acme:message
+				code="auditor.dashboard.label.deviation-period-in-audit-records" />
 		</th>
-		<td>
-			<acme:print value="${deviationPeriodInAuditRecords}"/>
-		</td>
+		<td><acme:print value="${deviationPeriodInAuditRecords}" /></td>
 	</tr>
-		<tr>
-		<th scope="row">
-			<acme:message code="auditor.dashboard.label.minimum-period-in-audit-records"/>
-		</th>
-		<td>
-			<acme:print value="${minimumPeriodInAuditRecords}"/>
-		</td>
+	<tr>
+		<th scope="row"><acme:message
+				code="auditor.dashboard.label.minimum-period-in-audit-records" /></th>
+		<td><acme:print value="${minimumPeriodInAuditRecords}" /></td>
 	</tr>
-		<tr>
-		<th scope="row">
-			<acme:message code="auditor.dashboard.label.maximum-period-in-audit-records"/>
-		</th>
-		<td>
-			<acme:print value="${maximumPeriodInAuditRecords}"/>
-		</td>
+	<tr>
+		<th scope="row"><acme:message
+				code="auditor.dashboard.label.maximum-period-in-audit-records" /></th>
+		<td><acme:print value="${maximumPeriodInAuditRecords}" /></td>
 	</tr>
 
 </table>

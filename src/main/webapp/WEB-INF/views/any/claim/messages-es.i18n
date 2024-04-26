@@ -23,6 +23,7 @@ any.claim.form.label.description = Descripcion
 any.claim.form.label.department = Departamento
 any.claim.form.label.emailAddress = Correo Electronico
 any.claim.form.label.link = Link
+any.claim.form.label.checkButton = Confirmacion
 
 any.claim.list.button.create = Crear
 any.claim.form.button.create = Crear

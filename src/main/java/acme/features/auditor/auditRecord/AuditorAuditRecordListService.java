@@ -83,6 +83,7 @@ public class AuditorAuditRecordListService extends AbstractService<Auditor, Audi
 
 		super.getResponse().addGlobal("masterId", masterId);
 		super.getResponse().addGlobal("showCreate", showCreate);
+		super.getResponse().addGlobal("isDraft", codeAudit.isDraftMode());
 	}
 
 }

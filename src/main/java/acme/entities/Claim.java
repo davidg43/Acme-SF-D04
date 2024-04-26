@@ -56,4 +56,6 @@ public class Claim extends AbstractEntity {
 	private String				link;
 
 	private boolean				isDraft;
+
+	private boolean				checkButton;
 }

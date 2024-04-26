@@ -22,10 +22,13 @@ any.claim.form.label.heading = Heading
 any.claim.form.label.description = Description
 any.claim.form.label.department = Department
 any.claim.form.label.emailAddress = Email Address
+any.claim.form.label.checkButton = Confirmation
 any.claim.form.label.link = Link
 
 any.claim.list.button.create = Create
 any.claim.form.button.create = Create
 any.claim.form.button.publish = Publish
+
+
 
 any.claim.form.error.duplicated = You cant use an existing code

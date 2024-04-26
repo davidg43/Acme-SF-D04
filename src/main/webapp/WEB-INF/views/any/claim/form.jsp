@@ -30,7 +30,10 @@
 			<acme:submit code="any.claim.form.button.publish" action="/any/claim/publish"/>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
-		<acme:submit code="any.claim.form.button.create" action="/any/claim/create"/>
+			<acme:submit code="any.claim.form.button.create" action="/any/claim/create"/>
+		</jstl:when>
+		<jstl:when test ="${acme:anyOf(_command, 'show |publish') && isDraft == true }" >
+			<acme:input-checkbox code="any.claim.form.label.checkButton" path="checkButton"/>
 		</jstl:when>
 	</jstl:choose>
 </acme:form>
