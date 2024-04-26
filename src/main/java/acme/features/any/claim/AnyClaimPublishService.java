@@ -59,7 +59,7 @@ public class AnyClaimPublishService extends AbstractService<Any, Claim> {
 		Date currentMoment = MomentHelper.getCurrentMoment();
 		Date creationMoment = new Date(currentMoment.getTime() - 6000);
 
-		super.bind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link", "isDraft", "checkButton");
+		super.bind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link", "isDraft");
 		object.setInstantiationMoment(creationMoment);
 	}
 
@@ -89,7 +89,7 @@ public class AnyClaimPublishService extends AbstractService<Any, Claim> {
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link", "isDraft", "checkButton");
+		dataset = super.unbind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link", "isDraft");
 
 		super.getResponse().addData(dataset);
 	}

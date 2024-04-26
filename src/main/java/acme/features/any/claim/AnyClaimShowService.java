@@ -53,8 +53,6 @@ public class AnyClaimShowService extends AbstractService<Any, Claim> {
 		id = super.getRequest().getData("id", int.class);
 		object = this.repository.findOneClaimById(id);
 
-		object.setCheckButton(false);
-
 		super.getBuffer().addData(object);
 	}
 
@@ -63,7 +61,7 @@ public class AnyClaimShowService extends AbstractService<Any, Claim> {
 		assert object != null;
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link", "isDraft", "checkButton");
+		dataset = super.unbind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link", "isDraft");
 
 		super.getResponse().addData(dataset);
 	}
