@@ -1,0 +1,11 @@
+client.dashboard.form.title.general-indicators = Data
+client.dashboard.label.total-numberprogressLogs-rate-less-25 = Number Progress Log With Rate Less 25
+client.dashboard.label.total-number-pl-rate-2550 = Number Progress Log With Rate Between 25 and 50
+client.dashboard.label.total-number-pl-rate-5075 = Number Progress Log With Rate Between 50 and 75
+client.dashboard.label.total-number-pl-rate-75=  Number Progress Log With Rate More Than 75
+client.dashboard.label.average-budget =  Average Budget
+client.dashboard.label.deviation-budget = Deviation Budge
+client.dashboard.label.minimum-budget = Minumum Budget
+client.dashboard.label.maximum-budget = Maximum Budget
+client.client-dashboard.form.title= Client DashBoard
+

@@ -1,0 +1,50 @@
+client.list.label.code = Código
+client.list.label.providerName = Nombre del Proveedor
+client.list.label.customerName = Nombre del Cliente
+client.list.label.goals = Objetivos
+client.list.label.budget = Presupuesto
+client.list.label.create  = Crear
+client.contract.list.title = My Contracts
+
+client.contract.form.title = Detalles del contrato
+contract.form.label.code = Codigo
+contract.form.label.providerName = Nombre del Proveedor
+contract.form.label.customerName = Nombre del Cliente
+contract.form.label.goals = Objetivos del Proyecto
+contract.form.label.budget = Presupuesto
+contract.form.label.isDraft = Borrador
+client.list.label.moment = Dia de Realizacion
+contract.form.label.moment = Dia de Realizacion
+manager.project.form.title = Detalles del projecto
+manager.project.list.title = Lista de projectos
+client.contract.form.error.duplicated = Ya Existe
+client.contract.list.label.code = Codigo
+client.contract.list.label.budget = Presupuesto
+client.contract.list.label.project.title = Proyecto
+
+
+project.form.button.assignment = Lista de assigments de este proyecto
+client.list.label.contract = Proyectos 
+contract.form.button.create = Create
+contract.form.button.publish = Publicar
+client.list.label.project = Proyecto
+
+project.form.label.code = Código
+project.form.label.title = Título
+project.form.label.abstractText = Resumen
+project.form.label.cost = Costo
+project.form.label.link = Enlace
+project.form.label.manager = Gerente
+project.form.label.isDraft = Modo Borrador
+project.form.button.userStories = Historias de Usuario
+project.form.button.update = Actualizar
+project.form.button.delete = Borrar
+project.form.button.create = Crear
+project.form.label.hasFatalErrors = Errores fatales
+client.list.label.project.title = Proyecto
+
+project.form.button.publish = Publicar
+client.contract.form.error.invalid-budget = El presupuesto es mayor al costo del proyecto
+
+
+manager.project.form.error.duplicated = Ya existe este contrato

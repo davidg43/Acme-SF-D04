@@ -23,8 +23,8 @@ public class ClientDashboard extends AbstractForm {
 
 	private double				deviationBudgetOfContracts;
 
-	private int					minimumBudgetOfContracts;
+	private double				minimumBudgetOfContracts;
 
-	private int					maximumBudgetOfContracts;
+	private double				maximumBudgetOfContracts;
 
 }

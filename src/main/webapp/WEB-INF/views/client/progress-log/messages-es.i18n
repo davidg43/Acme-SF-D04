@@ -1,0 +1,7 @@
+client.progresslog.list.title = Progresos
+client.progreslog.list.label.completeness = Porcentaje del Progreso
+client.progresslog.form.error.duplicated = Ya existe o no se ha actualizado
+client.progress-log.list.label.recordId = Record ID
+client.progress-log.list.label.completeness = Porcentaje Completado
+client.progress-log.list.label.contract = Id de Contrato
+

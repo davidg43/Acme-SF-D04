@@ -1,0 +1,50 @@
+client.list.label.code = Code
+client.list.label.providerName = ProviderName
+client.list.label.customerName = CustomerName
+client.list.label.goals = Goals
+client.list.label.budget = Budget
+client.list.label.create = Create
+client.project.form.error.fatal-errors = This project has fatal errors
+client.project.form.error.negative-cost = Negative cost detected
+client.contract.list.title = Mis contratos
+
+
+client.contract.form.title = Contract Details
+contract.form.label.code = Code
+contract.form.label.providerName = Provider Name
+contract.form.label.customerName = Customer Name
+contract.form.label.goals = Goals
+contract.form.label.budget = Budget
+contract.form.label.isDraft = Draft
+contract.form.label.moment = Instantion Contract Day
+client.list.label.moment= Instantion Contract Day
+manager.project.form.title = Details of a Project
+manager.project.list.title = List of projects
+client.contract.form.error.duplicated = Already Exists
+client.contract.list.label.code = Code
+client.contract.list.label.budget = Budget
+client.contract.list.label.project.title = Proyect
+project.form.button.assignment = List of assigments of this project
+client.list.label.contract = Proyects
+contract.form.button.publish = Publish
+client.list.label.project = Project
+contract.form.button.create = Create
+project.form.label.code = Code
+project.form.label.title = Title
+project.form.label.abstractText = Abstract Text
+project.form.label.cost = Cost
+project.form.label.link = Link
+project.form.label.manager = Manager
+project.form.label.isDraft = Draft Mode
+project.form.button.userStories = User Stories
+project.form.button.update = Update
+project.form.button.delete = Delete
+project.form.button.create = Create
+project.form.label.hasFatalErrors = Fatal Errors
+client.list.label.project.title = Proyect
+
+project.form.button.publish = Publish
+client.contract.form.error.invalid-budget = The budget is higher than the project total cost
+
+client.contract.form.error.duplicated = This contract alredy exist
+

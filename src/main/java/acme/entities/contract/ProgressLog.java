@@ -54,4 +54,6 @@ public class ProgressLog extends AbstractEntity {
 	@Valid
 	private Contract			contract;
 
+	private boolean				isDraft;
+
 }
