@@ -27,7 +27,10 @@
 	
 	<jstl:choose>
 		<jstl:when test = "${isDraft == true }">
-			<acme:submit code="any.claim.form.label.publish" action="/any/claim/publish"/>
+			<acme:submit code="any.claim.form.button.publish" action="/any/claim/publish"/>
+		</jstl:when>
+		<jstl:when test="${_command == 'create'}">
+		<acme:submit code="any.claim.form.button.create" action="/any/claim/create"/>
 		</jstl:when>
 	</jstl:choose>
 </acme:form>

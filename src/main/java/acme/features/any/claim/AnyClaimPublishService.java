@@ -65,6 +65,12 @@ public class AnyClaimPublishService extends AbstractService<Any, Claim> {
 
 	@Override
 	public void validate(final Claim object) {
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			Claim existing;
+
+			existing = this.repository.findOneClaimByCode(object.getCode());
+			super.state(existing == null || existing.equals(object), "code", "any.claim.form.error.duplicated");
+		}
 		assert object != null;
 
 	}

@@ -17,6 +17,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.accounts.Anonymous;
 import acme.client.data.accounts.Any;
 import acme.client.data.models.Dataset;
 import acme.client.helpers.MomentHelper;
@@ -36,7 +37,9 @@ public class AnyClaimCreateService extends AbstractService<Any, Claim> {
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		status = !super.getRequest().getPrincipal().hasRole(Anonymous.class);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -55,7 +58,7 @@ public class AnyClaimCreateService extends AbstractService<Any, Claim> {
 		Date currentMoment = MomentHelper.getCurrentMoment();
 		Date creationMoment = new Date(currentMoment.getTime() - 6000);
 
-		super.bind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link");
+		super.bind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link", "isDraft");
 		object.setInstantiationMoment(creationMoment);
 	}
 
@@ -63,12 +66,19 @@ public class AnyClaimCreateService extends AbstractService<Any, Claim> {
 	public void validate(final Claim object) {
 		assert object != null;
 
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			Claim existing;
+
+			existing = this.repository.findOneClaimByCode(object.getCode());
+			super.state(existing == null, "code", "any.claim.form.error.duplicated");
+		}
 	}
 
 	@Override
 	public void perform(final Claim object) {
 		assert object != null;
 
+		object.setDraft(true);
 		this.repository.save(object);
 	}
 

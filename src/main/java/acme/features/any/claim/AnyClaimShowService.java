@@ -15,6 +15,7 @@ package acme.features.any.claim;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.accounts.Anonymous;
 import acme.client.data.accounts.Any;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
@@ -39,7 +40,7 @@ public class AnyClaimShowService extends AbstractService<Any, Claim> {
 
 		masterId = super.getRequest().getData("id", int.class);
 		claim = this.repository.findOneClaimById(masterId);
-		status = super.getRequest().getPrincipal().hasRole(Any.class) && claim != null;
+		status = !super.getRequest().getPrincipal().hasRole(Anonymous.class) && claim != null;
 
 		super.getResponse().setAuthorised(status);
 	}

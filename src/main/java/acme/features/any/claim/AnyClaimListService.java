@@ -17,6 +17,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.accounts.Anonymous;
 import acme.client.data.accounts.Any;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
@@ -35,7 +36,11 @@ public class AnyClaimListService extends AbstractService<Any, Claim> {
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+
+		status = !super.getRequest().getPrincipal().hasRole(Anonymous.class);
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
