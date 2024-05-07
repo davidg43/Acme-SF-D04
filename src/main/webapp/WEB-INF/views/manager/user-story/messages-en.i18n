@@ -1,0 +1,22 @@
+manager.list.label.title = Title
+manager.list.label.draft = Draft
+manager.list.label.description = Description
+manager.list.label.priority = Priority
+manager.list.label.create = Create
+
+manager.user-story.list.title = User Story details
+user-story.form.label.title = Title
+user-story.form.label.description = Description
+user-story.form.label.estimatedCost = Estimated cost
+user-story.form.label.acceptanceCriteria = Acceptance Criteria
+user-story.form.label.priority = Priority
+user-story.form.label.link = Link
+user-story.form.label.isDraft = Is draft
+user-story.form.label.manager = Manager
+user-story.form.label.isDraft = Draft Mode
+user-story.form.button.update = Update
+user-story.form.button.create = Create
+user-story.form.button.publish = Publish
+user-story.form.button.delete = Delete
+
+

@@ -1,0 +1,34 @@
+manager.list.label.code = Code
+manager.list.label.title = Title
+manager.list.label.publishable = Publishable
+manager.list.label.draft = Draft
+manager.list.label.hasFatalErrors = Has Fatal Errors
+manager.list.label.create = Create
+manager.project.form.error.fatal-errors = This project has fatal errors
+manager.project.form.error.negative-cost = Negative cost detected
+
+
+manager.project.form.title = Details of a Project
+manager.project.list.title = List of projects
+project.form.button.assignment = List of assigments of this project
+
+
+project.form.label.code = Code
+project.form.label.title = Title
+project.form.label.abstractText = Abstract Text
+project.form.label.cost = Cost
+project.form.label.link = Link
+project.form.label.manager = Manager
+project.form.label.isDraft = Draft Mode
+project.form.button.userStories = User Stories
+project.form.button.update = Update
+project.form.button.delete = Delete
+project.form.button.create = Create
+project.form.label.hasFatalErrors = Fatal Errors
+
+project.form.button.publish = Publish
+
+
+manager.project.form.error.duplicated = This project alredy exist or the code is not updated
+manager.project.form.error.publishable = This Project is not publishable
+
