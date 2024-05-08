@@ -72,7 +72,7 @@ public interface AuditorCodeAuditRepository extends AbstractRepository {
 
 		Set<Entry<Mark, Integer>> entrySet = hashMap.entrySet();
 		for (Entry<Mark, Integer> entry : entrySet)
-			if (entry.getValue() > maxValue) {
+			if (entry.getValue() >= maxValue) {
 				modeMark = entry.getKey();
 				maxValue = entry.getValue();
 			}

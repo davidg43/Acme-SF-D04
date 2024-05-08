@@ -37,3 +37,5 @@ auditor.code-audit.form.button.publish = Publicar
 
 auditor.code-audit.form.error.duplicated = No puedes usar un codigo existente
 auditor.code-audit.form.error.not-enought-mark = La nota minima de evaluacion es C
+auditor.code-audit.form.error.published-audit-record = No puedes borrar un codigo de auditoria que ya tiene un registro publicado
+auditor.code-audit.form.error.empty-audit-record = No puedes publicar un codigo de auditoria vacio

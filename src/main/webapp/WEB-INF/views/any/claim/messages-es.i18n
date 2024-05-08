@@ -17,7 +17,7 @@ any.claim.form.title = Detalles de la reclamacion
 
 
 any.claim.form.label.code = Codigo
-any.claim.form.label.instantiationMoment = Momento de instanciaciación
+any.claim.form.label.instantiationMoment = Momento de instanciacion
 any.claim.form.label.heading = Cabecera
 any.claim.form.label.description = Descripcion
 any.claim.form.label.department = Departamento
