@@ -20,6 +20,9 @@
 		path="code" width="40%" />
 	<acme:list-column code="auditor.audit-record.list.label.mark"
 		path="mark" width="20%" />
+	<acme:list-column code="auditor.audit-record.list.label.isDraftMode"
+		path="isDraftMode" width="20%" />
+		
 </acme:list>
 
 <jstl:if test="${isDraft == true}">

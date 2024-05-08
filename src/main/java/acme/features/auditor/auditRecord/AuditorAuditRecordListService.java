@@ -64,7 +64,7 @@ public class AuditorAuditRecordListService extends AbstractService<Auditor, Audi
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "codeAudit.code", "periodInit", "periodEnd", "mark", "link", "period");
+		dataset = super.unbind(object, "code", "codeAudit.code", "periodInit", "periodEnd", "mark", "link", "period", "isDraftMode");
 
 		super.getResponse().addData(dataset);
 	}
@@ -83,7 +83,7 @@ public class AuditorAuditRecordListService extends AbstractService<Auditor, Audi
 
 		super.getResponse().addGlobal("masterId", masterId);
 		super.getResponse().addGlobal("showCreate", showCreate);
-		super.getResponse().addGlobal("isDraft", codeAudit.isDraftMode());
+		super.getResponse().addGlobal("isDraftMode", codeAudit.isDraftMode());
 	}
 
 }

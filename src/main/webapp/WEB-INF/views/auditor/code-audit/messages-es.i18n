@@ -15,6 +15,7 @@ auditor.code-audit.list.label.code = Codigo
 auditor.code-audit.list.label.correctiveActions = Medidas correctoras
 auditor.code-audit.list.label.type = Tipo
 auditor.code-audit.list.label.project = Proyecto
+auditor.code-audit.list.label.draftMode = Modo Borrador
 
 auditor.code-audit.form.title = Detalles de la auditoria de codigo
 

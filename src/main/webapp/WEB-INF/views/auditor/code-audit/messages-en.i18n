@@ -14,6 +14,8 @@ auditor.code-audit.list.label.code = Code
 auditor.code-audit.list.label.correctiveActions = Corrective Actions
 auditor.code-audit.list.label.type = Type
 auditor.code-audit.list.label.project = Project
+auditor.code-audit.list.label.draftMode = Draft Mode
+
 
 
 auditor.code-audit.form.title = Code Audit Details
