@@ -42,7 +42,7 @@ public class AuditorAuditRecordListService extends AbstractService<Auditor, Audi
 
 		masterId = super.getRequest().getData("masterId", int.class);
 		codeAudit = this.repository.findOneCodeAuditById(masterId);
-		status = codeAudit != null && (!codeAudit.isDraftMode() || super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor()));
+		status = codeAudit != null && super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor());
 
 		super.getResponse().setAuthorised(status);
 	}
