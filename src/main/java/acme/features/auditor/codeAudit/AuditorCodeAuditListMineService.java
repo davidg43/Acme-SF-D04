@@ -36,7 +36,7 @@ public class AuditorCodeAuditListMineService extends AbstractService<Auditor, Co
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Auditor.class));
 	}
 
 	@Override

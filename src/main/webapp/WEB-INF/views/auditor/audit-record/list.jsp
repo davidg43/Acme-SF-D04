@@ -25,7 +25,7 @@
 		
 </acme:list>
 
-<jstl:if test="${isDraft == true}">
+<jstl:if test="${isDraftMode == true}">
 	<acme:button code="auditor.audit-record.list.button.create"
 		action="/auditor/audit-record/create?masterId=${masterId}" />
 </jstl:if>
