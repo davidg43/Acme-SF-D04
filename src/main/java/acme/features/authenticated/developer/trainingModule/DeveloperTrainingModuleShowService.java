@@ -59,7 +59,7 @@ public class DeveloperTrainingModuleShowService extends AbstractService<Develope
 
 		Dataset dataset;
 		SelectChoices choices;
-		final Collection<Project> projects = this.repository.findAllProjects();
+		final Collection<Project> projects = this.repository.findAllProjectsPublished();
 
 		SelectChoices choicesDifficultyLevel = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
 
