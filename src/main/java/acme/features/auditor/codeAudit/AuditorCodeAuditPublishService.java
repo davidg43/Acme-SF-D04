@@ -119,12 +119,6 @@ public class AuditorCodeAuditPublishService extends AbstractService<Auditor, Cod
 		if (!super.getBuffer().getErrors().hasErrors("*")) {
 			Collection<AuditRecord> auditRecords = this.repository.findManyAuditRecordsByCodeAuditId(object.getId());
 
-			super.state(!auditRecords.isEmpty(), "*", "auditor.code-audit.form.error.empty-audit-record");
-		}
-
-		if (!super.getBuffer().getErrors().hasErrors("*")) {
-			Collection<AuditRecord> auditRecords = this.repository.findManyAuditRecordsByCodeAuditId(object.getId());
-
 			super.state(!auditRecords.stream().anyMatch(ar -> ar.getIsDraftMode()), "*", "auditor.code-audit.form.error.no-published-audit-record");
 		}
 
