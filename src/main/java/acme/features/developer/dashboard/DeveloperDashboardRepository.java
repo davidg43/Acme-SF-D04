@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.developer.dashboard;
+package acme.features.developer.dashboard;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

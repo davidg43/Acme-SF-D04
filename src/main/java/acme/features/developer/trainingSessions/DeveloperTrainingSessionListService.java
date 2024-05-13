@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.developer.trainingSessions;
+package acme.features.developer.trainingSessions;
 
 import java.util.Collection;
 import java.util.Locale;

@@ -1,48 +1,53 @@
 
-package acme.features.authenticated.developer.trainingSessions;
+package acme.features.developer.trainingSessions;
 
 import java.time.temporal.ChronoUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
+import acme.entities.trainingModule.TrainingModule;
 import acme.entities.trainingModule.TrainingSession;
 import acme.roles.Developer;
 
 @Service
-public class DeveloperTrainingSessionUpdateService extends AbstractService<Developer, TrainingSession> {
+public class DeveloperTrainingSessionPublishService extends AbstractService<Developer, TrainingSession> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected DeveloperTrainingSessionsRepository repository;
+	private DeveloperTrainingSessionsRepository repository;
 
 	// AbstractService interface ----------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		int id = super.getRequest().getData("id", int.class);
-		TrainingSession trainingSession = this.repository.findOneTrainingSessionById(id);
+		boolean status;
+		int trainingSessionId;
+		TrainingModule trainingModule;
+		TrainingSession trainingSession;
 
-		final Principal principal = super.getRequest().getPrincipal();
-		final int userAccountId = principal.getAccountId();
+		trainingSessionId = super.getRequest().getData("id", int.class);
+		trainingModule = this.repository.findOneTrainingModuleByTrainingSessionId(trainingSessionId);
+		trainingSession = this.repository.findOneTrainingSessionById(trainingSessionId);
+		status = trainingModule != null && trainingModule.getDraftMode() && trainingSession.getIsDraftMode() && super.getRequest().getPrincipal().hasRole(trainingModule.getDeveloper());
 
-		final boolean authorise = trainingSession != null && trainingSession.getTrainingModule().getDeveloper().getUserAccount().getId() == userAccountId;
-
-		super.getResponse().setAuthorised(authorise);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		int id = super.getRequest().getData("id", int.class);
-		TrainingSession trainingSession = this.repository.findOneTrainingSessionById(id);
+		TrainingSession object;
+		int id;
 
-		super.getBuffer().addData(trainingSession);
+		id = super.getRequest().getData("id", int.class);
+		object = this.repository.findOneTrainingSessionById(id);
+
+		super.getBuffer().addData(object);
 	}
 
 	@Override
@@ -93,16 +98,23 @@ public class DeveloperTrainingSessionUpdateService extends AbstractService<Devel
 	public void perform(final TrainingSession object) {
 		assert object != null;
 
+		object.setIsDraftMode(false);
+
 		this.repository.save(object);
 	}
 
 	@Override
 	public void unbind(final TrainingSession object) {
 		assert object != null;
+		//
+		TrainingModule trainingModule;
+		trainingModule = object.getTrainingModule();
 
 		Dataset dataset = super.unbind(object, "code", "iniDate", "finalDate", "location", "instructor", "contactEmail", "link", "isDraftMode");
 		dataset.put("masterId", object.getTrainingModule().getId());
 		dataset.put("draftMode", object.getTrainingModule().getDraftMode());
+		dataset.put("trainingModule", trainingModule);
 		super.getResponse().addData(dataset);
 	}
+
 }

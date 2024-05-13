@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.developer.trainingModule;
+package acme.features.developer.trainingModule;
 
 import java.util.Collection;
 import java.util.List;
