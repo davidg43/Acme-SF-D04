@@ -1,3 +1,6 @@
+
+package acme.testing.developer;
+
 /*
  * TestHarness.java
  *
@@ -10,8 +13,6 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.testing;
-
 import acme.client.helpers.StringHelper;
 import acme.client.testing.ApplicationAbstractTest;
 
@@ -19,6 +20,7 @@ public abstract class TestHarness extends ApplicationAbstractTest {
 
 	// Business methods -------------------------------------------------------
 
+	@Override
 	protected void signIn(final String username, final String password) {
 		assert !StringHelper.isBlank(username);
 		assert !StringHelper.isBlank(password);
@@ -33,6 +35,7 @@ public abstract class TestHarness extends ApplicationAbstractTest {
 		super.checkLinkExists("Account");
 	}
 
+	@Override
 	protected void signOut() {
 		super.requestHome();
 		super.clickOnMenu("Sign out");
