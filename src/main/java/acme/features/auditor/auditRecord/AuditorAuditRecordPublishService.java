@@ -14,6 +14,7 @@ package acme.features.auditor.auditRecord;
 
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,7 +49,7 @@ public class AuditorAuditRecordPublishService extends AbstractService<Auditor, A
 		auditRecordId = super.getRequest().getData("id", int.class);
 		codeAudit = this.repository.findOneCodeAuditByAuditRecordId(auditRecordId);
 		auditRecord = this.repository.findOneAuditRecordById(auditRecordId);
-		status = codeAudit != null && codeAudit.isDraftMode() && auditRecord.getIsDraftMode() == true && super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor());
+		status = auditRecord != null && auditRecord.getIsDraftMode() && codeAudit != null && codeAudit.isDraftMode() && super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -108,6 +109,15 @@ public class AuditorAuditRecordPublishService extends AbstractService<Auditor, A
 		object.setIsDraftMode(false);
 
 		this.repository.save(object);
+
+		CodeAudit codeAudit = object.getCodeAudit();
+
+		List<Mark> marks = this.repository.findManyMarksByCodeAuditId(codeAudit.getId());
+		Mark modeMark = this.repository.getMode(marks);
+
+		codeAudit.setMark(modeMark);
+
+		this.repository.save(codeAudit);
 	}
 
 	@Override

@@ -14,6 +14,7 @@ package acme.features.auditor.auditRecord;
 
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,10 +44,12 @@ public class AuditorAuditRecordUpdateService extends AbstractService<Auditor, Au
 		boolean status;
 		int auditRecordId;
 		CodeAudit codeAudit;
+		AuditRecord auditRecord;
 
 		auditRecordId = super.getRequest().getData("id", int.class);
 		codeAudit = this.repository.findOneCodeAuditByAuditRecordId(auditRecordId);
-		status = codeAudit != null && codeAudit.isDraftMode() && super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor());
+		auditRecord = this.repository.findOneAuditRecordById(auditRecordId);
+		status = auditRecord != null && auditRecord.getIsDraftMode() && codeAudit != null && codeAudit.isDraftMode() && super.getRequest().getPrincipal().hasRole(codeAudit.getAuditor());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -104,6 +107,15 @@ public class AuditorAuditRecordUpdateService extends AbstractService<Auditor, Au
 		object.setPeriod(diffInDays);
 
 		this.repository.save(object);
+
+		CodeAudit codeAudit = object.getCodeAudit();
+
+		List<Mark> marks = this.repository.findManyMarksByCodeAuditId(codeAudit.getId());
+		Mark modeMark = this.repository.getMode(marks);
+
+		codeAudit.setMark(modeMark);
+
+		this.repository.save(codeAudit);
 	}
 
 	@Override
@@ -115,7 +127,7 @@ public class AuditorAuditRecordUpdateService extends AbstractService<Auditor, Au
 
 		choicesMark = SelectChoices.from(Mark.class, object.getMark());
 
-		dataset = super.unbind(object, "code", "codeAudit.code", "periodInit", "periodEnd", "mark", "link", "period");
+		dataset = super.unbind(object, "code", "codeAudit.code", "periodInit", "periodEnd", "mark", "link", "period", "isDraftMode");
 		dataset.put("masterId", object.getCodeAudit().getId());
 		dataset.put("draftMode", object.getCodeAudit().isDraftMode());
 		dataset.put("marks", choicesMark);
