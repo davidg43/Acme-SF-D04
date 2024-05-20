@@ -17,7 +17,6 @@
 
 <acme:form>
 <acme:input-textbox code="auditor.audit-record.form.label.code" path="code"/>
-	<acme:input-textbox code="auditor.audit-record.form.label.code-audit" path="codeAudit.code"  readonly="true" />
 	<acme:input-moment code="auditor.audit-record.form.label.period-init" path="periodInit"/>
 	<acme:input-moment code="auditor.audit-record.form.label.period-end" path="periodEnd" />
 	<acme:input-select code="auditor.audit-record.form.label.mark" path="mark" choices="${marks}" />

@@ -42,3 +42,4 @@ auditor.code-audit.form.error.published-audit-record = No puedes borrar un codig
 auditor.code-audit.form.error.empty-audit-record = No puedes publicar un codigo de auditoria vacio
 auditor.code-audit.form.error.no-published-audit-record = No puedes publicar un codigo de auditoria si no han sido publicados todos sus registros
 auditor.code-audit.form.error.invalid-project = Por favor, escoge un proyecto publicado
+auditor.code-audit.form.error.not-null-mark = No puedes seleccionar la moda 

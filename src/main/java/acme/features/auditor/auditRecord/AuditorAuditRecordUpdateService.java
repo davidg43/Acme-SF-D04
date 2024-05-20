@@ -69,7 +69,7 @@ public class AuditorAuditRecordUpdateService extends AbstractService<Auditor, Au
 	public void bind(final AuditRecord object) {
 		assert object != null;
 
-		super.bind(object, "code", "codeAudit.code", "periodInit", "periodEnd", "mark", "link", "period");
+		super.bind(object, "code", "periodInit", "periodEnd", "mark", "link", "period");
 	}
 
 	@Override
@@ -127,7 +127,7 @@ public class AuditorAuditRecordUpdateService extends AbstractService<Auditor, Au
 
 		choicesMark = SelectChoices.from(Mark.class, object.getMark());
 
-		dataset = super.unbind(object, "code", "codeAudit.code", "periodInit", "periodEnd", "mark", "link", "period", "isDraftMode");
+		dataset = super.unbind(object, "code", "periodInit", "periodEnd", "mark", "link", "period", "isDraftMode");
 		dataset.put("masterId", object.getCodeAudit().getId());
 		dataset.put("draftMode", object.getCodeAudit().isDraftMode());
 		dataset.put("marks", choicesMark);

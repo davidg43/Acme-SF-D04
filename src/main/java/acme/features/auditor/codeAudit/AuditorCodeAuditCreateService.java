@@ -92,6 +92,11 @@ public class AuditorCodeAuditCreateService extends AbstractService<Auditor, Code
 			super.state(project != null && !project.isDraft(), "project", "auditor.code-audit.form.error.invalid-project");
 		}
 
+		if (!super.getBuffer().getErrors().hasErrors("mark")) {
+			Mark mark = object.getMark();
+			super.state(mark == null, "mark", "auditor.code-audit.form.error.not-null-mark");
+		}
+
 	}
 
 	@Override
