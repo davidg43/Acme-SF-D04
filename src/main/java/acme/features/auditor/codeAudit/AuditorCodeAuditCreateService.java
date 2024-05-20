@@ -87,6 +87,11 @@ public class AuditorCodeAuditCreateService extends AbstractService<Auditor, Code
 			super.state(existing == null, "code", "auditor.code-audit.form.error.duplicated");
 		}
 
+		if (!super.getBuffer().getErrors().hasErrors("project")) {
+			Project project = object.getProject();
+			super.state(project != null && !project.isDraft(), "project", "auditor.code-audit.form.error.invalid-project");
+		}
+
 	}
 
 	@Override

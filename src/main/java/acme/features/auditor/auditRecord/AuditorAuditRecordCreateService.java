@@ -98,6 +98,7 @@ public class AuditorAuditRecordCreateService extends AbstractService<Auditor, Au
 				super.state(false, "periodEnd", "auditor.audit-record.form.error.too-close");
 
 		}
+
 	}
 
 	@Override
