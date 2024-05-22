@@ -13,6 +13,7 @@ import acme.roles.Client;
 @Controller
 public class ClientContractController extends AbstractController<Client, Contract> {
 
+	// hola
 	@Autowired
 	private ClientContractDeleteService		deleteService;
 

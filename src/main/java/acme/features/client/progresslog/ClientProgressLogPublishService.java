@@ -24,11 +24,13 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 	public void authorise() {
 		boolean status;
 		int progressLogId;
-		Contract contract;
+		ProgressLog progressLog;
+		Client client;
 
 		progressLogId = super.getRequest().getData("id", int.class);
-		contract = this.repository.findOneContractByProgressLogId(progressLogId);
-		status = contract != null && contract.isDraft() && super.getRequest().getPrincipal().hasRole(contract.getClient());
+		progressLog = this.repository.findOneProgressLogById(progressLogId);
+		client = progressLog == null ? null : progressLog.getContract().getClient();
+		status = progressLog != null && progressLog.isDraft() && super.getRequest().getPrincipal().hasRole(progressLog.getContract().getClient());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -69,14 +71,19 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 	public void unbind(final ProgressLog object) {
 		assert object != null;
 		Dataset dataset;
+		boolean progressLogPublisheables;
+		boolean isDraft;
+		progressLogPublisheables = this.repository.findAllProgressLogsByContractId(object.getContract().getId()).stream().allMatch(x -> x.isDraft() == false) && this.repository.findAllProgressLogsByContractId(object.getContract().getId()).size() > 0;
+		isDraft = object.isDraft() == true;
 
 		SelectChoices contractChoices;
 		Collection<Contract> contracts = this.repository.findAllContractsByClientId(super.getRequest().getPrincipal().getActiveRoleId());
 
 		contractChoices = SelectChoices.from(contracts, "code", object.getContract());
 
-		dataset = super.unbind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "reponsiblePerson");
+		dataset = super.unbind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "reponsiblePerson", "isDraft");
 		dataset.put("contracts", contractChoices);
+		dataset.put("isDraft", object.isDraft());
 
 		super.getResponse().addData(dataset);
 	}

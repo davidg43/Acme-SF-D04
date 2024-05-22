@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 
 import acme.client.controllers.AbstractController;
 import acme.entities.contract.ProgressLog;
-import acme.features.client.contract.ClientContractPublishService;
 import acme.roles.Client;
 
 @Controller
@@ -30,7 +29,7 @@ public class ClientProgressLogController extends AbstractController<Client, Prog
 	private ClientProgressLogListAllService	listService;
 
 	@Autowired
-	private ClientContractPublishService	publishService;
+	private ClientProgressLogPublishService	publishService;
 
 
 	@PostConstruct
@@ -41,6 +40,6 @@ public class ClientProgressLogController extends AbstractController<Client, Prog
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("delete", this.deleteService);
-		//super.addCustomCommand("publish", "update", this.publishService);
+		super.addCustomCommand("publish", "update", this.publishService);
 	}
 }

@@ -4,4 +4,15 @@ client.progresslog.form.error.duplicated = Ya existe o no se ha actualizado
 client.progress-log.list.label.recordId = Record ID
 client.progress-log.list.label.completeness = Porcentaje Completado
 client.progress-log.list.label.contract = Id de Contrato
+client.progress-log.list.title = Mis Registros
 
+client.progress-log.form.title = Detalles del Progreso
+client.progresslog.form.label.contract = Contrato
+client.progresslog.form.label.recordId = Record Id
+client.progresslog.form.label.completeness = Porcentaje Completado
+client.progresslog.form.label.comment = Comentarios
+client.progresslog.form.label.registrationMoment = Fecha Registro
+client.progresslog.form.label.responsiblePerson = Responsable
+client.progresslog.form.button.update = Actualizar
+client.progresslog.form.button.delete = Borrar
+client.progresslog.form.label.isDraft = esBorrador
