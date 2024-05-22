@@ -59,19 +59,26 @@ public class AnyClaimPublishService extends AbstractService<Any, Claim> {
 		Date currentMoment = MomentHelper.getCurrentMoment();
 		Date creationMoment = new Date(currentMoment.getTime() - 6000);
 
-		super.bind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link", "isDraft");
+		super.bind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link", "isDraft", "confirm");
 		object.setInstantiationMoment(creationMoment);
 	}
 
 	@Override
 	public void validate(final Claim object) {
+		assert object != null;
+
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
 			Claim existing;
 
 			existing = this.repository.findOneClaimByCode(object.getCode());
 			super.state(existing == null || existing.equals(object), "code", "any.claim.form.error.duplicated");
 		}
-		assert object != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("confirm")) {
+			boolean confirmated = object.isConfirm();
+
+			super.state(confirmated, "confirm", "any.claim.form.error.no-confirmed");
+		}
 
 	}
 
@@ -87,9 +94,12 @@ public class AnyClaimPublishService extends AbstractService<Any, Claim> {
 	public void unbind(final Claim object) {
 		assert object != null;
 
+		boolean confirm = object.isConfirm() == true;
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link", "isDraft");
+		dataset = super.unbind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link", "isDraft", "confirm");
+
+		dataset.put("confirm", confirm);
 
 		super.getResponse().addData(dataset);
 	}

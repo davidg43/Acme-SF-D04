@@ -20,6 +20,8 @@
 	<acme:list-column code="auditor.code-audit.list.label.correctiveActions" path="correctiveActions" width="40%"/>
 	<acme:list-column code="auditor.code-audit.list.label.type" path="type" width="20%"/>	
 	<acme:list-column code="auditor.code-audit.list.label.project" path="project.title" width="30%"/>	
+	<acme:list-column code="auditor.code-audit.list.label.draftMode" path="draftMode" width="30%"/>	
+	
 </acme:list>
 
 <jstl:if test="${_command == 'list-mine'}">
