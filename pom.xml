@@ -23,21 +23,21 @@
 	<name>Acme-C1.018</name>
 	<description>This is the C1.018 project</description>
 	
-	<artifactId>Acme-SF-D03</artifactId>
+	<artifactId>Acme-SF-D04</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 	
 	<parent>
         <groupId>Acme</groupId>
         <artifactId>Parent-Pom</artifactId>
-        <version>24.1.0</version>
-        <relativePath>../../pom-24.1.0.xml</relativePath>
+        <version>24.4.0</version>
+        <relativePath>../../pom-24.4.0.xml</relativePath>
     </parent>
 	<dependencies>
 		<dependency>
 			<groupId>Acme</groupId>
 			<artifactId>Acme-Framework</artifactId>
-			<version>24.1.0</version>
+			<version>24.4.0</version>
 		</dependency>
 	</dependencies>
 </project>
