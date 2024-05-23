@@ -1,0 +1,14 @@
+client.dashboard.label.totalMustUserStories: Total Must User Stories
+client.dashboard.label.totalShouldUserStories: Total Should User Stories
+client.dashboard.label.totalCouldUserStories: Total Could User Stories
+client.dashboard.label.totalWontUserStories: Total Won't User Stories
+client.dashboard.label.averageEstimatedCostOfUserStories: Average Estimated Cost Of User Stories
+client.dashboard.label.deviationOfEstimatedCostOfUserStories: Deviation Of Estimated Cost Of User Stories
+client.dashboard.label.minimumEstimatedCostOfUserStories: Minimum Estimated Cost Of User Stories
+client.dashboard.label.maximumEstimatedCostOfUserStories: Maximum Estimated Cost Of User Stories
+client.dashboard.label.averageCostOfProjects: Average Cost Of Projects
+client.dashboard.label.deviationOfCostOfProjects: Deviation Of Cost Of Projects
+client.dashboard.label.minimumCostOfProjects: Minimum Cost Of Projects
+client.dashboard.label.maximumCostOfProjects: Maximum Cost Of Projects
+manager.manager-dashboard.form.title = Manager Dashboard
+client.dashboard.form.title.general-indicators = Data

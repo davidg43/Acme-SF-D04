@@ -70,6 +70,7 @@ master.menu.auditor.dashboard = Panel de control
 master.menu.manager = Manager
 master.menu.manager.project.list = Mis Proyectos
 master.menu.manager.userStory.list = Mis historias de usuario
+master.menu.manager.dashboard = Estadísticas de Manager
 
 
 
