@@ -94,6 +94,12 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 			super.state(!duplicatedCode, "totalTime", "developer.trainingModule.form.error.negative-total-time");
 		}
 
+		if (!super.getBuffer().getErrors().hasErrors("project")) {
+			Project project = object.getProject();
+
+			super.state(project != null && !project.isDraft(), "project", "developer.trainingModule.form.error.invalid-project");
+		}
+
 	}
 
 	@Override
@@ -112,7 +118,7 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 		Collection<Project> projects = this.repository.findAllProjectsPublished();
 		SelectChoices projectsChoices = SelectChoices.from(projects, "code", object.getProject());
 
-		Dataset dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "totalTime", "draftMode", "project");
+		Dataset dataset = super.unbind(object, "code", "details", "creationMoment", "difficultyLevel", "link", "totalTime", "draftMode", "project");
 
 		dataset.put("difficultyLevelOptions", choices);
 		dataset.put("project", projectsChoices.getSelected().getKey());

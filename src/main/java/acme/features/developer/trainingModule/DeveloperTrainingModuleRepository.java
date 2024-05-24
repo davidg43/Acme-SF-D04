@@ -33,6 +33,9 @@ public interface DeveloperTrainingModuleRepository extends AbstractRepository {
 	@Query("SELECT p FROM Project p WHERE p.id = :id")
 	Project findOneProjectById(int id);
 
+	@Query("SELECT p FROM Project p WHERE p.id = :id and p.isDraft = true")
+	Project findOneProjectByIdPublished(int id);
+
 	@Query("SELECT p FROM Project p")
 	Collection<Project> findAllProjects();
 

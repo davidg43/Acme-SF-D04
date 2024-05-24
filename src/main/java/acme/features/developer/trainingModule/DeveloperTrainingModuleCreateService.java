@@ -76,6 +76,12 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 			super.state(!duplicatedCode, "totalTime", "developer.trainingModule.form.error.negative-total-time");
 		}
 
+		if (!super.getBuffer().getErrors().hasErrors("project")) {
+			Project project = object.getProject();
+
+			super.state(!project.isDraft(), "project", "developer.trainingModule.form.error.invalid-project");
+		}
+
 	}
 
 	@Override
