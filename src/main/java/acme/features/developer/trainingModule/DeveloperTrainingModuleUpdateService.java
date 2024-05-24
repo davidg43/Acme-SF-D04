@@ -63,8 +63,10 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 		Date currentMoment = MomentHelper.getCurrentMoment();
 		Date updateMoment = new Date(currentMoment.getTime() - 1);
 
-		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "totalTime", "project");
+		super.bind(object, "code", "details", "difficultyLevel", "link", "totalTime", "project");
 
+		TrainingModule original = this.repository.findOneTrainingModuleById(object.getId());
+		object.setCreationMoment(original.getCreationMoment());
 		object.setUpdateMoment(updateMoment);
 		object.setProject(project);
 	}
@@ -73,10 +75,9 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 	public void validate(final TrainingModule object) {
 		assert object != null;
 
-		final String CREATION_MOMENT = "creationMoment";
 		final String UPDATE_MOMENT = "updateMoment";
 
-		if (!super.getBuffer().getErrors().hasErrors(CREATION_MOMENT) && !super.getBuffer().getErrors().hasErrors(UPDATE_MOMENT)) {
+		if (!super.getBuffer().getErrors().hasErrors(UPDATE_MOMENT)) {
 			final boolean startBeforeEnd = MomentHelper.isAfter(object.getUpdateMoment(), object.getCreationMoment());
 			super.state(startBeforeEnd, UPDATE_MOMENT, "developer.trainingModule.form.error.end-before-start");
 		}
@@ -89,9 +90,9 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("totalTime")) {
-			final boolean duplicatedCode = object.getTotalTime() < 0;
+			final boolean negativeTotalTime = object.getTotalTime() < 0;
 
-			super.state(!duplicatedCode, "totalTime", "developer.trainingModule.form.error.negative-total-time");
+			super.state(!negativeTotalTime, "totalTime", "developer.trainingModule.form.error.negative-total-time");
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("project")) {
@@ -99,12 +100,14 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 
 			super.state(project != null && !project.isDraft(), "project", "developer.trainingModule.form.error.invalid-project");
 		}
-
 	}
 
 	@Override
 	public void perform(final TrainingModule object) {
 		assert object != null;
+
+		Date currentMoment = MomentHelper.getCurrentMoment();
+		object.setUpdateMoment(currentMoment);
 
 		this.repository.save(object);
 	}
@@ -118,7 +121,9 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 		Collection<Project> projects = this.repository.findAllProjectsPublished();
 		SelectChoices projectsChoices = SelectChoices.from(projects, "code", object.getProject());
 
-		Dataset dataset = super.unbind(object, "code", "details", "creationMoment", "difficultyLevel", "link", "totalTime", "draftMode", "project");
+		Dataset dataset = super.unbind(object, "code", "details", "difficultyLevel", "link", "totalTime", "draftMode", "project");
+
+		dataset.put("creationMoment", object.getCreationMoment());
 
 		dataset.put("difficultyLevelOptions", choices);
 		dataset.put("project", projectsChoices.getSelected().getKey());

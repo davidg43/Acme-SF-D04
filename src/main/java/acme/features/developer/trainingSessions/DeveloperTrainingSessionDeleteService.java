@@ -33,7 +33,7 @@ public class DeveloperTrainingSessionDeleteService extends AbstractService<Devel
 		trainingSession = this.repository.findOneTrainingSessionById(masterId);
 		trainingModule = trainingSession == null ? null : trainingSession.getTrainingModule();
 		developer = trainingModule == null ? null : trainingModule.getDeveloper();
-		status = trainingSession != null && //
+		status = trainingSession != null && trainingSession.getIsDraftMode() &&//
 			trainingModule != null && //
 			trainingModule.getDraftMode() && //
 			super.getRequest().getPrincipal().hasRole(developer) && //
