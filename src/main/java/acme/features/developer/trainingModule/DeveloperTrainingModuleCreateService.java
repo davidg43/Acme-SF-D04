@@ -70,12 +70,6 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 			super.state(!duplicatedCode, "code", "developer.trainingModule.form.error.duplicated-code");
 		}
 
-		if (!super.getBuffer().getErrors().hasErrors("totalTime")) {
-			final boolean duplicatedCode = object.getTotalTime() < 0;
-
-			super.state(!duplicatedCode, "totalTime", "developer.trainingModule.form.error.negative-total-time");
-		}
-
 		if (!super.getBuffer().getErrors().hasErrors("project")) {
 			Project project = object.getProject();
 
