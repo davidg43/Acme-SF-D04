@@ -112,7 +112,7 @@ public class AuditorCodeAuditPublishService extends AbstractService<Auditor, Cod
 
 		if (!super.getBuffer().getErrors().hasErrors("project")) {
 			Project project = object.getProject();
-			super.state(project != null && !project.isDraft(), "project", "auditor.code-audit.form.error.invalid-project");
+			super.state(!project.isDraft(), "project", "auditor.code-audit.form.error.invalid-project");
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("*")) {

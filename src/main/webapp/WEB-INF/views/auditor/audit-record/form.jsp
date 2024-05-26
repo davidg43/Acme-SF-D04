@@ -23,7 +23,7 @@
 	<acme:input-url code="auditor.audit-record.form.label.link" path="link" />
 
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true && isDraftMode == true}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true && isDraftMode == true}">
 			<acme:submit code="auditor.audit-record.form.button.update" action="/auditor/audit-record/update"/>
 			<acme:submit code="auditor.audit-record.form.button.delete" action="/auditor/audit-record/delete"/>
 			<acme:submit code="auditor.audit-record.form.button.publish" action="/auditor/audit-record/publish"/>
