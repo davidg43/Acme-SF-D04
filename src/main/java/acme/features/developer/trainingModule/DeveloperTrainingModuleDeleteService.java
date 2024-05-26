@@ -6,9 +6,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
-import acme.client.views.SelectChoices;
 import acme.entities.project.Project;
 import acme.entities.trainingModule.TrainingModule;
 import acme.entities.trainingModule.TrainingSession;
@@ -71,6 +69,7 @@ public class DeveloperTrainingModuleDeleteService extends AbstractService<Develo
 	@Override
 	public void validate(final TrainingModule object) {
 		assert object != null;
+
 	}
 
 	@Override
@@ -83,24 +82,26 @@ public class DeveloperTrainingModuleDeleteService extends AbstractService<Develo
 		this.repository.delete(object);
 	}
 
-	@Override
-	public void unbind(final TrainingModule object) {
-		assert object != null;
-
-		int developerId;
-		Collection<Project> projects;
-		SelectChoices choices;
-		Dataset dataset;
-
-		developerId = super.getRequest().getPrincipal().getActiveRoleId();
-		projects = this.repository.findManyProjectsByDeveloperId(developerId);
-		choices = SelectChoices.from(projects, "code", object.getProject());
-
-		dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "draftMode");
-		dataset.put("project", choices.getSelected().getKey());
-		dataset.put("projects", choices);
-
-		super.getResponse().addData(dataset);
-	}
+	/*
+	 * @Override
+	 * public void unbind(final TrainingModule object) {
+	 * assert object != null;
+	 * 
+	 * int developerId;
+	 * Collection<Project> projects;
+	 * SelectChoices choices;
+	 * Dataset dataset;
+	 * 
+	 * developerId = super.getRequest().getPrincipal().getActiveRoleId();
+	 * projects = this.repository.findManyProjectsByDeveloperId(developerId);
+	 * choices = SelectChoices.from(projects, "code", object.getProject());
+	 * 
+	 * dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "draftMode");
+	 * dataset.put("project", choices.getSelected().getKey());
+	 * dataset.put("projects", choices);
+	 * 
+	 * super.getResponse().addData(dataset);
+	 * }
+	 */
 
 }
