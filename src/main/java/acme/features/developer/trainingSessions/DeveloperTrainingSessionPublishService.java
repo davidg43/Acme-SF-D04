@@ -55,6 +55,7 @@ public class DeveloperTrainingSessionPublishService extends AbstractService<Deve
 		assert object != null;
 
 		super.bind(object, "code", "iniDate", "finalDate", "location", "instructor", "contactEmail", "link");
+
 	}
 
 	@Override
@@ -106,7 +107,7 @@ public class DeveloperTrainingSessionPublishService extends AbstractService<Deve
 	@Override
 	public void unbind(final TrainingSession object) {
 		assert object != null;
-		//
+
 		TrainingModule trainingModule;
 		trainingModule = object.getTrainingModule();
 
@@ -114,6 +115,7 @@ public class DeveloperTrainingSessionPublishService extends AbstractService<Deve
 		dataset.put("masterId", object.getTrainingModule().getId());
 		dataset.put("draftMode", object.getTrainingModule().getDraftMode());
 		dataset.put("trainingModule", trainingModule);
+
 		super.getResponse().addData(dataset);
 	}
 

@@ -98,7 +98,7 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 		if (!super.getBuffer().getErrors().hasErrors("project")) {
 			Project project = object.getProject();
 
-			super.state(project != null && !project.isDraft(), "project", "developer.trainingModule.form.error.invalid-project");
+			super.state(!project.isDraft(), "project", "developer.trainingModule.form.error.invalid-project");
 		}
 	}
 
