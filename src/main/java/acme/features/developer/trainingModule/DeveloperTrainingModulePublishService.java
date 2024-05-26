@@ -58,6 +58,9 @@ public class DeveloperTrainingModulePublishService extends AbstractService<Devel
 		Project project = this.repository.findOneProjectById(projectId);
 
 		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "totalTime", "project");
+		TrainingModule original = this.repository.findOneTrainingModuleById(object.getId());
+		object.setCreationMoment(original.getCreationMoment());
+		object.setUpdateMoment(original.getUpdateMoment());
 		object.setProject(project);
 	}
 
@@ -72,10 +75,18 @@ public class DeveloperTrainingModulePublishService extends AbstractService<Devel
 			super.state(!duplicatedCode, "code", "developer.trainingModule.form.error.duplicated-code");
 		}
 
-		if (!super.getBuffer().getErrors().hasErrors("totalTime")) {
-			final boolean duplicatedCode = object.getTotalTime() < 0;
+		/*
+		 * if (!super.getBuffer().getErrors().hasErrors("totalTime")) {
+		 * final boolean duplicatedCode = object.getTotalTime() < 0;
+		 * 
+		 * super.state(!duplicatedCode, "totalTime", "developer.trainingModule.form.error.negative-total-time");
+		 * }
+		 */
 
-			super.state(!duplicatedCode, "totalTime", "developer.trainingModule.form.error.negative-total-time");
+		if (!super.getBuffer().getErrors().hasErrors("project")) {
+			Project project = object.getProject();
+
+			super.state(!project.isDraft(), "project", "developer.trainingModule.form.error.invalid-project");
 		}
 
 		int masterId = super.getRequest().getData("id", int.class);
@@ -106,6 +117,9 @@ public class DeveloperTrainingModulePublishService extends AbstractService<Devel
 		SelectChoices projectsChoices = SelectChoices.from(projects, "code", object.getProject());
 
 		Dataset dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "totalTime", "draftMode", "project");
+
+		dataset.put("creationMoment", object.getCreationMoment());
+		dataset.put("updateMoment", object.getUpdateMoment());
 
 		dataset.put("difficultyLevelOptions", choices);
 		dataset.put("project", projectsChoices.getSelected().getKey());
