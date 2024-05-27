@@ -48,7 +48,6 @@ public class AnyClaimCreateService extends AbstractService<Any, Claim> {
 
 		object = new Claim();
 
-		object.setDraft(true);
 		super.getBuffer().addData(object);
 	}
 
@@ -80,7 +79,6 @@ public class AnyClaimCreateService extends AbstractService<Any, Claim> {
 		assert object != null;
 
 		object.setDraft(true);
-		object.setConfirm(false);
 		this.repository.save(object);
 	}
 

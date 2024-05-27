@@ -35,7 +35,6 @@ public class ManagerUserStoryCreateService extends AbstractService<Manager, User
 
 		manager = this.projectRepository.findManagerByManagerId(super.getRequest().getPrincipal().getActiveRoleId());
 		UserStory userStory = new UserStory();
-
 		userStory.setDraft(true);
 		userStory.setManager(manager);
 
@@ -71,7 +70,7 @@ public class ManagerUserStoryCreateService extends AbstractService<Manager, User
 
 		dataset = super.unbind(userStory, "title", "description", "estimatedCost", "priority", "acceptanceCriteria", "link", "isDraft");
 
-		dataset.put("priorities", priorities);
+		dataset.put("priorities", priorities.getSelected().getLabel());
 		dataset.put("isDraft", userStory.isDraft());
 		super.getResponse().addData(dataset);
 	}

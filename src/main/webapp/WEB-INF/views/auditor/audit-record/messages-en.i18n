@@ -22,8 +22,6 @@ auditor.audit-record.form.label.period-init = Period Init
 auditor.audit-record.form.label.period-end = Period End
 auditor.audit-record.form.label.mark = Mark
 auditor.audit-record.form.label.link = Link
-auditor.audit-record.list.label.isDraftMode = Draft Mode
-
 
 auditor.audit-record.list.button.create = Create
 auditor.audit-record.form.button.create = Create

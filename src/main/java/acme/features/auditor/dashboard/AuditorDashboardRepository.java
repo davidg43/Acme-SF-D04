@@ -16,42 +16,38 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
-import acme.roles.Auditor;
 
 @Repository
 public interface AuditorDashboardRepository extends AbstractRepository {
 
-	@Query("select a from Auditor a where a.userAccount.id = :id")
-	Auditor findAuditorById(int id);
+	@Query("select count(ca) from CodeAudit ca where ca.type = acme.entities.codeAudit.Type.STATIC")
+	Integer totalStaticCodeAudits();
 
-	@Query("select count(ca) from CodeAudit ca where ca.type = acme.entities.codeAudit.Type.STATIC and ca.auditor.id = :id")
-	Integer totalStaticCodeAudits(int id);
+	@Query("select count(ca) from CodeAudit ca where ca.type = acme.entities.codeAudit.Type.DYNAMIC")
+	Integer totalDynamicCodeAudits();
 
-	@Query("select count(ca) from CodeAudit ca where ca.type = acme.entities.codeAudit.Type.DYNAMIC and ca.auditor.id = :id")
-	Integer totalDynamicCodeAudits(int id);
+	@Query("select avg((select count(ar) from AuditRecord ar where ar.codeAudit = ca)) from CodeAudit ca")
+	Double averageNumberOfAuditRecords();
 
-	@Query("select avg((select count(ar) from AuditRecord ar where ar.codeAudit = ca)) from CodeAudit ca where ca.auditor.id = :id")
-	Double averageNumberOfAuditRecords(int id);
+	@Query("select stddev((select count(ar) from AuditRecord ar where ar.codeAudit = ca)) from CodeAudit ca")
+	Double deviationNumberOfAuditRecords();
 
-	@Query("select stddev((select count(ar) from AuditRecord ar where ar.codeAudit = ca)) from CodeAudit ca where ca.auditor.id = :id")
-	Double deviationNumberOfAuditRecords(int id);
+	@Query("select min((select count(ar) from AuditRecord ar where ar.codeAudit = ca)) from CodeAudit ca")
+	Integer minimumNumberOfAuditRecords();
 
-	@Query("select min((select count(ar) from AuditRecord ar where ar.codeAudit = ca)) from CodeAudit ca where ca.auditor.id = :id")
-	Integer minimumNumberOfAuditRecords(int id);
+	@Query("select max((select count(ar) from AuditRecord ar where ar.codeAudit = ca)) from CodeAudit ca")
+	Integer maximumNumberOfAuditRecords();
 
-	@Query("select max((select count(ar) from AuditRecord ar where ar.codeAudit = ca)) from CodeAudit ca where ca.auditor.id = :id")
-	Integer maximumNumberOfAuditRecords(int id);
+	@Query("select avg(ar.period) from AuditRecord ar")
+	Double averagePeriodInAuditRecords();
 
-	@Query("select avg(ar.period) from AuditRecord ar where ar.codeAudit.auditor.id = :id")
-	Double averagePeriodInAuditRecords(int id);
+	@Query("select stddev(ar.period) from AuditRecord ar")
+	Double deviationPeriodInAuditRecords();
 
-	@Query("select stddev(ar.period) from AuditRecord ar where ar.codeAudit.auditor.id = :id")
-	Double deviationPeriodInAuditRecords(int id);
+	@Query("select min(ar.period) from AuditRecord ar")
+	Double minimumPeriodInAuditRecords();
 
-	@Query("select min(ar.period) from AuditRecord ar where ar.codeAudit.auditor.id = :id")
-	Double minimumPeriodInAuditRecords(int id);
-
-	@Query("select max(ar.period) from AuditRecord ar where ar.codeAudit.auditor.id = :id")
-	Double maximumPeriodInAuditRecords(int id);
+	@Query("select max(ar.period) from AuditRecord ar")
+	Double maximumPeriodInAuditRecords();
 
 }

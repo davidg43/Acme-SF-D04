@@ -50,19 +50,17 @@ public class AuditorDashboardShowService extends AbstractService<Auditor, Audito
 		Double deviationPeriodInAuditRecords;
 		Double minimumPeriodInAuditRecords;
 		Double maximumPeriodInAuditRecords;
-		int auditorId;
 
-		auditorId = super.getRequest().getPrincipal().getActiveRoleId();
-		totalStaticCodeAudits = this.repository.totalStaticCodeAudits(auditorId);
-		totalDynamicCodeAudits = this.repository.totalDynamicCodeAudits(auditorId);
-		averageNumberOfAuditRecords = this.repository.averageNumberOfAuditRecords(auditorId);
-		deviationNumberOfAuditRecords = this.repository.deviationNumberOfAuditRecords(auditorId);
-		minimumNumberOfAuditRecords = this.repository.minimumNumberOfAuditRecords(auditorId);
-		maximumNumberOfAuditRecords = this.repository.maximumNumberOfAuditRecords(auditorId);
-		averagePeriodInAuditRecords = this.repository.averagePeriodInAuditRecords(auditorId);
-		deviationPeriodInAuditRecords = this.repository.deviationPeriodInAuditRecords(auditorId);
-		minimumPeriodInAuditRecords = this.repository.minimumPeriodInAuditRecords(auditorId);
-		maximumPeriodInAuditRecords = this.repository.maximumPeriodInAuditRecords(auditorId);
+		totalStaticCodeAudits = this.repository.totalStaticCodeAudits();
+		totalDynamicCodeAudits = this.repository.totalDynamicCodeAudits();
+		averageNumberOfAuditRecords = this.repository.averageNumberOfAuditRecords();
+		deviationNumberOfAuditRecords = this.repository.deviationNumberOfAuditRecords();
+		minimumNumberOfAuditRecords = this.repository.minimumNumberOfAuditRecords();
+		maximumNumberOfAuditRecords = this.repository.maximumNumberOfAuditRecords();
+		averagePeriodInAuditRecords = this.repository.averagePeriodInAuditRecords();
+		deviationPeriodInAuditRecords = this.repository.deviationPeriodInAuditRecords();
+		minimumPeriodInAuditRecords = this.repository.minimumPeriodInAuditRecords();
+		maximumPeriodInAuditRecords = this.repository.maximumPeriodInAuditRecords();
 
 		dashboard = new AuditorDashboard();
 		dashboard.setTotalStaticCodeAudits(totalStaticCodeAudits);
@@ -81,8 +79,6 @@ public class AuditorDashboardShowService extends AbstractService<Auditor, Audito
 
 	@Override
 	public void unbind(final AuditorDashboard object) {
-		assert object != null;
-
 		Dataset dataset;
 
 		dataset = super.unbind(object, "totalStaticCodeAudits", "totalDynamicCodeAudits", "averageNumberOfAuditRecords", "deviationNumberOfAuditRecords", "maximumNumberOfAuditRecords", "minimumNumberOfAuditRecords", "averagePeriodInAuditRecords",

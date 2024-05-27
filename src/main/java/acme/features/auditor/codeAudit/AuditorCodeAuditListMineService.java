@@ -36,7 +36,7 @@ public class AuditorCodeAuditListMineService extends AbstractService<Auditor, Co
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Auditor.class));
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class AuditorCodeAuditListMineService extends AbstractService<Auditor, Co
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "project.title", "auditor", "draftMode");
+		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "project.title", "auditor");
 
 		super.getResponse().addData(dataset);
 	}

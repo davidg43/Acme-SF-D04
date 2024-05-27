@@ -11,13 +11,13 @@
 developer.training-module.list.label.code = Código
 developer.training-module.list.label.details = Detalles
 developer.training-module.list.label.project.title = Título del proyecto
+developer.training-module.list.label.draftMode = Publicado
 developer.training-module.list.title = Modulos de entrenamiento
 developer.training-module.form.title = Información sobre el modulo de entrenamiento
 
 developer.training-module.form.button.add-training-sessions = Añadir sesiones de entrenamiento
 
 developer.training-module.list.button.create = Crear
-developer.training-module.list.label.draftMode = Editable
 developer.training-module.form.label.code = Código:
 developer.training-module.form.label.project = Proyecto: 
 developer.training-module.form.label.details = Detalles:
@@ -38,3 +38,4 @@ developer.training-module.form.error.sessions = Un módulo de entrenamiento tien
 developer.trainingModule.form.error.negative-total-time = Tiempo total no puede ser negativo
 developer.trainingModule.form.error.trainingSession-empty = Este módulo no tiene sesiones de entrenamiento publicadas
 developer.trainingModule.form.error.trainingSession-draft = Este módulo tiene una/varias sesiones de entrenamiento sin publicar
+developer.trainingModule.form.error.invalid-project = Este proyecto esta publicado

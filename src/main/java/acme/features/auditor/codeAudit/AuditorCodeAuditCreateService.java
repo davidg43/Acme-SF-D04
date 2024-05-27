@@ -41,7 +41,7 @@ public class AuditorCodeAuditCreateService extends AbstractService<Auditor, Code
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Auditor.class));
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
@@ -106,12 +106,12 @@ public class AuditorCodeAuditCreateService extends AbstractService<Auditor, Code
 		SelectChoices choicesType;
 		SelectChoices choicesMark;
 
-		projects = this.repository.findAllPublishedProjects();
+		projects = this.repository.findAllProjects();
 		choices = SelectChoices.from(projects, "title", object.getProject());
 		choicesType = SelectChoices.from(Type.class, object.getType());
 		choicesMark = SelectChoices.from(Mark.class, object.getMark());
 
-		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "draftMode", "project");
+		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "draftMode");
 		dataset.put("project", choices.getSelected().getKey());
 		dataset.put("projects", choices);
 		dataset.put("types", choicesType);

@@ -14,8 +14,6 @@ auditor.code-audit.list.label.code = Code
 auditor.code-audit.list.label.correctiveActions = Corrective Actions
 auditor.code-audit.list.label.type = Type
 auditor.code-audit.list.label.project = Project
-auditor.code-audit.list.label.draftMode = Draft Mode
-
 
 
 auditor.code-audit.form.title = Code Audit Details
@@ -39,6 +37,3 @@ auditor.code-audit.form.button.publish = Publish
 
 auditor.code-audit.form.error.duplicated = You cant use an existing code
 auditor.code-audit.form.error.not-enought-mark = Mark must be, at least, C
-auditor.code-audit.form.error.published-audit-record = You cant delete a Code Audit which contains a published Audit Record
-auditor.code-audit.form.error.empty-audit-record = You cant publish and empty Code Audit
-auditor.code-audit.form.error.no-published-audit-record = You cannot publish a Code Audit if all the Audit Records have not been published
