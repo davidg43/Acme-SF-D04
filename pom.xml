@@ -24,7 +24,7 @@
 	<description>This is the C1.018 project</description>
 	
 	<artifactId>Acme-SF-D04</artifactId>
-	<version>4.0</version>
+	<version>1.0</version>
 	<packaging>war</packaging>
 	
 	<parent>
