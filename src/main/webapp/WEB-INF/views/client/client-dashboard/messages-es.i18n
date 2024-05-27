@@ -1,0 +1,12 @@
+client.dashboard.form.title.general-indicators = Datos
+client.dashboard.label.total-numberprogressLogs-rate-less-25 = Numero de Progresos con Menos del 25
+client.dashboard.label.total-number-pl-rate-2550 = Numero de Progresos entre  25 y 50
+client.dashboard.label.total-number-pl-rate-5075 = Numero de Progresos entre  50 y 75
+client.dashboard.label.total-number-pl-rate-75 = Numero de Progresos de mas de 75
+client.dashboard.label.average-budget = Media de Presupuesto
+client.dashboard.label.deviation-budget = Desviacion del Presupuesto
+client.dashboard.label.minimum-budget = Minumo Presupuesto
+client.dashboard.label.maximum-budget = Maximo presupuesto
+client.client-dashboard.form.title= DashBoard del Cliente
+
+

@@ -1,5 +1,5 @@
-key,key:project,code,moment,provider-name,customer-name,goals,budget
-contract-01,project-01,AGT-443,2021/12/03 23:00,"Juan Perez","Sergio Ramos","Ganar 3 millones","EUR 15.00"
-contract-02,project-02,JPK-957,2021/10/14 08:00,"Leon San","Ilia Topuria","Ganar 4 millones","USD 1400.00"
-contract-03,project-03,LNM-161,2022/03/16 19:00,"Bondercito","Pedro Sanchez","Ganar 5 millones","USD 600.00"
-contract-04,project-04,PUT-822,2022/01/14 10:00,"Padre Bonder","Uwu","Ganar 6 millones","EUR 1000.00"
+key,key:project,code,moment,provider-name,customer-name,goals,budget,key:client,isDraft
+contract-01,project-01,AGT-443,2021/12/03 23:00,Juan Perez,Sergio Ramos,Ganar 3 millones,EUR 15.00,client-01,1
+contract-02,project-02,JPK-957,2021/10/14 08:00,Leon San,Ilia Topuria,Ganar 4 millones,USD 1400.00,client-02,1
+contract-03,project-03,LNM-161,2022/03/16 19:00,Bondercito,Pedro Sanchez,Ganar 5 millones,USD 600.00,client-01,1
+contract-04,project-04,PUT-822,2022/01/14 10:00,Padre Bonder,Uwu,Ganar 6 millones,EUR 1000.00,client-02,1
