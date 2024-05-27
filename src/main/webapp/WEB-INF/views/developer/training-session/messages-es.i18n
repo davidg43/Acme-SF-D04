@@ -21,6 +21,7 @@ developer.training-session.form.label.finishDate = Fecha final:
 
 developer.training-session.list.button.create = Crear
 
+developer.training-module.list.label.draftMode = Editable
 
 developer.training-session.form.title = Detalles de la sesión de entrenamiento
 developer.training-session.form.label.instructor = Instructor:
@@ -33,7 +34,6 @@ developer.training-session.form.label.location = Localización:
 developer.training-session.form.label.contactEmail = Email de contacto:
 developer.training-session.form.label.Link = Enlace (Opcional):
 developer.training-session.form.label.trainingModule = Modulo de entrenamiento:
-developer.training-session.list.label.draftMode = Publicada 
 		
 developer.training-session.form.button.update = Actualizar
 developer.training-session.form.button.delete = Borrar
