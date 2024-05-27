@@ -56,11 +56,8 @@ public interface AuditorCodeAuditRepository extends AbstractRepository {
 	@Query("select ar from AuditRecord ar where ar.codeAudit.id = :codeAuditId")
 	Collection<AuditRecord> findManyAuditRecordsByCodeAuditId(int codeAuditId);
 
-	@Query("select ar.mark from AuditRecord ar where ar.codeAudit.id = :codeAuditId and ar.isDraftMode = false")
+	@Query("select ar.mark from AuditRecord ar where ar.codeAudit.id = :codeAuditId")
 	List<Mark> findManyMarksByCodeAuditId(int codeAuditId);
-
-	@Query("select p from Project p where p.isDraft = false")
-	Collection<Project> findAllPublishedProjects();
 
 	default Mark getMode(final List<Mark> marks) {
 		Map<Mark, Integer> hashMap = new HashMap<>();
@@ -75,7 +72,7 @@ public interface AuditorCodeAuditRepository extends AbstractRepository {
 
 		Set<Entry<Mark, Integer>> entrySet = hashMap.entrySet();
 		for (Entry<Mark, Integer> entry : entrySet)
-			if (entry.getValue() >= maxValue) {
+			if (entry.getValue() > maxValue) {
 				modeMark = entry.getKey();
 				maxValue = entry.getValue();
 			}

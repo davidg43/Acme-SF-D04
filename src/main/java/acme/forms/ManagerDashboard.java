@@ -31,8 +31,8 @@ public class ManagerDashboard extends AbstractForm {
 
 	private double				deviationOfCostOfProjects;
 
-	private double				minimumCostOfProjects;
+	private int					minimumCostOfProjects;
 
-	private double				maximumCostOfProjects;
+	private int					maximumCostOfProjects;
 
 }

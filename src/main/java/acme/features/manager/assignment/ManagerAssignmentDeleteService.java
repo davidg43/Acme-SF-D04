@@ -56,11 +56,7 @@ public class ManagerAssignmentDeleteService extends AbstractService<Manager, Ass
 
 	@Override
 	public void validate(final Assignment assignment) {
-		boolean updateable = this.repository.findProjectOfAnAssignmentByAssignmentId(assignment.getId()).isDraft(); // Si true == updateable
-
-		if (!super.getBuffer().getErrors().hasErrors("project"))
-			super.state(updateable, "*", "manager.project.form.updateable");
-
+		assert assignment != null;
 	}
 
 	@Override
@@ -82,7 +78,6 @@ public class ManagerAssignmentDeleteService extends AbstractService<Manager, Ass
 
 		Collection<Project> projects = this.repository.findAllProjectsByManagerId(id);
 		Collection<UserStory> userStories = this.repository.findAllUserStoriesOfAManagerById(id);
-		boolean updateable = this.repository.findProjectOfAnAssignmentByAssignmentId(assignment.getId()).isDraft(); // Si true == updateable
 
 		projectChoices = SelectChoices.from(projects, "title", assignment.getProject());
 		userStoriesChoices = SelectChoices.from(userStories, "title", assignment.getUserStory());
@@ -91,7 +86,6 @@ public class ManagerAssignmentDeleteService extends AbstractService<Manager, Ass
 
 		dataset.put("projects", projectChoices);
 		dataset.put("userStories", userStoriesChoices);
-		dataset.put("updateable", updateable);
 
 		super.getResponse().addData(dataset);
 	}

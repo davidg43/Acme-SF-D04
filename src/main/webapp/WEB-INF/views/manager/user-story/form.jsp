@@ -12,7 +12,8 @@
 		path="acceptanceCriteria" />
 	<acme:input-integer code="user-story.form.label.estimatedCost"
 		path="estimatedCost" />
-	<acme:input-select code="user-story.form.label.priority" path="priority" choices="${priorities}"/>
+	<acme:input-select code="user-story.form.label.priority"
+		path="priority" choices="${priorities}" />
 	<acme:input-url code="user-story.form.label.link" path="link" />
 	<acme:input-checkbox code="user-story.form.label.isDraft"
 		path="isDraft" readonly="true" />
@@ -20,7 +21,7 @@
 	<jstl:choose>
 
 		<jstl:when
-			test="${acme:anyOf(_command, 'show|update|delete|publish') && isDraft == true}">
+			test="${acme:anyOf(_command, 'show|update|delete') && isDraft == true}">
 			<acme:submit code="user-story.form.button.update"
 				action="/manager/user-story/update" />
 			<acme:submit code="user-story.form.button.delete"
@@ -35,6 +36,8 @@
 			<acme:submit code="user-story.form.button.create"
 				action="/manager/user-story/create" />
 		</jstl:when>
+
+
 
 	</jstl:choose>
 </acme:form>

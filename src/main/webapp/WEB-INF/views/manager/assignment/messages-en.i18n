@@ -5,6 +5,3 @@ assignment.form.button.delete = Delete
 manager.assignment.list.label.project = Project
 manager.assignment.list.label.userStory = UserStory
 manager.assignment.list.label.create = Create
-
-manager.project.form.updateable = Is not possible to modify a published project
-manager.project.form.create-denied = Is not possible to create an assignment for a publish project

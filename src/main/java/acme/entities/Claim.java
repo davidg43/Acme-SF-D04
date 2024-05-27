@@ -57,6 +57,4 @@ public class Claim extends AbstractEntity {
 
 	private boolean				isDraft;
 
-	private boolean				confirm;
-
 }

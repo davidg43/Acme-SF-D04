@@ -22,10 +22,10 @@
 	<acme:input-textbox code="developer.training-session.form.label.location" path="location"/>
 	<acme:input-textbox code="developer.training-session.form.label.instructor" path="instructor"/>
 	<acme:input-email code="developer.training-session.form.label.contactEmail" path="contactEmail"/>
-	<acme:input-textbox code="developer.training-session.form.label.link" path="link"/>
+	<acme:input-url code="developer.training-session.form.label.link" path="link"/>
 	
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && draftMode == true && isDraftMode == true}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && draftMode == true  && isDraftMode == true}">
 			<acme:submit code="developer.training-session.form.button.update" action="/developer/training-session/update"/>
 			<acme:submit code="developer.training-session.form.button.delete" action="/developer/training-session/delete"/>
 			<acme:submit code="developer.training-session.form.button.publish" action="/developer/training-session/publish"/>	
