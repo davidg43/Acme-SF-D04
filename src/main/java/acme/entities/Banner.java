@@ -39,6 +39,7 @@ public class Banner extends AbstractEntity {
 
 	@URL
 	@NotBlank
+	@Length(max = 255)
 	private String				picture;
 
 	@NotBlank
@@ -47,6 +48,7 @@ public class Banner extends AbstractEntity {
 
 	@NotBlank
 	@URL
+	@Length(max = 255)
 	private String				link;
 
 }
