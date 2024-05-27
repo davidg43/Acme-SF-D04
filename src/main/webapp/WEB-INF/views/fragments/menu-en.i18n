@@ -51,7 +51,11 @@ master.menu.provider.favourite-link = Favourite link
 # master.menu.client ##########################################################
 
 master.menu.client = Client
-master.menu.client.list = My contracts
+master.menu.client.contract.list = My contracts
+master.menu.client.progresslog.list = My Progess Logs
+master.menu.client.dashboard = DashBoard
+
+
 
 
 # master.menu.consumer ##########################################################

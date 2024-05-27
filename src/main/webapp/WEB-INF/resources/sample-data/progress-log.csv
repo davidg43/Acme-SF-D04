@@ -1,5 +1,5 @@
-key,key:contract,record-id,completeness,comment,registration-moment,reponsible-person
-progress-log-01,contract-01,PG-AB-1234,80,"This is a progress update.",2021/08/03 03:00,"John Doe"
-progress-log-02,contract-02,PG-C-5678,60,"Another progress log entry.",2021/10/10 05:00,"Jane Smith"
-progress-log-03,contract-03,PG-XY-9012,95,"Almost completed the task.",2021/06/14 08:00,"Michael Johnson"
-progress-log-04,contract-04,PG-Z-3456,100,"Task completed successfully.",2021/02/20 23:00,"Amy Williams"
+key,key:contract,record-id,completeness,comment,registration-moment,reponsible-person,isDraft
+progress-log-01,contract-01,PG-AB-1234,80,"This is a progress update.",2021/08/03 03:00,"John Doe",1
+progress-log-02,contract-02,PG-C-5678,60,"Another progress log entry.",2021/10/10 05:00,"Jane Smith",1
+progress-log-03,contract-03,PG-XY-9012,95,"Almost completed the task.",2021/06/14 08:00,"Michael Johnson",1
+progress-log-04,contract-04,PG-Z-3456,100,"Task completed successfully.",2021/02/20 23:00,"Amy Williams",1
