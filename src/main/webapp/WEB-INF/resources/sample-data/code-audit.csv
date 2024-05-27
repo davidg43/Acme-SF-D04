@@ -7,3 +7,4 @@ code-audit-05,project-02,auditor-01,ABC-480,2020/11/03 21:00,DYNAMIC,Media F,F,h
 code-audit-06,project-02,auditor-01,DEF-369,2010/01/03 01:30,STATIC,Media F_MINUS,F_MINUS,https://example.com/code-audit-05,true
 code-audit-07,project-02,auditor-01,HIJ-902,2014/04/06 23:15,STATIC,Ejemplo Vacio,,https://example.com/code-audit-07,true
 code-audit-08,project-02,auditor-01,ADD-551,2015/12/03 23:00,STATIC,Ejemplo Con Varios Audit Record,,https://example.com/code-audit-08,true
+code-audit-09,project-02,auditor-02,BDF-121,2016/11/01 11:00,DYNAMIC,Ejemplo Con Varios Publicados,A,https://example.com/code-audit-09,true
