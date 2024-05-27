@@ -73,12 +73,12 @@ public class AuditorCodeAuditShowService extends AbstractService<Auditor, CodeAu
 		SelectChoices choicesType;
 		SelectChoices choicesMark;
 
-		projects = this.repository.findAllProjects();
+		projects = this.repository.findAllPublishedProjects();
 		choices = SelectChoices.from(projects, "title", object.getProject());
 		choicesType = SelectChoices.from(Type.class, object.getType());
 		choicesMark = SelectChoices.from(Mark.class, object.getMark());
 
-		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "draftMode");
+		dataset = super.unbind(object, "code", "execution", "type", "correctiveActions", "mark", "link", "draftMode", "project");
 		dataset.put("project", choices.getSelected().getKey());
 		dataset.put("projects", choices);
 		dataset.put("types", choicesType);

@@ -17,12 +17,11 @@
 
 <acme:list>
 	<acme:list-column code="developer.training-session.list.label.code" path="code" width="25%"/>
-	<acme:list-column code="developer.training-session.list.label.draftMode" path="draftMode" width="25%"/>
+	<acme:list-column code="developer.training-module.list.label.draftMode" path="draftMode" width="25%"/>
 	<acme:list-column code="developer.training-session.list.label.trainingModule" path="trainingModule" width="25%"/>
 </acme:list>
 
-<jstl:if test="${showCreate == true}">
-	<acme:button code="developer.training-session.list.button.create" action="/developer/training-session/create?masterId=${masterId}"/>
-</jstl:if>	
+
+<acme:button code="developer.training-session.list.button.create" action="/developer/training-session/create?masterId=${masterId}"/>
 	
 

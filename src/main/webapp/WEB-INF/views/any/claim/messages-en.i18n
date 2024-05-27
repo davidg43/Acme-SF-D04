@@ -24,6 +24,7 @@ any.claim.form.label.department = Department
 any.claim.form.label.emailAddress = Email Address
 any.claim.form.label.checkButton = Confirmation
 any.claim.form.label.link = Link
+any.claim.form.label.confirm = Confirmation
 
 any.claim.list.button.create = Create
 any.claim.form.button.create = Create
@@ -32,3 +33,4 @@ any.claim.form.button.publish = Publish
 
 
 any.claim.form.error.duplicated = You cant use an existing code
+any.claim.form.error.no-confirmed = Please, confirm you want to publish your claim
