@@ -15,13 +15,13 @@ developer.training-session.list.label.location = Location
 developer.training-session.list.label.contactEmail = Contact email
 developer.training-session.list.label.link = Link (Optional)
 developer.training-session.list.label.trainingModule = Training module
-developer.training-session.list.label.draftMode = Published
 
 developer.training-session.list.title = Associated training session(s)
 developer.training-session.form.label.finishDate = Final date:
 
 developer.training-session.list.button.create = Create
 
+developer.training-module.list.label.draftMode = draftMode
 
 developer.training-session.form.title = Training session details
 developer.training-session.form.label.instructor = Instructor:
