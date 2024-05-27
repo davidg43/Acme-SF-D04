@@ -9,6 +9,7 @@ target/
 .project
 .settings
 .springBeans
+.gitignore
 
 ### IntelliJ IDEA ###
 .idea
