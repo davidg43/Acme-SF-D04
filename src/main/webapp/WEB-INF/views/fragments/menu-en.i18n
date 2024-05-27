@@ -73,6 +73,7 @@ master.menu.auditor.dashboard = Dashboard
 master.menu.manager = Manager
 master.menu.manager.project.list = My projects
 master.menu.manager.userStory.list = My user stories
+master.menu.manager.dashboard = Manager Dashboard
 
 # master.menu.user-account ####################################################
 

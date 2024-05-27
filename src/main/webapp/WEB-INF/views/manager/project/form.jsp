@@ -12,12 +12,12 @@
 	<acme:input-url code="project.form.label.link" path="link" />
 	<acme:input-checkbox code="project.form.label.isDraft" path="isDraft" readonly="true" />
 	<acme:input-checkbox code="project.form.label.hasFatalErrors" path="hasFatalErrors"  readonly="true"/>
+	<acme:button code="project.form.button.assignment" action="/manager/assignment/list?projectId=${projectId}"/>
 
 	<jstl:choose>
 
 		<jstl:when
-			test="${acme:anyOf(_command, 'show|update|delete') && isDraft == true}">
-			<acme:button code="project.form.button.assignment" action="/manager/assignment/list?projectId=${projectId}"/>
+			test="${acme:anyOf(_command, 'show|update|delete|publish') && isDraft == true}">
 			<acme:submit code="project.form.button.update"
 				action="/manager/project/update" />
 			<acme:submit code="project.form.button.delete"
