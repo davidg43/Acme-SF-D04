@@ -5,3 +5,6 @@ assignment.form.button.delete = Borrar
 manager.assignment.list.label.project = Proyecto
 manager.assignment.list.label.userStory = Historia de Usuario
 manager.assignment.list.label.create = Crear
+
+manager.project.form.updateable = No se puede modificar un proyecto ya publicado
+manager.project.form.create-denied = No se puede crear un assignment para un proyecto publicado
