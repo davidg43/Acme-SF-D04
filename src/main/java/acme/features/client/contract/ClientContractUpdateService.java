@@ -1,8 +1,6 @@
 
 package acme.features.client.contract;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +53,6 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 	@Override
 	public void validate(final Contract contract) {
 		assert contract != null;
-		Collection<Contract> contracts = null;
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
 			Contract existing;
 

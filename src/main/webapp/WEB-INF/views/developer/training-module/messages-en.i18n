@@ -10,16 +10,16 @@
 
 developer.training-module.list.label.code = Code
 developer.training-module.list.label.details = Details
-developer.training-module.list.label.project.title = Proyect title
+developer.training-module.list.label.project.title = Project title
+developer.training-module.list.label.draftMode = Published
 developer.training-module.list.title = Training module
 developer.training-module.form.title = Information about the training module
 
 developer.training-module.form.button.add-training-sessions = Add training sessions
-
 developer.training-module.list.button.create = Create
-developer.training-module.list.label.draftMode = draftMode
+developer.training-module.list.label.draftMode = Published
 developer.training-module.form.label.code = Code:
-developer.training-module.form.label.project = Proyect: 
+developer.training-module.form.label.project = Project: 
 developer.training-module.form.label.details = Details:
 developer.training-module.form.label.creationMoment = Creation moment:
 developer.training-module.form.label.difficultyLevel = Difficulty level:
@@ -38,3 +38,4 @@ developer.training-module.form.error.sessions = Training module needs to have at
 developer.trainingModule.form.error.negative-total-time = Total time can not be negative
 developer.trainingModule.form.error.trainingSession-empty = This training module must have at least one published training session
 developer.trainingModule.form.error.trainingSession-draft = This training module has one or more training sessions that have not been published
+developer.trainingModule.form.error.invalid-project = This project is published
