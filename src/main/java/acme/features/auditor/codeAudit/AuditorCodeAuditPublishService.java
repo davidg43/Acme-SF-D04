@@ -23,6 +23,7 @@ import acme.client.data.models.Dataset;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
+import acme.entities.codeAudit.AuditRecord;
 import acme.entities.codeAudit.CodeAudit;
 import acme.entities.codeAudit.Mark;
 import acme.entities.codeAudit.Type;
@@ -107,6 +108,18 @@ public class AuditorCodeAuditPublishService extends AbstractService<Auditor, Cod
 			valid = this.repository.findOneCodeAuditById(object.getId());
 			mark = valid.getMark();
 			super.state(mark != Mark.F_MINUS && mark != Mark.F, "mark", "auditor.code-audit.form.error.not-enought-mark");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("*")) {
+			Collection<AuditRecord> auditRecords = this.repository.findManyAuditRecordsByCodeAuditId(object.getId());
+
+			super.state(!auditRecords.isEmpty(), "*", "auditor.code-audit.form.error.empty-audit-record");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("*")) {
+			Collection<AuditRecord> auditRecords = this.repository.findManyAuditRecordsByCodeAuditId(object.getId());
+
+			super.state(!auditRecords.stream().anyMatch(ar -> ar.getIsDraftMode()), "*", "auditor.code-audit.form.error.no-published-audit-record");
 		}
 
 	}

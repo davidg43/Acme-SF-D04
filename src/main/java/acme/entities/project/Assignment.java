@@ -4,7 +4,9 @@ package acme.entities.project;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -15,11 +17,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Table(indexes = {
+	@Index(columnList = "project_id"), @Index(columnList = "user_story_id")
+})
 public class Assignment extends AbstractEntity {
 
-	/**
-	 * 
-	 */
 	private static final long	serialVersionUID	= 1L;
 
 	@Valid
