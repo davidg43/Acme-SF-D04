@@ -18,7 +18,7 @@
 	<jstl:choose>
 
 		<jstl:when
-			test="${acme:anyOf(_command, 'show|update|delete') && isDraft == true}">
+			test="${acme:anyOf(_command, 'show|update|delete|publish') && isDraft == true}">
 			<acme:submit code="project.form.button.update" action="/client/contract/update" />
 			<acme:submit code="project.form.button.delete" action="/client/contract/delete" />
 			

@@ -25,10 +25,11 @@ public class ClientProgressLogUpdateService extends AbstractService<Client, Prog
 		boolean status;
 		int progressLogId;
 		Contract contract;
-
+		ProgressLog progressLog;
 		progressLogId = super.getRequest().getData("id", int.class);
 		contract = this.repository.findOneContractByProgressLogId(progressLogId);
-		status = contract != null && contract.isDraft() && super.getRequest().getPrincipal().hasRole(contract.getClient());
+		progressLog = this.repository.findOneProgressLogById(progressLogId);
+		status = progressLog != null && progressLog.isDraft() && contract != null && super.getRequest().getPrincipal().hasRole(progressLog.getContract().getClient());
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -47,7 +48,7 @@ public class ClientProgressLogUpdateService extends AbstractService<Client, Prog
 	public void bind(final ProgressLog object) {
 		assert object != null;
 
-		super.bind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "reponsiblePerson");
+		super.bind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "isDraft", "reponsiblePerson");
 	}
 
 	@Override
@@ -74,15 +75,15 @@ public class ClientProgressLogUpdateService extends AbstractService<Client, Prog
 	public void unbind(final ProgressLog object) {
 		assert object != null;
 		Dataset dataset;
-
+		boolean isDraft;
 		SelectChoices contractChoices;
 		Collection<Contract> contracts = this.repository.findAllContractsByClientId(super.getRequest().getPrincipal().getActiveRoleId());
-
+		isDraft = object.isDraft() == true;
 		contractChoices = SelectChoices.from(contracts, "code", object.getContract());
 
-		dataset = super.unbind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "reponsiblePerson");
+		dataset = super.unbind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "isDraft", "reponsiblePerson");
 		dataset.put("contracts", contractChoices);
-
+		dataset.put("isDraft", isDraft);
 		super.getResponse().addData(dataset);
 	}
 }

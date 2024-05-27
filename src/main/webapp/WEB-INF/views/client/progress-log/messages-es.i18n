@@ -16,3 +16,4 @@ client.progresslog.form.label.responsiblePerson = Responsable
 client.progresslog.form.button.update = Actualizar
 client.progresslog.form.button.delete = Borrar
 client.progresslog.form.label.isDraft = esBorrador
+client.progresslog.form.button.create = Crear

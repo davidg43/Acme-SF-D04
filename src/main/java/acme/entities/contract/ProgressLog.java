@@ -5,7 +5,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -16,6 +18,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 import acme.client.data.AbstractEntity;
 import lombok.Getter;
@@ -24,6 +27,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(indexes = {
+	@Index(columnList = "contract_id"), @Index(columnList = "recordId")
+})
 public class ProgressLog extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -34,6 +40,7 @@ public class ProgressLog extends AbstractEntity {
 	private String				recordId;
 
 	@Positive
+	@Range(min = 0, max = 100)
 	private Double				completeness;
 
 	@NotBlank

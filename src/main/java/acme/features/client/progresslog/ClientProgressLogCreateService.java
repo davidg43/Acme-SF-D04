@@ -35,6 +35,7 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 		contract = this.repository.findOneContractById(super.getRequest().getPrincipal().getActiveRoleId());
 
 		object = new ProgressLog();
+		object.setDraft(true);
 		object.setContract(contract);
 		super.getBuffer().addData(object);
 	}
@@ -43,7 +44,7 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 	public void bind(final ProgressLog object) {
 		assert object != null;
 
-		super.bind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "reponsiblePerson");
+		super.bind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "reponsiblePerson", "isDraft");
 	}
 
 	@Override
@@ -75,7 +76,7 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 
 		contractChoices = SelectChoices.from(contracts, "code", object.getContract());
 
-		dataset = super.unbind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "reponsiblePerson");
+		dataset = super.unbind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "isDraft", "reponsiblePerson");
 		dataset.put("contracts", contractChoices);
 
 		super.getResponse().addData(dataset);

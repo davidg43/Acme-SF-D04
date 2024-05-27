@@ -12,12 +12,12 @@
 	<acme:input-checkbox code="client.progresslog.form.label.isDraft" path="isDraft" readonly="true" />
 	
 	<jstl:choose>
-		<jstl:when test="${acme:anyOf(_command, 'show|update|delete') && isDraft == true}">
+		<jstl:when test="${acme:anyOf(_command, 'show|update|delete|publish') && isDraft == true}">
 			<acme:submit code="client.progresslog.form.button.update" action="/client/progress-log/update"/>
 			<acme:submit code="client.progresslog.form.button.delete" action="/client/progress-log/delete"/>
-			<acme:submit code="contract.form.button.publish" action="/client/progress-log/publish"/>
+			
 			<jstl:if test="${isDraft == true}">
-				<acme:submit code="client.progresslog.form.button.publish" action="/client/progress-log/publish"/>
+				<acme:submit code="contract.form.button.publish" action="/client/progress-log/publish"/>
 			</jstl:if>
 		</jstl:when>
 		

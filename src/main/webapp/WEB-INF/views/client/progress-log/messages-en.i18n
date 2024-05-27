@@ -17,4 +17,5 @@ client.progresslog.form.label.registrationMoment = Registration Date
 client.progresslog.form.label.responsiblePerson = Responsible Person
 client.progresslog.form.button.update = Update
 client.progresslog.form.button.delete = Delete
+client.progresslog.form.button.create = Create
 client.progresslog.form.label.isDraft = isDraft
