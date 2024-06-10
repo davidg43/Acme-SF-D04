@@ -8,11 +8,16 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-developer.dashboard.label.total-training-modules-with-an-update-moment = Total de modulos de entrenamiento con momento de actualización
-developer.dashboard.label.total-training-sessions-with-link = Total de sesiones de entrenamiento con link
-developer.dashboard.label.average-training-module-time = Media de tiempo de modulos de entrenamiento
-developer.dashboard.label.deviation-training-module-time = Deviación de modulos de entrenamiento
-developer.dashboard.label.min-training-module-time = Tiempo mínimo de modulo de entrenamiento
-developer.dashboard.label.max-training-module-time = Tiempo máximo de modulo de entrenamiento
-developer.developer-dashboard.form.title = Panel de datos
-developer.dashboard.form.title.general-indicators = Detalles del panel de datos
+developer.dashboard.label.total-training-modules-with-an-update-moment = Número total de modulos de entrenamiento (publicados) con momento de actualización
+developer.dashboard.label.total-training-sessions-with-link = Número total de sesiones de entrenamiento (publicadas) con link
+
+developer.dashboard.form.title.statistics = Estadísticas
+developer.dashboard.form.label.statistics-average = Media
+developer.dashboard.form.label.statistics-deviation = Deviación
+developer.dashboard.form.label.statistics-maximum = Máximo
+developer.dashboard.form.label.statistics-minimum = Mínimo
+developer.dashboard.form.label.statistics-object-training-module = Tiempo total estimado (Módulos de entrenamiento publicados)
+developer.dashboard.form.label.statistics-title = Título
+
+developer.developer-dashboard.form.title = Mi panel de datos
+developer.dashboard.form.title.general-indicators = Detalles

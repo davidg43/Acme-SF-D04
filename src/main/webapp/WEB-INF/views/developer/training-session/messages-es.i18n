@@ -41,10 +41,14 @@ developer.training-session.form.button.create = Crear
 developer.training-session.form.button.publish = Publicar
 
 developer.training-session.form.error.end-before-start = Fecha final debe ser posterior a la inicial
-developer.training-session.form.error.start-before-creation = Fecha inicial debe ser posterior al momento de creación del módul de entrenamiento
+developer.training-session.form.error.start-before-creation = Fecha inicial debe ser posterior al momento de creación del módulo de entrenamiento (al menos una semana de diferencia)
 developer.training-session.form.error.small-display-period = Periodo entre la fecha inicial y la final debe ser de al menos 7 días
 developer.training-session.form.error.duplicated-code = Este código ya existe
 
-developer.training-session.form.error.end-before-creation =  Fecha final debe ser posterior al momento de creación del módul de entrenamiento
+developer.training-session.form.error.before-min-date = La fecha está por debajo del límite del sistema (01-01-2000 00:00)
+developer.training-session.form.error.after-max-date = La fecha está por encima del límite del sistema (31-12-2200 23:59)
+developer.training-session.form.error.no-room-for-min-period-duration = Está fecha fuerza a la otra a salirse de los límites para cumplir con la mínima duración del periodo
+
+developer.training-session.form.error.end-before-creation =  Fecha final debe ser posterior al momento de creación del módulo de entrenamiento
 
 developer.training-session.form.error.trainingModule-noDraft = Modulo de entrenamiento no es editable

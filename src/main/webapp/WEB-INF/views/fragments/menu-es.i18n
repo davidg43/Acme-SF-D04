@@ -40,6 +40,8 @@ master.menu.administrator.banner = Estandartes
 master.menu.list.training-module = Módulos de entrenamiento
 master.menu.show.developer-dashboard = Panel de datos
 master.menu.developer = Desarrollador
+master.menu.user-account.become-developer = Hazte desarrollador
+master.menu.user-account.developer = Datos de desarrollador
 
 # master.menu.provider ########################################################
 

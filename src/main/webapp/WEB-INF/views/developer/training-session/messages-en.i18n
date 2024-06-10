@@ -41,9 +41,13 @@ developer.training-session.form.button.create = Create
 developer.training-session.form.button.publish = Publish
 
 developer.training-session.form.error.end-before-start = Final date must be after initial date
-developer.training-session.form.error.start-before-creation = Initial date must be after creation moment of the training module
+developer.training-session.form.error.start-before-creation = Initial date must be after the creation moment of the training module (at least one week)
 developer.training-session.form.error.small-display-period = Period between initial date and final date must have at least 7 days in between
 developer.training-session.form.error.duplicated-code = This code already exists
+
+developer.training-session.form.error.before-min-date = The date is before the minimum date allowed by the system (2000-01-01 00:00)
+developer.training-session.form.error.after-max-date = The date is after the maximum date allowed by the system (2200-12-31 23:59)
+developer.training-session.form.error.no-room-for-min-period-duration = This date forces the other to be off limits for minimum period duration
 
 developer.training-session.form.error.end-before-creation = Final date must be after creation moment of the training module
 

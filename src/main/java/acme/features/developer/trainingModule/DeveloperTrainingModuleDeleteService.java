@@ -2,12 +2,16 @@
 package acme.features.developer.trainingModule;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.client.views.SelectChoices;
 import acme.entities.project.Project;
+import acme.entities.trainingModule.DifficultyLevel;
 import acme.entities.trainingModule.TrainingModule;
 import acme.entities.trainingModule.TrainingSession;
 import acme.roles.Developer;
@@ -70,6 +74,11 @@ public class DeveloperTrainingModuleDeleteService extends AbstractService<Develo
 	public void validate(final TrainingModule object) {
 		assert object != null;
 
+		int masterId = super.getRequest().getData("id", int.class);
+		List<TrainingSession> ls = this.repository.findManyTrainingSessionsByTrainingModuleId(masterId).stream().toList();
+		final boolean thereAreDraftedTrainingSessions = ls.stream().allMatch(Session -> Session.getIsDraftMode());
+		super.state(thereAreDraftedTrainingSessions, "*", "developer.trainingModule.form.error.trainingSession-Nodraft");
+
 	}
 
 	@Override
@@ -82,26 +91,39 @@ public class DeveloperTrainingModuleDeleteService extends AbstractService<Develo
 		this.repository.delete(object);
 	}
 
-	/*
-	 * @Override
-	 * public void unbind(final TrainingModule object) {
-	 * assert object != null;
-	 * 
-	 * int developerId;
-	 * Collection<Project> projects;
-	 * SelectChoices choices;
-	 * Dataset dataset;
-	 * 
-	 * developerId = super.getRequest().getPrincipal().getActiveRoleId();
-	 * projects = this.repository.findManyProjectsByDeveloperId(developerId);
-	 * choices = SelectChoices.from(projects, "code", object.getProject());
-	 * 
-	 * dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "draftMode");
-	 * dataset.put("project", choices.getSelected().getKey());
-	 * dataset.put("projects", choices);
-	 * 
-	 * super.getResponse().addData(dataset);
-	 * }
-	 */
+	@Override
+	public void unbind(final TrainingModule object) {
+		assert object != null;
+
+		/*
+		 * int developerId;
+		 * Collection<Project> projects;
+		 * SelectChoices choices;
+		 * Dataset dataset;
+		 * 
+		 * developerId = super.getRequest().getPrincipal().getActiveRoleId();
+		 * projects = this.repository.findManyProjectsByDeveloperId(developerId);
+		 * choices = SelectChoices.from(projects, "code", object.getProject());
+		 * 
+		 * dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "draftMode");
+		 * dataset.put("project", choices.getSelected().getKey());
+		 * dataset.put("projects", choices);
+		 * 
+		 * super.getResponse().addData(dataset);
+		 */
+
+		Collection<Project> projects = this.repository.findAllProjects();
+		SelectChoices projectsChoices = SelectChoices.from(projects, "code", object.getProject());
+
+		SelectChoices choices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
+
+		Dataset dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "totalTime", "project", "draftMode");
+
+		dataset.put("difficultyLevelOptions", choices);
+		dataset.put("project", projectsChoices.getSelected().getKey());
+		dataset.put("projects", projectsChoices);
+
+		super.getResponse().addData(dataset);
+	}
 
 }
