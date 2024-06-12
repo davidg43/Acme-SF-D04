@@ -8,15 +8,15 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-developer.dashboard.label.total-training-modules-with-an-update-moment = Total number of (published) training modules with an update moment
-developer.dashboard.label.total-training-sessions-with-link = Total number of (published) training sessions with link
+developer.dashboard.label.total-training-modules-with-an-update-moment = Total number of training modules with an update moment
+developer.dashboard.label.total-training-sessions-with-link = Total number of training sessions with link
 
 developer.dashboard.form.title.statistics = Statistics
 developer.dashboard.form.label.statistics-average = Average
 developer.dashboard.form.label.statistics-deviation = Deviation
 developer.dashboard.form.label.statistics-maximum = Maximum
 developer.dashboard.form.label.statistics-minimum = Minimum
-developer.dashboard.form.label.statistics-object-training-module = Estimated total time (Published training modules) 
+developer.dashboard.form.label.statistics-object-training-module = Estimated total time 
 developer.dashboard.form.label.statistics-title = Title
 
 developer.developer-dashboard.form.title = My dashboard

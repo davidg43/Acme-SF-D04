@@ -33,9 +33,11 @@ public class Developer extends AbstractRole {
 
 	@Email
 	@NotBlank
+	@Length(max = 255)
 	private String				email;
 
 	@URL
+	@Length(max = 255)
 	private String				link;
 
 }

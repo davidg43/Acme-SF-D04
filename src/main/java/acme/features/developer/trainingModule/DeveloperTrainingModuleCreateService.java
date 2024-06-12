@@ -55,6 +55,7 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 		super.bind(object, "code", "details", "difficultyLevel", "link", "totalTime", "project");
 
 		Date currentMoment = MomentHelper.getCurrentMoment();
+
 		Date creationMoment = new Date(currentMoment.getTime() - 2);
 
 		object.setCreationMoment(creationMoment);

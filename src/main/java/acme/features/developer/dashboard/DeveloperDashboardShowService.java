@@ -34,49 +34,6 @@ public class DeveloperDashboardShowService extends AbstractService<Developer, De
 		super.getResponse().setAuthorised(status);
 	}
 
-	/*
-	 * @Override
-	 * public void load() {
-	 * DeveloperDashboard object;
-	 * final Integer totalNumberOfTrainingModulesWithAnUpdateMoment;
-	 * final Integer totalNumberOfTrainingSessionsWithALink;
-	 * final Double averageTimeOfTrainingModules;
-	 * final Double deviationTimeOfTrainingModules;
-	 * final int minimumTimeOfTrainingModules;
-	 * final int maximumTimeOfTrainingModules;
-	 * int developerId;
-	 * 
-	 * developerId = super.getRequest().getPrincipal().getActiveRoleId();
-	 * totalNumberOfTrainingModulesWithAnUpdateMoment = this.repository.totalTrainingModulesWithUpdateMoment(developerId);
-	 * totalNumberOfTrainingSessionsWithALink = this.repository.totalTrainingSessionsWithLink(developerId);
-	 * averageTimeOfTrainingModules = this.repository.findAverageTrainingModuleTime(developerId);
-	 * deviationTimeOfTrainingModules = this.repository.findDeviationTrainingModuleTime(developerId);
-	 * minimumTimeOfTrainingModules = this.repository.findMinimumTrainingModuleTime(developerId);
-	 * maximumTimeOfTrainingModules = this.repository.findMaximumTrainingModuleTime(developerId);
-	 * 
-	 * object = new DeveloperDashboard();
-	 * object.setTotalTrainingModulesWithUpdateMoment(totalNumberOfTrainingModulesWithAnUpdateMoment);
-	 * object.setTotalTrainingSessionsWithLink(totalNumberOfTrainingSessionsWithALink);
-	 * object.setAverageTrainingModuleTime(averageTimeOfTrainingModules);
-	 * object.setDeviationTrainingModuleTime(deviationTimeOfTrainingModules);
-	 * object.setMinimumTrainingModuleTime(minimumTimeOfTrainingModules);
-	 * object.setMaximumTrainingModuleTime(maximumTimeOfTrainingModules);
-	 * super.getBuffer().addData(object);
-	 * }
-	 * 
-	 * @Override
-	 * public void unbind(final DeveloperDashboard object) {
-	 * assert object != null;
-	 * 
-	 * Dataset dataset;
-	 * 
-	 * dataset = super.unbind(object, "totalTrainingModulesWithUpdateMoment", "totalTrainingSessionsWithLink", "averageTrainingModuleTime", //
-	 * "deviationTrainingModuleTime", "minimumTrainingModuleTime", "maximumTrainingModuleTime");
-	 * 
-	 * super.getResponse().addData(dataset);
-	 * }
-	 */
-
 	@Override
 	public void load() {
 		final Principal principal = super.getRequest().getPrincipal();
