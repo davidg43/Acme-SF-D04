@@ -11,7 +11,7 @@
 developer.dashboard.label.total-training-modules-with-an-update-moment = Total number of training modules with an update moment
 developer.dashboard.label.total-training-sessions-with-link = Total number of training sessions with link
 
-developer.dashboard.form.title.statistics = Statistics
+developer.dashboard.form.title.statistics = Training modules statistics
 developer.dashboard.form.label.statistics-average = Average
 developer.dashboard.form.label.statistics-deviation = Deviation
 developer.dashboard.form.label.statistics-maximum = Maximum

@@ -95,23 +95,6 @@ public class DeveloperTrainingModuleDeleteService extends AbstractService<Develo
 	public void unbind(final TrainingModule object) {
 		assert object != null;
 
-		/*
-		 * int developerId;
-		 * Collection<Project> projects;
-		 * SelectChoices choices;
-		 * Dataset dataset;
-		 * 
-		 * developerId = super.getRequest().getPrincipal().getActiveRoleId();
-		 * projects = this.repository.findManyProjectsByDeveloperId(developerId);
-		 * choices = SelectChoices.from(projects, "code", object.getProject());
-		 * 
-		 * dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "draftMode");
-		 * dataset.put("project", choices.getSelected().getKey());
-		 * dataset.put("projects", choices);
-		 * 
-		 * super.getResponse().addData(dataset);
-		 */
-
 		Collection<Project> projects = this.repository.findAllProjects();
 		SelectChoices projectsChoices = SelectChoices.from(projects, "code", object.getProject());
 
