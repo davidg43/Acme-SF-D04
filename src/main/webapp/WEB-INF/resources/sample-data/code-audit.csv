@@ -8,3 +8,12 @@ code-audit-06,project-02,auditor-01,DEF-369,2010/01/03 01:30,STATIC,Media F_MINU
 code-audit-07,project-02,auditor-01,HIJ-902,2014/04/06 23:15,STATIC,Ejemplo Vacio,,https://example.com/code-audit-07,true
 code-audit-08,project-02,auditor-01,ADD-551,2015/12/03 23:00,STATIC,Ejemplo Con Varios Audit Record,,https://example.com/code-audit-08,true
 code-audit-09,project-02,auditor-02,BDF-121,2016/11/01 11:00,DYNAMIC,Ejemplo Con Varios Publicados,A,https://example.com/code-audit-09,true
+code-audit-10,project-02,auditor-01,A-111,2015/12/03 23:00,DYNAMIC,Ejemplo 10,,https://example.com/code-audit-10,true
+code-audit-11,project-02,auditor-01,BB-222,2015/12/03 23:00,STATIC,Ejemplo 11,,https://example.com/code-audit-11,true
+code-audit-12,project-02,auditor-01,MAX-100,2015/12/03 23:00,STATIC,MAXIMOCARACTERESMAXIMOCARACTERESMAXIMOCARACTERESMAXIMOCARACTERESMAXIMOCARACTERESMAXIMOCARACTERESMAXI,,https://example.com/code-audit-01,true
+code-audit-13,project-02,auditor-01,MIN-001,2015/12/03 23:00,DYNAMIC,m,,,true
+code-audit-14,project-02,auditor-01,JUL-729,2022/07/29 23:59,STATIC,Ejemplo fecha limite,,,true
+code-audit-15,project-02,auditor-01,ASI-001,2015/12/03 23:00,DYNAMIC,국민경제의 발전을,,,true
+code-audit-16,project-02,auditor-01,ARA-002,2015/12/03 23:00,STATIC,العظمى واعتلاء,,,true
+code-audit-17,project-02,auditor-01,SCR-001,2016/11/01 11:00,DYNAMIC,<h1>!</h1>,,https://example.com/code-audit-17,true
+code-audit-18,project-02,auditor-01,SCR-002,2016/11/01 11:00,DYNAMIC,'' or 'A'='A,,https://example.com/code-audit-18,true
