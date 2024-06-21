@@ -21,16 +21,16 @@ public interface ManagerDashboardRepository extends AbstractRepository {
 	@Query("select min(us.estimatedCost) from UserStory us WHERE us.manager.id =:id")
 	Integer minEstimatedCost(Integer id);
 
-	@Query("select count(us) from UserStory us where us.priority = 'MUST' AND us.manager.id =:id")
+	@Query("select count(us) from UserStory us where us.priority = '3' AND us.manager.id =:id")
 	Integer countMust(Integer id);
 
-	@Query("select count(us) from UserStory us where us.priority = 'SHOULD' AND us.manager.id =:id")
+	@Query("select count(us) from UserStory us where us.priority = '2' AND us.manager.id =:id")
 	Integer countShould(Integer id);
 
-	@Query("select count(us) from UserStory us where us.priority = 'COULD' AND us.manager.id =:id")
+	@Query("select count(us) from UserStory us where us.priority = '1' AND us.manager.id =:id")
 	Integer countCould(Integer id);
 
-	@Query("select count(us) from UserStory us where us.priority = 'WONT' AND us.manager.id =:id")
+	@Query("select count(us) from UserStory us where us.priority = '0' AND us.manager.id =:id")
 	Integer countWont(Integer id);
 
 	@Query("select avg(p.cost.amount) from Project p WHERE p.manager.id =:id")
