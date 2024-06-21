@@ -44,7 +44,7 @@ public interface ManagerProjectRepository extends AbstractRepository {
 	@Query("Select Distinct a.userStory From Assignment a WHERE a.project.id =:id")
 	Collection<UserStory> findAllUserStoriesOfAProjectById(int id);
 
-	@Query("Select Distinct a.userStory From Assignment a WHERE a.userStory.manager.id =:id")
+	@Query("Select Distinct us From UserStory us WHERE us.manager.id =:id")
 	Collection<UserStory> findAllUserStoriesOfAManagerById(int id);
 
 	@Query("Select Distinct a From Assignment a WHERE a.project.id =:id")
@@ -57,7 +57,7 @@ public interface ManagerProjectRepository extends AbstractRepository {
 	Assignment findAssignmentById(int id);
 
 	@Query("select a.project.manager From Assignment a WHERE a.id =:id")
-	Manager findProjectByAssignmentId(int id);
+	Manager findManagerProjectByAssignmentId(int id);
 
 	@Query("select a.project From Assignment a WHERE a.id =:id")
 	Project findProjectOfAnAssignmentByAssignmentId(int id);

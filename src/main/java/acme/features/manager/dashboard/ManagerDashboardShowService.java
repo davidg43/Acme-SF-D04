@@ -30,21 +30,22 @@ public class ManagerDashboardShowService extends AbstractService<Manager, Manage
 	@Override
 	public void load() {
 		ManagerDashboard dashboard = new ManagerDashboard();
+		int id = super.getRequest().getPrincipal().getActiveRoleId();
 
-		dashboard.setAverageCostOfProjects(this.repository.avgProjectCost());
-		dashboard.setAverageEstimatedCostOfUserStories(this.repository.avgProjectCost());
-		dashboard.setDeviationOfCostOfProjects(this.repository.deviationProjectCost());
-		dashboard.setDeviationOfEstimatedCostOfUserStories(this.repository.deviationEstimatedCost());
+		dashboard.setAverageCostOfProjects(this.repository.avgProjectCost(id));
+		dashboard.setAverageEstimatedCostOfUserStories(this.repository.avgProjectCost(id));
+		dashboard.setDeviationOfCostOfProjects(this.repository.deviationProjectCost(id));
+		dashboard.setDeviationOfEstimatedCostOfUserStories(this.repository.deviationEstimatedCost(id));
 
-		dashboard.setMaximumCostOfProjects(this.repository.maxProjectCost());
-		dashboard.setMaximumEstimatedCostOfUserStories(this.repository.maxEstimatedCost());
-		dashboard.setMinimumCostOfProjects(this.repository.minProjectCost());
-		dashboard.setMinimumEstimatedCostOfUserStories(this.repository.minEstimatedCost());
+		dashboard.setMaximumCostOfProjects(this.repository.maxProjectCost(id));
+		dashboard.setMaximumEstimatedCostOfUserStories(this.repository.maxEstimatedCost(id));
+		dashboard.setMinimumCostOfProjects(this.repository.minProjectCost(id));
+		dashboard.setMinimumEstimatedCostOfUserStories(this.repository.minEstimatedCost(id));
 
-		dashboard.setTotalCouldUserStories(this.repository.countCould());
-		dashboard.setTotalWontUserStories(this.repository.countWont());
-		dashboard.setTotalShouldUserStories(this.repository.countShould());
-		dashboard.setTotalMustUserStories(this.repository.countMust());
+		dashboard.setTotalCouldUserStories(this.repository.countCould(id));
+		dashboard.setTotalWontUserStories(this.repository.countWont(id));
+		dashboard.setTotalShouldUserStories(this.repository.countShould(id));
+		dashboard.setTotalMustUserStories(this.repository.countMust(id));
 
 		super.getBuffer().addData(dashboard);
 

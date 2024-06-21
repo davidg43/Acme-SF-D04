@@ -2,6 +2,8 @@
 package acme.features.manager.assignment;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +42,13 @@ public class ManagerAssignmentListService extends AbstractService<Manager, Assig
 	public void load() {
 		int id = super.getRequest().getData("projectId", int.class);
 		Collection<Assignment> objects = this.repository.findAllAssignmentsOfAProjectById(id).stream().distinct().collect(Collectors.toList());
+		objects = this.deleteDuplicated(objects);
 		super.getBuffer().addData(objects);
 	}
 
 	@Override
 	public void unbind(final Assignment assignment) {
+
 		assert assignment != null;
 
 		Dataset dataset;
@@ -52,6 +56,20 @@ public class ManagerAssignmentListService extends AbstractService<Manager, Assig
 		dataset = super.unbind(assignment, "project", "userStory");
 
 		super.getResponse().addData(dataset);
+
+	}
+
+	private Collection<Assignment> deleteDuplicated(final Collection<Assignment> objects) {
+		Set<String> uniquePairs = new HashSet<>();
+		return objects.stream().filter(assignment -> {
+			String pair = assignment.getProject() + "-" + assignment.getUserStory();
+			if (uniquePairs.contains(pair))
+				return false;
+			else {
+				uniquePairs.add(pair);
+				return true;
+			}
+		}).collect(Collectors.toList());
 	}
 
 }

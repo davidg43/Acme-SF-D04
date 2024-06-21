@@ -33,7 +33,6 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 	public void load() {
 
 		Assignment assigment = new Assignment();
-
 		super.getBuffer().addData(assigment);
 
 	}
