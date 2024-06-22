@@ -38,5 +38,5 @@ developer.training-module.form.error.sessions = Un módulo de entrenamiento tien
 developer.trainingModule.form.error.negative-total-time = Tiempo total no puede ser negativo
 developer.trainingModule.form.error.trainingSession-empty = Este módulo de entrenamiento no tiene sesiones de entrenamiento publicadas
 developer.trainingModule.form.error.trainingSession-draft = Este módulo de entrenamiento tiene una/varias sesiones de entrenamiento sin publicar
-developer.trainingModule.form.error.invalid-project = Este proyecto esta publicado
+developer.trainingModule.form.error.invalid-project = Este proyecto no está publicado
 developer.trainingModule.form.error.trainingSession-Nodraft = Hay sesiones de entrenamiento publicadas asociadas a este modulo de entrenamiento

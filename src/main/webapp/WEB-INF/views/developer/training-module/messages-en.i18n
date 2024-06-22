@@ -38,5 +38,5 @@ developer.training-module.form.error.sessions = Training module needs to have at
 developer.trainingModule.form.error.negative-total-time = Total time can not be negative
 developer.trainingModule.form.error.trainingSession-empty = This training module must have at least one published training session
 developer.trainingModule.form.error.trainingSession-draft = This training module has one or more training sessions that have not been published
-developer.trainingModule.form.error.invalid-project = This project is published
+developer.trainingModule.form.error.invalid-project = This project is not published
 developer.trainingModule.form.error.trainingSession-Nodraft = There are published training sessions associated with this training module
