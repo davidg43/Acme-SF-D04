@@ -60,6 +60,8 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 
 			super.state(existing == null || existing.equals(contract), "recordId", "client.progresslog.form.error.duplicated");
 		}
+		if (!super.getBuffer().getErrors().hasErrors("budget"))
+			super.state(contract.getBudget().getAmount() >= 0, "budget", "client.contract.form.error.negative-budget");
 
 	}
 
@@ -75,7 +77,7 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 		boolean isDraft;
 		SelectChoices choices;
 
-		choices = SelectChoices.from(this.repository.findAllProjects(), "title", contract.getProject());
+		choices = SelectChoices.from(this.repository.findAllPublishedProjects(), "title", contract.getProject());
 		isDraft = contract.isDraft() == true;
 
 		Dataset dataset;

@@ -27,23 +27,24 @@ public class ClientDashboardShowService extends AbstractService<Client, ClientDa
 	public void load() {
 
 		ClientDashboard dashboard;
-		int totalNumberProgressLogsRateLess25;
-		int totalNumberProgressLogsRateBetween25And50;
-		int totalNumberProgressLogsRateBetween50And75;
-		int totalNumberProgressLogsRateMoreThan75;
-		double averageBudgetOfContracts;
-		double deviationBudgetOfContracts;
-		double minimumBudgetOfContracts;
-		double maximumBudgetOfContracts;
+		Integer totalNumberProgressLogsRateLess25;
+		Integer totalNumberProgressLogsRateBetween25And50;
+		Integer totalNumberProgressLogsRateBetween50And75;
+		Integer totalNumberProgressLogsRateMoreThan75;
+		Double averageBudgetOfContracts;
+		Double deviationBudgetOfContracts;
+		Double minimumBudgetOfContracts;
+		Double maximumBudgetOfContracts;
 
-		totalNumberProgressLogsRateLess25 = this.repository.totalNumberProgressLogsRateLess25();
-		totalNumberProgressLogsRateBetween25And50 = this.repository.totalNumberProgressLogsRateBetween25And50();
-		totalNumberProgressLogsRateBetween50And75 = this.repository.totalNumberProgressLogsRateBetween50And75();
-		totalNumberProgressLogsRateMoreThan75 = this.repository.totalNumberProgressLogsRateMoreThan75();
-		averageBudgetOfContracts = this.repository.averageBudgetOfContracts();
-		deviationBudgetOfContracts = this.repository.deviationBudgetOfContracts();
-		minimumBudgetOfContracts = this.repository.minimumBudgetOfContracts();
-		maximumBudgetOfContracts = this.repository.maximumBudgetOfContracts();
+		int id = super.getRequest().getPrincipal().getActiveRoleId();
+		totalNumberProgressLogsRateLess25 = this.repository.totalNumberProgressLogsRateLess25(id);
+		totalNumberProgressLogsRateBetween25And50 = this.repository.totalNumberProgressLogsRateBetween25And50(id);
+		totalNumberProgressLogsRateBetween50And75 = this.repository.totalNumberProgressLogsRateBetween50And75(id);
+		totalNumberProgressLogsRateMoreThan75 = this.repository.totalNumberProgressLogsRateMoreThan75(id);
+		averageBudgetOfContracts = this.repository.averageBudgetOfContracts(id);
+		deviationBudgetOfContracts = this.repository.deviationBudgetOfContracts(id);
+		minimumBudgetOfContracts = this.repository.minimumBudgetOfContracts(id);
+		maximumBudgetOfContracts = this.repository.maximumBudgetOfContracts(id);
 
 		dashboard = new ClientDashboard();
 		dashboard.setTotalNumberProgressLogsRateLess25(totalNumberProgressLogsRateLess25);

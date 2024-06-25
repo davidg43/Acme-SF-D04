@@ -7,7 +7,7 @@
 	<acme:input-textbox code="client.progresslog.form.label.recordId" path="recordId"/>
 	<acme:input-double code="client.progresslog.form.label.completeness" path="completeness"  />
 	<acme:input-textbox code="client.progresslog.form.label.comment" path="comment"   />
-	<acme:input-moment code="client.progresslog.form.label.registrationMoment" path="registrationMoment"/>
+	<acme:input-moment code="client.progresslog.form.label.registrationMoment" path="registrationMoment" readonly = "True"/>
 	<acme:input-textbox code="client.progresslog.form.label.responsiblePerson" path="reponsiblePerson" />
 	<acme:input-checkbox code="client.progresslog.form.label.isDraft" path="isDraft" readonly="true" />
 	

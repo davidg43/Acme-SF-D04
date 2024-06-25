@@ -64,6 +64,8 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 			boolean condition = contracts.contains(contract);
 			super.state(!condition, "code", "client.contract.form.error.duplicated");
 		}
+		if (!super.getBuffer().getErrors().hasErrors("budget"))
+			super.state(contract.getBudget().getAmount() >= 0, "budget", "client.contract.form.error.negative-budget");
 
 	}
 
@@ -80,7 +82,7 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		Dataset dataset;
 
 		SelectChoices projectChoices;
-		Collection<Project> projects = this.repository.findAllProjects();
+		Collection<Project> projects = this.repository.findAllPublishedProjects();
 
 		projectChoices = SelectChoices.from(projects, "title", contract.getProject());
 

@@ -8,7 +8,9 @@ client.project.form.error.fatal-errors = This project has fatal errors
 client.project.form.error.negative-cost = Negative cost detected
 client.contract.list.title = Mis contratos
 
+client.contract.form.error.negative-budget = Invalid Negative Budget
 
+client.contract.form.button.progress-log = Progress Logs
 client.contract.form.title = Contract Details
 contract.form.label.code = Code
 contract.form.label.providerName = Provider Name

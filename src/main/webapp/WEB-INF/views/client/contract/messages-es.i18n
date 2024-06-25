@@ -22,6 +22,7 @@ client.contract.list.label.code = Codigo
 client.contract.list.label.budget = Presupuesto
 client.contract.list.label.project.title = Proyecto
 
+client.contract.form.error.negative-budget = Presupuesto negativo invalido
 
 project.form.button.assignment = Lista de assigments de este proyecto
 client.list.label.contract = Proyectos 
@@ -29,6 +30,7 @@ contract.form.button.create = Create
 contract.form.button.publish = Publicar
 client.list.label.project = Proyecto
 
+client.contract.form.button.progress-log = Registros de Progreso
 project.form.label.code = Código
 project.form.label.title = Título
 project.form.label.abstractText = Resumen

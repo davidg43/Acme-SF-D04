@@ -2,11 +2,13 @@
 package acme.features.client.progresslog;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.contract.Contract;
@@ -43,8 +45,10 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 	@Override
 	public void bind(final ProgressLog object) {
 		assert object != null;
-
+		Date currentMoment = MomentHelper.getCurrentMoment();
+		Date registrationMoment = new Date(currentMoment.getTime());
 		super.bind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "reponsiblePerson", "isDraft");
+		object.setRegistrationMoment(registrationMoment);
 	}
 
 	@Override
@@ -53,11 +57,16 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 
 		if (!super.getBuffer().getErrors().hasErrors("recordId")) {
 			ProgressLog existing;
-
 			existing = this.repository.findOneProgressLogByCode(object.getRecordId());
-
 			super.state(existing == null, "recordId", "client.progresslog.form.error.duplicated");
 		}
+		if (!super.getBuffer().getErrors().hasErrors("completeness")) {
+			Double currentCompleteness = this.repository.findTotalCompletenessByContractId(object.getContract().getId());
+			Double objectCompleteness = object.getCompleteness();
+			double totalCompleteness = currentCompleteness + objectCompleteness;
+			super.state(totalCompleteness <= 100, "completeness", "client.progresslog.form.error.completeness");
+		}
+
 	}
 	@Override
 	public void perform(final ProgressLog object) {
