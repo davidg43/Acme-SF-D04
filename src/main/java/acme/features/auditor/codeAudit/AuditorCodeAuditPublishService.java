@@ -102,12 +102,10 @@ public class AuditorCodeAuditPublishService extends AbstractService<Auditor, Cod
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("mark")) {
-			CodeAudit valid;
-			Mark mark;
 
-			valid = this.repository.findOneCodeAuditById(object.getId());
-			mark = valid.getMark();
-			super.state(mark != Mark.F_MINUS && mark != Mark.F, "mark", "auditor.code-audit.form.error.not-enought-mark");
+			List<Mark> marks = this.repository.findManyMarksByCodeAuditId(object.getId());
+			Mark modeMark = this.repository.getMode(marks);
+			super.state(modeMark != Mark.F_MINUS && modeMark != Mark.F, "mark", "auditor.code-audit.form.error.not-enought-mark");
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("project")) {
