@@ -27,17 +27,6 @@ public class DeveloperTrainingSessionListService extends AbstractService<Develop
 
 	@Override
 	public void authorise() {
-		/*
-		 * boolean status;
-		 * int masterId;
-		 * TrainingModule trainingModule;
-		 * 
-		 * masterId = super.getRequest().getData("masterId", int.class);
-		 * trainingModule = this.repository.findOneTrainingModuleById(masterId);
-		 * status = trainingModule != null && (!trainingModule.getDraftMode() || super.getRequest().getPrincipal().hasRole(trainingModule.getDeveloper()));
-		 * 
-		 * super.getResponse().setAuthorised(status);
-		 */
 
 		boolean status;
 		int id;
