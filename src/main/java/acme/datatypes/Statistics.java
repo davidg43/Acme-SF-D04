@@ -12,7 +12,7 @@ public class Statistics {
 
 	private DecimalFormat		formatter			= new DecimalFormat("#.##");
 
-	// Serialisation identifier -----------------------------------------------
+	// Serialisation identifier ----------------------------------------------
 
 	protected static final long	serialVersionUID	= 1L;
 
