@@ -14,7 +14,7 @@
 		readonly="true" />
 	<acme:input-checkbox code="project.form.label.hasFatalErrors"
 		path="hasFatalErrors" />
-	<jstl:if test="${acme:anyOf(_command, 'show|update')}">
+	<jstl:if test="${acme:anyOf(_command, 'show|update|publish') && hasFatalErrors == false}">
 		<acme:button code="project.form.button.assignment"
 			action="/manager/assignment/list?projectId=${projectId}" />
 	</jstl:if>

@@ -4,7 +4,6 @@ package acme.features.manager.project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.project.Project;
 import acme.roles.Manager;
@@ -73,26 +72,6 @@ public class ManagerProjectDeleteService extends AbstractService<Manager, Projec
 		this.repository.deleteAll(this.repository.findAllTrainingSessionsOfAProjectById(project.getId()));
 		this.repository.deleteAll(this.repository.findAllTrainingModuleOfAProjectById(project.getId()));
 		this.repository.delete(project);
-	}
-
-	@Override
-	public void unbind(final Project project) {
-		assert project != null;
-		boolean userStoriesPublishables;
-		boolean isDraft;
-
-		userStoriesPublishables = this.repository.findAllUserStoriesOfAProjectById(project.getId()).stream().allMatch(x -> x.isDraft() == false) && this.repository.findAllUserStoriesOfAProjectById(project.getId()).size() > 0
-			&& project.isHasFatalErrors() == false;
-		isDraft = project.isDraft() == true;
-
-		Dataset dataset;
-
-		dataset = super.unbind(project, "code", "title", "abstractText", "hasFatalErrors", "cost", "link", "isDraft");
-		dataset.put("projectId", project.getId());
-		dataset.put("publishable", userStoriesPublishables);
-		dataset.put("isDraft", isDraft);
-
-		super.getResponse().addData(dataset);
 	}
 
 }
