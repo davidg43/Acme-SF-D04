@@ -48,11 +48,11 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 	public void validate(final Assignment assigment) {
 		assert assigment != null;
 
-		if (!super.getBuffer().getErrors().hasErrors("project"))
+		if (!super.getBuffer().getErrors().hasErrors("project")) {
 			super.state(!assigment.getProject().isHasFatalErrors(), "project", "manager.project.form.error.fatal-errors");
+			super.state(assigment.getProject().isDraft() == true, "*", "manager.project.form.create-denied");
+		}
 
-		if (!super.getBuffer().getErrors().hasErrors("project"))
-			super.state(assigment.getProject().isDraft(), "*", "manager.project.form.create-denied");
 	}
 
 	@Override

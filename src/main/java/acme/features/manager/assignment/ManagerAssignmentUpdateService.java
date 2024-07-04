@@ -49,13 +49,13 @@ public class ManagerAssignmentUpdateService extends AbstractService<Manager, Ass
 	@Override
 	public void validate(final Assignment assigment) {
 		assert assigment != null;
-		boolean updateable = this.repository.findProjectOfAnAssignmentByAssignmentId(assigment.getId()).isDraft(); // Si true == updateable
+		boolean updateable = this.repository.findProjectOfAnAssignmentByAssignmentId(assigment.getId()).isDraft();
 
-		if (!super.getBuffer().getErrors().hasErrors("project"))
+		if (!super.getBuffer().getErrors().hasErrors("project")) {
 			super.state(!assigment.getProject().isHasFatalErrors(), "project", "manager.project.form.error.fatal-errors");
-
-		if (!super.getBuffer().getErrors().hasErrors("project"))
 			super.state(updateable, "*", "manager.project.form.updateable");
+			super.state(assigment.getProject().isDraft() == true, "*", "manager.project.form.create-denied");
+		}
 
 	}
 

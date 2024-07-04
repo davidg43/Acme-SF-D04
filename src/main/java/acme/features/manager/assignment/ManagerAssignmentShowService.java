@@ -51,7 +51,7 @@ public class ManagerAssignmentShowService extends AbstractService<Manager, Assig
 		int id = super.getRequest().getPrincipal().getActiveRoleId();
 		SelectChoices projectChoices;
 		SelectChoices userStoriesChoices;
-		boolean updateable = this.repository.findProjectOfAnAssignmentByAssignmentId(assigment.getId()).isDraft(); // Si true == updateable
+		boolean updateable = this.repository.findProjectOfAnAssignmentByAssignmentId(assigment.getId()).isDraft();
 
 		Collection<Project> projects = this.repository.findAllProjectsByManagerId(id);
 		Collection<UserStory> userStories = this.repository.findAllUserStoriesOfAManagerById(id);
