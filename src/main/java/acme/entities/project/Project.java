@@ -54,8 +54,6 @@ public class Project extends AbstractEntity {
 	@Length(max = 255)
 	private String				link;
 
-	private Boolean				dratMode;
-
 	@Valid
 	@ManyToOne(optional = false)
 	@NotNull

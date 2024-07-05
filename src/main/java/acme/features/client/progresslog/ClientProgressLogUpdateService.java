@@ -62,6 +62,12 @@ public class ClientProgressLogUpdateService extends AbstractService<Client, Prog
 
 			super.state(existing == null || existing.equals(object), "recordId", "client.progresslog.form.error.duplicated");
 		}
+		if (!super.getBuffer().getErrors().hasErrors("completeness")) {
+			Double currentCompleteness = this.repository.findTotalCompletenessByContractId(object.getContract().getId());
+			Double objectCompleteness = object.getCompleteness();
+			double totalCompleteness = currentCompleteness + objectCompleteness;
+			super.state(totalCompleteness <= 100, "completeness", "client.progresslog.form.error.completeness");
+		}
 	}
 
 	@Override

@@ -66,6 +66,13 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		}
 		if (!super.getBuffer().getErrors().hasErrors("budget"))
 			super.state(contract.getBudget().getAmount() >= 0, "budget", "client.contract.form.error.negative-budget");
+		if (!super.getBuffer().getErrors().hasErrors("budget")) {
+			contracts = this.repository.findAllContractsOfAClientById(contract.getClient().getId());
+			double totalBudget = contracts.stream().mapToDouble(c -> c.getBudget().getAmount()).sum();
+			double projectCost = contract.getProject().getCost().getAmount();
+			totalBudget += contract.getBudget().getAmount();
+			super.state(totalBudget <= projectCost, "budget", "client.contract.form.error.exceeds-project-cost");
+		}
 
 	}
 
@@ -79,15 +86,21 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 	@Override
 	public void unbind(final Contract contract) {
 		assert contract != null;
+		boolean isDraft;
+		Collection<Project> projects;
+		projects = this.repository.findAllPublishedProjects();
+		SelectChoices choices;
+		choices = SelectChoices.from(projects, "title", contract.getProject());
+		isDraft = contract.isDraft() == true;
+		System.out.println(choices);
+
 		Dataset dataset;
 
-		SelectChoices projectChoices;
-		Collection<Project> projects = this.repository.findAllPublishedProjects();
-
-		projectChoices = SelectChoices.from(projects, "title", contract.getProject());
-
 		dataset = super.unbind(contract, "code", "moment", "providerName", "customerName", "goals", "budget", "isDraft", "project");
-		dataset.put("projects", projectChoices);
+		dataset.put("contractId", contract.getId());
+		dataset.put("isDraft", isDraft);
+		dataset.put("project", choices.getSelected().getKey());
+		dataset.put("projects", choices);
 
 		super.getResponse().addData(dataset);
 	}
