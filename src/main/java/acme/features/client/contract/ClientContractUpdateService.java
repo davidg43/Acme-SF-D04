@@ -87,7 +87,6 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 	@Override
 	public void perform(final Contract contract) {
 		assert contract != null;
-
 		this.repository.save(contract);
 	}
 	@Override
@@ -99,7 +98,6 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 		SelectChoices choices;
 		choices = SelectChoices.from(projects, "title", contract.getProject());
 		isDraft = contract.isDraft() == true;
-		System.out.println(choices);
 
 		Dataset dataset;
 

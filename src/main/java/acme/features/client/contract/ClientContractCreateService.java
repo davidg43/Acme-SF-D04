@@ -24,7 +24,7 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Client.class));
 	}
 
 	@Override
@@ -45,7 +45,6 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		assert contract != null;
 		int projectId;
 		Project project;
-
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findOneProjectById(projectId);
 		Date currentMoment = MomentHelper.getCurrentMoment();
@@ -92,7 +91,6 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		SelectChoices choices;
 		choices = SelectChoices.from(projects, "title", contract.getProject());
 		isDraft = contract.isDraft() == true;
-		System.out.println(choices);
 
 		Dataset dataset;
 
