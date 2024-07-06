@@ -5,7 +5,7 @@
 
 <acme:form>
 	
-	<acme:input-select code="manager.assignment.list.label.project" path="project" choices="${projects}"/>
+	<acme:input-textbox code="manager.assignment.list.label.project" path="project.title" readonly="true"/>
 	<acme:input-select code="manager.assignment.list.label.userStory" path="userStory" choices="${userStories}"/>
 
 
@@ -19,7 +19,7 @@
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="project.form.button.create"
-				action="/manager/assignment/create" />
+				action="/manager/assignment/create?masterId=${masterId}" />
 
 		</jstl:when>
 	</jstl:choose>

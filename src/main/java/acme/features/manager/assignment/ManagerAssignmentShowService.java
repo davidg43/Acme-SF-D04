@@ -10,7 +10,6 @@ import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.project.Assignment;
-import acme.entities.project.Project;
 import acme.entities.project.UserStory;
 import acme.features.manager.project.ManagerProjectRepository;
 import acme.roles.Manager;
@@ -49,21 +48,19 @@ public class ManagerAssignmentShowService extends AbstractService<Manager, Assig
 	public void unbind(final Assignment assigment) {
 		assert assigment != null;
 		int id = super.getRequest().getPrincipal().getActiveRoleId();
-		SelectChoices projectChoices;
+
 		SelectChoices userStoriesChoices;
 		boolean updateable = this.repository.findProjectOfAnAssignmentByAssignmentId(assigment.getId()).isDraft();
 
-		Collection<Project> projects = this.repository.findAllProjectsByManagerId(id);
 		Collection<UserStory> userStories = this.repository.findAllUserStoriesOfAManagerById(id);
 
 		Dataset dataset;
 
-		projectChoices = SelectChoices.from(projects, "title", assigment.getProject());
 		userStoriesChoices = SelectChoices.from(userStories, "title", assigment.getUserStory());
 
-		dataset = super.unbind(assigment, "project", "userStory");
+		dataset = super.unbind(assigment, "project.title", "userStory");
 
-		dataset.put("projects", projectChoices);
+		dataset.put("masterId", assigment.getProject().getId());
 		dataset.put("userStories", userStoriesChoices);
 		dataset.put("updateable", updateable);
 

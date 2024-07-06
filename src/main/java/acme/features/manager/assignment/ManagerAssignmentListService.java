@@ -29,10 +29,10 @@ public class ManagerAssignmentListService extends AbstractService<Manager, Assig
 	@Override
 	public void authorise() {
 		boolean status;
-		int id;
+		int masterId;
 
-		id = super.getRequest().getData("projectId", int.class);
-		Manager manager = this.repository.findManagerByProjectId(id);
+		masterId = super.getRequest().getData("masterId", int.class);
+		Manager manager = this.repository.findManagerByProjectId(masterId);
 		status = super.getRequest().getPrincipal().getActiveRoleId() == manager.getId();
 
 		super.getResponse().setAuthorised(status);
@@ -40,9 +40,11 @@ public class ManagerAssignmentListService extends AbstractService<Manager, Assig
 
 	@Override
 	public void load() {
-		int id = super.getRequest().getData("projectId", int.class);
+		int id = super.getRequest().getData("masterId", int.class);
 		Collection<Assignment> objects = this.repository.findAllAssignmentsOfAProjectById(id).stream().distinct().collect(Collectors.toList());
 		objects = this.deleteDuplicated(objects);
+
+		super.getResponse().addGlobal("masterId", id);
 		super.getBuffer().addData(objects);
 	}
 
@@ -55,6 +57,12 @@ public class ManagerAssignmentListService extends AbstractService<Manager, Assig
 
 		dataset = super.unbind(assignment, "project", "userStory");
 
+		dataset.put("projectTitle", assignment.getProject().getTitle());
+		dataset.put("userStoryTitle", assignment.getUserStory().getTitle());
+
+		int masterId = super.getRequest().getData("masterId", int.class);
+
+		super.getResponse().addGlobal("masterId", masterId);
 		super.getResponse().addData(dataset);
 
 	}
