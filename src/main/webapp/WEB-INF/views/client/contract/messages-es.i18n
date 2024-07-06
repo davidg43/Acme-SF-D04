@@ -21,7 +21,7 @@ client.contract.form.error.duplicated = Ya Existe
 client.contract.list.label.code = Codigo
 client.contract.list.label.budget = Presupuesto
 client.contract.list.label.project.title = Proyecto
-
+client.contract.form.error.exceeds-project-cost = Presupuesto mayor que el coste de proyecto
 client.contract.form.error.negative-budget = Presupuesto negativo invalido
 
 project.form.button.assignment = Lista de assigments de este proyecto

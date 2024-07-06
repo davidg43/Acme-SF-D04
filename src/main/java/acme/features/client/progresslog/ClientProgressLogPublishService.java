@@ -1,15 +1,10 @@
 
 package acme.features.client.progresslog;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
-import acme.client.views.SelectChoices;
-import acme.entities.contract.Contract;
 import acme.entities.contract.ProgressLog;
 import acme.roles.Client;
 
@@ -23,12 +18,11 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 	@Override
 	public void authorise() {
 		boolean status;
-		int progressLogId;
+		int masterId;
 		ProgressLog progressLog;
-
-		progressLogId = super.getRequest().getData("id", int.class);
-		progressLog = this.repository.findOneProgressLogById(progressLogId);
-		status = progressLog != null && progressLog.isDraft() && super.getRequest().getPrincipal().hasRole(progressLog.getContract().getClient());
+		masterId = super.getRequest().getData("id", int.class);
+		progressLog = this.repository.findOneProgressLogById(masterId);
+		status = progressLog != null && progressLog.isDraft() && super.getRequest().getPrincipal().hasRole(Client.class) && progressLog.getContract().getClient().getId() == super.getRequest().getPrincipal().getActiveRoleId();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -47,7 +41,7 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 	public void bind(final ProgressLog object) {
 		assert object != null;
 
-		super.bind(object, "isDraft");
+		super.bind(object, "recordId", "completeness", "comment", "registrationMoment", "reponsiblePerson", "isDraft");
 	}
 
 	@Override
@@ -65,21 +59,16 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 		this.repository.save(progresslog);
 	}
 
-	@Override
-	public void unbind(final ProgressLog object) {
-		assert object != null;
-		Dataset dataset;
-
-		SelectChoices contractChoices;
-		Collection<Contract> contracts = this.repository.findAllContractsByClientId(super.getRequest().getPrincipal().getActiveRoleId());
-
-		contractChoices = SelectChoices.from(contracts, "code", object.getContract());
-
-		dataset = super.unbind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "reponsiblePerson", "isDraft");
-		dataset.put("contracts", contractChoices);
-		dataset.put("isDraft", object.isDraft());
-
-		super.getResponse().addData(dataset);
-	}
+	////	@Override
+	////	public void unbind(final ProgressLog object) {
+	////		//		assert object != null;
+	////		//		Dataset dataset;
+	////		//
+	////		//		dataset = super.unbind(object, "recordId", "completeness", "comment", "registrationMoment", "reponsiblePerson", "isDraft");
+	////		//
+	////		//		dataset.put("isDraft", object.isDraft());
+	////		//
+	////		//		super.getResponse().addData(dataset);
+	//	}
 
 }

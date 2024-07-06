@@ -16,13 +16,14 @@
 	
 
 	<jstl:choose>
-
+		<jstl:when test="${_command == 'show' && isDraft == false}">
+			<acme:button code="client.contract.form.button.progress-log" action="/client/progress-log/list?masterId=${id}"/>			
+		</jstl:when>
 		<jstl:when
 			test="${acme:anyOf(_command, 'show|update|delete|publish') && isDraft == true}">
 			<acme:button code="client.contract.form.button.progress-log" action="/client/progress-log/list?masterId=${id}"/>
 			<acme:submit code="project.form.button.update" action="/client/contract/update" />
 			<acme:submit code="project.form.button.delete" action="/client/contract/delete" />
-			
 			<jstl:if test="${isDraft == true}">
 				<acme:submit code="contract.form.button.publish" action="/client/contract/publish"/>
 			</jstl:if>

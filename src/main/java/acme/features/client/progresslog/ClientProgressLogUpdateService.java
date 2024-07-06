@@ -48,7 +48,7 @@ public class ClientProgressLogUpdateService extends AbstractService<Client, Prog
 	public void bind(final ProgressLog object) {
 		assert object != null;
 
-		super.bind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "isDraft", "reponsiblePerson");
+		super.bind(object, "recordId", "completeness", "comment", "registrationMoment", "isDraft", "reponsiblePerson");
 	}
 
 	@Override
@@ -63,7 +63,9 @@ public class ClientProgressLogUpdateService extends AbstractService<Client, Prog
 			super.state(existing == null || existing.equals(object), "recordId", "client.progresslog.form.error.duplicated");
 		}
 		if (!super.getBuffer().getErrors().hasErrors("completeness")) {
-			Double currentCompleteness = this.repository.findTotalCompletenessByContractId(object.getContract().getId());
+			Double currentCompleteness = this.repository.findTotalCompletenessByContractIdExceptSelf(object.getContract().getId(), object.getId());
+			if (currentCompleteness == null)
+				currentCompleteness = 0.0;
 			Double objectCompleteness = object.getCompleteness();
 			double totalCompleteness = currentCompleteness + objectCompleteness;
 			super.state(totalCompleteness <= 100, "completeness", "client.progresslog.form.error.completeness");
@@ -82,13 +84,16 @@ public class ClientProgressLogUpdateService extends AbstractService<Client, Prog
 		assert object != null;
 		Dataset dataset;
 		boolean isDraft;
-		SelectChoices contractChoices;
+		SelectChoices choices;
 		Collection<Contract> contracts = this.repository.findAllContractsByClientId(super.getRequest().getPrincipal().getActiveRoleId());
+
+		choices = SelectChoices.from(contracts, "code", object.getContract());
+
 		isDraft = object.isDraft() == true;
-		contractChoices = SelectChoices.from(contracts, "code", object.getContract());
 
 		dataset = super.unbind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "isDraft", "reponsiblePerson");
-		dataset.put("contracts", contractChoices);
+		dataset.put("contract", choices.getSelected().getKey());
+		dataset.put("contracts", choices);
 		dataset.put("isDraft", isDraft);
 		super.getResponse().addData(dataset);
 	}

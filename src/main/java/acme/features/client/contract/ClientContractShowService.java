@@ -1,6 +1,8 @@
 
 package acme.features.client.contract;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,7 @@ import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.contract.Contract;
+import acme.entities.project.Project;
 import acme.roles.Client;
 
 @Service
@@ -46,9 +49,10 @@ public class ClientContractShowService extends AbstractService<Client, Contract>
 	public void unbind(final Contract contract) {
 		assert contract != null;
 		boolean isDraft;
+		Collection<Project> projects;
+		projects = this.repository.findAllPublishedProjects();
 		SelectChoices choices;
-
-		choices = SelectChoices.from(this.repository.findAllProjects(), "title", contract.getProject());
+		choices = SelectChoices.from(projects, "title", contract.getProject());
 		isDraft = contract.isDraft() == true;
 
 		Dataset dataset;
@@ -56,6 +60,7 @@ public class ClientContractShowService extends AbstractService<Client, Contract>
 		dataset = super.unbind(contract, "code", "moment", "providerName", "customerName", "goals", "budget", "isDraft", "project");
 		dataset.put("contractId", contract.getId());
 		dataset.put("isDraft", isDraft);
+		dataset.put("project", choices.getSelected().getKey());
 		dataset.put("projects", choices);
 
 		super.getResponse().addData(dataset);

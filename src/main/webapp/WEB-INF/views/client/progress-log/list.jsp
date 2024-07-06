@@ -11,4 +11,4 @@
 </acme:list>
 
 
-<acme:button code="client.list.label.create" action="/client/progress-log/create"/>
+<acme:button code="client.list.label.create" action="/client/progress-log/create?masterId=${masterId}"/>
