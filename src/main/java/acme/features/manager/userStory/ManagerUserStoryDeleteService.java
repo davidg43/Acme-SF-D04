@@ -83,4 +83,5 @@ public class ManagerUserStoryDeleteService extends AbstractService<Manager, User
 		dataset.put("isDraft", userStory.isDraft());
 		super.getResponse().addData(dataset);
 	}
+
 }

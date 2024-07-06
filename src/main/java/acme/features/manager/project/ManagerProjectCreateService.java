@@ -48,7 +48,7 @@ public class ManagerProjectCreateService extends AbstractService<Manager, Projec
 		assert project != null;
 
 		if (!super.getBuffer().getErrors().hasErrors("hasFatalErrors"))
-			super.state(!project.isHasFatalErrors(), "project", "manager.project.form.error.fatal-errors");
+			super.state(!project.isHasFatalErrors(), "hasFatalErrors", "manager.project.form.error.fatal-errors");
 
 		if (!super.getBuffer().getErrors().hasErrors("cost"))
 			super.state(project.getCost().getAmount() >= 0, "cost", "manager.project.form.error.negative-cost");
