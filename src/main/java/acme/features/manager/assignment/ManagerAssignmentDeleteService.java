@@ -1,11 +1,16 @@
 
 package acme.features.manager.assignment;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.client.views.SelectChoices;
 import acme.entities.project.Assignment;
+import acme.entities.project.UserStory;
 import acme.features.manager.project.ManagerProjectRepository;
 import acme.roles.Manager;
 
@@ -62,6 +67,26 @@ public class ManagerAssignmentDeleteService extends AbstractService<Manager, Ass
 		assert assignment != null;
 
 		this.repository.delete(assignment);
+	}
+
+	@Override
+	public void unbind(final Assignment assigment) {
+		assert assigment != null;
+
+		Dataset dataset;
+
+		int id = super.getRequest().getPrincipal().getActiveRoleId();
+		SelectChoices userStoriesChoices;
+		Collection<UserStory> userStories = this.repository.findAllUserStoriesOfAManagerById(id);
+
+		userStoriesChoices = SelectChoices.from(userStories, "title", assigment.getUserStory());
+
+		dataset = super.unbind(assigment, "project.title", "userStory");
+
+		dataset.put("masterId", assigment.getProject().getId());
+		dataset.put("userStories", userStoriesChoices);
+
+		super.getResponse().addData(dataset);
 	}
 
 }

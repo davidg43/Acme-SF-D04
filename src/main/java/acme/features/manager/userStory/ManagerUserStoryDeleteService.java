@@ -6,9 +6,12 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.client.views.SelectChoices;
 import acme.entities.project.Assignment;
 import acme.entities.project.UserStory;
+import acme.entities.project.UserStory.Priority;
 import acme.roles.Manager;
 
 @Service
@@ -66,6 +69,19 @@ public class ManagerUserStoryDeleteService extends AbstractService<Manager, User
 
 		this.uSRepository.deleteAll(assingments);
 		this.uSRepository.delete(userStory);
+	}
+
+	@Override
+	public void unbind(final UserStory userStory) {
+		assert userStory != null;
+		SelectChoices priorities = SelectChoices.from(Priority.class, userStory.getPriority());
+
+		Dataset dataset;
+
+		dataset = super.unbind(userStory, "title", "description", "estimatedCost", "priority", "acceptanceCriteria", "link", "isDraft");
+		dataset.put("priorities", priorities);
+		dataset.put("isDraft", userStory.isDraft());
+		super.getResponse().addData(dataset);
 	}
 
 }
