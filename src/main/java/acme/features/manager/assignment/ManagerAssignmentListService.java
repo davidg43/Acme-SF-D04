@@ -2,6 +2,8 @@
 package acme.features.manager.assignment;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +29,10 @@ public class ManagerAssignmentListService extends AbstractService<Manager, Assig
 	@Override
 	public void authorise() {
 		boolean status;
-		int id;
+		int masterId;
 
-		id = super.getRequest().getData("projectId", int.class);
-		Manager manager = this.repository.findManagerByProjectId(id);
+		masterId = super.getRequest().getData("masterId", int.class);
+		Manager manager = this.repository.findManagerByProjectId(masterId);
 		status = super.getRequest().getPrincipal().getActiveRoleId() == manager.getId();
 
 		super.getResponse().setAuthorised(status);
@@ -38,20 +40,44 @@ public class ManagerAssignmentListService extends AbstractService<Manager, Assig
 
 	@Override
 	public void load() {
-		int id = super.getRequest().getData("projectId", int.class);
+		int id = super.getRequest().getData("masterId", int.class);
 		Collection<Assignment> objects = this.repository.findAllAssignmentsOfAProjectById(id).stream().distinct().collect(Collectors.toList());
+		objects = this.deleteDuplicated(objects);
+
+		super.getResponse().addGlobal("masterId", id);
 		super.getBuffer().addData(objects);
 	}
 
 	@Override
 	public void unbind(final Assignment assignment) {
+
 		assert assignment != null;
 
 		Dataset dataset;
 
 		dataset = super.unbind(assignment, "project", "userStory");
 
+		dataset.put("projectTitle", assignment.getProject().getTitle());
+		dataset.put("userStoryTitle", assignment.getUserStory().getTitle());
+
+		int masterId = super.getRequest().getData("masterId", int.class);
+
+		super.getResponse().addGlobal("masterId", masterId);
 		super.getResponse().addData(dataset);
+
+	}
+
+	private Collection<Assignment> deleteDuplicated(final Collection<Assignment> objects) {
+		Set<String> uniquePairs = new HashSet<>();
+		return objects.stream().filter(assignment -> {
+			String pair = assignment.getProject() + "-" + assignment.getUserStory();
+			if (uniquePairs.contains(pair))
+				return false;
+			else {
+				uniquePairs.add(pair);
+				return true;
+			}
+		}).collect(Collectors.toList());
 	}
 
 }

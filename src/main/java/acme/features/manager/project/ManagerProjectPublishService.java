@@ -48,7 +48,7 @@ public class ManagerProjectPublishService extends AbstractService<Manager, Proje
 	public void bind(final Project project) {
 		assert project != null;
 
-		super.bind(project, "isDraft");
+		super.bind(project, "code", "title", "abstractText", "hasFatalErrors", "cost", "link", "isDraft");
 	}
 
 	@Override
@@ -56,6 +56,20 @@ public class ManagerProjectPublishService extends AbstractService<Manager, Proje
 		boolean condition = this.repository.findAllUserStoriesOfAProjectById(project.getId()).stream().allMatch(x -> x.isDraft() == false) && this.repository.findAllUserStoriesOfAProjectById(project.getId()).size() > 0
 			&& project.isHasFatalErrors() == false;
 		super.state(condition, "*", "manager.project.form.error.publishable");
+		if (!super.getBuffer().getErrors().hasErrors("hasFatalErrors"))
+			super.state(!project.isHasFatalErrors(), "hasFatalErrors", "manager.project.form.error.fatal-errors");
+
+		if (!super.getBuffer().getErrors().hasErrors("cost"))
+			super.state(project.getCost().getAmount() >= 0, "cost", "manager.project.form.error.negative-cost");
+
+		if (!super.getBuffer().getErrors().hasErrors("code")) {
+			Project existing;
+
+			existing = this.repository.findOneProjectByCode(project.getCode());
+
+			super.state(existing == null || existing.equals(project), "code", "manager.project.form.error.duplicated");
+		}
+
 	}
 
 	@Override

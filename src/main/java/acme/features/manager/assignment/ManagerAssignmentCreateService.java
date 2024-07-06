@@ -33,6 +33,12 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 	public void load() {
 
 		Assignment assigment = new Assignment();
+		Integer id;
+
+		id = super.getRequest().getData("masterId", int.class);
+		Project p = this.repository.findProjectById(id);
+
+		assigment.setProject(p);
 
 		super.getBuffer().addData(assigment);
 
@@ -42,18 +48,24 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 	public void bind(final Assignment assigment) {
 		assert assigment != null;
 
-		super.bind(assigment, "project", "userStory");
+		super.bind(assigment, "project.title", "userStory");
 	}
 
 	@Override
 	public void validate(final Assignment assigment) {
 		assert assigment != null;
 
-		if (!super.getBuffer().getErrors().hasErrors("project"))
+		if (!super.getBuffer().getErrors().hasErrors("project")) {
 			super.state(!assigment.getProject().isHasFatalErrors(), "project", "manager.project.form.error.fatal-errors");
+			super.state(assigment.getProject().isDraft() == true, "*", "manager.project.form.create-denied");
+		}
 
-		if (!super.getBuffer().getErrors().hasErrors("project"))
-			super.state(assigment.getProject().isDraft(), "*", "manager.project.form.create-denied");
+		if (!super.getBuffer().getErrors().hasErrors("userStroy")) {
+			int masterId = super.getRequest().getData("masterId", int.class);
+			Collection<UserStory> us = this.repository.findAllUserStoriesOfAProjectById(masterId);
+			super.state(!us.contains(assigment.getUserStory()), "userStory", "manager.project.form.UsDuplicated");
+		}
+
 	}
 
 	@Override
@@ -70,18 +82,17 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 		Dataset dataset;
 
 		int id = super.getRequest().getPrincipal().getActiveRoleId();
-		SelectChoices projectChoices;
 		SelectChoices userStoriesChoices;
 
-		Collection<Project> projects = this.repository.findAllProjectsByManagerId(id);
 		Collection<UserStory> userStories = this.repository.findAllUserStoriesOfAManagerById(id);
 
-		projectChoices = SelectChoices.from(projects, "title", assigment.getProject());
 		userStoriesChoices = SelectChoices.from(userStories, "title", assigment.getUserStory());
 
-		dataset = super.unbind(assigment, "project", "userStory");
+		dataset = super.unbind(assigment, "project.title", "userStory");
 
-		dataset.put("projects", projectChoices);
+		int masterId = super.getRequest().getData("masterId", int.class);
+
+		dataset.put("masterId", masterId);
 		dataset.put("userStories", userStoriesChoices);
 
 		super.getResponse().addData(dataset);

@@ -9,40 +9,40 @@ import acme.client.repositories.AbstractRepository;
 @Repository
 public interface ManagerDashboardRepository extends AbstractRepository {
 
-	@Query("select avg(us.estimatedCost) from UserStory us")
-	double avgEstimatedCost();
+	@Query("select avg(us.estimatedCost) from UserStory us WHERE us.manager.id =:id")
+	Double avgEstimatedCost(Integer id);
 
-	@Query("select stddev(us.estimatedCost) from UserStory us")
-	double deviationEstimatedCost();
+	@Query("select stddev(us.estimatedCost) from UserStory us WHERE us.manager.id =:id")
+	Double deviationEstimatedCost(Integer id);
 
-	@Query("select max(us.estimatedCost) from UserStory us")
-	int maxEstimatedCost();
+	@Query("select max(us.estimatedCost) from UserStory us WHERE us.manager.id =:id")
+	Integer maxEstimatedCost(Integer id);
 
-	@Query("select min(us.estimatedCost) from UserStory us")
-	int minEstimatedCost();
+	@Query("select min(us.estimatedCost) from UserStory us WHERE us.manager.id =:id")
+	Integer minEstimatedCost(Integer id);
 
-	@Query("select count(us) from UserStory us where us.priority = 'MUST'")
-	int countMust();
+	@Query("select count(us) from UserStory us where us.priority = '3' AND us.manager.id =:id")
+	Integer countMust(Integer id);
 
-	@Query("select count(us) from UserStory us where us.priority = 'SHOULD'")
-	int countShould();
+	@Query("select count(us) from UserStory us where us.priority = '2' AND us.manager.id =:id")
+	Integer countShould(Integer id);
 
-	@Query("select count(us) from UserStory us where us.priority = 'COULD'")
-	int countCould();
+	@Query("select count(us) from UserStory us where us.priority = '1' AND us.manager.id =:id")
+	Integer countCould(Integer id);
 
-	@Query("select count(us) from UserStory us where us.priority = 'WONT'")
-	int countWont();
+	@Query("select count(us) from UserStory us where us.priority = '0' AND us.manager.id =:id")
+	Integer countWont(Integer id);
 
-	@Query("select avg(p.cost.amount) from Project p")
-	double avgProjectCost();
+	@Query("select avg(p.cost.amount) from Project p WHERE p.manager.id =:id")
+	Double avgProjectCost(Integer id);
 
-	@Query("select stddev(p.cost.amount) from Project p")
-	double deviationProjectCost();
+	@Query("select stddev(p.cost.amount) from Project p WHERE p.manager.id =:id")
+	Double deviationProjectCost(Integer id);
 
-	@Query("select max(p.cost.amount) from Project p")
-	double maxProjectCost();
+	@Query("select max(p.cost.amount) from Project p WHERE p.manager.id =:id")
+	Double maxProjectCost(Integer id);
 
-	@Query("select min(p.cost.amount) from Project p")
-	double minProjectCost();
+	@Query("select min(p.cost.amount) from Project p WHERE p.manager.id =:id")
+	Double minProjectCost(Integer id);
 
 }

@@ -10,9 +10,15 @@
 		path="abstractText" />
 	<acme:input-money code="project.form.label.cost" path="cost" />
 	<acme:input-url code="project.form.label.link" path="link" />
-	<acme:input-checkbox code="project.form.label.isDraft" path="isDraft" readonly="true" />
-	<acme:input-checkbox code="project.form.label.hasFatalErrors" path="hasFatalErrors"  readonly="true"/>
-	<acme:button code="project.form.button.assignment" action="/manager/assignment/list?projectId=${projectId}"/>
+	<acme:input-checkbox code="project.form.label.isDraft" path="isDraft"
+		readonly="true" />
+	<acme:input-checkbox code="project.form.label.hasFatalErrors"
+		path="hasFatalErrors" />
+	<jstl:if test="${acme:anyOf(_command, 'show|update|publish') && hasFatalErrors == false}">
+		<acme:button code="project.form.button.assignment"
+			action="/manager/assignment/list?masterId=${id}" />
+	</jstl:if>
+
 
 	<jstl:choose>
 
@@ -22,16 +28,18 @@
 				action="/manager/project/update" />
 			<acme:submit code="project.form.button.delete"
 				action="/manager/project/delete" />
-				
+
 			<jstl:if test="${isDraft == true && publishable == true }">
-				<acme:submit code="project.form.button.publish" action="/manager/project/publish"/>
+				<acme:submit code="project.form.button.publish"
+					action="/manager/project/publish" />
 			</jstl:if>
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
-			<acme:submit code="project.form.button.create" action="/manager/project/create"/>
+			<acme:submit code="project.form.button.create"
+				action="/manager/project/create" />
 		</jstl:when>
-		
-	
-		
+
+
+
 	</jstl:choose>
 </acme:form>

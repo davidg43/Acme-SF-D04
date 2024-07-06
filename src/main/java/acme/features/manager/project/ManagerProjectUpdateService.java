@@ -48,7 +48,7 @@ public class ManagerProjectUpdateService extends AbstractService<Manager, Projec
 	public void bind(final Project project) {
 		assert project != null;
 
-		super.bind(project, "code", "title", "abstractText", "hasFatalErrors", "cost", "link", "isDraft");
+		super.bind(project, "code", "title", "abstractText", "hasFatalErrors", "cost", "link");
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class ManagerProjectUpdateService extends AbstractService<Manager, Projec
 		assert project != null;
 
 		if (!super.getBuffer().getErrors().hasErrors("hasFatalErrors"))
-			super.state(!project.isHasFatalErrors(), "project", "manager.project.form.error.fatal-errors");
+			super.state(!project.isHasFatalErrors(), "hasFatalErrors", "manager.project.form.error.fatal-errors");
 
 		if (!super.getBuffer().getErrors().hasErrors("cost"))
 			super.state(project.getCost().getAmount() >= 0, "cost", "manager.project.form.error.negative-cost");
@@ -91,7 +91,7 @@ public class ManagerProjectUpdateService extends AbstractService<Manager, Projec
 		Dataset dataset;
 
 		dataset = super.unbind(project, "code", "title", "abstractText", "hasFatalErrors", "cost", "link", "isDraft");
-		dataset.put("projectId", project.getId());
+		dataset.put("masterId", project.getId());
 		dataset.put("publishable", userStoriesPublishables);
 		dataset.put("isDraft", isDraft);
 
