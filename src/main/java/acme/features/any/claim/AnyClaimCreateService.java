@@ -48,7 +48,6 @@ public class AnyClaimCreateService extends AbstractService<Any, Claim> {
 
 		object = new Claim();
 
-		object.setDraft(true);
 		super.getBuffer().addData(object);
 	}
 
@@ -73,25 +72,28 @@ public class AnyClaimCreateService extends AbstractService<Any, Claim> {
 			existing = this.repository.findOneClaimByCode(object.getCode());
 			super.state(existing == null, "code", "any.claim.form.error.duplicated");
 		}
+
+		boolean publish = super.getRequest().getData("publish", boolean.class);
+		super.state(publish, "*", "any.claim.form.label.publish");
+
 	}
 
 	@Override
 	public void perform(final Claim object) {
 		assert object != null;
 
-		object.setDraft(true);
-		object.setConfirm(false);
 		this.repository.save(object);
 	}
 
 	@Override
 	public void unbind(final Claim object) {
 		assert object != null;
+		boolean publish = false;
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link", "isDraft");
-
+		dataset = super.unbind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link");
+		dataset.put("publish", publish);
 		super.getResponse().addData(dataset);
 	}
 
