@@ -60,7 +60,7 @@ public class DeveloperTrainingModulePublishService extends AbstractService<Devel
 		Project project = this.repository.findOneProjectById(projectId);
 
 		Date currentMoment = MomentHelper.getCurrentMoment();
-		Date updateMoment = new Date(currentMoment.getTime());
+		Date updateMoment = new Date(currentMoment.getTime() - 10000);
 
 		super.bind(object, "code", "details", "difficultyLevel", "link", "totalTime", "project");
 		TrainingModule original = this.repository.findOneTrainingModuleById(object.getId());
