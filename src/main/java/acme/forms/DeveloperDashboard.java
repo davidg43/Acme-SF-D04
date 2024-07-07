@@ -2,6 +2,7 @@
 package acme.forms;
 
 import acme.client.data.AbstractForm;
+import acme.datatypes.Statistics;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,18 +10,15 @@ import lombok.Setter;
 @Setter
 public class DeveloperDashboard extends AbstractForm {
 
+	// Serialisation identifier ----------------------------------
+
 	private static final long	serialVersionUID	= 1L;
 
-	private int					totalTrainingModulesWithUpdateMoment;
+	// Attributes ----------------------------------
 
-	private int					totalTrainingSessionsWithLink;
+	int							totalTrainingModulesWithUpdateMoment;
+	int							totalTrainingSessionsWithLink;
 
-	private Double				averageTrainingModuleTime;
-
-	private Double				deviationTrainingModuleTime;
-
-	private int					minimumTrainingModuleTime;
-
-	private int					maximumTrainingModuleTime;
+	private Statistics			TrainingModuleTimeStatistics;
 
 }

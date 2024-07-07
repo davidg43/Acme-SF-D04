@@ -51,10 +51,12 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 		int projectId = super.getRequest().getData("project", int.class);
 		Project project = this.repository.findOneProjectById(projectId);
 
-		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "totalTime", "project");
+		//quitamos creationMoment y updateMoment
+		super.bind(object, "code", "details", "difficultyLevel", "link", "totalTime", "project");
 
 		Date currentMoment = MomentHelper.getCurrentMoment();
-		Date creationMoment = new Date(currentMoment.getTime() - 2);
+
+		Date creationMoment = new Date(currentMoment.getTime() - 100000);
 
 		object.setCreationMoment(creationMoment);
 		object.setProject(project);
@@ -91,8 +93,6 @@ public class DeveloperTrainingModuleCreateService extends AbstractService<Develo
 
 		Collection<Project> projects = this.repository.findAllProjectsPublished();
 		SelectChoices projectsChoices = SelectChoices.from(projects, "code", object.getProject());
-
-		projectsChoices = SelectChoices.from(projects, "code", object.getProject());
 
 		SelectChoices choices = SelectChoices.from(DifficultyLevel.class, object.getDifficultyLevel());
 

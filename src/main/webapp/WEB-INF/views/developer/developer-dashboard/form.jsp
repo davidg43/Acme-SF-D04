@@ -21,51 +21,63 @@
 
 <table class="table table-sm">
 	<tr>
-		<th scope="row">
+		<th>
 			<acme:message code="developer.dashboard.label.total-training-modules-with-an-update-moment"/>
 		</th>
 		<td>
 			<acme:print value="${totalTrainingModulesWithUpdateMoment}"/>
 		</td>
-	</tr>
+	</tr>	
+</table>
+
+<table class="table table-sm">
 	<tr>
-		<th scope="row">
+		<th>
 			<acme:message code="developer.dashboard.label.total-training-sessions-with-link"/>
 		</th>
 		<td>
 			<acme:print value="${totalTrainingSessionsWithLink}"/>
 		</td>
+	</tr>	
+</table>	
+
+<h2>
+	<acme:message code="developer.dashboard.form.title.statistics"/>
+</h2>
+
+<table class="table table-sm">
+	<tr>
+		<th>
+			<acme:message code="developer.dashboard.form.label.statistics-title"/>
+		</th>
+		<th>
+			<acme:message code="developer.dashboard.form.label.statistics-average"/>
+		</th>
+		<th>
+			<acme:message code="developer.dashboard.form.label.statistics-deviation"/>
+		</th>
+		<th>
+			<acme:message code="developer.dashboard.form.label.statistics-maximum"/>
+		</th>
+		<th>
+			<acme:message code="developer.dashboard.form.label.statistics-minimum"/>
+		</th>
 	</tr>
 	<tr>
-		<th scope="row">
-			<acme:message code="developer.dashboard.label.average-training-module-time"/>
-		</th>
 		<td>
-			<acme:print value="${averageTrainingModuleTime}"/>
+			<acme:message code="developer.dashboard.form.label.statistics-object-training-module"/>
 		</td>
-	</tr>
-	<tr>
-		<th scope="row">
-			<acme:message code="developer.dashboard.label.deviation-training-module-time"/>
-		</th>
 		<td>
-			<acme:print value="${deviationTrainingModuleTime}"/>
+			<acme:print value="${trainingModuleTimeStatistics.getAverageString()} h"/>
 		</td>
-	</tr>
-	<tr>
-		<th scope="row">
-			<acme:message code="developer.dashboard.label.min-training-module-time"/>
-		</th>
 		<td>
-			<acme:print value="${minimumTrainingModuleTime}"/>
+			<acme:print value="${trainingModuleTimeStatistics.getDeviationString()} h"/>
 		</td>
-	</tr>
-	<tr>
-		<th scope="row">
-			<acme:message code="developer.dashboard.label.max-training-module-time"/>
-		</th>
 		<td>
-			<acme:print value="${maximumTrainingModuleTime}"/>
+			<acme:print value="${trainingModuleTimeStatistics.getMaximumString()} h"/>
+		</td>
+		<td>
+			<acme:print value="${trainingModuleTimeStatistics.getMinimumString()} h"/>
 		</td>
 	</tr>	
 </table>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.datatypes.Statistics;
 import acme.forms.DeveloperDashboard;
 import acme.roles.Developer;
 
@@ -35,41 +36,56 @@ public class DeveloperDashboardShowService extends AbstractService<Developer, De
 
 	@Override
 	public void load() {
-		DeveloperDashboard object;
-		final Integer totalNumberOfTrainingModulesWithAnUpdateMoment;
-		final Integer totalNumberOfTrainingSessionsWithALink;
-		final Double averageTimeOfTrainingModules;
-		final Double deviationTimeOfTrainingModules;
-		final int minimumTimeOfTrainingModules;
-		final int maximumTimeOfTrainingModules;
-		int developerId;
+		final Principal principal = super.getRequest().getPrincipal();
+		int userAccountId = principal.getAccountId();
 
-		developerId = super.getRequest().getPrincipal().getActiveRoleId();
-		totalNumberOfTrainingModulesWithAnUpdateMoment = this.repository.totalTrainingModulesWithUpdateMoment(developerId);
-		totalNumberOfTrainingSessionsWithALink = this.repository.totalTrainingSessionsWithLink(developerId);
-		averageTimeOfTrainingModules = this.repository.findAverageTrainingModuleTime(developerId);
-		deviationTimeOfTrainingModules = this.repository.findDeviationTrainingModuleTime(developerId);
-		minimumTimeOfTrainingModules = this.repository.findMinimumTrainingModuleTime(developerId);
-		maximumTimeOfTrainingModules = this.repository.findMaximumTrainingModuleTime(developerId);
+		Integer totalTrainingModulesWithUpdateMoment = this.repository.totalTrainingModulesWithUpdateMoment(userAccountId);
+		Integer totalTrainingSessionsWithLink = this.repository.totalTrainingSessionsWithLink(userAccountId);
 
-		object = new DeveloperDashboard();
-		object.setTotalTrainingModulesWithUpdateMoment(totalNumberOfTrainingModulesWithAnUpdateMoment);
-		object.setTotalTrainingSessionsWithLink(totalNumberOfTrainingSessionsWithALink);
-		object.setAverageTrainingModuleTime(averageTimeOfTrainingModules);
-		object.setDeviationTrainingModuleTime(deviationTimeOfTrainingModules);
-		object.setMinimumTrainingModuleTime(minimumTimeOfTrainingModules);
-		object.setMaximumTrainingModuleTime(maximumTimeOfTrainingModules);
-		super.getBuffer().addData(object);
+		Double averageTrainingModuleTime = this.repository.findAverageTrainingModuleTime(userAccountId);
+		Double deviationTrainingModuleTime = this.repository.findDeviationTrainingModuleTime(userAccountId);
+		Double minimumTrainingModuleTime = this.repository.findMinimumTrainingModuleTime(userAccountId);
+		Double maximumTrainingModuleTime = this.repository.findMaximumTrainingModuleTime(userAccountId);
+
+		if (averageTrainingModuleTime != null && deviationTrainingModuleTime != null && minimumTrainingModuleTime != null && maximumTrainingModuleTime != null) {
+
+			final Statistics trainingModuleTimeStatistics = new Statistics();
+			trainingModuleTimeStatistics.setAverage(averageTrainingModuleTime);
+			trainingModuleTimeStatistics.setDeviation(deviationTrainingModuleTime);
+			trainingModuleTimeStatistics.setMaximum(maximumTrainingModuleTime);
+			trainingModuleTimeStatistics.setMinimum(minimumTrainingModuleTime);
+
+			final DeveloperDashboard dashboard = new DeveloperDashboard();
+
+			dashboard.setTotalTrainingModulesWithUpdateMoment(totalTrainingModulesWithUpdateMoment);
+			dashboard.setTotalTrainingSessionsWithLink(totalTrainingSessionsWithLink);
+			dashboard.setTrainingModuleTimeStatistics(trainingModuleTimeStatistics);
+
+			super.getBuffer().addData(dashboard);
+		} else {
+			final Statistics trainingModuleTimeStatistics = new Statistics();
+			trainingModuleTimeStatistics.setAverage(0.0);
+			trainingModuleTimeStatistics.setDeviation(0.0);
+			trainingModuleTimeStatistics.setMaximum(0.0);
+			trainingModuleTimeStatistics.setMinimum(0.0);
+
+			final DeveloperDashboard dashboard = new DeveloperDashboard();
+
+			dashboard.setTotalTrainingModulesWithUpdateMoment(totalTrainingModulesWithUpdateMoment);
+			dashboard.setTotalTrainingSessionsWithLink(totalTrainingSessionsWithLink);
+			dashboard.setTrainingModuleTimeStatistics(trainingModuleTimeStatistics);
+			super.getBuffer().addData(dashboard);
+
+		}
 	}
 
 	@Override
 	public void unbind(final DeveloperDashboard object) {
-		assert object != null;
-
 		Dataset dataset;
 
-		dataset = super.unbind(object, "totalTrainingModulesWithUpdateMoment", "totalTrainingSessionsWithLink", "averageTrainingModuleTime", //
-			"deviationTrainingModuleTime", "minimumTrainingModuleTime", "maximumTrainingModuleTime");
+		dataset = super.unbind(object, //
+			"totalTrainingModulesWithUpdateMoment", "totalTrainingSessionsWithLink", // 
+			"trainingModuleTimeStatistics");
 
 		super.getResponse().addData(dataset);
 	}

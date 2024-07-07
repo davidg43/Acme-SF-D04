@@ -10,10 +10,10 @@
 
 master.company.title = The company
 master.company.text = \
-	Acme C1.018, Inc. is a fictitious company that provides a starter \
+	Acme C2.018, Inc. is a fictitious company that provides a starter \
 	project for the students of the Design and Testing subject of the \
 	Software Engineering Curriculum of the University of Seville.
-master.company.name = Acme C1.018, Inc.
+master.company.name = Acme C2.018, Inc.
 master.company.address = 01 Acme Drive, Wondercity, Wonderland
 master.company.phone = +1 000 111 222
 master.company.email = contact@acme.com

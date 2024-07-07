@@ -1,3 +1,4 @@
 key,key:userAccount,degree,specialization,skills,email,link
 developer-01,user-account-developer-01,Grado en atletismo,Lanzamiento de martillo,"Fuerza, destreza",developer1@example.com,https://example.com/developer-01
 developer-02,user-account-developer-02,Grado en deportes de contacto,Muay thai,"Velocidad, agilidad",developer2@example.com,https://example.com/developer-02
+developer-03,user-account-developer-03,Grado en natación,Natación sincronizada,"Flexibilidad, coordinación",developer3@example.com,https://example.com/developer-03
