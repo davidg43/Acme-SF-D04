@@ -11,20 +11,20 @@ public class ClientDashboard extends AbstractForm {
 
 	private static final long	serialVersionUID	= 1L;
 
-	private int					totalNumberProgressLogsRateLess25;
+	private Integer				totalNumberProgressLogsRateLess25;
 
-	private int					totalNumberProgressLogsRateBetween25And50;
+	private Integer				totalNumberProgressLogsRateBetween25And50;
 
-	private int					totalNumberProgressLogsRateBetween50And75;
+	private Integer				totalNumberProgressLogsRateBetween50And75;
 
-	private int					totalNumberProgressLogsRateMoreThan75;
+	private Integer				totalNumberProgressLogsRateMoreThan75;
 
-	private double				averageBudgetOfContracts;
+	private Double				averageBudgetOfContracts;
 
-	private double				deviationBudgetOfContracts;
+	private Double				deviationBudgetOfContracts;
 
-	private double				minimumBudgetOfContracts;
+	private Double				minimumBudgetOfContracts;
 
-	private double				maximumBudgetOfContracts;
+	private Double				maximumBudgetOfContracts;
 
 }

@@ -1,3 +1,4 @@
 key,key:userAccount,identification,companyName,type,email,furtherInformationLink
 client-01,user-account-client-01,"CLI-4567","AWC",COMPANY,"client1@example.com","https://example.com/client-01"
 client-02,user-account-client-02,"CLI-2345","YOUTUBE",COMPANY,"client2@example.com","https://example.com/client-02"
+client-03,user-account-client-03,"CLI-5621","YOUTUBE",COMPANY,"client3@example.com","https://example.com/client-03"

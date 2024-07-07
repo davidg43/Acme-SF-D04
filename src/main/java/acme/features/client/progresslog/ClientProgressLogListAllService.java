@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.entities.contract.Contract;
 import acme.entities.contract.ProgressLog;
 import acme.roles.Client;
 
@@ -31,8 +32,8 @@ public class ClientProgressLogListAllService extends AbstractService<Client, Pro
 	public void load() {
 		Collection<ProgressLog> objects;
 		int masterId;
-		masterId = super.getRequest().getPrincipal().getActiveRoleId();
-		objects = this.repository.findAllProgressOfClient(masterId);
+		masterId = super.getRequest().getData("masterId", int.class);
+		objects = this.repository.findAllProgressLogsByContractId(masterId);
 		super.getBuffer().addData(objects);
 
 	}
@@ -40,9 +41,28 @@ public class ClientProgressLogListAllService extends AbstractService<Client, Pro
 	@Override
 	public void unbind(final ProgressLog object) {
 		assert object != null;
+
 		Dataset dataset;
-		dataset = super.unbind(object, "recordId", "contract", "completeness");
+
+		dataset = super.unbind(object, "recordId", "completeness", "registrationMoment", "reponsiblePerson", "isDraft");
+
 		super.getResponse().addData(dataset);
 	}
 
+	@Override
+	public void unbind(final Collection<ProgressLog> objects) {
+		assert objects != null;
+
+		int masterId;
+		Contract contract;
+		final boolean showCreate;
+
+		masterId = super.getRequest().getData("masterId", int.class);
+		contract = this.repository.findOneContractById(masterId);
+		showCreate = contract.isDraft() && super.getRequest().getPrincipal().hasRole(contract.getClient());
+
+		super.getResponse().addGlobal("masterId", masterId);
+		super.getResponse().addGlobal("showCreate", showCreate);
+		super.getResponse().addGlobal("isDraft", contract.isDraft());
+	}
 }

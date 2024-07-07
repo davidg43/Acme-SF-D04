@@ -1,14 +1,11 @@
 
 package acme.features.client.progresslog;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
-import acme.client.views.SelectChoices;
 import acme.entities.contract.Contract;
 import acme.entities.contract.ProgressLog;
 import acme.roles.Client;
@@ -53,16 +50,9 @@ public class ClientProgressLogShowService extends AbstractService<Client, Progre
 		assert object != null;
 		Dataset dataset;
 
-		SelectChoices contractChoices;
-		Collection<Contract> contracts = this.repository.findAllContractsByClientId(super.getRequest().getPrincipal().getActiveRoleId());
-
-		contractChoices = SelectChoices.from(contracts, "code", object.getContract());
-
-		dataset = super.unbind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "reponsiblePerson", "isDraft");
-		dataset.put("contracts", contractChoices);
+		dataset = super.unbind(object, "recordId", "completeness", "comment", "registrationMoment", "reponsiblePerson", "isDraft");
 
 		dataset.put("masterId", object.getContract().getId());
-		dataset.put("draftMode", object.getContract().isDraft());
 
 		super.getResponse().addData(dataset);
 	}

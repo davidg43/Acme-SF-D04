@@ -5,6 +5,9 @@ client.progreslog.list.label.completeness = Progress Percentage
 client.progress-log.list.label.recordId = Record ID
 client.progress-log.list.label.completeness = Completed Porcentage
 client.progresslog.form.error.duplicated = Already exists or not updated
+client.progresslog.form.error.completeness = Completeness is already 100%
+
+
 client.progress-log.list.label.contract = Contract ID
 client.progress-log.list.title = My Progress
 client.progress-log.form.title = Progress Details
@@ -19,3 +22,4 @@ client.progresslog.form.button.update = Update
 client.progresslog.form.button.delete = Delete
 client.progresslog.form.button.create = Create
 client.progresslog.form.label.isDraft = isDraft
+client.progress-log.list.label.responsiblePerson = Responsible Person

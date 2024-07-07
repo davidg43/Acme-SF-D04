@@ -24,7 +24,7 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Client.class));
 	}
 
 	@Override
@@ -45,7 +45,6 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		assert contract != null;
 		int projectId;
 		Project project;
-
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findOneProjectById(projectId);
 		Date currentMoment = MomentHelper.getCurrentMoment();
@@ -64,6 +63,15 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 			boolean condition = contracts.contains(contract);
 			super.state(!condition, "code", "client.contract.form.error.duplicated");
 		}
+		if (!super.getBuffer().getErrors().hasErrors("budget"))
+			super.state(contract.getBudget().getAmount() >= 0, "budget", "client.contract.form.error.negative-budget");
+		if (!super.getBuffer().getErrors().hasErrors("budget")) {
+			contracts = this.repository.findAllContractsOfAClientById(contract.getClient().getId());
+			double totalBudget = contracts.stream().mapToDouble(c -> c.getBudget().getAmount()).sum();
+			double projectCost = contract.getProject().getCost().getAmount();
+			totalBudget += contract.getBudget().getAmount();
+			super.state(totalBudget <= projectCost, "budget", "client.contract.form.error.exceeds-project-cost");
+		}
 
 	}
 
@@ -77,15 +85,20 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 	@Override
 	public void unbind(final Contract contract) {
 		assert contract != null;
+		boolean isDraft;
+		Collection<Project> projects;
+		projects = this.repository.findAllPublishedProjects();
+		SelectChoices choices;
+		choices = SelectChoices.from(projects, "title", contract.getProject());
+		isDraft = contract.isDraft() == true;
+
 		Dataset dataset;
 
-		SelectChoices projectChoices;
-		Collection<Project> projects = this.repository.findAllProjects();
-
-		projectChoices = SelectChoices.from(projects, "title", contract.getProject());
-
 		dataset = super.unbind(contract, "code", "moment", "providerName", "customerName", "goals", "budget", "isDraft", "project");
-		dataset.put("projects", projectChoices);
+		dataset.put("contractId", contract.getId());
+		dataset.put("isDraft", isDraft);
+		dataset.put("project", choices.getSelected().getKey());
+		dataset.put("projects", choices);
 
 		super.getResponse().addData(dataset);
 	}

@@ -1,5 +1,16 @@
 key,key:contract,record-id,completeness,comment,registration-moment,reponsible-person,isDraft
 progress-log-01,contract-01,PG-AB-1234,80,"This is a progress update.",2021/08/03 03:00,"John Doe",1
-progress-log-02,contract-02,PG-C-5678,60,"Another progress log entry.",2021/10/10 05:00,"Jane Smith",1
-progress-log-03,contract-03,PG-XY-9012,95,"Almost completed the task.",2021/06/14 08:00,"Michael Johnson",1
+progress-log-02,contract-02,PG-C-5678,60,"Another progress log entry.",2021/10/10 05:00,"국민경제의 발전을",1
+progress-log-03,contract-03,PG-XY-9012,95,"Almost completed the task.",2021/06/14 08:00,"국민경제의 발전을",1
 progress-log-04,contract-04,PG-Z-3456,100,"Task completed successfully.",2021/02/20 23:00,"Amy Williams",1
+progress-log-05,contract-05,PG-AA-1122,45,"Initial phase completed.",2021/05/12 14:30,"'' or 'A'='A",1
+progress-log-06,contract-06,PG-BB-2233,70,"Midway through the task.",2021/07/18 10:00,"Lucia Romero",1
+progress-log-07,contract-07,PG-CC-3344,85,"Task nearing completion.",2021/09/24 16:45,"Lorem Ipsum",1
+progress-log-08,contract-08,PG-DD-4455,50,"Half of the task completed.",2021/11/05 13:20,"국민경제의 발전을",1
+progress-log-09,contract-09,PG-EE-5566,30,"Started the task.",2021/12/11 09:00,"Fernando Alvarez",1
+progress-log-10,contract-10,PG-FF-6677,75,"Significant progress made.",2021/01/06 18:40,"<h1>!</h1>",1
+progress-log-11,contract-11,PG-GG-7788,90,"Almost there.",2021/02/08 08:15,"Juan Rios",1
+progress-log-12,contract-12,PG-HH-8899,65,"More than halfway done.",2020/03/12 14:50,"Ana Morales",1
+progress-log-13,contract-13,PG-II-9900,20,"Initial steps completed.",2021/04/15 11:30,"<h1>!</h1>",1
+progress-log-14,contract-14,PG-JJ-0011,95,"Final touches.",2021/05/19 17:00,"<h1>!</h1>",1
+progress-log-15,contract-15,PG-KK-1122,40,"Started and progressing.",2021/06/21 20:10,"Luis Ortega",1
