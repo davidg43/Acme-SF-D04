@@ -14,7 +14,6 @@ package acme.features.auditor.codeAudit;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -77,13 +76,10 @@ public class AuditorCodeAuditUpdateService extends AbstractService<Auditor, Code
 		Date currentMoment = MomentHelper.getCurrentMoment();
 		Date creationMoment = new Date(currentMoment.getTime() - 6000);
 
-		List<Mark> marks = this.repository.findManyMarksByCodeAuditId(object.getId());
-		Mark modeMark = this.repository.getMode(marks);
-
 		super.bind(object, "code", "execution", "type", "correctiveActions", "mark", "link");
 		object.setProject(project);
 		object.setExecution(creationMoment);
-		object.setMark(modeMark);
+		object.setMark(null);
 	}
 
 	@Override

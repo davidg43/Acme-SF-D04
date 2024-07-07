@@ -12,24 +12,24 @@ public class AuditorDashboard extends AbstractForm {
 
 	private static final long	serialVersionUID	= 1L;
 
-	private int					totalStaticCodeAudits;
+	private Integer				totalStaticCodeAudits;
 
-	private int					totalDynamicCodeAudits;
+	private Integer				totalDynamicCodeAudits;
 
-	private double				averageNumberOfAuditRecords;
+	private Double				averageNumberOfAuditRecords;
 
-	private double				deviationNumberOfAuditRecords;
+	private Double				deviationNumberOfAuditRecords;
 
-	private int					minimumNumberOfAuditRecords;
+	private Integer				minimumNumberOfAuditRecords;
 
-	private int					maximumNumberOfAuditRecords;
+	private Integer				maximumNumberOfAuditRecords;
 
-	private double				averagePeriodInAuditRecords;
+	private Double				averagePeriodInAuditRecords;
 
-	private double				deviationPeriodInAuditRecords;
+	private Double				deviationPeriodInAuditRecords;
 
-	private double				minimumPeriodInAuditRecords;
+	private Double				minimumPeriodInAuditRecords;
 
-	private double				maximumPeriodInAuditRecords;
+	private Double				maximumPeriodInAuditRecords;
 
 }
