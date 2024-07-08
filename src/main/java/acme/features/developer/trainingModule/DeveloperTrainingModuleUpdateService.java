@@ -101,7 +101,7 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 		assert object != null;
 
 		Date currentMoment = MomentHelper.getCurrentMoment();
-		Date updateMoment = new Date(currentMoment.getTime() - 10000);
+		Date updateMoment = new Date(currentMoment.getTime());
 		object.setUpdateMoment(updateMoment);
 
 		this.repository.save(object);
