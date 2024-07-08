@@ -2,6 +2,7 @@
 package acme.features.developer.trainingModule;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import acme.client.data.accounts.Principal;
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.project.Project;
@@ -57,10 +59,13 @@ public class DeveloperTrainingModulePublishService extends AbstractService<Devel
 		int projectId = super.getRequest().getData("project", int.class);
 		Project project = this.repository.findOneProjectById(projectId);
 
-		super.bind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "totalTime", "project");
+		Date currentMoment = MomentHelper.getCurrentMoment();
+		Date updateMoment = new Date(currentMoment.getTime());
+
+		super.bind(object, "code", "details", "difficultyLevel", "link", "totalTime", "project");
 		TrainingModule original = this.repository.findOneTrainingModuleById(object.getId());
 		object.setCreationMoment(original.getCreationMoment());
-		object.setUpdateMoment(original.getUpdateMoment());
+		object.setUpdateMoment(updateMoment);
 		object.setProject(project);
 	}
 
@@ -74,14 +79,6 @@ public class DeveloperTrainingModulePublishService extends AbstractService<Devel
 
 			super.state(!duplicatedCode, "code", "developer.trainingModule.form.error.duplicated-code");
 		}
-
-		/*
-		 * if (!super.getBuffer().getErrors().hasErrors("totalTime")) {
-		 * final boolean duplicatedCode = object.getTotalTime() < 0;
-		 * 
-		 * super.state(!duplicatedCode, "totalTime", "developer.trainingModule.form.error.negative-total-time");
-		 * }
-		 */
 
 		if (!super.getBuffer().getErrors().hasErrors("project")) {
 			Project project = object.getProject();
@@ -116,10 +113,9 @@ public class DeveloperTrainingModulePublishService extends AbstractService<Devel
 		Collection<Project> projects = this.repository.findAllProjectsPublished();
 		SelectChoices projectsChoices = SelectChoices.from(projects, "code", object.getProject());
 
-		Dataset dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "updateMoment", "link", "totalTime", "draftMode", "project");
+		Dataset dataset = super.unbind(object, "code", "creationMoment", "details", "difficultyLevel", "link", "totalTime", "draftMode", "project");
 
 		dataset.put("creationMoment", object.getCreationMoment());
-		dataset.put("updateMoment", object.getUpdateMoment());
 
 		dataset.put("difficultyLevelOptions", choices);
 		dataset.put("project", projectsChoices.getSelected().getKey());

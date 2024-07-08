@@ -52,7 +52,7 @@ public class ManagerProjectShowService extends AbstractService<Manager, Project>
 		Dataset dataset;
 
 		dataset = super.unbind(project, "code", "title", "abstractText", "hasFatalErrors", "cost", "link", "isDraft");
-		dataset.put("projectId", project.getId());
+
 		dataset.put("publishable", userStoriesPublishables);
 		dataset.put("isDraft", isDraft);
 

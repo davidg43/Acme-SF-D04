@@ -50,7 +50,7 @@ public class ManagerUserStoryPublishService extends AbstractService<Manager, Use
 	public void bind(final UserStory userStory) {
 		assert userStory != null;
 
-		super.bind(userStory, "isDraft");
+		super.bind(userStory, "title", "description", "estimatedCost", "priority", "acceptanceCriteria", "link", "isDraft");
 	}
 
 	@Override

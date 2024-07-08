@@ -8,3 +8,6 @@ manager.assignment.list.label.create = Crear
 
 manager.project.form.updateable = No se puede modificar un proyecto ya publicado
 manager.project.form.create-denied = No se puede crear un assignment para un proyecto publicado
+manager.assignment.list.label.userStoryTitle = Título historia de usuario	
+manager.assignment.list.label.projectTitle = Título proyecto
+manager.project.form.UsDuplicated = No es posible asignar una historia de usuario ya enlazada

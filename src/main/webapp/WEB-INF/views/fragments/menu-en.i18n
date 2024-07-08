@@ -40,6 +40,8 @@ master.menu.administrator.banner = Banners
 master.menu.list.training-module = Training modules
 master.menu.show.developer-dashboard = Dashboard
 master.menu.developer = Developer
+master.menu.user-account.become-developer = Become a developer
+master.menu.user-account.developer = Developer data
 
 
 # master.menu.provider ########################################################

@@ -1,14 +1,14 @@
 
 package acme.features.client.progresslog;
 
-import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
-import acme.client.views.SelectChoices;
 import acme.entities.contract.Contract;
 import acme.entities.contract.ProgressLog;
 import acme.roles.Client;
@@ -22,29 +22,32 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
-
+		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Client.class));
 	}
 
 	@Override
 	public void load() {
-		ProgressLog object;
-
+		final int masterId = super.getRequest().getData("masterId", int.class);
 		Contract contract;
 
-		contract = this.repository.findOneContractById(super.getRequest().getPrincipal().getActiveRoleId());
+		contract = this.repository.findOneContractById(masterId);
 
-		object = new ProgressLog();
-		object.setDraft(true);
-		object.setContract(contract);
-		super.getBuffer().addData(object);
+		ProgressLog progressLog = new ProgressLog();
+		progressLog.setDraft(true);
+		progressLog.setContract(contract);
+		super.getBuffer().addData(progressLog);
 	}
 
 	@Override
 	public void bind(final ProgressLog object) {
 		assert object != null;
-
-		super.bind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "reponsiblePerson", "isDraft");
+		Date currentMoment = MomentHelper.getCurrentMoment();
+		Date registrationMoment = new Date(currentMoment.getTime());
+		super.bind(object, "recordId", "completeness", "comment", "registrationMoment", "reponsiblePerson", "isDraft");
+		int masterId = super.getRequest().getData("masterId", int.class);
+		Contract contract = this.repository.findOneContractById(masterId);
+		object.setContract(contract);
+		object.setRegistrationMoment(registrationMoment);
 	}
 
 	@Override
@@ -53,11 +56,18 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 
 		if (!super.getBuffer().getErrors().hasErrors("recordId")) {
 			ProgressLog existing;
-
 			existing = this.repository.findOneProgressLogByCode(object.getRecordId());
-
 			super.state(existing == null, "recordId", "client.progresslog.form.error.duplicated");
 		}
+		if (!super.getBuffer().getErrors().hasErrors("completeness")) {
+			Double currentCompleteness = this.repository.findTotalCompletenessByContractIdExceptSelf(object.getContract().getId(), object.getId());
+			if (currentCompleteness == null)
+				currentCompleteness = 0.0;
+			Double objectCompleteness = object.getCompleteness();
+			double totalCompleteness = currentCompleteness + objectCompleteness;
+			super.state(totalCompleteness <= 100, "completeness", "client.progresslog.form.error.completeness");
+		}
+
 	}
 	@Override
 	public void perform(final ProgressLog object) {
@@ -71,14 +81,14 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 		assert object != null;
 		Dataset dataset;
 
-		SelectChoices contractChoices;
-		Collection<Contract> contracts = this.repository.findAllContractsByClientId(super.getRequest().getPrincipal().getActiveRoleId());
+		//SelectChoices contractChoices;
+		//Collection<Contract> contracts = this.repository.findAllContractsByClientId(super.getRequest().getPrincipal().getActiveRoleId());
 
-		contractChoices = SelectChoices.from(contracts, "code", object.getContract());
+		//contractChoices = SelectChoices.from(contracts, "code", object.getContract());
 
-		dataset = super.unbind(object, "recordId", "contract", "completeness", "comment", "registrationMoment", "isDraft", "reponsiblePerson");
-		dataset.put("contracts", contractChoices);
-
+		dataset = super.unbind(object, "contract", "recordId", "completeness", "comment", "registrationMoment", "isDraft", "reponsiblePerson");
+		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
+		dataset.put("isDraft", object.getContract().isDraft());
 		super.getResponse().addData(dataset);
 	}
 }

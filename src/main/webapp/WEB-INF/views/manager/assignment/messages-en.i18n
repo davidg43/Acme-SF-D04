@@ -8,3 +8,6 @@ manager.assignment.list.label.create = Create
 
 manager.project.form.updateable = Is not possible to modify a published project
 manager.project.form.create-denied = Is not possible to create an assignment for a publish project
+manager.assignment.list.label.userStoryTitle = User Story Title
+manager.assignment.list.label.projectTitle = Project Title
+manager.project.form.UsDuplicated = It is not possible to assign a User Story just linked

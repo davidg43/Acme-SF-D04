@@ -89,14 +89,6 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 			super.state(!duplicatedCode, "code", "developer.trainingModule.form.error.duplicated-code");
 		}
 
-		/*
-		 * if (!super.getBuffer().getErrors().hasErrors("totalTime")) {
-		 * final boolean negativeTotalTime = object.getTotalTime() < 0;
-		 * 
-		 * super.state(!negativeTotalTime, "totalTime", "developer.trainingModule.form.error.negative-total-time");
-		 * }
-		 */
-
 		if (!super.getBuffer().getErrors().hasErrors("project")) {
 			Project project = object.getProject();
 
@@ -109,7 +101,8 @@ public class DeveloperTrainingModuleUpdateService extends AbstractService<Develo
 		assert object != null;
 
 		Date currentMoment = MomentHelper.getCurrentMoment();
-		object.setUpdateMoment(currentMoment);
+		Date updateMoment = new Date(currentMoment.getTime());
+		object.setUpdateMoment(updateMoment);
 
 		this.repository.save(object);
 	}

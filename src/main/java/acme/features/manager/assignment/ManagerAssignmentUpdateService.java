@@ -10,7 +10,6 @@ import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.project.Assignment;
-import acme.entities.project.Project;
 import acme.entities.project.UserStory;
 import acme.features.manager.project.ManagerProjectRepository;
 import acme.roles.Manager;
@@ -43,19 +42,19 @@ public class ManagerAssignmentUpdateService extends AbstractService<Manager, Ass
 	public void bind(final Assignment assigment) {
 		assert assigment != null;
 
-		super.bind(assigment, "project", "userStory");
+		super.bind(assigment, "project.title", "userStory");
 	}
 
 	@Override
 	public void validate(final Assignment assigment) {
 		assert assigment != null;
-		boolean updateable = this.repository.findProjectOfAnAssignmentByAssignmentId(assigment.getId()).isDraft(); // Si true == updateable
+		boolean updateable = this.repository.findProjectOfAnAssignmentByAssignmentId(assigment.getId()).isDraft();
 
-		if (!super.getBuffer().getErrors().hasErrors("project"))
+		if (!super.getBuffer().getErrors().hasErrors("project")) {
 			super.state(!assigment.getProject().isHasFatalErrors(), "project", "manager.project.form.error.fatal-errors");
-
-		if (!super.getBuffer().getErrors().hasErrors("project"))
 			super.state(updateable, "*", "manager.project.form.updateable");
+			super.state(assigment.getProject().isDraft() == true, "*", "manager.project.form.create-denied");
+		}
 
 	}
 
@@ -73,17 +72,14 @@ public class ManagerAssignmentUpdateService extends AbstractService<Manager, Ass
 		Dataset dataset;
 
 		int id = super.getRequest().getPrincipal().getActiveRoleId();
-		SelectChoices projectChoices;
 		SelectChoices userStoriesChoices;
-		Collection<Project> projects = this.repository.findAllProjectsByManagerId(id);
 		Collection<UserStory> userStories = this.repository.findAllUserStoriesOfAManagerById(id);
 
-		projectChoices = SelectChoices.from(projects, "title", assigment.getProject());
 		userStoriesChoices = SelectChoices.from(userStories, "title", assigment.getUserStory());
 
-		dataset = super.unbind(assigment, "project", "userStory");
+		dataset = super.unbind(assigment, "project.title", "userStory");
 
-		dataset.put("projects", projectChoices);
+		dataset.put("masterId", assigment.getProject().getId());
 		dataset.put("userStories", userStoriesChoices);
 
 		super.getResponse().addData(dataset);

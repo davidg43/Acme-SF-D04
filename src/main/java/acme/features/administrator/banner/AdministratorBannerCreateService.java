@@ -75,8 +75,8 @@ public class AdministratorBannerCreateService extends AbstractService<Administra
 				super.state(false, "periodInit", "administrator.banner.form.error.init-after-end");
 			else if (!MomentHelper.isBeforeOrEqual(minimumPeriod, object.getPeriodEnd()))
 				super.state(false, "periodEnd", "administrador.banner.form.error.too-close");
-		}
 
+		}
 	}
 
 	@Override

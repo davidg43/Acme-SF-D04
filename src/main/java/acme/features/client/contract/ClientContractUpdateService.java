@@ -1,6 +1,8 @@
 
 package acme.features.client.contract;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,12 +55,22 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 	@Override
 	public void validate(final Contract contract) {
 		assert contract != null;
+		Collection<Contract> contracts = null;
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
 			Contract existing;
 
 			existing = this.repository.findOneContractByCode(contract.getCode());
 
 			super.state(existing == null || existing.equals(contract), "recordId", "client.progresslog.form.error.duplicated");
+		}
+		if (!super.getBuffer().getErrors().hasErrors("budget"))
+			super.state(contract.getBudget().getAmount() >= 0, "budget", "client.contract.form.error.negative-budget");
+		if (!super.getBuffer().getErrors().hasErrors("budget")) {
+			contracts = this.repository.findAllContractsOfAClientById(contract.getClient().getId());
+			double totalBudget = contracts.stream().mapToDouble(c -> c.getBudget().getAmount()).sum();
+			double projectCost = contract.getProject().getCost().getAmount();
+			totalBudget += contract.getBudget().getAmount();
+			super.state(totalBudget <= projectCost, "budget", "client.contract.form.error.exceeds-project-cost");
 		}
 
 	}
@@ -75,7 +87,7 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 		boolean isDraft;
 		SelectChoices choices;
 
-		choices = SelectChoices.from(this.repository.findAllProjects(), "title", contract.getProject());
+		choices = SelectChoices.from(this.repository.findAllPublishedProjects(), "title", contract.getProject());
 		isDraft = contract.isDraft() == true;
 
 		Dataset dataset;

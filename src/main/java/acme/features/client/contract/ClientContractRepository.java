@@ -134,6 +134,8 @@ public interface ClientContractRepository extends AbstractRepository {
 	//	Collection<Objective> findAllObjectivesOfAProjectById(int id);
 	@Query("select c from Contract c")
 	Collection<Contract> findAllContracts();
+	@Query("select p from Project p where p.isDraft = false")
+	Collection<Project> findAllPublishedProjects();
 
 	@Query("select p from Project p where p.id =:projectId")
 	Project findOneProjectById(int projectId);

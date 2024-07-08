@@ -10,7 +10,6 @@ import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.client.views.SelectChoices;
 import acme.entities.project.Assignment;
-import acme.entities.project.Project;
 import acme.entities.project.UserStory;
 import acme.features.manager.project.ManagerProjectRepository;
 import acme.roles.Manager;
@@ -30,7 +29,7 @@ public class ManagerAssignmentDeleteService extends AbstractService<Manager, Ass
 	public void authorise() {
 		boolean status;
 		int id = super.getRequest().getData("id", int.class);
-		Manager manager = this.repository.findProjectByAssignmentId(id);
+		Manager manager = this.repository.findManagerProjectByAssignmentId(id);
 		status = super.getRequest().getPrincipal().getActiveRoleId() == manager.getId();
 
 		super.getResponse().setAuthorised(status);
@@ -51,12 +50,12 @@ public class ManagerAssignmentDeleteService extends AbstractService<Manager, Ass
 	public void bind(final Assignment assignment) {
 		assert assignment != null;
 
-		super.bind(assignment, "project", "userStory");
+		super.bind(assignment, "project.title", "userStory");
 	}
 
 	@Override
 	public void validate(final Assignment assignment) {
-		boolean updateable = this.repository.findProjectOfAnAssignmentByAssignmentId(assignment.getId()).isDraft(); // Si true == updateable
+		boolean updateable = this.repository.findProjectOfAnAssignmentByAssignmentId(assignment.getId()).isDraft();
 
 		if (!super.getBuffer().getErrors().hasErrors("project"))
 			super.state(updateable, "*", "manager.project.form.updateable");
@@ -71,27 +70,21 @@ public class ManagerAssignmentDeleteService extends AbstractService<Manager, Ass
 	}
 
 	@Override
-	public void unbind(final Assignment assignment) {
-		assert assignment != null;
+	public void unbind(final Assignment assigment) {
+		assert assigment != null;
 
 		Dataset dataset;
 
 		int id = super.getRequest().getPrincipal().getActiveRoleId();
-		SelectChoices projectChoices;
 		SelectChoices userStoriesChoices;
-
-		Collection<Project> projects = this.repository.findAllProjectsByManagerId(id);
 		Collection<UserStory> userStories = this.repository.findAllUserStoriesOfAManagerById(id);
-		boolean updateable = this.repository.findProjectOfAnAssignmentByAssignmentId(assignment.getId()).isDraft(); // Si true == updateable
 
-		projectChoices = SelectChoices.from(projects, "title", assignment.getProject());
-		userStoriesChoices = SelectChoices.from(userStories, "title", assignment.getUserStory());
+		userStoriesChoices = SelectChoices.from(userStories, "title", assigment.getUserStory());
 
-		dataset = super.unbind(assignment, "project", "userStory");
+		dataset = super.unbind(assigment, "project.title", "userStory");
 
-		dataset.put("projects", projectChoices);
+		dataset.put("masterId", assigment.getProject().getId());
 		dataset.put("userStories", userStoriesChoices);
-		dataset.put("updateable", updateable);
 
 		super.getResponse().addData(dataset);
 	}

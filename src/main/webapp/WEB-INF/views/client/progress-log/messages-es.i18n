@@ -5,6 +5,7 @@ client.progress-log.list.label.recordId = Record ID
 client.progress-log.list.label.completeness = Porcentaje Completado
 client.progress-log.list.label.contract = Id de Contrato
 client.progress-log.list.title = Mis Registros
+client.progresslog.form.error.completeness = Ya se ha completado el 100%
 
 client.progress-log.form.title = Detalles del Progreso
 client.progresslog.form.label.contract = Contrato
@@ -17,3 +18,5 @@ client.progresslog.form.button.update = Actualizar
 client.progresslog.form.button.delete = Borrar
 client.progresslog.form.label.isDraft = esBorrador
 client.progresslog.form.button.create = Crear
+
+client.progress-log.list.label.responsiblePerson = Responsable
