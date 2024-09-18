@@ -24,7 +24,10 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 
 	@Override
 	public void authorise() {
-		boolean status = super.getRequest().getPrincipal().hasRole(Manager.class);
+		boolean status;
+		int assigmentId = super.getRequest().getData("id", int.class);
+		Manager manager = this.repository.findManagerProjectByAssignmentId(assigmentId);
+		status = manager != null && super.getRequest().getPrincipal().hasRole(Manager.class) && manager.getId() == super.getRequest().getPrincipal().getActiveRoleId();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -54,6 +57,11 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 	@Override
 	public void validate(final Assignment assigment) {
 		assert assigment != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("userStory")) {
+			boolean condition = assigment.getProject().getManager().getId() == assigment.getUserStory().getManager().getId();
+			super.state(condition, "*", "manager.project.form.error.ownership");
+		}
 
 		if (!super.getBuffer().getErrors().hasErrors("project")) {
 			super.state(!assigment.getProject().isHasFatalErrors(), "project", "manager.project.form.error.fatal-errors");

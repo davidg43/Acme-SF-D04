@@ -57,7 +57,6 @@ public interface ManagerProjectRepository extends AbstractRepository {
 
 	@Query("select a.project.manager From Assignment a WHERE a.id =:id")
 	Manager findManagerProjectByAssignmentId(int id);
-
 	@Query("select a.project From Assignment a WHERE a.id =:id")
 	Project findProjectOfAnAssignmentByAssignmentId(int id);
 	//

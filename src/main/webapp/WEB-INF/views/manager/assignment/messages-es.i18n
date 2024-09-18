@@ -11,3 +11,5 @@ manager.project.form.create-denied = No se puede crear un assignment para un pro
 manager.assignment.list.label.userStoryTitle = Título historia de usuario	
 manager.assignment.list.label.projectTitle = Título proyecto
 manager.project.form.UsDuplicated = No es posible asignar una historia de usuario ya enlazada
+
+manager.project.form.error.ownership = Para este Manager, no es posible asignar esta historia de usuario
