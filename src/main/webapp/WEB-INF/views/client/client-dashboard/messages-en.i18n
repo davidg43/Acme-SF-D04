@@ -8,4 +8,9 @@ client.dashboard.label.deviation-budget = Deviation Budge
 client.dashboard.label.minimum-budget = Minumum Budget
 client.dashboard.label.maximum-budget = Maximum Budget
 client.client-dashboard.form.title= Client DashBoard
+client.dashboard.form.title.budget-indicators= Budget Indicators
+client.dashboard.label.currency = Currency
+client.dashboard.label.eur = EUR
+client.dashboard.label.gbp = GBP
+client.dashboard.label.usd = USD
 

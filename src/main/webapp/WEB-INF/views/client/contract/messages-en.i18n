@@ -47,6 +47,7 @@ client.list.label.project.title = Proyect
 client.contract.form.error.exceeds-project-cost = Budget higher than project cost
 project.form.button.publish = Publish
 client.contract.form.error.invalid-budget = The budget is higher than the project total cost
+client.contract.unsopportedCurrency = Unsupported Currency
 
 client.contract.form.error.duplicated = This contract alredy exist
 

@@ -19,12 +19,28 @@ public class ClientDashboard extends AbstractForm {
 
 	private Integer				totalNumberProgressLogsRateMoreThan75;
 
-	private Double				averageBudgetOfContracts;
+	private Double				averageBudgetOfContractsEUR;
 
-	private Double				deviationBudgetOfContracts;
+	private Double				deviationBudgetOfContractsEUR;
 
-	private Double				minimumBudgetOfContracts;
+	private Double				minimumBudgetOfContractsEUR;
 
-	private Double				maximumBudgetOfContracts;
+	private Double				maximumBudgetOfContractsEUR;
+
+	private Double				averageBudgetOfContractsGBP;
+
+	private Double				deviationBudgetOfContractsGBP;
+
+	private Double				minimumBudgetOfContractsGBP;
+
+	private Double				maximumBudgetOfContractsGBP;
+
+	private Double				averageBudgetOfContractsUSD;
+
+	private Double				deviationBudgetOfContractsUSD;
+
+	private Double				minimumBudgetOfContractsUSD;
+
+	private Double				maximumBudgetOfContractsUSD;
 
 }

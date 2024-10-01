@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.entities.contract.Contract;
 import acme.entities.contract.ProgressLog;
 import acme.roles.Client;
 
@@ -19,11 +20,13 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 	@Override
 	public void authorise() {
 		boolean status;
-		int masterId;
+		int progressLogId;
+		Contract contract;
 		ProgressLog progressLog;
-		masterId = super.getRequest().getData("id", int.class);
-		progressLog = this.repository.findOneProgressLogById(masterId);
-		status = progressLog != null && progressLog.isDraft() && super.getRequest().getPrincipal().hasRole(Client.class) && progressLog.getContract().getClient().getId() == super.getRequest().getPrincipal().getActiveRoleId();
+		progressLogId = super.getRequest().getData("id", int.class);
+		contract = this.repository.findOneContractByProgressLogId(progressLogId);
+		progressLog = this.repository.findOneProgressLogById(progressLogId);
+		status = super.getRequest().getPrincipal().getActiveRoleId() == contract.getClient().getId() && progressLog != null && progressLog.isDraft() && contract != null && super.getRequest().getPrincipal().hasRole(Client.class);
 
 		super.getResponse().setAuthorised(status);
 	}

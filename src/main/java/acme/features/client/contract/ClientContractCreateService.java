@@ -7,6 +7,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.datatypes.Money;
 import acme.client.data.models.Dataset;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractService;
@@ -66,12 +67,27 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		if (!super.getBuffer().getErrors().hasErrors("budget"))
 			super.state(contract.getBudget().getAmount() >= 0, "budget", "client.contract.form.error.negative-budget");
 		if (!super.getBuffer().getErrors().hasErrors("budget")) {
-			contracts = this.repository.findAllContractsOfAClientById(contract.getClient().getId());
-			double totalBudget = contracts.stream().mapToDouble(c -> c.getBudget().getAmount()).sum();
+			contracts = this.repository.findAllContractsOfAProjectById(contract.getProject().getId());
+			double totalBudget = contracts.stream().filter(p -> p.getId() != contract.getId()).mapToDouble(c -> this.eurConverter(c.getBudget())).sum();
 			double projectCost = contract.getProject().getCost().getAmount();
-			totalBudget += contract.getBudget().getAmount();
+			totalBudget += this.eurConverter(contract.getBudget());
 			super.state(totalBudget <= projectCost, "budget", "client.contract.form.error.exceeds-project-cost");
 		}
+	}
+
+	private double eurConverter(final Money money) {
+		String currency = money.getCurrency();
+		double amount = money.getAmount();
+
+		if (currency.equals("EUR"))
+			amount = amount;
+		else if (currency.equals("USD"))
+			amount = amount * 0.90; // Tasa aproximada de conversión USD a EUR
+		else if (currency.equals("GBP"))
+			amount = amount * 1.17; // Tasa aproximada de conversión GBP a EUR
+		else
+			super.state(false, "budget", "client.contract.unsopportedCurrency");
+		return amount;
 
 	}
 

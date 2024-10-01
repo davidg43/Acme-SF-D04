@@ -2,6 +2,7 @@
 package acme.features.client.progresslog;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -58,5 +59,8 @@ public interface ClientProgressLogRepository extends AbstractRepository {
 
 	@Query("select c from Contract c where c.code =:code")
 	Contract findOneContractByCode(String code);
+
+	@Query("SELECT p FROM ProgressLog p WHERE p.contract.id =:id ORDER BY p.registrationMoment DESC ")
+	List<ProgressLog> findBefore(int id);
 
 }
