@@ -23,9 +23,9 @@
 	<name>Acme-C2.018</name>
 	<description>This is the C2.018 project</description>
 	
-	<artifactId>Acme-SF-D04</artifactId>
+	<artifactId>Acme-SF</artifactId>
 
-	<version>1.0</version>
+	<version>D04</version>
 
 	<packaging>war</packaging>
 	
