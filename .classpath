@@ -6,7 +6,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="**/fragments/**" kind="src" path="acme-framework-24.5.0"/>
+	<classpathentry excluding="**/fragments/**" kind="src" path="acme-framework"/>
 	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/webapp">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
