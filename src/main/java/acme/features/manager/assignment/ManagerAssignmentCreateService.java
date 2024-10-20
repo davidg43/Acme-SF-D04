@@ -24,7 +24,10 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 
 	@Override
 	public void authorise() {
-		boolean status = super.getRequest().getPrincipal().hasRole(Manager.class);
+		boolean status;
+		int projectId = super.getRequest().getData("masterId", Integer.class);
+		Manager manager = this.repository.findManagerByProjectId(projectId);
+		status = manager != null && super.getRequest().getPrincipal().hasRole(Manager.class) && manager.getId() == super.getRequest().getPrincipal().getActiveRoleId();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -55,10 +58,13 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 	public void validate(final Assignment assigment) {
 		assert assigment != null;
 
-		if (!super.getBuffer().getErrors().hasErrors("project")) {
-			super.state(!assigment.getProject().isHasFatalErrors(), "project", "manager.project.form.error.fatal-errors");
-			super.state(assigment.getProject().isDraft() == true, "*", "manager.project.form.create-denied");
+		if (!super.getBuffer().getErrors().hasErrors("userStory")) {
+			boolean condition = assigment.getProject().getManager().getId() == assigment.getUserStory().getManager().getId();
+			super.state(condition, "*", "manager.project.form.error.ownership");
 		}
+
+		if (!super.getBuffer().getErrors().hasErrors("project"))
+			super.state(assigment.getProject().isDraft() == true, "*", "manager.project.form.create-denied");
 
 		if (!super.getBuffer().getErrors().hasErrors("userStroy")) {
 			int masterId = super.getRequest().getData("masterId", int.class);

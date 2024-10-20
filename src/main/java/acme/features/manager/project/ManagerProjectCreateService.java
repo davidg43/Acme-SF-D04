@@ -1,12 +1,15 @@
 
 package acme.features.manager.project;
 
+import java.util.stream.Stream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
 import acme.entities.project.Project;
+import acme.entities.project.acceptedCurrency;
 import acme.roles.Manager;
 
 @Service
@@ -47,11 +50,12 @@ public class ManagerProjectCreateService extends AbstractService<Manager, Projec
 	public void validate(final Project project) {
 		assert project != null;
 
-		if (!super.getBuffer().getErrors().hasErrors("hasFatalErrors"))
-			super.state(!project.isHasFatalErrors(), "hasFatalErrors", "manager.project.form.error.fatal-errors");
+		if (!super.getBuffer().getErrors().hasErrors("cost")) {
+			boolean isCurrencyAccepted = Stream.of(acceptedCurrency.values()).map(x -> x.toString().toLowerCase().trim()).anyMatch(currency -> currency.equals(project.getCost().getCurrency().toLowerCase().trim()));
 
-		if (!super.getBuffer().getErrors().hasErrors("cost"))
+			super.state(isCurrencyAccepted, "cost", "manager.project.form.error.incorrectConcurrency");
 			super.state(project.getCost().getAmount() >= 0, "cost", "manager.project.form.error.negative-cost");
+		}
 
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
 			Project existing;

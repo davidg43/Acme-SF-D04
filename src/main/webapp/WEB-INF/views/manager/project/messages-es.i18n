@@ -6,6 +6,7 @@ manager.list.label.hasFatalErrors = Tiene Errores Fatales
 manager.project.form.error.negative-cost = Tiene coste negativo
 manager.list.label.create  = Crear
 manager.project.form.error.fatal-errors = Este proyecto tiene errores fatales
+manager.project.form.error.incorrectConcurrency = Moneda no aceptada
 
 manager.project.form.title = Detalles del proyecto
 manager.project.list.title = Lista de proyectos

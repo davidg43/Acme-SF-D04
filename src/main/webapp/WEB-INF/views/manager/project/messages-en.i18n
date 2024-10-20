@@ -6,6 +6,7 @@ manager.list.label.hasFatalErrors = Has Fatal Errors
 manager.list.label.create = Create
 manager.project.form.error.fatal-errors = This project has fatal errors
 manager.project.form.error.negative-cost = Negative cost detected
+manager.project.form.error.incorrectConcurrency = Non accepted currency
 
 
 manager.project.form.title = Details of a Project

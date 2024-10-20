@@ -24,11 +24,12 @@ public class ManagerAssignmentShowService extends AbstractService<Manager, Assig
 	@Override
 	public void authorise() {
 		boolean status;
-		int id = super.getRequest().getData("id", int.class);
-		Manager manager = this.repository.findManagerProjectByAssignmentId(id);
-		status = super.getRequest().getPrincipal().getActiveRoleId() == manager.getId();
+		int assigmentId = super.getRequest().getData("id", int.class);
+		Manager manager = this.repository.findManagerProjectByAssignmentId(assigmentId);
+		status = manager != null && super.getRequest().getPrincipal().hasRole(Manager.class) && manager.getId() == super.getRequest().getPrincipal().getActiveRoleId();
 
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override

@@ -33,16 +33,40 @@ public interface ManagerDashboardRepository extends AbstractRepository {
 	@Query("select count(us) from UserStory us where us.priority = '0' AND us.manager.id =:id")
 	Integer countWont(Integer id);
 
-	@Query("select avg(p.cost.amount) from Project p WHERE p.manager.id =:id")
-	Double avgProjectCost(Integer id);
+	@Query("select avg(p.cost.amount) from Project p WHERE p.manager.id =:id AND p.cost.currency = 'EUR'")
+	Double avgProjectCostEUR(Integer id);
 
-	@Query("select stddev(p.cost.amount) from Project p WHERE p.manager.id =:id")
-	Double deviationProjectCost(Integer id);
+	@Query("select stddev(p.cost.amount) from Project p WHERE p.manager.id =:id AND p.cost.currency = 'EUR'")
+	Double deviationProjectCostEUR(Integer id);
 
-	@Query("select max(p.cost.amount) from Project p WHERE p.manager.id =:id")
-	Double maxProjectCost(Integer id);
+	@Query("select max(p.cost.amount) from Project p WHERE p.manager.id =:id AND p.cost.currency = 'EUR'")
+	Double maxProjectCostEUR(Integer id);
 
-	@Query("select min(p.cost.amount) from Project p WHERE p.manager.id =:id")
-	Double minProjectCost(Integer id);
+	@Query("select min(p.cost.amount) from Project p WHERE p.manager.id =:id AND p.cost.currency = 'EUR'")
+	Double minProjectCostEUR(Integer id);
+
+	@Query("select avg(p.cost.amount) from Project p WHERE p.manager.id =:id AND p.cost.currency = 'GBP'")
+	Double avgProjectCostGBP(Integer id);
+
+	@Query("select stddev(p.cost.amount) from Project p WHERE p.manager.id =:id AND p.cost.currency = 'GBP'")
+	Double deviationProjectCostGBP(Integer id);
+
+	@Query("select max(p.cost.amount) from Project p WHERE p.manager.id =:id AND p.cost.currency = 'GBP'")
+	Double maxProjectCostGBP(Integer id);
+
+	@Query("select min(p.cost.amount) from Project p WHERE p.manager.id =:id AND p.cost.currency = 'GBP'")
+	Double minProjectCostGBP(Integer id);
+
+	@Query("select avg(p.cost.amount) from Project p WHERE p.manager.id =:id AND p.cost.currency = 'USD'")
+	Double avgProjectCostUSD(Integer id);
+
+	@Query("select stddev(p.cost.amount) from Project p WHERE p.manager.id =:id AND p.cost.currency = 'USD'")
+	Double deviationProjectCostUSD(Integer id);
+
+	@Query("select max(p.cost.amount) from Project p WHERE p.manager.id =:id AND p.cost.currency = 'USD'")
+	Double maxProjectCostUSD(Integer id);
+
+	@Query("select min(p.cost.amount) from Project p WHERE p.manager.id =:id AND p.cost.currency = 'USD'")
+	Double minProjectCostUSD(Integer id);
 
 }
