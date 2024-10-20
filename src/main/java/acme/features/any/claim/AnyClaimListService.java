@@ -36,11 +36,7 @@ public class AnyClaimListService extends AbstractService<Any, Claim> {
 
 	@Override
 	public void authorise() {
-		boolean status;
-
-		status = !super.getRequest().getPrincipal().hasRole(Anonymous.class);
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override

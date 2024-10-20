@@ -34,15 +34,7 @@ public class AnyClaimShowService extends AbstractService<Any, Claim> {
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int masterId;
-		Claim claim;
-
-		masterId = super.getRequest().getData("id", int.class);
-		claim = this.repository.findOneClaimById(masterId);
-		status = !super.getRequest().getPrincipal().hasRole(Anonymous.class) && claim != null;
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
