@@ -63,10 +63,8 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 			super.state(condition, "*", "manager.project.form.error.ownership");
 		}
 
-		if (!super.getBuffer().getErrors().hasErrors("project")) {
-			super.state(!assigment.getProject().isHasFatalErrors(), "project", "manager.project.form.error.fatal-errors");
+		if (!super.getBuffer().getErrors().hasErrors("project"))
 			super.state(assigment.getProject().isDraft() == true, "*", "manager.project.form.create-denied");
-		}
 
 		if (!super.getBuffer().getErrors().hasErrors("userStroy")) {
 			int masterId = super.getRequest().getData("masterId", int.class);

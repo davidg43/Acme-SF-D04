@@ -70,13 +70,13 @@ public class ManagerAssignmentListService extends AbstractService<Manager, Assig
 	private Collection<Assignment> deleteDuplicated(final Collection<Assignment> objects) {
 		Set<String> uniquePairs = new HashSet<>();
 		return objects.stream().filter(assignment -> {
+			boolean res = false;
 			String pair = assignment.getProject() + "-" + assignment.getUserStory();
-			if (uniquePairs.contains(pair))
-				return false;
-			else {
+			if (!uniquePairs.contains(pair)) {
 				uniquePairs.add(pair);
-				return true;
+				res = true;
 			}
+			return res;
 		}).collect(Collectors.toList());
 	}
 

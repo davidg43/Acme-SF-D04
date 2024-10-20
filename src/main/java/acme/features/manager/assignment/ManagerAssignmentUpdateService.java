@@ -59,7 +59,6 @@ public class ManagerAssignmentUpdateService extends AbstractService<Manager, Ass
 		}
 
 		if (!super.getBuffer().getErrors().hasErrors("project")) {
-			super.state(!assigment.getProject().isHasFatalErrors(), "project", "manager.project.form.error.fatal-errors");
 			super.state(updateable, "*", "manager.project.form.updateable");
 			super.state(assigment.getProject().isDraft() == true, "*", "manager.project.form.create-denied");
 		}
