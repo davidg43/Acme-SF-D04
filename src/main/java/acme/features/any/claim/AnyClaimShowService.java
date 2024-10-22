@@ -34,15 +34,7 @@ public class AnyClaimShowService extends AbstractService<Any, Claim> {
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int masterId;
-		Claim claim;
-
-		masterId = super.getRequest().getData("id", int.class);
-		claim = this.repository.findOneClaimById(masterId);
-		status = !super.getRequest().getPrincipal().hasRole(Anonymous.class) && claim != null;
-
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
@@ -60,12 +52,10 @@ public class AnyClaimShowService extends AbstractService<Any, Claim> {
 	public void unbind(final Claim object) {
 		assert object != null;
 
-		boolean confirm = object.isConfirm() == true;
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link", "isDraft", "confirm");
+		dataset = super.unbind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link");
 
-		dataset.put("confirm", confirm);
 		super.getResponse().addData(dataset);
 	}
 

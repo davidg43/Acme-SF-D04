@@ -17,7 +17,6 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.client.data.accounts.Anonymous;
 import acme.client.data.accounts.Any;
 import acme.client.data.models.Dataset;
 import acme.client.helpers.MomentHelper;
@@ -37,9 +36,7 @@ public class AnyClaimCreateService extends AbstractService<Any, Claim> {
 
 	@Override
 	public void authorise() {
-		boolean status;
-		status = !super.getRequest().getPrincipal().hasRole(Anonymous.class);
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
@@ -48,7 +45,6 @@ public class AnyClaimCreateService extends AbstractService<Any, Claim> {
 
 		object = new Claim();
 
-		object.setDraft(true);
 		super.getBuffer().addData(object);
 	}
 
@@ -73,25 +69,28 @@ public class AnyClaimCreateService extends AbstractService<Any, Claim> {
 			existing = this.repository.findOneClaimByCode(object.getCode());
 			super.state(existing == null, "code", "any.claim.form.error.duplicated");
 		}
+
+		boolean publish = super.getRequest().getData("publish", boolean.class);
+		super.state(publish, "*", "any.claim.form.label.publish");
+
 	}
 
 	@Override
 	public void perform(final Claim object) {
 		assert object != null;
 
-		object.setDraft(true);
-		object.setConfirm(false);
 		this.repository.save(object);
 	}
 
 	@Override
 	public void unbind(final Claim object) {
 		assert object != null;
+		boolean publish = false;
 
 		Dataset dataset;
 
-		dataset = super.unbind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link", "isDraft");
-
+		dataset = super.unbind(object, "code", "instantiationMoment", "heading", "description", "department", "emailAddress", "link");
+		dataset.put("publish", publish);
 		super.getResponse().addData(dataset);
 	}
 

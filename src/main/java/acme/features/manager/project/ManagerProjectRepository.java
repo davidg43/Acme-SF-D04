@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
-import acme.entities.Objective;
 import acme.entities.codeAudit.AuditRecord;
 import acme.entities.codeAudit.CodeAudit;
 import acme.entities.contract.Contract;
@@ -58,7 +57,6 @@ public interface ManagerProjectRepository extends AbstractRepository {
 
 	@Query("select a.project.manager From Assignment a WHERE a.id =:id")
 	Manager findManagerProjectByAssignmentId(int id);
-
 	@Query("select a.project From Assignment a WHERE a.id =:id")
 	Project findProjectOfAnAssignmentByAssignmentId(int id);
 	//
@@ -83,7 +81,8 @@ public interface ManagerProjectRepository extends AbstractRepository {
 	@Query("select t From TrainingSession t WHERE t.trainingModule.project.id =:id")
 	Collection<TrainingSession> findAllTrainingSessionsOfAProjectById(int id);
 	//
-	@Query("select o From Objective o WHERE o.project.id =:id")
-	Collection<Objective> findAllObjectivesOfAProjectById(int id);
+
+	@Query("select Distinct a From Assignment a WHERE a.project.id =:p and a.userStory.id =:us")
+	Collection<Assignment> findAssigmentProjectUserStory(int p, int us);
 
 }

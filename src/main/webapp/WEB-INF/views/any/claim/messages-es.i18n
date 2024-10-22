@@ -30,4 +30,4 @@ any.claim.form.button.create = Crear
 any.claim.form.button.publish = Publicar
 
 any.claim.form.error.duplicated = No puedes usar un codigo existente
-any.claim.form.error.no-confirmed = Por favor, confirma que deseas publicar tu reclamacion
+any.claim.form.label.publish = Por favor, confirma que deseas crear tu reclamacion

@@ -12,3 +12,18 @@ client.dashboard.label.minimumCostOfProjects: Minimum Cost Of Projects
 client.dashboard.label.maximumCostOfProjects: Maximum Cost Of Projects
 manager.manager-dashboard.form.title = Manager Dashboard
 client.dashboard.form.title.general-indicators = Data
+client.dashboard.label.averageCostOfProjectsEUR: Average Cost of Projects (EUR)
+client.dashboard.label.deviationOfCostOfProjectsEUR: Deviation of Cost of Projects (EUR)
+client.dashboard.label.minimumCostOfProjectsEUR: Minimum Cost of Projects (EUR)
+client.dashboard.label.maximumCostOfProjectsEUR: Maximum Cost of Projects (EUR)
+
+client.dashboard.label.averageCostOfProjectsGBP: Average Cost of Projects (GBP)
+client.dashboard.label.deviationOfCostOfProjectsGBP: Deviation of Cost of Projects (GBP)
+client.dashboard.label.minimumCostOfProjectsGBP: Minimum Cost of Projects (GBP)
+client.dashboard.label.maximumCostOfProjectsGBP: Maximum Cost of Projects (GBP)
+
+client.dashboard.label.averageCostOfProjectsUSD: Average Cost of Projects (USD)
+client.dashboard.label.deviationOfCostOfProjectsUSD: Deviation of Cost of Projects (USD)
+client.dashboard.label.minimumCostOfProjectsUSD: Minimum Cost of Projects (USD)
+client.dashboard.label.maximumCostOfProjectsUSD: Maximum Cost of Projects (USD)
+

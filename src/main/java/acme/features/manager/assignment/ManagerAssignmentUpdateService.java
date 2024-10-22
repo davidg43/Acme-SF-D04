@@ -23,7 +23,10 @@ public class ManagerAssignmentUpdateService extends AbstractService<Manager, Ass
 
 	@Override
 	public void authorise() {
-		boolean status = super.getRequest().getPrincipal().hasRole(Manager.class);
+		boolean status;
+		int assigmentId = super.getRequest().getData("id", int.class);
+		Manager manager = this.repository.findManagerProjectByAssignmentId(assigmentId);
+		status = manager != null && super.getRequest().getPrincipal().hasRole(Manager.class) && manager.getId() == super.getRequest().getPrincipal().getActiveRoleId();
 
 		super.getResponse().setAuthorised(status);
 	}
@@ -50,10 +53,29 @@ public class ManagerAssignmentUpdateService extends AbstractService<Manager, Ass
 		assert assigment != null;
 		boolean updateable = this.repository.findProjectOfAnAssignmentByAssignmentId(assigment.getId()).isDraft();
 
+		if (!super.getBuffer().getErrors().hasErrors("userStory")) {
+			boolean condition = assigment.getProject().getManager().getId() == assigment.getUserStory().getManager().getId();
+			super.state(condition, "*", "manager.project.form.error.ownership");
+		}
+
 		if (!super.getBuffer().getErrors().hasErrors("project")) {
-			super.state(!assigment.getProject().isHasFatalErrors(), "project", "manager.project.form.error.fatal-errors");
 			super.state(updateable, "*", "manager.project.form.updateable");
 			super.state(assigment.getProject().isDraft() == true, "*", "manager.project.form.create-denied");
+		}
+
+		if (!super.getBuffer().getErrors().hasErrors("userStory")) {
+			int projectId = assigment.getProject().getId();
+			int userStoryId = assigment.getUserStory().getId();
+
+			Collection<Assignment> existingAssignments = this.repository.findAssigmentProjectUserStory(projectId, userStoryId);
+
+			boolean isListSizeValid = existingAssignments.size() <= 1;
+
+			boolean isCollectionEmpty = existingAssignments.isEmpty();
+
+			boolean isSameAssignment = existingAssignments.size() == 1 && existingAssignments.iterator().next().getId() == assigment.getId();
+
+			super.state(isListSizeValid && (isCollectionEmpty || isSameAssignment), "userStory", "manager.project.form.UsDuplicated");
 		}
 
 	}
