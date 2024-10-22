@@ -57,7 +57,7 @@ public class ClientContractUpdateService extends AbstractService<Client, Contrac
 
 			existing = this.repository.findOneContractByCode(contract.getCode());
 
-			super.state(existing == null || existing.equals(contract), "recordId", "client.progresslog.form.error.duplicated");
+			super.state(existing == null || existing.equals(contract), "code", "client.contract.form.error.duplicated");
 		}
 		if (!super.getBuffer().getErrors().hasErrors("budget"))
 			super.state(contract.getBudget().getAmount() >= 0, "budget", "client.contract.form.error.negative-budget");

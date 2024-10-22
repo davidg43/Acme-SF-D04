@@ -60,9 +60,9 @@ public class ClientContractCreateService extends AbstractService<Client, Contrac
 		assert contract != null;
 		Collection<Contract> contracts = null;
 		if (!super.getBuffer().getErrors().hasErrors("code")) {
-			contracts = this.repository.findAllContractsOfAClientById(contract.getClient().getId());
-			boolean condition = contracts.contains(contract);
-			super.state(!condition, "code", "client.contract.form.error.duplicated");
+			Contract existing;
+			existing = this.repository.findOneContractByCode(contract.getCode());
+			super.state(existing == null || existing.equals(contract), "code", "client.contract.form.error.duplicated");
 		}
 		if (!super.getBuffer().getErrors().hasErrors("budget"))
 			super.state(contract.getBudget().getAmount() >= 0, "budget", "client.contract.form.error.negative-budget");

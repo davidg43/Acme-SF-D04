@@ -1,6 +1,8 @@
 
 package acme.features.client.progresslog;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +53,21 @@ public class ClientProgressLogPublishService extends AbstractService<Client, Pro
 	@Override
 	public void validate(final ProgressLog object) {
 		assert object != null;
+
+		if (!super.getBuffer().getErrors().hasErrors("recordId")) {
+			ProgressLog existing;
+			existing = this.repository.findOneProgressLogByCode(object.getRecordId());
+			super.state(existing == null || existing.equals(object), "recordId", "client.progresslog.form.error.duplicated");
+		}
+		if (!super.getBuffer().getErrors().hasErrors("completeness")) {
+
+			Double objectCompleteness = object.getCompleteness();
+			List<ProgressLog> pls = this.repository.findBefore(object.getContract().getId());
+			ProgressLog lastVersion = this.repository.findOneProgressLogById(object.getId());
+			Double lastCompleteness = pls.get(0).getCompleteness();
+			boolean condition = objectCompleteness.equals(lastVersion.getCompleteness()) || objectCompleteness > lastCompleteness;
+			super.state(condition && objectCompleteness < 100, "completeness", "client.progresslog.form.error.completeness");
+		}
 
 	}
 
