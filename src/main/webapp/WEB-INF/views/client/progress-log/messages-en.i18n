@@ -5,7 +5,7 @@ client.progreslog.list.label.completeness = Progress Percentage
 client.progress-log.list.label.recordId = Record ID
 client.progress-log.list.label.completeness = Completed Porcentage
 client.progresslog.form.error.duplicated = Already exists or not updated
-client.progresslog.form.error.completeness = Completeness is already 100%
+client.progresslog.form.error.completeness = Not Valid Completeness (See the last Progress Completeness)
 
 
 client.progress-log.list.label.contract = Contract ID

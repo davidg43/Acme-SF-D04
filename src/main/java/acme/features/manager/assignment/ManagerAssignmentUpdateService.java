@@ -63,6 +63,21 @@ public class ManagerAssignmentUpdateService extends AbstractService<Manager, Ass
 			super.state(assigment.getProject().isDraft() == true, "*", "manager.project.form.create-denied");
 		}
 
+		if (!super.getBuffer().getErrors().hasErrors("userStory")) {
+			int projectId = assigment.getProject().getId();
+			int userStoryId = assigment.getUserStory().getId();
+
+			Collection<Assignment> existingAssignments = this.repository.findAssigmentProjectUserStory(projectId, userStoryId);
+
+			boolean isListSizeValid = existingAssignments.size() <= 1;
+
+			boolean isCollectionEmpty = existingAssignments.isEmpty();
+
+			boolean isSameAssignment = existingAssignments.size() == 1 && existingAssignments.iterator().next().getId() == assigment.getId();
+
+			super.state(isListSizeValid && (isCollectionEmpty || isSameAssignment), "userStory", "manager.project.form.UsDuplicated");
+		}
+
 	}
 
 	@Override

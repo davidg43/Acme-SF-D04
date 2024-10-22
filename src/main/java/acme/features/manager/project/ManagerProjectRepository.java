@@ -82,4 +82,7 @@ public interface ManagerProjectRepository extends AbstractRepository {
 	Collection<TrainingSession> findAllTrainingSessionsOfAProjectById(int id);
 	//
 
+	@Query("select Distinct a From Assignment a WHERE a.project.id =:p and a.userStory.id =:us")
+	Collection<Assignment> findAssigmentProjectUserStory(int p, int us);
+
 }

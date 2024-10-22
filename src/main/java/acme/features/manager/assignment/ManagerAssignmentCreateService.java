@@ -66,8 +66,8 @@ public class ManagerAssignmentCreateService extends AbstractService<Manager, Ass
 		if (!super.getBuffer().getErrors().hasErrors("project"))
 			super.state(assigment.getProject().isDraft() == true, "*", "manager.project.form.create-denied");
 
-		if (!super.getBuffer().getErrors().hasErrors("userStroy")) {
-			int masterId = super.getRequest().getData("masterId", int.class);
+		if (!super.getBuffer().getErrors().hasErrors("userStory")) {
+			int masterId = assigment.getProject().getId();
 			Collection<UserStory> us = this.repository.findAllUserStoriesOfAProjectById(masterId);
 			super.state(!us.contains(assigment.getUserStory()), "userStory", "manager.project.form.UsDuplicated");
 		}
