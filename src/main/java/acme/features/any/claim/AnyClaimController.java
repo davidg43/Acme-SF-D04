@@ -27,16 +27,13 @@ public class AnyClaimController extends AbstractController<Any, Claim> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AnyClaimListService	listService;
+	private AnyClaimListService		listService;
 
 	@Autowired
-	private AnyClaimShowService	showService;
+	private AnyClaimShowService		showService;
 
 	@Autowired
 	private AnyClaimCreateService	createService;
-
-	@Autowired
-	private AnyClaimPublishService	publishService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -46,8 +43,6 @@ public class AnyClaimController extends AbstractController<Any, Claim> {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("show", this.showService);
-
-		super.addCustomCommand("publish", "update", this.publishService);
 	}
 
 }

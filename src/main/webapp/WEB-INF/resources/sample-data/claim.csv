@@ -1,6 +1,6 @@
-key,code,instantiationMoment,heading,description,department,emailAddress,link,isDraft,confirm
-claim-01,C-0001,2022/02/25 08:15,"Claim Heading 1","Description of claim 1","Department 1","claim1@example.com",https://example.com/claim-1,false,true
-claim-02,C-0002,2021/09/15 10:30,"Claim Heading 2","Description of claim 2","Department 2","claim2@example.com",https://example.com/claim-2,true,false
-claim-03,C-0003,2021/10/20 14:45,"Claim Heading 3","Description of claim 3","Department 3","claim3@example.com",https://example.com/claim-3,true,false
-claim-04,C-0004,2020/11/05 16:00,"Claim Heading 4","Description of claim 4","Department 4","claim4@example.com",https://example.com/claim-4,true,false
-claim-05,C-0005,2019/12/01 18:00,"Claim Heading 5","Description of claim 5","Department 5","claim5@example.com",https://example.com/claim-5,false,true
+key,code,instantiationMoment,heading,description,department,emailAddress,link
+claim-01,C-0001,2022/02/25 08:15,"Claim Heading 1","Description of claim 1","Department 1","claim1@example.com",https://example.com/claim-1
+claim-02,C-0002,2021/09/15 10:30,"Claim Heading 2","Description of claim 2","Department 2","claim2@example.com",https://example.com/claim-2
+claim-03,C-0003,2021/10/20 14:45,"Claim Heading 3","Description of claim 3","Department 3","claim3@example.com",https://example.com/claim-3
+claim-04,C-0004,2020/11/05 16:00,"Claim Heading 4","Description of claim 4","Department 4","claim4@example.com",https://example.com/claim-4
+claim-05,C-0005,2019/12/01 18:00,"Claim Heading 5","Description of claim 5","Department 5","claim5@example.com",https://example.com/claim-5

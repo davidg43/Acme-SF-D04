@@ -12,27 +12,31 @@ public class ManagerDashboard extends AbstractForm {
 	private static final long	serialVersionUID	= 1L;
 
 	private Integer				totalMustUserStories;
-
 	private Integer				totalShouldUserStories;
-
 	private Integer				totalCouldUserStories;
-
 	private Integer				totalWontUserStories;
 
 	private Double				averageEstimatedCostOfUserStories;
-
 	private Double				deviationOfEstimatedCostOfUserStories;
-
 	private Integer				minimumEstimatedCostOfUserStories;
-
 	private Integer				maximumEstimatedCostOfUserStories;
 
-	private Double				averageCostOfProjects;
+	// Campos para EUR
+	private Double				averageCostOfProjectsEUR;
+	private Double				deviationOfCostOfProjectsEUR;
+	private Double				minimumCostOfProjectsEUR;
+	private Double				maximumCostOfProjectsEUR;
 
-	private Double				deviationOfCostOfProjects;
+	// Campos para GBP
+	private Double				averageCostOfProjectsGBP;
+	private Double				deviationOfCostOfProjectsGBP;
+	private Double				minimumCostOfProjectsGBP;
+	private Double				maximumCostOfProjectsGBP;
 
-	private Double				minimumCostOfProjects;
-
-	private Double				maximumCostOfProjects;
+	// Campos para USD
+	private Double				averageCostOfProjectsUSD;
+	private Double				deviationOfCostOfProjectsUSD;
+	private Double				minimumCostOfProjectsUSD;
+	private Double				maximumCostOfProjectsUSD;
 
 }

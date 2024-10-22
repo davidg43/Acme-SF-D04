@@ -68,7 +68,6 @@ public class ManagerProjectDeleteService extends AbstractService<Manager, Projec
 		this.repository.deleteAll(this.repository.findAllCodeAuditsOfAProjectById(project.getId()));
 
 		this.repository.deleteAll(this.repository.findAllSponsorShipOfAProjectById(project.getId()));
-		this.repository.deleteAll(this.repository.findAllObjectivesOfAProjectById(project.getId()));
 
 		this.repository.deleteAll(this.repository.findAllTrainingSessionsOfAProjectById(project.getId()));
 		this.repository.deleteAll(this.repository.findAllTrainingModuleOfAProjectById(project.getId()));

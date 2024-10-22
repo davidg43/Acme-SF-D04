@@ -2,6 +2,7 @@
 package acme.features.client.progresslog;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,13 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(super.getRequest().getPrincipal().hasRole(Client.class));
+		boolean status;
+		int contractId = super.getRequest().getData("masterId", int.class);
+		Contract contract;
+		contract = this.repository.findOneContractById(contractId);
+		status = super.getRequest().getPrincipal().getActiveRoleId() == contract.getClient().getId() && contract != null && contract.isDraft() && super.getRequest().getPrincipal().hasRole(super.getRequest().getPrincipal().getActiveRole());
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -60,12 +67,14 @@ public class ClientProgressLogCreateService extends AbstractService<Client, Prog
 			super.state(existing == null, "recordId", "client.progresslog.form.error.duplicated");
 		}
 		if (!super.getBuffer().getErrors().hasErrors("completeness")) {
-			Double currentCompleteness = this.repository.findTotalCompletenessByContractIdExceptSelf(object.getContract().getId(), object.getId());
-			if (currentCompleteness == null)
-				currentCompleteness = 0.0;
+
 			Double objectCompleteness = object.getCompleteness();
-			double totalCompleteness = currentCompleteness + objectCompleteness;
-			super.state(totalCompleteness <= 100, "completeness", "client.progresslog.form.error.completeness");
+			List<ProgressLog> pls = this.repository.findBefore(object.getContract().getId());
+			if (!pls.isEmpty()) {
+				Double lastCompleteness = pls.get(0).getCompleteness();
+				super.state(objectCompleteness > lastCompleteness && objectCompleteness < 100, "completeness", "client.progresslog.form.error.completeness");
+			} else
+				super.state(objectCompleteness <= 100, "completeness", "client.progresslog.form.error.completeness");
 		}
 
 	}

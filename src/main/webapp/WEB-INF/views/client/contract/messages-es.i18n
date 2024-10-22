@@ -44,7 +44,7 @@ project.form.button.delete = Borrar
 project.form.button.create = Crear
 project.form.label.hasFatalErrors = Errores fatales
 client.list.label.project.title = Proyecto
-
+client.contract.unsopportedCurrency = Moneda no soportada
 project.form.button.publish = Publicar
 client.contract.form.error.invalid-budget = El presupuesto es mayor al costo del proyecto
 

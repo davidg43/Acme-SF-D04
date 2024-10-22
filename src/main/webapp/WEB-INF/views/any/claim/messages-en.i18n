@@ -33,4 +33,4 @@ any.claim.form.button.publish = Publish
 
 
 any.claim.form.error.duplicated = You cant use an existing code
-any.claim.form.error.no-confirmed = Please, confirm you want to publish your claim
+any.claim.form.label.publish = Please, confirm you want to create your claim

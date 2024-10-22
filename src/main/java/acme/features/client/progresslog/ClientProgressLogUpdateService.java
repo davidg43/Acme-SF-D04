@@ -2,6 +2,7 @@
 package acme.features.client.progresslog;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,9 +30,10 @@ public class ClientProgressLogUpdateService extends AbstractService<Client, Prog
 		progressLogId = super.getRequest().getData("id", int.class);
 		contract = this.repository.findOneContractByProgressLogId(progressLogId);
 		progressLog = this.repository.findOneProgressLogById(progressLogId);
-		status = progressLog != null && progressLog.isDraft() && contract != null && super.getRequest().getPrincipal().hasRole(progressLog.getContract().getClient());
+		status = super.getRequest().getPrincipal().getActiveRoleId() == contract.getClient().getId() && progressLog != null && progressLog.isDraft() && contract != null && super.getRequest().getPrincipal().hasRole(Client.class);
 
 		super.getResponse().setAuthorised(status);
+
 	}
 
 	@Override
@@ -57,19 +59,19 @@ public class ClientProgressLogUpdateService extends AbstractService<Client, Prog
 
 		if (!super.getBuffer().getErrors().hasErrors("recordId")) {
 			ProgressLog existing;
-
 			existing = this.repository.findOneProgressLogByCode(object.getRecordId());
-
 			super.state(existing == null || existing.equals(object), "recordId", "client.progresslog.form.error.duplicated");
 		}
 		if (!super.getBuffer().getErrors().hasErrors("completeness")) {
-			Double currentCompleteness = this.repository.findTotalCompletenessByContractIdExceptSelf(object.getContract().getId(), object.getId());
-			if (currentCompleteness == null)
-				currentCompleteness = 0.0;
+
 			Double objectCompleteness = object.getCompleteness();
-			double totalCompleteness = currentCompleteness + objectCompleteness;
-			super.state(totalCompleteness <= 100, "completeness", "client.progresslog.form.error.completeness");
+			List<ProgressLog> pls = this.repository.findBefore(object.getContract().getId());
+			ProgressLog lastVersion = this.repository.findOneProgressLogById(object.getId());
+			Double lastCompleteness = pls.get(0).getCompleteness();
+			boolean condition = objectCompleteness.equals(lastVersion.getCompleteness()) || objectCompleteness > lastCompleteness;
+			super.state(condition && objectCompleteness < 100, "completeness", "client.progresslog.form.error.completeness");
 		}
+
 	}
 
 	@Override

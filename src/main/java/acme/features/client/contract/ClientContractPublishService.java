@@ -6,33 +6,32 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.client.data.datatypes.Money;
 import acme.client.data.models.Dataset;
 import acme.client.services.AbstractService;
+import acme.client.views.SelectChoices;
 import acme.entities.contract.Contract;
 import acme.entities.project.Project;
+import acme.features.client.progresslog.ClientProgressLogRepository;
 import acme.roles.Client;
 
 @Service
 public class ClientContractPublishService extends AbstractService<Client, Contract> {
 
 	@Autowired
-	private ClientContractRepository repository;
+	private ClientContractRepository	repository;
+	@Autowired
+	private ClientProgressLogRepository	plRepo;
 
 
 	@Override
 	public void authorise() {
 		boolean status;
-		int masterId;
 		Contract contract;
-		Client client;
-
-		masterId = super.getRequest().getData("id", int.class);
-		contract = this.repository.findContractById(masterId);
-		client = this.repository.findClientByContractId(masterId);
-		status = contract != null && contract.isDraft() && super.getRequest().getPrincipal().hasRole(Client.class) && contract.getClient().equals(client);
-
+		int id = super.getRequest().getData("id", int.class);
+		contract = this.repository.findContractById(id);
+		status = contract != null && contract.isDraft() && super.getRequest().getPrincipal().hasRole(Client.class) && contract.getClient().getId() == super.getRequest().getPrincipal().getActiveRoleId();
 		super.getResponse().setAuthorised(status);
-
 	}
 
 	@Override
@@ -55,7 +54,7 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 		projectId = super.getRequest().getData("project", int.class);
 		project = this.repository.findOneProjectById(projectId);
 
-		super.bind(contract, "isDraft");
+		super.bind(contract, "code", "moment", "providerName", "customerName", "goals", "budget", "isDraft", "project", "isDraft");
 		contract.setProject(project);
 	}
 
@@ -68,18 +67,33 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 
 			existing = this.repository.findOneContractByCode(contract.getCode());
 
-			super.state(existing == null || existing.equals(contract), "recordId", "client.progresslog.form.error.duplicated");
+			super.state(existing == null || existing.equals(contract), "code", "client.contract.form.error.duplicated");
 		}
 		if (!super.getBuffer().getErrors().hasErrors("budget"))
 			super.state(contract.getBudget().getAmount() >= 0, "budget", "client.contract.form.error.negative-budget");
 		if (!super.getBuffer().getErrors().hasErrors("budget")) {
-			contracts = this.repository.findAllContractsOfAClientById(contract.getClient().getId());
-			double totalBudget = contracts.stream().mapToDouble(c -> c.getBudget().getAmount()).sum();
+			contracts = this.repository.findAllContractsOfAProjectById(contract.getProject().getId());
+			double totalBudget = contracts.stream().filter(p -> p.getId() != contract.getId()).mapToDouble(c -> this.eurConverter(c.getBudget())).sum();
 			double projectCost = contract.getProject().getCost().getAmount();
-			totalBudget += contract.getBudget().getAmount();
+			totalBudget += this.eurConverter(contract.getBudget());
 			super.state(totalBudget <= projectCost, "budget", "client.contract.form.error.exceeds-project-cost");
 		}
 
+	}
+
+	private double eurConverter(final Money money) {
+		String currency = money.getCurrency();
+		double amount = money.getAmount();
+
+		if (currency.equals("EUR"))
+			amount = amount;
+		else if (currency.equals("USD"))
+			amount = amount * 0.90; // Tasa aproximada de conversión USD a EUR
+		else if (currency.equals("GBP"))
+			amount = amount * 1.17; // Tasa aproximada de conversión GBP a EUR
+		else
+			super.state(false, "budget", "client.contract.unsopportedCurrency");
+		return amount;
 	}
 
 	@Override
@@ -87,21 +101,28 @@ public class ClientContractPublishService extends AbstractService<Client, Contra
 		assert contract != null;
 
 		contract.setDraft(false);
+		this.repository.findAllProgressLogsByContractId(contract.getId()).stream().forEach(x -> {
+			x.setDraft(false);
+			this.plRepo.save(x);
+		});
 		this.repository.save(contract);
+
 	}
 	@Override
 	public void unbind(final Contract contract) {
 		assert contract != null;
 		boolean isDraft;
+		SelectChoices choices;
 
+		choices = SelectChoices.from(this.repository.findAllPublishedProjects(), "title", contract.getProject());
 		isDraft = contract.isDraft() == true;
 
 		Dataset dataset;
 
 		dataset = super.unbind(contract, "code", "moment", "providerName", "customerName", "goals", "budget", "isDraft", "project");
-
+		dataset.put("contractId", contract.getId());
 		dataset.put("isDraft", isDraft);
-
+		dataset.put("projects", choices);
 		super.getResponse().addData(dataset);
 	}
 

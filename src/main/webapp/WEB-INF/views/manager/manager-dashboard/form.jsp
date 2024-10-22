@@ -54,26 +54,71 @@
 				code="client.dashboard.label.maximumEstimatedCostOfUserStories" /></th>
 		<td><acme:print value="${maximumEstimatedCostOfUserStories}" /></td>
 	</tr>
+	
 	<tr>
 		<th scope="row"><acme:message
-				code="client.dashboard.label.averageCostOfProjects" /></th>
-		<td><acme:print value="${averageCostOfProjects}" /></td>
+				code="client.dashboard.label.averageCostOfProjectsEUR" /></th>
+		<td><acme:print value="${averageCostOfProjectsEUR}" /></td>
 	</tr>
 	<tr>
 		<th scope="row"><acme:message
-				code="client.dashboard.label.deviationOfCostOfProjects" /></th>
-		<td><acme:print value="${deviationOfCostOfProjects}" /></td>
+				code="client.dashboard.label.deviationOfCostOfProjectsEUR" /></th>
+		<td><acme:print value="${deviationOfCostOfProjectsEUR}" /></td>
 	</tr>
 	<tr>
 		<th scope="row"><acme:message
-				code="client.dashboard.label.minimumCostOfProjects" /></th>
-		<td><acme:print value="${minimumCostOfProjects}" /></td>
+				code="client.dashboard.label.minimumCostOfProjectsEUR" /></th>
+		<td><acme:print value="${minimumCostOfProjectsEUR}" /></td>
 	</tr>
 	<tr>
 		<th scope="row"><acme:message
-				code="client.dashboard.label.maximumCostOfProjects" /></th>
-		<td><acme:print value="${maximumCostOfProjects}" /></td>
+				code="client.dashboard.label.maximumCostOfProjectsEUR" /></th>
+		<td><acme:print value="${maximumCostOfProjectsEUR}" /></td>
 	</tr>
+	
+	<tr>
+		<th scope="row"><acme:message
+				code="client.dashboard.label.averageCostOfProjectsGBP" /></th>
+		<td><acme:print value="${averageCostOfProjectsGBP}" /></td>
+	</tr>
+	<tr>
+		<th scope="row"><acme:message
+				code="client.dashboard.label.deviationOfCostOfProjectsGBP" /></th>
+		<td><acme:print value="${deviationOfCostOfProjectsGBP}" /></td>
+	</tr>
+	<tr>
+		<th scope="row"><acme:message
+				code="client.dashboard.label.minimumCostOfProjectsGBP" /></th>
+		<td><acme:print value="${minimumCostOfProjectsGBP}" /></td>
+	</tr>
+	<tr>
+		<th scope="row"><acme:message
+				code="client.dashboard.label.maximumCostOfProjectsGBP" /></th>
+		<td><acme:print value="${maximumCostOfProjectsGBP}" /></td>
+	</tr>
+	
+	
+	<tr>
+		<th scope="row"><acme:message
+				code="client.dashboard.label.averageCostOfProjectsUSD" /></th>
+		<td><acme:print value="${averageCostOfProjectsUSD}" /></td>
+	</tr>
+	<tr>
+		<th scope="row"><acme:message
+				code="client.dashboard.label.deviationOfCostOfProjectsUSD" /></th>
+		<td><acme:print value="${deviationOfCostOfProjectsUSD}" /></td>
+	</tr>
+	<tr>
+		<th scope="row"><acme:message
+				code="client.dashboard.label.minimumCostOfProjectsUSD" /></th>
+		<td><acme:print value="${minimumCostOfProjectsUSD}" /></td>
+	</tr>
+	<tr>
+		<th scope="row"><acme:message
+				code="client.dashboard.label.maximumCostOfProjectsUSD" /></th>
+		<td><acme:print value="${maximumCostOfProjectsUSD}" /></td>
+	</tr>
+	
 
 
 

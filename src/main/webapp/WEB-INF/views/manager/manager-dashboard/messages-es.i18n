@@ -12,3 +12,17 @@ client.dashboard.label.minimumCostOfProjects: Costo mínimo de los proyectos
 client.dashboard.label.maximumCostOfProjects: Costo máximo de los proyectos
 manager.manager-dashboard.form.title = Estadísticas de Manager
 client.dashboard.form.title.general-indicators = Datos
+client.dashboard.label.averageCostOfProjectsEUR: Coste Medio de Proyectos (EUR)
+client.dashboard.label.deviationOfCostOfProjectsEUR: Desviación del Coste de Proyectos (EUR)
+client.dashboard.label.minimumCostOfProjectsEUR: Coste Mínimo de Proyectos (EUR)
+client.dashboard.label.maximumCostOfProjectsEUR: Coste Máximo de Proyectos (EUR)
+
+client.dashboard.label.averageCostOfProjectsGBP: Coste Medio de Proyectos (GBP)
+client.dashboard.label.deviationOfCostOfProjectsGBP: Desviación del Coste de Proyectos (GBP)
+client.dashboard.label.minimumCostOfProjectsGBP: Coste Mínimo de Proyectos (GBP)
+client.dashboard.label.maximumCostOfProjectsGBP: Coste Máximo de Proyectos (GBP)
+
+client.dashboard.label.averageCostOfProjectsUSD: Coste Medio de Proyectos (USD)
+client.dashboard.label.deviationOfCostOfProjectsUSD: Desviación del Coste de Proyectos (USD)
+client.dashboard.label.minimumCostOfProjectsUSD: Coste Mínimo de Proyectos (USD)
+client.dashboard.label.maximumCostOfProjectsUSD: Coste Máximo de Proyectos (USD)
